@@ -20,4 +20,16 @@ public class MainController {
 	public String map() {
 		return "/account/map";
 	}
+	@RequestMapping("writeForm")
+	public String about() {
+		return "/mainPage/writeForm";
+	}
+	@RequestMapping("hash")
+	public String hash() {
+		return "/mainPage/hash";
+	}
+	@RequestMapping("list")
+	public String list() {
+		return "/mainPage/list";
+	}
 }
