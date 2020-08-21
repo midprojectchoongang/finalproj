@@ -24,15 +24,10 @@
 				<div class="row-pb-lg">
 					<div class="col-xs-12">
 					<p class="tags">
-						<span><a href="#" class="tag-active"><i class="icon-tag"></i> 조각</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 회화</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 공예</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 고전</a></span>
-						<span><a href="#"><i class="icon-tag"></i> 현대</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 국내작가</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 해외작가</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 특별전시</a></span> 
-						<span><a href="#"><i class="icon-tag"></i> 무료입장</a></span>
+						<c:forEach var="htl" items="${hashList }">
+							<span><a href="#"><i class="icon-tag"></i> ${htl.hash_title }</a></span> 
+						<!-- <span><a href="#" class="tag-active"><i class="icon-tag"></i> 조각</a></span>  -->
+						</c:forEach>
 					</p>
 					</div>
 				</div>
