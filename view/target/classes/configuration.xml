@@ -2,9 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="main" type="com.finalproj.view.model.Main" />
+		<typeAlias alias="hashtag" type="com.finalproj.view.hashtag.HashtagDTO" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="main.xml"/>
+		<mapper resource="hashtag.xml"/>
 	</mappers>
 </configuration>
