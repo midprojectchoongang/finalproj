@@ -3,8 +3,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="hashtag" type="com.finalproj.view.hashtag.HashtagDTO" />
+		<typeAlias alias="tbook" type="com.finalproj.view.ticketbook.TicketBookDTO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="hashtag.xml"/>
+		<mapper resource="ticketbook.xml"/>
 	</mappers>
 </configuration>
