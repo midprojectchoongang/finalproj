@@ -3,10 +3,12 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="hashtag" type="com.finalproj.view.hashtag.HashtagDTO" />
-		<typeAlias alias="tbook" type="com.finalproj.view.ticketbook.TicketBookDTO" />
+		<typeAlias alias="customer" type="com.finalproj.view.customer.CustomerDTO" />
+    <typeAlias alias="tbook" type="com.finalproj.view.ticketbook.TicketBookDTO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="hashtag.xml"/>
+		<mapper resource="customer.xml"/>
 		<mapper resource="ticketbook.xml"/>
 	</mappers>
 </configuration>
