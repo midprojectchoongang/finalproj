@@ -11,4 +11,7 @@
 	<select id="list" parameterType="hashtag" resultMap="hashtagResult">
 		select * from hashtag order by hashgroup
 	</select>
+	<select id="hashChk" parameterType="string" resultType="integer">
+		select count(*) from hashtag where hash_title = #{hash_title}
+	</select>
 </mapper>

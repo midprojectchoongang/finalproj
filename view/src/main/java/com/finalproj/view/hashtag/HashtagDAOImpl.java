@@ -11,4 +11,7 @@ public class HashtagDAOImpl implements HashtagDAO {
 	public List<HashtagDTO> hashList(HashtagDTO hashtag) {
 		return sst.selectList("hashtagns.list", hashtag);
 	}
+	public int hashChk(String hash_title) {
+		return sst.selectOne("hashtagns.hashChk", hash_title);
+	}
 }

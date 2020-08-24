@@ -10,4 +10,7 @@ public class HashtagServiceImpl implements HashtagService{
 	public List<HashtagDTO> hashList(HashtagDTO hashtag) {
 		return hd.hashList(hashtag);
 	}
+	public int hashChk(String hash_title) {
+		return hd.hashChk(hash_title);
+	}
 }

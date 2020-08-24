@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tbookns">
+	<resultMap type="tbook" id="tbookResult">
+		<result property="ticketbook_no" column="ticketbook_no" />
+		<result property="c_id" column="c_id" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="filename" column="filename" />
+		<result property="visit_date" column="visit_date" />
+		<result property="reg_date" column="reg_date" />
+		<result property="del" column="del" />
+	</resultMap>
+	
+	<!-- list -->
+	<select id="getTotal" parameterType="string" resultType="integer">
+		select count(*) 
+		from ticketbook
+		where c_id = 'test'
+	</select>
+	<select id="list" parameterType="tbook" resultMap="tbookResult">
+		select * 
+		from ticketbook
+		where c_id = 'test'
+		order by visit_date
+		limit #{startRow}, #{endRow}
+	</select>
+	
+	<select id="view" parameterType="integer" resultType="tbook">
+		select * 
+		from ticketbook
+		where ticketbook_no = #{ticketbook_no}
+	</select>
+	
+	<insert id="insert" parameterType="tbook" useGeneratedKeys="true" keyProperty="ticketbook_no">
+		insert into 
+		ticketbook 
+		values (
+			ticketbook_no, 
+			#{c_id}, 
+			#{title}, 
+			#{content}, 
+			#{filename}, 
+			date_add(#{visit_date}, interval 1 day), 
+			sysdate(), 
+			'n'
+			)
+	</insert>
+
+</mapper>

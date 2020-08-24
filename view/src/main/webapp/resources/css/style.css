@@ -72,6 +72,11 @@ h1, h2, h3, h4, h5, h6, figure {
   color: #fff;
   background: #F6490D; }
 
+.short a{
+	color: #F6490D;
+	padding-top: 5px;
+	cursor: pointer;
+}
 .tags span {
 	float: left;
 	margin-bottom: 5px;
@@ -624,8 +629,8 @@ blockquote {
   padding-left: 30px;
   background: #fafafa;
   border-left-color: #F6490D;
-  font-style: italic;
   color: #999999;
+  font-weight: bold;
   font-size: 20px; }
 
 .user-img,
@@ -885,9 +890,9 @@ blockquote {
   margin-bottom: 1.5em; }
 
 .heading-2 {
-  font-weight: 700;
-  font-size: 28px;
-  margin-bottom: 40px; }
+  font-size: 24px;
+  margin-bottom: 40px; 
+  margin-top: 40px;}
 
 @media screen and (max-width: 768px) {
   #fname {
