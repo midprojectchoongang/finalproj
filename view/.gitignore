@@ -70,3 +70,4 @@ local.properties
 /target/
 /pom.xml
 /viewSQL.sql
+/db.properties
