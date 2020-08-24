@@ -3,6 +3,21 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<script type="text/javascript">
+	function filter() {
+		var keyword, name, tag, i;
+		keyword = document.getElementById("keyword").value.toUpperCase();
+		tag = document.getElementsByClassName("tag");
+		for (i=0; i<tag.length; i++) {
+			name = tag[i].getElementsByClassName("name");
+			if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
+				tag[i].style.display = "flex";
+			} else {
+				tag[i].style.display = "none";
+			}
+		}
+	}
+</script>
 </head>
 <body>
 <div class="colorlib-loader"></div>
@@ -11,13 +26,13 @@
 		<div id="colorlib-container">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-12" align="center">
 						<h2>Tags</h2>
 						<div class="row-pb-lg">
-							<div class="col-xs-4">
-								<input type="text" class="search">
+							<div class="col-xs-12">
+								<input onkeyup="filter()" type="text" name="keyword" id="keyword" placeholder="Type #HASH"
+									style="width: 40%; text-align: center;">
 							</div>
-							<input type="submit" class="btn btn-outline" value="검색">
 						</div>
 					</div>
 				</div>
@@ -25,8 +40,7 @@
 					<div class="col-xs-12">
 					<p class="tags">
 						<c:forEach var="htl" items="${hashList }">
-							<span><a href="#"><i class="icon-tag"></i> ${htl.hash_title }</a></span> 
-						<!-- <span><a href="#" class="tag-active"><i class="icon-tag"></i> 조각</a></span>  -->
+							<span class="tag"><a href="#" class="name"><i class="icon-tag"></i> ${htl.hash_title }</a></span>
 						</c:forEach>
 					</p>
 					</div>
