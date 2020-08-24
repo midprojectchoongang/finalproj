@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="customerns">
+	<resultMap type="customer" id="customerResult">
+		<result property="c_id" column="c_id" />
+		<result property="c_password" column="c_password" />
+		<result property="nickname" column="nickname" />
+		<result property="email" column="email" />
+		<result property="c_hashtag" column="c_hashtag" />
+		<result property="c_role" column="c_role" />
+		<result property="reg_date" column="reg_date" />
+		<result property="del" column="del" />
+	</resultMap>
+	<select id="select" parameterType="string" resultType="customer">
+		select * from customer where c_id=#{c_id}
+	</select>
+	<insert id="insert" parameterType="customer">
+		insert into customer values
+		(#{c_id}, #{c_password}, #{nickname}, #{email}, #{c_hashtag}, "customer", sysdate(), "n")
+	</insert>
+	<select id="list" parameterType="string" resultMap="customerResult">
+		select * from customer where c_id=#{c_id}
+	</select>
+</mapper>

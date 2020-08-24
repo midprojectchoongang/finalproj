@@ -19,6 +19,7 @@
 	<mvc:resources location="/resources/sass/" mapping="/sass/**" />
 	<mvc:resources location="/resources/fonts/" mapping="/fonts/**" />
 	<mvc:resources location="/resources/images/" mapping="/images/**" />
+	<mvc:resources location="/ticketImg/" mapping="/ticketImg/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
