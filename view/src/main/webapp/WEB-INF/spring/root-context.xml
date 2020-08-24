@@ -24,5 +24,16 @@
         <property name="username" value="${userId}"></property>
         <property name="password" value="${password}"></property>
     </bean>
+    
+    <!-- 빈의 검증 설정 -->
+	<bean id="validator"
+	class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	<!-- 메시지 관리 설정 -->
+	<bean id="messageSource"
+	class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+	</bean>	
 	
 </beans>

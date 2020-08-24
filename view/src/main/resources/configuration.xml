@@ -3,8 +3,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="hashtag" type="com.finalproj.view.hashtag.HashtagDTO" />
+		<typeAlias alias="customer" type="com.finalproj.view.customer.CustomerDTO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="hashtag.xml"/>
+		<mapper resource="customer.xml"/>
 	</mappers>
 </configuration>
