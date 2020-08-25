@@ -84,10 +84,9 @@
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
-						<li class="active"><a href="main">Home</a></li>
-						<li><a href="list">Exhibition</a></li>
-						<li><a href="hash">#Hash</a></li>
-						<li><a href="writeForm">WriteForm</a></li>
+						<li><a href="loginForm">loginForm</a></li>
+						<li><a href="hashMenu">#hashMenu</a></li>
+						<li><a href="ticketWriteForm">WriteForm</a></li>
 					</ul>
 				</div>
 			</div>
