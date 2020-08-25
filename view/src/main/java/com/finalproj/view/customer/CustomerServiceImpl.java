@@ -25,5 +25,25 @@ public class CustomerServiceImpl implements CustomerService {
 		return cd.list(c_id);
 	}
 
+	@Override
+	public int update(CustomerDTO customer) {
+		return cd.update(customer);
+	}
+
+	@Override
+	public int delete(String c_id) {
+		return cd.delete(c_id);
+	}
+
+	@Override
+	public int idChk(String c_id) {
+		return cd.idChk(c_id);
+	}
+
+	@Override
+	public int nickChk(String nickname) {
+		return cd.nickChk(nickname);
+	}
+
 
 }

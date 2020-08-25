@@ -4,17 +4,60 @@
 <html>
 <head>
 <script type="text/javascript">
+	var chk = "";
 	function idChk() {
-		if (!frm.c_id.value) {
-			alert("id check");
-			frm.c_id.focus();
-			return false;
+		if ($('#c_id').val() == "") {
+			$('#idDisp').html("");
+			return;
 		}
-		$.post('idChk', 'c_id=' + frm.c_id.value, function(data) {
-			$('#disp').html(data);
+		var c_id = $('#c_id').val();
+		$.ajax({
+			url : 'idChk',
+			type : 'post',
+			data : {
+				c_id : c_id
+			},
+			success : function(data) {
+				if ($.trim(data) == 0) {
+					$('#idDisp').html("<b>사용 가능한 ID입니다</b>");
+					chk = "y";
+				} else {
+					$('#idDisp').html("<b>이미 존재하는 ID입니다</b>");
+					chk = "n";
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
 		});
-	}
-	function chk() {
+	};
+	function nickChk() {
+		if ($('#nickname').val() == "") {
+			$('#nickDisp').html("");
+			return;
+		}
+		var nickname = $('#nickname').val();
+		$.ajax({
+			url : 'nickChk',
+			type : 'post',
+			data : {
+				nickname : nickname
+			},
+			success : function(data) {
+				if ($.trim(data) == 0) {
+					$('#nickDisp').html("<b>사용 가능한 닉네임입니다</b>");
+					chk = "y";
+				} else {
+					$('#nickDisp').html("<b>이미 존재하는 닉네임입니다</b>");
+					chk = "n";
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
+	};
+	function passwordChk() {
 		if (frm.c_password.value != frm.c_password2.value) {
 			alert("password check");
 			frm.c_password.focus();
@@ -34,13 +77,17 @@
 				<div class="col-md-12">
 					<div class="row">
 							<h2 class="heading-2">joinForm</h2>
-							<form action="join" method="post" name="frm" onsubmit="return chk()">
+							<form action="joinC" method="post" name="frm" onsubmit="return passwordChk()">
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="c_id">id</label>
-										<input type="text" name="c_id" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus">
-										<input type="button" onclick="idChk()" value="IdCheck">
-										<span id="disp" class="err"></span>
+										<input type="text" name="c_id" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus"
+										onkeyup="idChk()">
+									</div>								
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<div id="idDisp"></div>
 									</div>
 								</div>
 								<div class="row form-group">
@@ -58,7 +105,13 @@
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="nickname">nickname</label>
-										<input type="text" name="nickname" id="nickname" class="form-control" placeholder="Your nickname" required="required">
+										<input type="text" name="nickname" id="nickname" class="form-control" placeholder="Your nickname" required="required"
+										onkeyup="nickChk()">
+									</div>
+								</div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<div id="nickDisp"></div>
 									</div>
 								</div>
 								<div class="row form-group">

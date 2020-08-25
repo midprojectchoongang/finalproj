@@ -15,31 +15,28 @@
 							<h2 class="heading-2">viewInfo</h2>
 							<form action="#">
 								<div class="row form-group">
-									<div class="col-md-12">
-										<label for="c_id">id</label>
-										<label>${customer.c_id }</label>											
+								<label for="c_id">id</label>
+									<div class="col-md-12">																										
+										${customerdto.c_id }										
 									</div>
 								</div>					
 								<div class="row form-group">
+								<label for="nickname">nickname</label>
 									<div class="col-md-12">
-										<label for="nickname">nickname</label>	
-										<label>${customer.nickname }</label>							
+										${customerdto.nickname }						
 									</div>
 								</div>
 								<div class="row form-group">
+								<label for="subject">email</label>
 									<div class="col-md-12">
-										<label for="subject">email</label>
-										<label>${customer.email }</label>										
-									</div>
-								</div>
-								<div class="row form-group">
-									<div class="col-md-12">
-										<label for="hashtag">hashtag</label>
-										<label>${customer.hashtag }</label>									
+										${customerdto.email }										
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center;">
-									<a href="loginForm">login</a>
+									<a href="main">main</a>
+									<a href="logoutC">logout</a>
+									<a href="updateFormC">update</a>
+									<a href="deleteC" onclick="return confirm('really?');">delete</a>						
 								</div>
 							</form>	
 					</div>
