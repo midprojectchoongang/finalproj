@@ -11,9 +11,9 @@ public class SessionChk extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("id") == null || 
-				session.getAttribute("id").equals("")) {
-			response.sendRedirect("loginForm");
+		if (session.getAttribute("c_id") == null || 
+				session.getAttribute("c_id").equals("")) {
+			response.sendRedirect("loginFormC");
 			return false;
 		}
 		return true;

@@ -11,18 +11,12 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("success")
-			location.href = "viewInfo";
+			location.href = "viewInfoC";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
 			alert("fail")
-			history.go(-1);
-		</script>
-	</c:if>
-	<c:if test="${result == -1 }">
-		<script type="text/javascript">
-			alert("ID check")
 			history.go(-1);
 		</script>
 	</c:if>

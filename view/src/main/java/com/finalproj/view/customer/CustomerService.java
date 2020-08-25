@@ -10,4 +10,12 @@ public interface CustomerService {
 
 	List<CustomerDTO> list(String c_id);
 
+	int update(CustomerDTO customer);
+
+	int delete(String c_id);
+
+	int idChk(String c_id);
+
+	int nickChk(String nickname);
+
 }

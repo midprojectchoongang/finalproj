@@ -26,5 +26,25 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return sst.selectList("customerns.list", c_id);
 	}
 
+	@Override
+	public int update(CustomerDTO customer) {
+		return sst.update("customerns.update", customer);
+	}
+
+	@Override
+	public int delete(String c_id) {
+		return sst.delete("customerns.delete", c_id);
+	}
+
+	@Override
+	public int idChk(String c_id) {
+		return sst.selectOne("customerns.idChk", c_id);
+	}
+
+	@Override
+	public int nickChk(String nickname) {
+		return sst.selectOne("customerns.nickChk", nickname);
+	}
+
 
 }

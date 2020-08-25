@@ -13,17 +13,17 @@
 				<div class="col-md-12">
 					<div class="row">
 							<h2 class="heading-2">loginForm</h2>
-							<form action="login">
+							<form action="loginC">
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="c_id">id</label>
-										<input type="text" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus">
+										<input type="text" name="c_id" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus">
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="c_password">password</label>
-										<input type="password" id="c_password" class="form-control" placeholder="Your password" required="required">
+										<input type="password" name="c_password" id="c_password" class="form-control" placeholder="Your password" required="required">
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center;">
