@@ -28,14 +28,14 @@ public class TicketBookController {
 		int rowPerPage = 10;
 		tbook.setC_id("test");
 		int total = tbs.getTotal(tbook.getC_id());
-		int startRow = (currentPage - 1) * rowPerPage + 1;
-		int endRow = startRow + rowPerPage - 1;
+		int startRow = (currentPage - 1) * rowPerPage;
+		int endRow = startRow + rowPerPage;
 		tbook.setStartRow(startRow);
 		tbook.setEndRow(endRow);
 		Collection<TicketBookDTO> list = tbs.list(tbook);
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
-		model.addAttribute("tbook", tbook);
+		model.addAttribute("endRow", endRow);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		model.addAttribute("pageNum", pageNum);
