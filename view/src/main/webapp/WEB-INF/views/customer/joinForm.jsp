@@ -33,48 +33,42 @@
 			<div class="container">
 				<div class="col-md-12">
 					<div class="row">
-							<h2 class="heading-2">joinForm</h2>
+							<h2 class="heading-2">회원정보 입력</h2>
 							<form action="join" method="post" name="frm" onsubmit="return chk()">
 								<div class="row form-group">
 									<div class="col-md-12">
-										<label for="c_id">id</label>
-										<input type="text" name="c_id" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus">
+										<input type="text" name="c_id" id="c_id" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
 										<input type="button" onclick="idChk()" value="IdCheck">
 										<span id="disp" class="err"></span>
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
-										<label for="c_password">password</label>
-										<input type="password" name="c_password" id="c_password" class="form-control" placeholder="Your password" required="required">
+										<input type="password" name="c_password" id="c_password" class="form-control" placeholder="비밀번호" required="required">
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
-										<label for="c_password2">password confirm</label>
-										<input type="password" name="c_password2" id="c_password2" class="form-control" placeholder="Your password confirm" required="required">
+										<input type="password" name="c_password2" id="c_password2" class="form-control" placeholder="비밀번호 확인" required="required">
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
-										<label for="nickname">nickname</label>
-										<input type="text" name="nickname" id="nickname" class="form-control" placeholder="Your nickname" required="required">
+										<input type="text" name="nickname" id="nickname" class="form-control" placeholder="별명" required="required">
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
-										<label for="subject">email</label>
-										<input type="email" name="email" id="email" class="form-control" placeholder="Your email" required="required">
+										<input type="email" name="email" id="email" class="form-control" placeholder="메일주소" required="required">
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
-										<label for="hashtag">hashtag</label>
-										<input type="text" name="hashtag" id="hashtag" class="form-control" placeholder="Your hashtag">
+										<input type="text" name="hashtag" id="hashtag" class="form-control" placeholder="#HASH">
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center;">
-									<input type="submit" value="Confirm" class="btn btn-primary">
+									<input type="submit" value="가입하기" class="btn btn-primary">
 								</div>
 							</form>	
 					</div>

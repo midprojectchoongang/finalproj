@@ -405,7 +405,9 @@ h1, h2, h3, h4, h5, h6, figure {
 #colorlib-contact,
 #colorlib-footer {
   padding: 7em 0;
-  clear: both; }
+  clear: both; 
+  align-self: center;
+  }
   @media screen and (max-width: 768px) {
     #colorlib-container,
     #colorlib-instagram,
@@ -629,9 +631,32 @@ blockquote {
   padding-left: 30px;
   background: #fafafa;
   border-left-color: #F6490D;
+  }
+
+.table-info th, .table-info td {
+	min-height: 50px;
+	padding-bottom: 50px;
+  	padding-top: 50px;
+}
+.th-info {
+	width: 30%;
+	background: #fafafa;
+	text-align: center;
+}
+
+.quotetitle {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-left: 30px;
+  background: #fafafa;
+  border-left: thick;
+  border-left-color: #F6490D;
   color: #999999;
   font-weight: bold;
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 .user-img,
 .user,

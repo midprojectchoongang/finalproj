@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="businessns">
+	<resultMap type="business" id="bizResult">
+		<result property="b_id" column="b_id" />
+		<result property="b_password" column="b_password" />
+		<result property="groupName" column="groupName" />
+		<result property="ceoName" column="ceoName" />
+		<result property="tel" column="tel" />
+		<result property="email" column="email" />
+		<result property="groupkind" column="groupkind" />
+		<result property="licensee" column="licensee" />
+		<result property="corporation" column="corporation" />
+		<result property="etc" column="etc" />
+		<result property="website" column="website" />
+		<result property="confirm" column="confirm" />
+		<result property="reg_date" column="reg_date" />
+		<result property="del" column="del" />
+	</resultMap>
+	
+	<select id="select" parameterType="string" resultType="business">
+		select * from business
+		where b_id = #{b_id}
+	</select>
+	
+	<!-- list -->
+	<select id="getTotal" resultType="integer">
+		select count(*) from business
+	</select>
+	<select id="list" parameterType="business" resultMap="bizResult">
+		select *
+		from business
+		limit #{startRow}, #{endRow}
+	</select>
+	
+	<insert id="insert" parameterType="business">
+		insert into business 
+		(b_id, b_password, groupName, ceoName, tel, email, groupkind,
+			<if test="licensee != null">
+				licensee,
+			</if>
+			<if test="corporation != null">
+				corporation,
+			</if>
+			<if test="etc != null">
+				etc,
+			</if>
+			website, confirm, reg_date, del)
+		values (
+			#{b_id},
+			#{b_password},
+			#{groupName},
+			#{ceoName},
+			#{tel},
+			#{email},
+			#{groupkind},
+			<if test="licensee != null">
+				#{licensee},
+			</if>
+			<if test="corporation != null">
+				#{corporation},
+			</if>
+			<if test="etc != null">
+				#{etc},
+			</if>
+			#{website},
+			'c',
+			sysdate(),
+			'n'
+		)
+	</insert>
+</mapper>

@@ -84,6 +84,7 @@
 				</div>
 				<div class="col-xs-10 text-right menu-1">
 					<ul>
+						<li><a href="bizJoinForm">bizJoin</a></li>
 						<li><a href="loginForm">loginForm</a></li>
 						<li><a href="hashMenu">#hashMenu</a></li>
 						<li><a href="ticketWriteForm">WriteForm</a></li>
