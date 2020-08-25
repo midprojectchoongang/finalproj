@@ -12,6 +12,19 @@
 		select * from hashtag order by hashgroup
 	</select>
 	<select id="hashChk" parameterType="string" resultType="integer">
-		select count(*) from hashtag where hash_title = #{hash_title}
+		select count(*) from hashtag where hash_title=#{hash_title}
 	</select>
+	<insert id="insert" parameterType="hashmap">
+		insert into hashtag values (${hashgroup}, '${hash_title}', 'basic', 0)
+	</insert>
+	<select id="select" parameterType="string" resultType="hashtag">
+		select * from hashtag where hash_title=#{hash_title}
+	</select>
+	<update id="update" parameterType="hashtag">
+		update hashtag set hash_title=#{hash_title}, hashgroup=#{hashgroup}, kind=#{kind}
+		where hash_title=#{cur_title}
+	</update>
+	<delete id="delete" parameterType="string">
+		delete from hashtag where hash_title=#{hash_title}
+	</delete>
 </mapper>
