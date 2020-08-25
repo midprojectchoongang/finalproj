@@ -13,17 +13,13 @@
 				<div class="row">
 					<div class="col-xs-12" align="center">
 						<div class="row-pb-lg">
-							<div class="col-xs-4">
+							<div class="col-xs-6">
+								<h2>Tag List</h2>
+								<button onclick="location.href='viewHashList'"> List </button>
+							</div>
+							<div class="col-xs-6">
 								<h2>Add Tags</h2>
-								<button onclick="location.href='addHashForm'"> ADD </button>
-							</div>
-							<div class="col-xs-4">
-								<h2>Update Tags</h2>
-								<button onclick="location.href='updateHash'"> Update </button>
-							</div>
-							<div class="col-xs-4">
-								<h2>Delete Tags</h2>
-								<button onclick="location.href='deleteHash'"> Delete </button>
+								<button onclick="location.href='addHashForm'"> Add </button>
 							</div>
 						</div>
 					</div>

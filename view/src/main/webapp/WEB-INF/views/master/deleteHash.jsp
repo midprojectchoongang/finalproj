@@ -9,13 +9,13 @@
 	<%@ include file="../mainPage/header.jsp" %>
 	<c:if test="${result == 1 }">
 		<script type="text/javascript">
-			location.href='viewHashList';
+			alert("에러발생");
+			history.back();
 		</script>
 	</c:if>
 	<c:if test="${result != 1 }">
 		<script type="text/javascript">
-			alert("에러발생");
-			history.back();
+			location.href='viewHashList';
 		</script>
 	</c:if>
 </div>

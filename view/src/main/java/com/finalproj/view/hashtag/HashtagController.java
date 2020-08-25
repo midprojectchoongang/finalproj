@@ -1,5 +1,8 @@
 package com.finalproj.view.hashtag;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +15,15 @@ public class HashtagController {
 	private HashtagService hs;
 	
 	@RequestMapping("hashMenu")
-	public String hashMenu(HashtagDTO hashtag, Model model) {
+	public String hashMenu() {
+		return "/master/hashMenu";
+	}
+	
+	@RequestMapping("viewHashList")
+	public String viewHashList(HashtagDTO hashtag, Model model) {
 		List<HashtagDTO> hashList = hs.hashList(hashtag);
 		model.addAttribute("hashList", hashList);
-		return "/master/hashMenu";
+		return "/master/viewHashList";
 	}
 	
 	@RequestMapping("addHashForm")
@@ -25,13 +33,51 @@ public class HashtagController {
 	@RequestMapping(value="hashChk", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String hashChk(String hash_title, Model model) {
-	    int result = hs.hashChk(hash_title);
+	    int result = hs.hashChk(hash_title); // 리턴값이 0이면 table에 없다는 뜻이므로 입력 가능
 	    return String.valueOf(result);
 	}
 	@RequestMapping("addHash")
 	public String addHash(String hash_title, int hashgroup, Model model) {
-		model.addAttribute("hash_title", hash_title);
-		model.addAttribute("hashgroup", hashgroup);
+		int result = 0;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("hash_title", hash_title);
+		map.put("hashgroup", hashgroup + "");
+		hs.addHash(map);
+		result = hs.hashChk(hash_title); // 입력 후 값이 있으면 1, 없으면 0
+		model.addAttribute("result", result);
 		return "/master/addHash";
+	}
+	
+	@RequestMapping("hashDetail")
+	public String hashDetail(String hash_title, Model model) {
+		HashtagDTO hashtag = hs.select(hash_title);
+		model.addAttribute("hashtag", hashtag);
+		return "/master/hashDetail";
+	}
+	
+	@RequestMapping("updateHash")
+	public String updateHash(String hash_title, String cur_title, int hashgroup, String kind, Model model) {
+		int result = 0;
+		if (kind.equals("custom")) {
+			hashgroup = 0;
+		}
+		HashtagDTO hashtag = new HashtagDTO();
+		hashtag.setHash_title(hash_title);
+		hashtag.setCur_title(cur_title);
+		hashtag.setHashgroup(hashgroup);
+		hashtag.setKind(kind);
+		hs.updateHash(hashtag);
+		result = hs.hashChk(hash_title); // 변경 후 값이 있으면 1, 없으면 0
+		model.addAttribute("result", result);
+		return "/master/updateHash";
+	}
+	
+	@RequestMapping("deleteHash")
+	public String deleteHash(String hash_title, Model model) {
+		int result = 1;
+		hs.deleteHash(hash_title);
+		result = hs.hashChk(hash_title); // 삭제 후 값이 있으면 1, 없으면 0;
+		model.addAttribute("result", result);
+		return "/master/deleteHash";
 	}
 }
