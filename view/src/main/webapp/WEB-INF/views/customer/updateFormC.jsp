@@ -29,7 +29,8 @@
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="c_password">password</label>
-										<input type="password" name="c_password" id="c_password" class="form-control" placeholder="Your password" required="required">
+										<input type="password" name="c_password" id="c_password" class="form-control" placeholder="${customerdto.c_password }" required="required"
+										 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.c_password }'">
 									</div>
 								</div>
 								<div class="row form-group">
@@ -41,15 +42,15 @@
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="nickname">nickname</label>
-										<input type="text" name="nickname" id="nickname" class="form-control" placeholder="Your nickname" required="required"
-										 value="${customerdto.nickname }">
+										<input type="text" name="nickname" id="nickname" class="form-control" placeholder="${customerdto.nickname }" required="required"
+										 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.nickname }'">
 									</div>
 								</div>
 								<div class="row form-group">
 									<div class="col-md-12">
 										<label for="subject">email</label>
-										<input type="email" name="email" id="email" class="form-control" placeholder="Your email" required="required"
-										value="${customerdto.email }">
+										<input type="email" name="email" id="email" class="form-control" placeholder="${customerdto.email }" required="required"
+										 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.email }'">
 									</div>
 								</div>				
 								<div class="form-group" style="text-align: center;">
