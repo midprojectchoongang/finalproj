@@ -162,20 +162,23 @@
 										}
 									}
 								} */
-								var hashtags = new Array();
+								var hash_html = new Array();
+								var hash_select = new Array();
 								function addPrehash(hash_title) {
 									$('#warnDisp').html('');
-									if (hashtags.length < 3) {
-										if (hashtags.length > 0) {
-											hashtags[hashtags.length] = '<span class="tag" id="'+hash_title+'"><a onclick="removePrehash(\''+hash_title+
+									if (hash_html.length < 3) {
+										if (hash_html.length > 0) {
+											hash_html[hash_html.length] = '<span class="tag" id="'+hash_title+'"><a onclick="removePrehash(\''+hash_title+
 													'\')" class="name" style="cursor:pointer"><i class="icon-tag"></i> '+hash_title+'</a></span>';
-											for (i=0; i<hashtags.length; i++) {
-												if (i+1 == hashtags.length) {
+											hash_select[hash_select.length] = hash_title;
+											for (i=0; i<hash_html.length; i++) {
+												if (i+1 == hash_html.length) {
 													break;
 												} else {
-													for (j=i+1; j<hashtags.length; j++) {
-														if (hashtags[i] == hashtags[j]) {
-															hashtags.splice(j, 1);
+													for (j=i+1; j<hash_html.length; j++) {
+														if (hash_html[i] == hash_html[j]) {
+															hash_html.splice(j, 1);
+															hash_select.splice(j, 1);
 															$('#warnDisp').html('&emsp;#HASHTAG는 중복하여 선택할 수 없습니다');
 															return;
 														} else {
@@ -185,33 +188,48 @@
 												}
 											}
 										} else {
-											hashtags[0] = '<span class="tag" id="'+hash_title+'"><a onclick="removePrehash(\''+hash_title+
+											hash_html[0] = '<span class="tag" id="'+hash_title+'"><a onclick="removePrehash(\''+hash_title+
 													'\')" class="name" style="cursor:pointer"><i class="icon-tag"></i> '+hash_title+'</a></span>';
+											hash_select[0] = hash_title;
 										}
 										
-										if (hashtags.length > 1){
-											$('#prehash').append(hashtags[hashtags.length-1]);
+										if (hash_html.length > 1){
+											$('#prehash').append(hash_html[hash_html.length-1]);
 									    } else {
-											$('#prehash').html(hashtags[0]);
+											$('#prehash').html(hash_html[0]);
 									    }
-									} else if (hashtags.length == 3) {
+									} else if (hash_html.length == 3) {
 										$('#warnDisp').html('&emsp;#HASHTAG는 최대 3개까지만 선택할 수 있습니다');
 									}
 								}
 								function removePrehash(hash_title) {
-							        for (i=0; i<hashtags.length; i++) {
+							        for (i=0; i<hash_html.length; i++) {
 							        	var title = "#" + hash_title;
-							            var search = hashtags[i].indexOf(hash_title);
+							            var search = hash_html[i].indexOf(hash_title);
 							            if (search == -1) {
 							            	continue;
 							            } else {
-							            	hashtags.splice(i,1); // 배열에서 삭제
+							            	hash_html.splice(i,1); // html태그 배열에서 삭제
+							            	hash_select.splice(i,1); // 값이 저장된 배열에서 삭제
 							            	$(title).remove(); // 목록에서 삭제
 							            }
 							        }
 								}
 							</script>
+							<input type="hidden" name="c_hashtag" value="" />
+							<script type="text/javascript">
+								function submit() {
+									var c_hashtag = new Object();
+									c_hashtag.value = hash_select;
+									var values = JSON.stringify(c_hashtag);
+									$(function() {
+									    $('input[name=c_hashtag]').val(values);
+									});
+									document.frm.submit();
+								}
+							</script>
 						</form>
+						<button onclick="submit()">SUBMIT</button>
 					</div>
 				</div>
 			</div>
