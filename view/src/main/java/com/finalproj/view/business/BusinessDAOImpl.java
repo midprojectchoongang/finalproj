@@ -31,4 +31,19 @@ public class BusinessDAOImpl implements BusinessDAO {
 	public Collection<BusinessDTO> list(BusinessDTO biz) {
 		return sst.selectList("businessns.list", biz);
 	}
+
+	@Override
+	public int update(BusinessDTO biz) {
+		return sst.update("businessns.update", biz);
+	}
+
+	@Override
+	public int delete(String b_id) {
+		return sst.delete("businessns.delete", b_id);
+	}
+	
+  	@Override  
+	public int idChk(String b_id) {
+		return sst.selectOne("businessns.idChk", b_id);
+	}
 }

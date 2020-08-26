@@ -72,22 +72,33 @@
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
-		<div id="colorlib-container">
+		<script type="text/javascript">
+			$(function() {
+				var placeholderTarget = $('.formbox input[type="text"], .formbox input[type="password"], .formbox input[type="email"]');
+				//포커스시
+				placeholderTarget.on('focus', function() {
+					$(this).siblings('label').fadeOut('fast');
+				});
+				//포커스아웃시
+				placeholderTarget.on('focusout', function() {
+					if ($(this).val() == '') {
+						$(this).siblings('label').fadeIn('fast');
+					}
+				});
+			});
+		</script>
+		<div id="colorlib-container" align="center">
 			<div class="container">
-				<div class="col-md-12">
+				<div class="col-md-9">
 					<div class="row">
-						<h2 class="heading-2">joinForm</h2>
-						<form action="joinC" method="post" name="frm" onsubmit="return passwordChk()">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="c_id">id</label>
-									<input type="text" name="c_id" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus"
-									onkeyup="idChk()">
-								</div>								
-							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<div id="idDisp"></div>
+							<div class="row headbox"><h2 class="heading-2">회원가입</h2></div>
+							<form action="joinC" method="post" name="frm" onsubmit="return passwordChk()">
+							<div class="row formbox">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="c_id">아이디</label>
+										<input type="text" name="c_id" id="c_id" class="form-control"required="required" onkeyup="idChk()">
+									</div>								
 								</div>
 							</div>
 							<div class="row form-group">
@@ -95,23 +106,24 @@
 									<label for="c_password">password</label>
 									<input type="password" name="c_password" id="c_password" class="form-control" placeholder="Your password" required="required">
 								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="c_password2">password confirm</label>
-									<input type="password" name="c_password2" id="c_password2" class="form-control" placeholder="Your password confirm" required="required">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="c_password">비밀번호</label>
+										<input type="password" name="c_password" id="c_password" class="form-control" required="required">
+									</div>
 								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="nickname">nickname</label>
-									<input type="text" name="nickname" id="nickname" class="form-control" placeholder="Your nickname" required="required"
-									onkeyup="nickChk()">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="c_password2">비밀번호 확인</label>
+										<input type="password" name="c_password2" id="c_password2" class="form-control" required="required">
+									</div>
 								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<div id="nickDisp"></div>
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="nickname">닉네임</label>
+										<input type="text" name="nickname" id="nickname" class="form-control" required="required"
+										onkeyup="nickChk()">
+									</div>
 								</div>
 							</div>
 							<div class="row form-group">

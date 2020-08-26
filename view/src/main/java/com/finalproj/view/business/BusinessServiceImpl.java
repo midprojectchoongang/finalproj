@@ -30,4 +30,19 @@ public class BusinessServiceImpl implements BusinessService {
 	public Collection<BusinessDTO> list(BusinessDTO biz) {
 		return bd.list(biz);
 	}
+
+	@Override
+	public int update(BusinessDTO biz) {
+		return bd.update(biz);
+	}
+
+	@Override
+	public int delete(String b_id) {
+		return bd.delete(b_id);
+	}
+	
+  	@Override
+	public int idChk(String b_id) {
+		return bd.idChk(b_id);
+	}
 }

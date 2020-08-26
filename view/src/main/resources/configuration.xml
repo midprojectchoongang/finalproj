@@ -6,11 +6,13 @@
 		<typeAlias alias="customer" type="com.finalproj.view.customer.CustomerDTO" />
   		<typeAlias alias="business" type="com.finalproj.view.business.BusinessDTO" />
   		<typeAlias alias="tbook" type="com.finalproj.view.ticketbook.TicketBookDTO" />
+  		<typeAlias alias="exhibition" type="com.finalproj.view.exhibition.ExhibitionDTO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="hashtag.xml"/>
 		<mapper resource="customer.xml"/>
 		<mapper resource="business.xml"/>
 		<mapper resource="ticketbook.xml"/>
+		<mapper resource="exhibition.xml"/>
 	</mappers>
 </configuration>
