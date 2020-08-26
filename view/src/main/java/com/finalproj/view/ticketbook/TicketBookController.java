@@ -20,12 +20,29 @@ public class TicketBookController {
 	
 	@Autowired
 	private TicketBookService tbs;
+	/*
+	@RequestMapping("ticketList")
+	public String ticketList(String startRow, TicketBookDTO tbook, HttpSession session, Model model) {
+		String c_id = (String)session.getAttribute("c_id");
+		int rowPerPage = 5;
+		tbook.setC_id("test");
+		int sr = Integer.parseInt(startRow);
+		int endRow = sr + rowPerPage;
+		tbook.setStartRow(sr);
+		tbook.setEndRow(endRow);
+		Collection<TicketBookDTO> list = tbs.list(tbook);
+		
+		model.addAttribute("c_id", c_id);
+		model.addAttribute("list", list);
+		return "ticketbook/ticketList";
+	}
+	*/
 	
 	@RequestMapping("ticketList")
 	public String ticketList(String pageNum, TicketBookDTO tbook, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 10;
+		int rowPerPage = 5;
 		tbook.setC_id("test");
 		int total = tbs.getTotal(tbook.getC_id());
 		int startRow = (currentPage - 1) * rowPerPage;
@@ -41,6 +58,7 @@ public class TicketBookController {
 		model.addAttribute("pageNum", pageNum);
 		return "ticketbook/ticketList";
 	}
+	
 	
 	@RequestMapping("ticketView")
 	public String ticketView(int ticketbook_no, String pageNum, Model model) {

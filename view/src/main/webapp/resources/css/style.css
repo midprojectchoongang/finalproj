@@ -940,6 +940,26 @@ blockquote {
 	color: #999; 
 	cursor: text;
 }
+table.table-ticket > tr > td {
+	padding: 50px;
+	line-height: 130%;
+}
+
+#cBody { 
+	display:inline-block;
+	width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */
+	white-space: normal;
+	line-height: 1.4;
+	max-height: 4em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
 
 @media screen and (max-width: 768px) {
   #fname {
@@ -1401,7 +1421,7 @@ input[type="text"] {
 
 .btn-outline {
   background: none;
-  border: 2px solid gray;
+  border: 1px solid #c0c0c0;
   font-size: 16px;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;

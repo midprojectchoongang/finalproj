@@ -8,23 +8,33 @@
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
-		<div class="container">
-			<div class="col-md-12">
+		<script type="text/javascript">
+			$(function () {
+				$('#listDisp').load('ticketList #list', 'c_id=${ticket.c_id}');
+			});
+		</script>
+		<div class="container" align="center">
+			<div class="col-md-9">
 				<div class="row">
-					<div class="quotetitle">${ticket.title }</div>
-					<div class="row">
-						<div class="col-md-4">
-							<img src="ticketImg/${ticket.filename }" class="img-thumbnail">
-							<div class="row">
-							<span class="col-xs-4 small">
-								${ticket.visit_date }
-							</span>
-							</div>
-						</div>
-						<div class="col-md-8">
-							${ticket.content }
-						</div>
+					<div class="row headbox"><h2 class="heading-2">${ticket.title } (${ticket.visit_date })</h2></div>
+				</div>
+				<div class="row" align="justify">
+					<div class="row" style="text-align: right; padding: 20px;">
+						<a href="#" class="btn btn-xs btn-outline">수정</a>
+						<a href="#" class="btn btn-xs btn-outline">삭제</a>
 					</div>
+					<table class="table table-ticket">
+						<tr>
+							<td style="width: 30%; padding-top: 30px;">
+								<img src="ticketImg/${ticket.filename }" class="img-thumbnail">
+							</td>
+							<td style="width: 70%; padding: 30px;">
+								${ticket.content }
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="row" id="listDisp" style="margin-top: 50px;">
 				</div>
 			</div>
 		</div>
