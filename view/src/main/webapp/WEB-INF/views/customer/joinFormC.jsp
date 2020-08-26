@@ -74,7 +74,7 @@
 		<%@ include file="../mainPage/header.jsp"%>
 		<script type="text/javascript">
 			$(function() {
-				var placeholderTarget = $('.formbox input[type="text"], .formbox input[type="password"]');
+				var placeholderTarget = $('.formbox input[type="text"], .formbox input[type="password"], .formbox input[type="email"]');
 				//포커스시
 				placeholderTarget.on('focus', function() {
 					$(this).siblings('label').fadeOut('fast');

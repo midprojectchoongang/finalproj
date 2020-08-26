@@ -48,7 +48,7 @@
 		<%@ include file="../mainPage/header.jsp"%>
 		<script type="text/javascript">
 			$(function() {
-				var placeholderTarget = $('.formbox input[type="text"], .formbox input[type="password"]');
+				var placeholderTarget = $('.formbox input[type="text"], .formbox input[type="password"], .formbox input[type="email"]');
 				//포커스시
 				placeholderTarget.on('focus', function() {
 					$(this).siblings('label').fadeOut('fast');
@@ -128,7 +128,7 @@
 												+ '"placeholder="' + pholder + '" class="form-control"></div>'; 
 									$('#enterDisp').html(form);
 								});
-								</script>
+							</script>
 							<div class="row form-group" id="enterDisp">
 								<div class="col-md-12">
 									<label for="licensee">등록번호</label>

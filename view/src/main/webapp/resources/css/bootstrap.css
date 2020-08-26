@@ -296,7 +296,8 @@ img {
   border-radius: 6px; }
 
 .img-thumbnail {
-  padding: 4px;
+  margin: 8px;
+  padding: 2px;
   line-height: 1.42857;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -305,7 +306,7 @@ img {
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: inline-block;
-  max-width: 100%;
+  width: 100%;
   height: auto; }
 
 .img-circle {
@@ -706,8 +707,8 @@ pre {
 .container {
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px; }
+  padding-left: 25px;
+  padding-right: 25px; }
   .container:before, .container:after {
     content: " ";
     display: table; }

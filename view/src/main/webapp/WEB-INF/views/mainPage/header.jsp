@@ -28,7 +28,9 @@
 <!-- ckeditor 4 -->
 <link rel="stylesheet" href="${path}/ckeditor/contents.css">
 <script type="text/javascript" src="${path}/ckeditor/ckeditor.js"></script>
-
+<!-- fullcalendar -->
+<link rel="stylesheet" href="${path}/fullcalendar/main.css">
+<script src="${path}/fullcalendar/main.js"></script>
 <!-- Animate.css -->
 <link rel="stylesheet" href="${path}/css/animate.css">
 <!-- Icomoon Icon Fonts-->
