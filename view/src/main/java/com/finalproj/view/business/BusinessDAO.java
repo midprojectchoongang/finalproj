@@ -12,4 +12,6 @@ public interface BusinessDAO {
 
 	Collection<BusinessDTO> list(BusinessDTO biz);
 
+	int idChk(String b_id);
+
 }

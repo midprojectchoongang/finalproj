@@ -79,10 +79,10 @@
 	<div class="top-menu">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-2">
+				<div class="col-xs-3">
 					<div id="colorlib-logo"><a href="main">VIEW</a></div>
 				</div>
-				<div class="col-xs-10 text-right menu-1">
+				<div class="col-xs-12 text-right menu-1">
 					<ul>
 						<li><a href="bizJoinForm">bizJoin</a></li>
 						<li><a href="loginForm">loginForm</a></li>

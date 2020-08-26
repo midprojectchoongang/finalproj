@@ -12,4 +12,6 @@ public interface BusinessService {
 
 	Collection<BusinessDTO> list(BusinessDTO biz);
 
+	int idChk(String b_id);
+
 }
