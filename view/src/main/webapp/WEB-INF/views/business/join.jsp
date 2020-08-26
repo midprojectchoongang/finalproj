@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("success")
-			location.href = "bizList";
+			location.href = "bizLoginForm";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

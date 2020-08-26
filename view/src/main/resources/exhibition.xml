@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="exhibitionns">
+	<resultMap type="exhibition" id="exhibitionResult">
+		<result property="exhibition_no" column="exhibition_no" />
+		<result property="b_id" column="b_id" />
+		<result property="title" column="title" />
+		<result property="artist" column="artist" />
+		<result property="gallery" column="gallery" />
+		<result property="gallery_site" column="gallery_site" />
+		<result property="local_no" column="local_no" />
+		<result property="address" column="address" />
+		<result property="ticket_link1" column="ticket_link1" />
+		<result property="ticket_link2" column="ticket_link2" />
+		<result property="ticket_link3" column="ticket_link3" />
+		<result property="price" column="price" />
+		<result property="start_date" column="start_date" />
+		<result property="end_date" column="end_date" />
+		<result property="hashtags" column="hashtags" />
+		<result property="content" column="content" />
+		<result property="like_cnt" column="like_cnt" />
+		<result property="reg_date" column="reg_date" />
+		<result property="del" column="del" />
+	</resultMap>
+	
+</mapper>

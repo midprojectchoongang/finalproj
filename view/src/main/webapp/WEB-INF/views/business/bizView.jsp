@@ -70,8 +70,16 @@
 						<tr>
 							<th class="th-info">가입일</th>
 							<td><fmt:formatDate value="${biz.reg_date }" pattern="YYYY-MM-dd"/></td>
-						</tr>
+						</tr>									
 					</table>
+					
+					<div class="form-group" style="text-align: center;">
+						<a href="bizExList">내 전시회</a>
+						<a href="bizUpdateForm">회원정보수정</a>
+						<a href="bizLogout">로그아웃</a>
+						<a href="bizDelete" onclick="return confirm('really?');">회원탈퇴</a>												
+					</div>
+					
 				</div>
 			</div>
 		</div>
