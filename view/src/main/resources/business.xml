@@ -70,4 +70,11 @@
 			'n'
 		)
 	</insert>
+	<update id="update">
+		update business set b_password=#{b_password}, groupName=#{groupName}, ceoName=#{ceoName},
+		tel=#{tel}, email=#{email}, website=#{website} where b_id=#{b_id}
+	</update>
+	<update id="delete">
+		update business set del="y" where b_id=#{b_id}
+	</update>
 </mapper>

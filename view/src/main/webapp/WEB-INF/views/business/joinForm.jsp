@@ -14,12 +14,12 @@
 			$('#disp').html(data);
 		});
 	}
-	function chk() {
+	function passwordChk() {
 		if (frm.b_password.value != frm.b_password2.value) {
 			alert("password check");
-			frm.c_password.focus();
-			frm.c_password.value = "";
-			frm.c_password2.value = "";
+			frm.b_password.focus();
+			frm.b_password.value = "";
+			frm.b_password2.value = "";
 			return false;
 		}
 	}
@@ -34,12 +34,11 @@
 				<div class="col-md-12">
 					<div class="row">
 						<h2 class="heading-2">단체회원정보 입력</h2>
-						<form action="bizJoin" method="post" name="frm" onsubmit="return chk()">
+						<form action="bizJoin" method="post" name="frm" onsubmit="return passwordChk()">
 							<div class="row form-group">
 								<div class="col-md-12">
-									<input type="text" name="b_id" id="b_id" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
-									<input type="button" onclick="idChk()" value="IdCheck">
-									<span id="disp" class="err"></span>
+									<input type="text" name="b_id" id="b_id" class="form-control" placeholder="아이디" required="required" autofocus="autofocus"
+									onkeyup="idChk()">																		
 								</div>
 							</div>
 							<div class="row form-group">

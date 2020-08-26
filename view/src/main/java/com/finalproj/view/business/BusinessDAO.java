@@ -12,4 +12,8 @@ public interface BusinessDAO {
 
 	Collection<BusinessDTO> list(BusinessDTO biz);
 
+	int update(BusinessDTO biz);
+
+	int delete(String b_id);
+
 }
