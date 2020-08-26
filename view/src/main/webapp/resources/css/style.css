@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 25px 0; }
 
 .colorlib-nav #colorlib-logo {
-  font-size: 24px;
+  font-size: 30px;
   margin: 0;
   padding: 0;
   line-height: 40px;
@@ -916,8 +916,30 @@ blockquote {
 
 .heading-2 {
   font-size: 24px;
+  color: white;
   margin-bottom: 40px; 
   margin-top: 40px;}
+
+.headbox {
+	background-color: #F6490D;
+	margin-bottom: 40px; 
+	margin-top: 40px;
+	text-align: center;
+}
+
+.formbox {
+	border: 1px solid #d2d2d2;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+.formbox label {
+	position: absolute;
+	top: 0px; /* input 요소의 border-top 설정값 만큼 */ 
+	left: 25px; /* input 요소의 border-left 설정값 만큼 */ 
+	padding: .8em .5em; /* input 요소의 padding 값 만큼 */ 
+	color: #999; 
+	cursor: text;
+}
 
 @media screen and (max-width: 768px) {
   #fname {

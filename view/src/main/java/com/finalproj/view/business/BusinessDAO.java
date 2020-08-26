@@ -16,4 +16,6 @@ public interface BusinessDAO {
 
 	int delete(String b_id);
 
+	int idChk(String b_id);
+
 }

@@ -16,4 +16,6 @@ public interface BusinessService {
 
 	int delete(String b_id);
 
+	int idChk(String b_id);
+
 }

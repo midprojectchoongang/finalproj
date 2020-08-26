@@ -23,6 +23,9 @@
 		select * from business
 		where b_id = #{b_id}
 	</select>
+	<select id="idChk" parameterType="string" resultType="integer">
+		select count(*) from business where b_id = #{b_id}
+	</select>
 	
 	<!-- list -->
 	<select id="getTotal" resultType="integer">

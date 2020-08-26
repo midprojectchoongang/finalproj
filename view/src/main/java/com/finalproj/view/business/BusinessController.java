@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproj.view.common.PagingBean;
 
@@ -53,6 +55,13 @@ public class BusinessController {
 		model.addAttribute("groupkind", groupkind);
 		model.addAttribute("groupname", groupname);
 		return "business/joinForm";
+	}
+	
+	@RequestMapping(value="b_idChk", produces="text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String idChk(String b_id) {
+		int result = bs.idChk(b_id);
+		return String.valueOf(result);
 	}
 	
 	@RequestMapping("bizJoin")
