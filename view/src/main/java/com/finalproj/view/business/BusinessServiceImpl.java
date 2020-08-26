@@ -32,6 +32,15 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
+	public int update(BusinessDTO biz) {
+		return bd.update(biz);
+	}
+
+	@Override
+	public int delete(String b_id) {
+		return bd.delete(b_id);
+
+  @Override
 	public int idChk(String b_id) {
 		return bd.idChk(b_id);
 	}

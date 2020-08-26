@@ -21,7 +21,7 @@ public class CustomerController {
 		return "/customer/joinFormC";
 	}
 	@RequestMapping("joinC")
-	public String joinC(CustomerDTO customer, Model model, HttpSession session) {
+	public String joinC(CustomerDTO customer, Model model) {
 		int result = 0;
 		CustomerDTO customerdto = cs.select(customer.getC_id());
 		if (customerdto == null)
@@ -32,13 +32,13 @@ public class CustomerController {
 	}
 	@RequestMapping(value="idChk", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
-	public String idChk(String c_id, Model model) {
+	public String idChk(String c_id) {
 	    int result = cs.idChk(c_id);
 	    return String.valueOf(result);
 	}
 	@RequestMapping(value="nickChk", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
-	public String nickChk(String nickname, Model model) {
+	public String nickChk(String nickname) {
 	    int result = cs.nickChk(nickname);
 	    return String.valueOf(result);
 	}
@@ -74,7 +74,7 @@ public class CustomerController {
 		return "/customer/updateFormC";
 	}
 	@RequestMapping("updateC")
-	public String updateC(CustomerDTO customer, Model model, HttpSession session) {
+	public String updateC(CustomerDTO customer, Model model) {
 		int result = cs.update(customer);
 		model.addAttribute("result", result);
 		return "/customer/updateC";

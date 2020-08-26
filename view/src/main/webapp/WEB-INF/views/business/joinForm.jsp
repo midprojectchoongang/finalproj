@@ -30,7 +30,6 @@
 				alert("에러입니다");
 			}
 		});
-	};
 	function chk() {
 		if (frm.b_password.value != frm.b_password2.value) {
 			alert("password check");

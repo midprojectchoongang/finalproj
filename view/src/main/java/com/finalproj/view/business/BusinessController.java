@@ -2,6 +2,8 @@ package com.finalproj.view.business;
 
 import java.util.Collection;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,5 +76,49 @@ public class BusinessController {
 		
 		model.addAttribute("result", result);
 		return "business/join";
+	}
+	@RequestMapping("bizLoginForm")
+	public String bizLoginForm() {
+		return "business/bizLoginForm";
+	}
+	@RequestMapping("bizLogin")
+	public String bizLogin(BusinessDTO biz, Model model, HttpSession session) {
+		int result = 0;
+		BusinessDTO bsness = bs.select(biz.getB_id());
+		if (bsness == null || bsness.getDel().equals("y")) {
+			result = -1;
+		} else if (bsness.getB_password().equals(biz.getB_password())) {
+			result = 1;
+			session.setAttribute("b_id", biz.getB_id());
+		}
+		model.addAttribute("result", result);
+		return "business/bizLogin";
+	}
+	@RequestMapping("bizUpdateForm")
+	public String bizUpdateForm(Model model, HttpSession session) {
+		String b_id = (String)session.getAttribute("b_id");
+		BusinessDTO bsness = bs.select(b_id);
+		model.addAttribute("bsness", bsness);
+		return "business/updateForm";
+	}
+	@RequestMapping("bizUpdate")
+	public String bizUpdate(BusinessDTO biz, Model model) {
+		int result = bs.update(biz);
+		model.addAttribute("result", result);
+		return "business/update";
+	}
+	@RequestMapping("bizLogout")
+	public String bizLogout(HttpSession session) {
+		session.invalidate();
+		return "business/logout";
+	}
+	@RequestMapping("bizDelete")
+	public String bizDelete(Model model, HttpSession session) {
+		String b_id = (String)session.getAttribute("b_id");
+		int result = bs.delete(b_id);
+		if (result > 0)
+			session.invalidate();
+		model.addAttribute("result", result);
+		return "business/delete";
 	}
 }
