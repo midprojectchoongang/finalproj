@@ -1,23 +1,29 @@
 package com.finalproj.view.customer;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.finalproj.view.hashtag.HashtagDTO;
+import com.finalproj.view.hashtag.HashtagService;
 @Controller
 public class CustomerController {
 	@Autowired
 	private CustomerService cs;
+	@Autowired
+	private HashtagService hs;
 	
 	@RequestMapping("joinFormC")
-	public String joinFormC() {
+	public String joinFormC(HashtagDTO hashtag, Model model) {
+		List<HashtagDTO> hashList = hs.hashList(hashtag);
+		model.addAttribute("hashList", hashList);
 		return "/customer/joinFormC";
 	}
 	@RequestMapping("joinC")
