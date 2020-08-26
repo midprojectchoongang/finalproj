@@ -27,19 +27,7 @@ public class CustomerController {
 		return "/customer/joinFormC";
 	}
 	@RequestMapping("joinC")
-	public String joinC(CustomerDTO customer, String c_hashtag, Model model, HttpSession session) {
-/*		
-		String c_hashtag = "";
-		for (int i = 0; i < hashtags.length; i++) {
-			if (i == hashtags.length-1) {
-				c_hashtag += hashtags[i] + ",";
-			} else {
-				c_hashtag += hashtags[i];
-			}
-		}
-*/	
-		System.out.println(c_hashtag + "다이렉트");
-		System.out.println(customer.getC_hashtag() + "우회");
+	public String joinC(CustomerDTO customer, Model model, HttpSession session) {
 		int result = 0;
 		CustomerDTO customerdto = cs.select(customer.getC_id());
 		if (customerdto == null)
