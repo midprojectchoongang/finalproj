@@ -89,6 +89,7 @@
 						<li><a href="bizJoinForm">bizJoin</a></li>
 						<li><a href="loginForm">loginForm</a></li>
 						<li><a href="hashMenu">#hashMenu</a></li>
+						<li><a href="exList">exhibition</a></li>
 						<li><a href="ticketWriteForm">WriteForm</a></li>
 					</ul>
 				</div>

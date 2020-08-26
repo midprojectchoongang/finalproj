@@ -31,7 +31,7 @@
 			}
 		});
 	}
-	function chk() {
+	function passwordChk() {
 		if (frm.b_password.value != frm.b_password2.value) {
 			alert("password check");
 			frm.b_password.focus();
@@ -67,7 +67,7 @@
 				<div class="col-md-9">
 					<div class="row">
 						<div class="row headbox"><h2 class="heading-2">단체회원가입</h2></div>
-						<form action="bizJoin" method="post" name="frm" onsubmit="return chk()">
+						<form action="bizJoin" method="post" name="frm" onsubmit="return passwordChk()">
 						<div class="row formbox">
 							<div class="row form-group">
 								<div class="col-md-12">
@@ -91,7 +91,7 @@
 									<label for="b_password2">비밀번호 확인</label>
 									<input type="password" name="b_password2" id="b_password2" class="form-control" required="required">
 								</div>
-							</div>
+							</div>							
 						</div>
 						<div class="row formbox">
 							<div class="row form-group">

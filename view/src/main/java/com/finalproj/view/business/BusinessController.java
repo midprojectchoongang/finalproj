@@ -38,9 +38,10 @@ public class BusinessController {
 	}
 	
 	@RequestMapping("bizView")
-	public String bizView(String b_id, String pageNum, Model model) {
+	public String bizView(HttpSession session, String pageNum, Model model) {
+		String b_id = (String)session.getAttribute("b_id");
 		BusinessDTO biz = bs.select(b_id);
-		String[] groupkind = {"개인사업자", "법인사업자", "기타"};
+		String[] groupkind = {"개인사업자", "법인사업자", "기타"};		
 		model.addAttribute("groupkind", groupkind);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("biz", biz);
@@ -63,7 +64,6 @@ public class BusinessController {
 		int result = bs.idChk(b_id);
 		return String.valueOf(result);
 	}
-	
 	@RequestMapping("bizJoin")
 	public String bizJoin(BusinessDTO biz, Model model) {
 		int result = 0;
@@ -72,8 +72,7 @@ public class BusinessController {
 			result = bs.insert(biz);
 		} else {
 			result = -1;
-		}
-		
+		}		
 		model.addAttribute("result", result);
 		return "business/join";
 	}
