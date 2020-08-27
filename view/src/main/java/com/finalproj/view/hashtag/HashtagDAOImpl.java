@@ -9,8 +9,8 @@ public class HashtagDAOImpl implements HashtagDAO {
 	@Autowired
 	private SqlSessionTemplate sst;
 
-	public List<HashtagDTO> hashList(HashtagDTO hashtag) {
-		return sst.selectList("hashtagns.list", hashtag);
+	public List<HashtagDTO> hashList() {
+		return sst.selectList("hashtagns.list");
 	}
 	public int hashChk(String hash_title) {
 		return sst.selectOne("hashtagns.hashChk", hash_title);

@@ -20,8 +20,8 @@ public class HashtagController {
 	}
 	
 	@RequestMapping("viewHashList")
-	public String viewHashList(HashtagDTO hashtag, Model model) {
-		List<HashtagDTO> hashList = hs.hashList(hashtag);
+	public String viewHashList(Model model) {
+		List<HashtagDTO> hashList = hs.hashList();
 		model.addAttribute("hashList", hashList);
 		return "/master/viewHashList";
 	}

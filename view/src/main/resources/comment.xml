@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentns">
+	<resultMap type="comment" id="commentResult">
+		<result property="comment_no" column="comment_no" />
+		<result property="exhibition_no" column="exhibition_no" />
+		<result property="c_id" column="c_id" />
+		<result property="content" column="content" />
+		<result property="reg_date" column="reg_date" />
+		<result property="del" column="del" />
+	</resultMap>
+	<select id="cmtCount" parameterType="integer" resultType="integer">
+		select count(*) from comment where exhibition_no=#{exhibition_no}
+	</select>
+	<select id="cmtList" parameterType="integer" resultMap="commentResult">
+		select * from comment where exhibition_no=#{exhibition_no}
+	</select>
+</mapper>

@@ -19,10 +19,6 @@
 							value="${hashtag.hash_title }">
 					</div>
 					<script type="text/javascript">
-						$(function() {
-							$('#hashDisp').html("&emsp;<b>현재 #HASHTAG입니다</b>");
-						});
-						
 						var chk = "y";
 						var cur_title = '${hashtag.hash_title }';
 						
