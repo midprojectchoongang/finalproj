@@ -1,10 +1,11 @@
 package com.finalproj.view.customer;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.finalproj.view.hashtag.HashtagDTO;
 import com.finalproj.view.hashtag.HashtagService;
+import com.google.gson.Gson;
 @Controller
 public class CustomerController {
 	@Autowired
@@ -21,8 +23,8 @@ public class CustomerController {
 	private HashtagService hs;
 	
 	@RequestMapping("joinFormC")
-	public String joinFormC(HashtagDTO hashtag, Model model) {
-		List<HashtagDTO> hashList = hs.hashList(hashtag);
+	public String joinFormC(Model model) {
+		List<HashtagDTO> hashList = hs.hashList();
 		model.addAttribute("hashList", hashList);
 		return "/customer/joinFormC";
 	}
@@ -48,6 +50,7 @@ public class CustomerController {
 	    int result = cs.nickChk(nickname);
 	    return String.valueOf(result);
 	}
+	
 	@RequestMapping("loginFormC")
 	public String loginFormC() {
 		return "/customer/loginFormC";
@@ -65,17 +68,51 @@ public class CustomerController {
 		model.addAttribute("result", result);
 		return "/customer/loginC";
 	}
+	
 	@RequestMapping("viewInfoC")
-	public String viewInfoC(Model model, HttpSession session) {
+	public String viewInfoC(Model model, HttpSession session) throws ParseException {
 		String c_id = (String)session.getAttribute("c_id");
 		CustomerDTO customerdto = cs.select(c_id);
+		
+		/* JSON파싱 */
+        JSONParser jp = new JSONParser();
+        JSONObject jo;
+        jo = (JSONObject)jp.parse(customerdto.getC_hashtag());
+        JSONArray ja = (JSONArray)jo.get("hash");
+        String c = ja + "";
+        Gson gson = new Gson();
+        String[] tags = gson.fromJson(c, String[].class);
+        List<HashtagDTO> selectedHash = new ArrayList<HashtagDTO>();
+        for (int i = 0; i < tags.length; i++) {
+        	HashtagDTO selected =  hs.select(tags[i]);
+        	selectedHash.add(selected);
+        }
+        
+		model.addAttribute("selectedHash", selectedHash);
 		model.addAttribute("customerdto", customerdto);
 		return "/customer/viewInfoC";
 	}
 	@RequestMapping("updateFormC")
-	public String updateFormC(Model model, HttpSession session) {
+	public String updateFormC(Model model, HttpSession session) throws ParseException {
 		String c_id = (String)session.getAttribute("c_id");
 		CustomerDTO customerdto = cs.select(c_id);
+		List<HashtagDTO> hashList = hs.hashList();
+		
+		/* JSON파싱 */
+        JSONParser jp = new JSONParser();
+        JSONObject jo;
+        jo = (JSONObject)jp.parse(customerdto.getC_hashtag());
+        JSONArray ja = (JSONArray)jo.get("hash");
+        String c = ja + "";
+        Gson gson = new Gson();
+        String[] c_tags = gson.fromJson(c, String[].class);
+        List<String> selectedHash = new ArrayList<String>();
+        for (int i = 0; i < c_tags.length; i++) {
+        	selectedHash.add("\""+c_tags[i]+"\"");
+        }
+        
+		model.addAttribute("selectedHash", selectedHash);
+		model.addAttribute("hashList", hashList);
 		model.addAttribute("customerdto", customerdto);
 		return "/customer/updateFormC";
 	}

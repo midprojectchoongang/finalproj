@@ -23,7 +23,7 @@
 		select * from customer where c_id=#{c_id}
 	</select>
 	<update id="update" parameterType="string">
-		update customer set c_password=#{c_password}, nickname=#{nickname}, email=#{email} where c_id=#{c_id}
+		update customer set c_password=#{c_password}, nickname=#{nickname}, email=#{email}, c_hashtag=#{c_hashtag} where c_id=#{c_id}
 	</update>
 	<update id="delete" parameterType="string">
 		update customer set del="y" where c_id=#{c_id}
@@ -33,5 +33,8 @@
 	</select>
 	<select id="nickChk" parameterType="string" resultType="integer">
 		select count(*) from customer where nickname=#{nickname}
+	</select>
+	<select id="selectNick" parameterType="string" resultType="string">
+		select nickname from customer where c_id=#{c_id}
 	</select>
 </mapper>

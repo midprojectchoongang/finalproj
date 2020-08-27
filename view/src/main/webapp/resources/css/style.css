@@ -596,7 +596,10 @@ h1, h2, h3, h4, h5, h6, figure {
     border-radius: 50%;
     float: left; }
   .review .desc {
-    width: calc(100% - 100px);
+    width: 100%;
+    float: right; }
+  .review .desc p {
+    width: calc(100% - 50px);
     float: right; }
     .review .desc h4 {
       width: 100%;
@@ -605,9 +608,9 @@ h1, h2, h3, h4, h5, h6, figure {
         width: 49%;
         display: inline-block; }
         .review .desc h4 span:first-child {
-          font-size: 16px; }
+          font-size: 20px; }
         .review .desc h4 span:last-child {
-          font-size: 14px;
+          font-size: 15px;
           color: #b3b3b3; }
     .review .desc .star {
       width: 100%; }
