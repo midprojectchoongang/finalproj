@@ -26,6 +26,11 @@
 		order by visit_date
 		limit #{startRow}, #{endRow}
 	</select>
+	<select id="getTicket" parameterType="string" resultMap="tbookResult">
+		select *
+		from ticketbook
+		where c_id = #{c_id}
+	</select>
 	
 	<select id="view" parameterType="integer" resultType="tbook">
 		select * 

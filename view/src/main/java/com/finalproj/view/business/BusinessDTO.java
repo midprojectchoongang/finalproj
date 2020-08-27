@@ -21,6 +21,9 @@ public class BusinessDTO {
 	public String confirm;
 	public Date reg_date;
 	public String del;
+	public String con_comment;
+	public Date confirm_date;
+	
 	
 	// paging
 	private int startRow;

@@ -14,23 +14,8 @@
 					<div class="col-md-9">
 					<div class="row">
 						<div class="row headbox"><h2 class="heading-2">티켓북</h2></div>
-						<!-- 달력 -->
-						<script type="text/javascript">
-						document.addEventListener('DOMContentLoaded', function() {
-					        var calendarEl = document.getElementById('calendar');
-					        var calendar = new FullCalendar.Calendar(calendarEl, {
-					        	themeSystem: String
-					        });
-					        calendar.render();
-					    });
-						</script>
-						<div class="row" align="left">
-							<div class="col-md-12" id="calendar"></div>
-						</div>
 						<div class="row" align="left">
 						<table class="table table-ticket" id="list">
-						<tbody id="listBody">
-      					</tbody>
 							<c:forEach items="${list }" var="t">
 							<%-- location.href='ticketView?ticketbook_no=${t.ticketbook_no }' --%>
 							<tr style="cursor: pointer;" id="${t.ticketbook_no }">

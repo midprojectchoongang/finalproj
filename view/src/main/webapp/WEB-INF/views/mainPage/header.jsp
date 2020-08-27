@@ -31,6 +31,7 @@
 <!-- fullcalendar -->
 <link rel="stylesheet" href="${path}/fullcalendar/main.css">
 <script src="${path}/fullcalendar/main.js"></script>
+<script src="${path}/fullcalendar/ko.js"></script>
 <!-- Animate.css -->
 <link rel="stylesheet" href="${path}/css/animate.css">
 <!-- Icomoon Icon Fonts-->

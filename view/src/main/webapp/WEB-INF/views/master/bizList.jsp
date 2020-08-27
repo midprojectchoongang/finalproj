@@ -9,10 +9,10 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container">
-			<div class="container">
+			<div class="container" align="center">
 				<div class="row">
-					<div class="col-md-12">
-						<table class="table table-hover">
+					<div class="col-md-9">
+						<table class="table table-hover" id="list">
 							<thead>
 								<tr>
 									<th>아이디</th>
@@ -23,7 +23,7 @@
 								</tr>
 							</thead>
 							<c:forEach var="mem" items="${list }">
-							<tr style="cursor: pointer;" onclick="location.href='bizView?b_id=${mem.b_id }'">
+							<tr style="cursor: pointer;" onclick="location.href='bizAdmin?b_id=${mem.b_id }'">
 								<td>${mem.b_id }</td>
 								<td>${mem.groupName }</td>
 								<td>${mem.groupkind }</td>

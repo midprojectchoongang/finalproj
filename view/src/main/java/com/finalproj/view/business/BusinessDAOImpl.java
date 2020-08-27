@@ -48,5 +48,9 @@ public class BusinessDAOImpl implements BusinessDAO {
 	public int idChk(String b_id) {
 		return sst.selectOne("businessns.idChk", b_id);
 	}
-	
+
+	@Override
+	public int joinConfirm(BusinessDTO business) {
+		return sst.update("businessns.joinConfirm", business);
+	}
 }
