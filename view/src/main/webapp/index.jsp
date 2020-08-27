@@ -8,8 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	// location.href="main";
-	location.href="joinFormC";
+	location.href="main";
 </script>
 </body>
 </html>

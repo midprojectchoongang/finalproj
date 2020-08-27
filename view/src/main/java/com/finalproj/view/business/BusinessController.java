@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproj.view.common.PagingBean;
+import com.finalproj.view.exhibition.ExhibitionDTO;
 
 @Controller
 public class BusinessController {
@@ -47,6 +48,42 @@ public class BusinessController {
 		model.addAttribute("biz", biz);
 		return "business/bizView";
 	}
+	
+	// master 시작
+	@RequestMapping("bizAdmin")
+	public String bizAdmin(String b_id, String pageNum, Model model) {
+		BusinessDTO biz = bs.select(b_id);
+		String[] groupkind = {"개인사업자", "법인사업자", "기타"};	
+		String[] db = {"c", "y", "n"};
+		String[] text = {"승인 대기", "승인 완료", "승인 불가"};
+		String[] comment = {
+			"단체명/대표자 불일치",
+			"등록번호 불일치",
+			"대표번호 불일치",
+			"메일주소 불일치",
+			"홈페이지 불일치"
+		};
+		int[] com_no = {0, 1, 2, 3, 4};
+		model.addAttribute("com_no", com_no);
+		model.addAttribute("comment", comment);
+		model.addAttribute("text", text);
+		model.addAttribute("db", db);
+		model.addAttribute("groupkind", groupkind);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("biz", biz);
+		return "master/bizView";
+	}
+	
+	@RequestMapping(value = "bizConfirm", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String bizConfirm(String b_id, String confirm, String con_comment, Model model) {
+		BusinessDTO biz = bs.select(b_id);
+		biz.setConfirm(confirm);
+		biz.setCon_comment(con_comment);
+		int result = bs.joinConfirm(biz);
+		return String.valueOf(result);
+	}
+	// master 끝
 	
 	@RequestMapping("bizJoinForm")
 	public String bizJoinForm(Model model) {
@@ -120,4 +157,5 @@ public class BusinessController {
 		model.addAttribute("result", result);
 		return "business/delete";
 	}
+	
 }

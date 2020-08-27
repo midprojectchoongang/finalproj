@@ -1,6 +1,7 @@
 package com.finalproj.view.ticketbook;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 public interface TicketBookDAO {
 
@@ -11,5 +12,8 @@ public interface TicketBookDAO {
 	Collection<TicketBookDTO> list(TicketBookDTO tbook);
 
 	TicketBookDTO view(int ticketbook_no);
+
+	Collection<TicketBookDTO> getTicket(String c_id);
+
 
 }

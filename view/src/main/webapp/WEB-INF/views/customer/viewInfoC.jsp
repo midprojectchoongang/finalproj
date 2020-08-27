@@ -12,24 +12,36 @@
 			<div class="container">
 				<div class="col-md-12">
 					<div class="row">
-							<h2 class="heading-2">viewInfo</h2>
+							<div class="row headbox"><h2 class="heading-2">회원가입</h2></div>
 							<form action="#">
 								<div class="row form-group">
-								<label for="c_id">id</label>
+									<label for="c_id">id</label>
 									<div class="col-md-12">																										
 										${customerdto.c_id }										
 									</div>
 								</div>					
 								<div class="row form-group">
-								<label for="nickname">nickname</label>
+									<label for="nickname">nickname</label>
 									<div class="col-md-12">
 										${customerdto.nickname }						
 									</div>
 								</div>
 								<div class="row form-group">
-								<label for="subject">email</label>
+									<label for="subject">email</label>
 									<div class="col-md-12">
 										${customerdto.email }										
+									</div>
+								</div>
+								<div class="row form-group">
+									<label>prefered #HashTag</label>
+									<div class="col-md-12">
+										<p class="tags">
+											<c:forEach var="htl" items="${selectedHash }">
+												<span class="tag">
+													<a href="#" class="name"><i class="icon-tag"></i> ${htl.hash_title }</a>
+												</span>
+											</c:forEach>
+										</p>
 									</div>
 								</div>
 								<div class="form-group" style="text-align: center;">

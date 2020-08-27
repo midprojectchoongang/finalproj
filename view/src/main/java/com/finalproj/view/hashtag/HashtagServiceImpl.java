@@ -8,8 +8,8 @@ public class HashtagServiceImpl implements HashtagService{
 	@Autowired
 	private HashtagDAO hd;
 
-	public List<HashtagDTO> hashList(HashtagDTO hashtag) {
-		return hd.hashList(hashtag);
+	public List<HashtagDTO> hashList() {
+		return hd.hashList();
 	}
 	public int hashChk(String hash_title) {
 		return hd.hashChk(hash_title);

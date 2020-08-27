@@ -32,8 +32,8 @@ public class MainController {
 		return "/mainPage/writeForm";
 	}
 	@RequestMapping("hash")
-	public String hash(HashtagDTO hashtag, Model model) {
-		List<HashtagDTO> hashList = hs.hashList(hashtag);
+	public String hash(Model model) {
+		List<HashtagDTO> hashList = hs.hashList();
 		model.addAttribute("hashList", hashList);
 		return "/mainPage/hash";
 	}

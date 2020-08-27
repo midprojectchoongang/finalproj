@@ -1,6 +1,7 @@
 package com.finalproj.view.ticketbook;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,4 +31,10 @@ public class TicketBookServiceImpl implements TicketBookService {
 	public TicketBookDTO view(int ticketbook_no) {
 		return tbd.view(ticketbook_no);
 	}
+
+	@Override
+	public Collection<TicketBookDTO> getTicket(String c_id) {
+		return tbd.getTicket(c_id);
+	}
+
 }

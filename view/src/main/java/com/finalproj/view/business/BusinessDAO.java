@@ -18,4 +18,6 @@ public interface BusinessDAO {
 
 	int idChk(String b_id);
 
+	int joinConfirm(BusinessDTO business);
+
 }
