@@ -5,6 +5,8 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalproj.view.exhibition.ExhibitionDTO;
+
 @Service
 public class BusinessServiceImpl implements BusinessService {
 
@@ -45,4 +47,5 @@ public class BusinessServiceImpl implements BusinessService {
 	public int idChk(String b_id) {
 		return bd.idChk(b_id);
 	}
+
 }

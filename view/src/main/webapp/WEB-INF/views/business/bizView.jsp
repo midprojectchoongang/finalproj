@@ -74,7 +74,8 @@
 					</table>
 					
 					<div class="form-group" style="text-align: center;">
-						<a href="bizExList">내 전시회</a>
+						<a href="exList">내 전시회 보기</a>
+						<a href="exWriteForm">내 전시회 등록</a>
 						<a href="bizUpdateForm">회원정보수정</a>
 						<a href="bizLogout">로그아웃</a>
 						<a href="bizDelete" onclick="return confirm('really?');">회원탈퇴</a>												
