@@ -17,6 +17,8 @@
 		<result property="confirm" column="confirm" />
 		<result property="reg_date" column="reg_date" />
 		<result property="del" column="del" />
+		<result property="con_comment" column="con_comment" />
+		<result property="confirm_date" column="confirm_date" />
 	</resultMap>
 	
 	<select id="select" parameterType="string" resultType="business">
@@ -36,6 +38,15 @@
 		from business
 		limit #{startRow}, #{endRow}
 	</select>
+	
+	<!-- confirm -->
+	<update id="joinConfirm" parameterType="business">
+		update business set 
+		confirm = #{confirm}, 
+		<if test="con_comment != null">con_comment = #{con_comment},</if>
+		confirm_date = sysdate()
+		where b_id = #{b_id}
+	</update>
 	
 	<insert id="insert" parameterType="business">
 		insert into business 

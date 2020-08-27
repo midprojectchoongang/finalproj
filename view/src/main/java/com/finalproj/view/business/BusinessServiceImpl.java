@@ -45,4 +45,9 @@ public class BusinessServiceImpl implements BusinessService {
 	public int idChk(String b_id) {
 		return bd.idChk(b_id);
 	}
+
+	@Override
+	public int joinConfirm(BusinessDTO business) {
+		return bd.joinConfirm(business);
+	}
 }
