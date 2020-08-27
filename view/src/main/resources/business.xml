@@ -90,4 +90,5 @@
 	<update id="delete">
 		update business set del="y" where b_id=#{b_id}
 	</update>
+		
 </mapper>

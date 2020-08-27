@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.finalproj.view.common.PagingBean;
+import com.finalproj.view.exhibition.ExhibitionDTO;
 
 @Controller
 public class BusinessController {
@@ -156,4 +157,5 @@ public class BusinessController {
 		model.addAttribute("result", result);
 		return "business/delete";
 	}
+	
 }

@@ -26,6 +26,7 @@ public class BusinessDTO {
 	
 	
 	// paging
-	public int startRow;
-	public int endRow;
+	private int startRow;
+	private int endRow;
+	
 }

@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.finalproj.view.exhibition.ExhibitionDTO;
+
 @Repository
 public class BusinessDAOImpl implements BusinessDAO {
 
