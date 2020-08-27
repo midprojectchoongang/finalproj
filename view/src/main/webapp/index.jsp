@@ -8,8 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	// location.href="main";
-	location.href="commentList";
+	location.href="main";
 </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.finalproj.view.ticketbook;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,10 @@ public class TicketBookDAOImpl implements TicketBookDAO {
 	public TicketBookDTO view(int ticketbook_no) {
 		return sst.selectOne("tbookns.view", ticketbook_no);
 	}
+
+	@Override
+	public Collection<TicketBookDTO> getTicket(String c_id) {
+		return sst.selectList("tbookns.view", c_id);
+	}
+
 }
