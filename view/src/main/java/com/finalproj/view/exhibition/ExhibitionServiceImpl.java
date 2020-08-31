@@ -10,13 +10,6 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	@Autowired
 	private ExhibitionDAO ed;
 
-	
-
-	@Override
-	public Collection<ExhibitionDTO> list(ExhibitionDTO ex) {
-		return ed.list(ex);
-	}
-
 	@Override
 	public int insert(ExhibitionDTO ex) {
 		return ed.insert(ex);
@@ -28,7 +21,27 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public int getTotal(int exhibition_no) {
-		return ed.getTotal(exhibition_no);
+	public int getTotal() {
+		return ed.getTotal();
+	}
+
+	@Override
+	public Collection<ExhibitionDTO> list(int startRow, int endRow) {
+		return ed.list(startRow, endRow);
+	}
+
+	@Override
+	public ExhibitionDTO select(int exhibition_no) {
+		return ed.select(exhibition_no);
+	}
+
+	@Override
+	public int update(ExhibitionDTO ex) {
+		return ed.update(ex);
+	}
+
+	@Override
+	public int delete(int exhibition_no) {
+		return ed.delete(exhibition_no);
 	}
 }
