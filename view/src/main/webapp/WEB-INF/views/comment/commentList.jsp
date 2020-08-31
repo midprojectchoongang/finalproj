@@ -1,63 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 </head>
 <body>
-<div class="colorlib-loader"></div>
-<div id="page">
-	<%@ include file="../mainPage/header.jsp"%>
-	
-	
-	
-	<div id="colorlib-container">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 content">
-					<div class="row row-pb-lg">
-						<div class="col-md-12">
-							<h2>${count } Comments</h2>
-							<c:forEach items="${cmtList }" var="cl">
-							<c:if test="${cl.del == 'n' }">
-								<div class="review">
-							   		<div class="desc">
-							   			<h4>
-							   				<span class="text-left">${cl.c_id }</span>
-							   				<span class="text-right">${cl.reg_date }</span>
-							   			</h4>
-							   			<p>${cl.content }</p>
-							   		</div>
-							   	</div>
-							</c:if>
-							</c:forEach>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<h2>Say something</h2>
-							<form action="#">
-								<div class="row form-group">
-									<div class="col-md-12">
-										<!-- <label for="message">Message</label> -->
-										<textarea name="message" id="message" cols="30" rows="5" class="form-control"></textarea>
-									</div>
-								</div>
-								<div class="form-group">
-									<input type="submit" value="Post Comment" class="btn btn-primary">
-								</div>
-							</form>	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	
-	<%@ include file="../mainPage/footer.jsp"%>
-</div>
+<div class="col-md-12" id="commentDisp">
+	<h2>${count } Comments</h2>
+	<c:forEach items="${cmtList }" var="cl">
+	<c:if test="${cl.del == 'n' }">
+		<div class="review">
+	   		<div class="desc">
+	   			<h4><span class="text-left">${cl.nickname }&emsp;
+	   					<c:if test="${cl.c_id == c_id }">
+	   						<button onclick="updateComment('${cl.comment_no}','${cl.content }')" id="updateBtn">수정</button>
+	   						<button id="deleteBtn">삭제</button>
+	   					</c:if></span>
+	   				<span class="text-right">${cl.reg_date }</span>
+	   			</h4>
+	   			<p id="contentBox">${cl.content }</p>
+	   		</div>
+	   	</div>
+	</c:if>
+	</c:forEach>
+	<script type="text/javascript">
+		function updateComment(updateCmtno,updateCont) {
+			var updateCont = updateCont
+			$(function() {
+				$('#contentBox').html('<textarea name="content" id="updateCont" cols="30" rows="5" class="form-control">'+updateCont+'</textarea>');
+				$('#deleteBtn').replaceWith('<button id="cancelUpBtn">취소</button>');
+			});
+		}
+	</script>
+</div>			
 </body>
 </html>
-

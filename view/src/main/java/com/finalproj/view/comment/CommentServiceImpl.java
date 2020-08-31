@@ -14,4 +14,7 @@ public class CommentServiceImpl implements CommentService {
 	public List<CommentDTO> cmtList(int exhibition_no) {
 		return cd.cmtList(exhibition_no);
 	}
+	public int addComment(CommentDTO comment) {
+		return cd.addComment(comment);
+	}
 }

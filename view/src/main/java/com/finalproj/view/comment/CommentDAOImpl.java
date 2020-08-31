@@ -14,4 +14,7 @@ public class CommentDAOImpl implements CommentDAO {
 	public List<CommentDTO> cmtList(int exhibition_no) {
 		return sst.selectList("commentns.cmtList", exhibition_no);
 	}
+	public int addComment(CommentDTO comment) {
+		return sst.insert("commentns.addComment", comment);
+	}
 }

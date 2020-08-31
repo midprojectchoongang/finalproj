@@ -16,4 +16,7 @@
 	<select id="cmtList" parameterType="integer" resultMap="commentResult">
 		select * from comment where exhibition_no=#{exhibition_no}
 	</select>
+	<insert id="addComment" parameterType="comment">
+		insert into comment values (0, #{exhibition_no}, #{c_id}, #{content}, sysdate(), 'n')
+	</insert>
 </mapper>
