@@ -1,7 +1,7 @@
 package com.finalproj.view.exhibition;
-
 import java.util.Collection;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,13 +10,6 @@ import org.springframework.stereotype.Repository;
 public class ExhibitionDAOImpl implements ExhibitionDAO {
 	@Autowired
 	private SqlSessionTemplate sst;
-
-	
-
-	@Override
-	public Collection<ExhibitionDTO> list(ExhibitionDTO ex) {
-		return sst.selectList("exhibitionns.list", ex);
-	}
 
 	@Override
 	public int insert(ExhibitionDTO ex) {
@@ -29,7 +22,30 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	}
 
 	@Override
-	public int getTotal(int exhibition_no) {
-		return sst.selectOne("exhibitionns.getTotal", exhibition_no);
+	public int getTotal() {
+		return sst.selectOne("exhibitionns.getTotal");
+	}
+
+	@Override
+	public Collection<ExhibitionDTO> list(int startRow, int endRow) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return sst.selectList("exhibitionns.list", map);
+	}
+
+	@Override
+	public ExhibitionDTO select(int exhibition_no) {
+		return sst.selectOne("exhibitionns.select", exhibition_no);
+	}
+
+	@Override
+	public int update(ExhibitionDTO ex) {
+		return sst.update("exhibitionns.update", ex);
+	}
+
+	@Override
+	public int delete(int exhibition_no) {
+		return sst.delete("exhibitionns.delete", exhibition_no);
 	}
 }

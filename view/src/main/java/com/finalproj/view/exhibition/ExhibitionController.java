@@ -20,23 +20,21 @@ public class ExhibitionController {
 	private ExhibitionService es;
 	
 	@RequestMapping("exList")
-	public String exList(String pageNum, ExhibitionDTO ex, Model model) {
+	public String exList(String pageNum, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
-		ex.setB_id("b_id");
-		int total = es.getTotal(ex.getExhibition_no());
+		int total = es.getTotal();
 		int startRow = (currentPage - 1) * rowPerPage;
 		int endRow = startRow + rowPerPage;
-		ex.setStartRow(startRow);
-		ex.setEndRow(endRow);
-		Collection<ExhibitionDTO> list = es.list(ex);
+		Collection<ExhibitionDTO> list = es.list(startRow, endRow);
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
-		
-		model.addAttribute("endRow", endRow);
+//		model.addAttribute("startRow", startRow);
+//		model.addAttribute("endRow", endRow);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
-		model.addAttribute("pageNum", pageNum);
+//		model.addAttribute("pageNum", pageNum);
+
 		return "exhibition/exList";
 	}
 	@RequestMapping("exWriteForm")
@@ -46,10 +44,7 @@ public class ExhibitionController {
 	@RequestMapping("exWrite")
 	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) {
 		int result = 0;
-		System.out.println(ex.getExhibition_no());
-		
 		String realPath = session.getServletContext().getRealPath("/exImg");
-		System.out.println(realPath);
 		MultipartFile poster = ex.getFile();
 		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
 		try {
@@ -57,8 +52,7 @@ public class ExhibitionController {
 		} catch (Exception e) {
 			System.out.println("업로드 오류");
 		}
-		ex.setFilename(fileName);
-		
+		ex.setFilename(fileName);		
 		result = es.insert(ex);
 		
 		model.addAttribute("exhibition_no", ex.getExhibition_no());
@@ -71,5 +65,36 @@ public class ExhibitionController {
 		model.addAttribute("ex", ex);
 		model.addAttribute("pageNum", pageNum);
 		return "exhibition/exView";
+	}
+	@RequestMapping("exUpdateForm")
+	public String exUpdateForm(int exhibition_no, String pageNum, Model model) {
+		ExhibitionDTO ex = es.select(exhibition_no);
+		model.addAttribute("ex", ex);
+		model.addAttribute("pageNum", pageNum);
+		return "exhibition/exUpdateForm";
+	}
+	@RequestMapping("exUpdate")
+	public String exUpdate(ExhibitionDTO ex, String pageNum, Model model, HttpSession session) {	
+		String realPath = session.getServletContext().getRealPath("/exImg");
+		MultipartFile poster = ex.getFile();
+		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
+		try {
+			poster.transferTo(new File(realPath + File.separator + fileName));
+		} catch (Exception e) {
+			System.out.println("업로드 오류");
+		}
+		ex.setFilename(fileName);		
+		int result = es.update(ex);
+		
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "exhibition/exUpdate";
+	}
+	@RequestMapping("exDelete")
+	public String exDelete(int exhibition_no, String pageNum, Model model) {
+		int result = es.delete(exhibition_no);
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "exhibition/exDelete";
 	}
 }

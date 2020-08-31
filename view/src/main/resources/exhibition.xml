@@ -25,11 +25,11 @@
 		<result property="filename" column="filename" />
 	</resultMap>
 		
-		<select id="getTotal" parameterType="string" resultType="integer">
-			select count(*) from exhibition where exhibition_no=#{exhibition_no}
+		<select id="getTotal" resultType="integer">
+			select count(*) from exhibition
 		</select>
-		<select id="list" parameterType="exhibition" resultMap="exhibitionResult">
-			select * from exhibition where exhibition_no=#{exhibition_no}
+		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
+			select * from exhibition order by exhibition_no limit #{startRow}, #{endRow}
 		</select>
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
@@ -41,4 +41,16 @@
 		<select id="view" parameterType="integer" resultType="exhibition">
 			select * from exhibition where exhibition_no=#{exhibition_no}
 		</select>
+		<select id="select" parameterType="integer" resultType="exhibition">
+			select * from exhibition where exhibition_no=#{exhibition_no}  
+		</select>
+		<update id="update" parameterType="exhibition">
+			update exhibition set 
+			title=#{title}, gallery=#{gallery}, address=#{address}, price=#{price},
+			start_date=#{start_date}, end_date=#{end_date}, hashtags=#{hashtags}, content=#{content}, filename=#{filename}
+			where exhibition_no=#{exhibition_no}
+		</update>
+		<update id="delete" parameterType="integer">
+			update exhibition set del='y' where exhibition_no=#{exhibition_no}
+		</update>
 </mapper>

@@ -30,7 +30,7 @@
 						<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
 						<form action="exWrite" enctype="multipart/form-data" method="post">
 						<div class="row formbox">
-							<input type="hidden" name="b_id" value="b_id">
+							<input type="hidden" name="b_id" value="${b_id}">
 							<div class="row form-group">
 								<div class="col-md-12">
 									<input type="file" name="file" id="file" class="form-control" required="required">
@@ -51,7 +51,7 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="title">제목</label>
+									<label for="title">전시회명</label>
 									<input type="text" name="title" class="form-control" required="required">
 								</div>
 							</div>
@@ -105,7 +105,7 @@
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
-									<label for="price">입장권</label>
+									<label for="price">입장권 가격</label>
 									<input type="text" name="price" class="form-control" required="required">
 								</div>
 							</div>																																																																					
