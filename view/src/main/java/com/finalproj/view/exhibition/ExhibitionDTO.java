@@ -1,8 +1,7 @@
 package com.finalproj.view.exhibition;
 
-import java.util.Date;
+import java.sql.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -20,9 +19,7 @@ public class ExhibitionDTO {
 	private String ticket_link2;
 	private String ticket_link3;
 	private int price;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date start_date;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date end_date;
 	private String hashtags;
 	private String content;

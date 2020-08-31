@@ -13,48 +13,40 @@
 				<div class="row">
 					<div class="col-md-9">
 					<div class="row">
-						<div class="row headbox"><h2 class="heading-2">티켓북</h2></div>
-						<!-- 달력 -->
-						<script type="text/javascript">
-						document.addEventListener('DOMContentLoaded', function() {
-					        var calendarEl = document.getElementById('calendar');
-					        var calendar = new FullCalendar.Calendar(calendarEl, {
-					        	themeSystem: String
-					        });
-					        calendar.render();
-					    });
-						</script>
-						<div class="row" align="left">
-							<div class="col-md-12" id="calendar"></div>
+						<div class="row headbox">
+							<h2 class="heading-2">전시회</h2>
 						</div>
-						<div class="row" align="left">
-						<table class="table table-ticket" id="list">
-						<tbody id="listBody">
-      					</tbody>
-							<c:forEach items="${list }" var="t">
-							<%-- location.href='ticketView?ticketbook_no=${t.ticketbook_no }' --%>
-							<tr style="cursor: pointer;" id="${t.ticketbook_no }">
-								<td style="width: 30%;" rowspan="2"><img src="ticketImg/${t.filename }" class="img-thumbnail"></td>
-								<td style="width: 70%; height: 30px;">
-									<div class="row">
-										<div class="col-xs-offset-1 h4">
-											${t.title }
-											<div class="col-xs-offset-0 small">
-												${t.visit_date }
-											</div>
-										</div>
-									</div>
-								</td>
+						<table style="width: 100%">
+							<tr align="left">
+								<th style="width: 45%">전시회명</th>
+								<th style="width: 15%">장소</th>
+								<th style="width: 40%">기간</th>
 							</tr>
-							<tr style="cursor: pointer;">
-								<td style="width: 70%;">
-									<div class="row" id="content">
-										<div class="col-xs-offset-1" id="cBody">
-											${t.content }
-										</div>
-									</div>
+						</table>																														
+						<div class="row" align="left">						
+						<table style="width: 100%">						
+							<c:forEach items="${list }" var="ex">
+							<%-- location.href='exView?exhibition_no=${ex.exhibition_no }' --%>
+							<%-- <tr style="cursor: pointer;" id="${ex.exhibition_no }"> --%>
+							<tr>
+								<td style="width: 30%; height: 15px;">
+									<img src="exImg/${ex.filename }">
 								</td>
-							</tr>
+								<td style="width: 15%;">
+									<a href="exView?exhibition_no=${ex.exhibition_no }">
+									${ex.title }
+									</a>
+								</td>
+								<td style="width: 15%;">
+									<a href="#">
+									${ex.gallery }
+									</a>
+								</td>
+								<td style="width: 40%;">
+									${ex.start_date } <br>
+									 ~ ${ex.end_date }
+								</td>															
+							</tr>							
 							</c:forEach>
 						</table>
 						</div>
