@@ -46,24 +46,32 @@
 <div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
-		<div id="colorlib-container">
+		<div id="colorlib-container" align="center">
 			<div class="container">
-				<div class="row">
-					<div class="col-xs-12" align="center">
-						<h2>Add Tags</h2>
-						<div class="row-pb-lg">
-							<div class="col-xs-12">
-								<select id="hashgroup">
+				<div class="col-md-9">
+					<div class="row">
+						<div class="row headbox-sm"><h2 class="heading-2-b">#hash 추가</h2></div>
+						<div class="row row-pb-md">
+							<table class="table">
+							<tr>
+							<td>
+								<select id="hashgroup" class="form-control">
 									<option value="1">종류별
 									<option value="2">시대별
 									<option value="3">지역별
 									<option value="4">전시 유형별
 									<option value="5">기타
-								</select><br>
+								</select>
+							</td>
+							<td>
 								<input onkeyup="hashChk()" type="text" name="keyword" id="keyword" placeholder="Type #HASH"
-									style="width: 40%; text-align: center;">
-								<button onclick="addHash()">ADD</button>
-							</div>
+									style="text-align: center;" class="form-control">
+							</td>
+							<td width="10%">
+								<button onclick="addHash()" class="btn btn-primary">추가</button>
+							</td>
+							</tr>
+							</table>
 						</div>
 					</div>
 				</div>

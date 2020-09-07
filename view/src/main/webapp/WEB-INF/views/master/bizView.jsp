@@ -12,6 +12,7 @@
 		<div class="container" align="center">
 			<div class="col-md-9">
 				<div class="row" align="left">
+					<div class="row headbox-sm"><h2 class="heading-2-b">${biz.groupName } 가입정보</h2></div>
 					<div class="row formbox">
 						<div class="row form-group">
 							<div class="col-md-12">
@@ -180,9 +181,9 @@
 							</div>
 						</div>
 					</div>
-				</div>	
 				<!-- list -->
-				<div class="row" id="listDisp"></div>
+				<div class="row formbox" id="listDisp"></div>
+				</div>	
 			</div>
 		</div>
 		<%@ include file="../mainPage/footer.jsp"%>

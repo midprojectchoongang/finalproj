@@ -28,7 +28,7 @@
 			<div class="container" align="center">
 				<div class="col-md-9">
 					<div class="row">
-						<div class="row headbox"><h2 class="heading-2">로그인</h2></div>
+						<div class="row headbox"><h2 class="heading-2">단체회원 로그인</h2></div>
 						<form action="bizLogin">
 						<div class="row formbox">
 							<div class="row form-group">
@@ -45,7 +45,8 @@
 							</div>							
 						</div>		
 							<div class="form-group" style="text-align: center;">
-								<input type="submit" value="확인" class="btn btn-primary">
+								<input type="submit" value="로그인" class="btn btn-primary">
+								<input type="button" value="회원가입" class="btn btn-cta" onclick="location.href='bizJoinForm'">
 							</div>										
 						</form>
 				</div>

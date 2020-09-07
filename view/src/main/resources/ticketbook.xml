@@ -22,14 +22,14 @@
 	<select id="list" parameterType="tbook" resultMap="tbookResult">
 		select * 
 		from ticketbook
-		where c_id = #{c_id}
+		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date}
 		order by visit_date
 		limit #{startRow}, #{endRow}
 	</select>
-	<select id="getTicket" parameterType="string" resultMap="tbookResult">
-		select *
+	<select id="getTicket" parameterType="string" resultType="integer">
+		select count(*)
 		from ticketbook
-		where c_id = #{c_id}
+		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date}
 	</select>
 	
 	<select id="view" parameterType="integer" resultType="tbook">

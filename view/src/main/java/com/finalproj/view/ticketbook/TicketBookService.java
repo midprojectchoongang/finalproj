@@ -15,5 +15,7 @@ public interface TicketBookService {
 
 	Collection<TicketBookDTO> getTicket(String c_id);
 
+	int getTicket(TicketBookDTO tbook);
+
 
 }

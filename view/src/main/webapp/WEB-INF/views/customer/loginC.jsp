@@ -10,7 +10,7 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		location.href="viewInfoC";
+		location.href="main";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">

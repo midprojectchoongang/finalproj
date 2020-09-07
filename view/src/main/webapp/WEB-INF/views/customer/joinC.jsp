@@ -10,19 +10,19 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("success")
+			alert("회원가입이 완료되었습니다.")
 			location.href = "loginFormC";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("fail")
+			alert("오류가 발생했습니다.")
 			history.go(-1);
 		</script>
 	</c:if>
 	<c:if test="${result == -1 }">
 		<script type="text/javascript">
-			alert("ID check")
+			alert("아이디를 확인해 주세요.")
 			history.go(-1);
 		</script>
 	</c:if>
