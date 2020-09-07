@@ -82,16 +82,28 @@
 	<div class="top-menu">
 		<div class="container">
 			<div class="row">
+				<div class="col-xs-12 text-right menu-1">
+					<ul>
+						<li><a href="bizLoginForm">단체회원로그인</a></li>
+						<li><a href="loginFormC">개인회원로그인</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-xs-3">
 					<div id="colorlib-logo"><a href="main">VIEW</a></div>
 				</div>
 				<div class="col-xs-12 text-right menu-1">
 					<ul>
-						<li><a href="bizLoginForm">bizLogin</a></li>
-						<li><a href="loginForm">loginForm</a></li>
 						<li><a href="hashMenu">#hashMenu</a></li>
 						<li><a href="exList">exhibition</a></li>
-						<li><a href="ticketWriteForm">WriteForm</a></li>
+						<c:if test="${not empty sessionScope.b_id }">
+						<li><a href="exWrite">전시등록</a></li>
+						</c:if>
+						<c:if test="${not empty sessionScope.c_id }">
+						<li><a href="ticketCal">TicektBook</a></li>
+						</c:if>
+						<li><a href="bizList">단체회원 관리</a></li>
 					</ul>
 				</div>
 			</div>
