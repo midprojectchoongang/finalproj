@@ -197,8 +197,8 @@
 						<input type="hidden" name="c_hashtag" value="" />
 					</form>
 					<div class="form-group" style="text-align: center;">
-						<button onclick="submit()" class="btn btn-primary">Confirm</button>
-						<button onclick="cancel()" class="btn btn-primary">Cancel</button>
+						<button onclick="submit()" class="btn btn-primary">수정</button>
+						<button onclick="cancel()" class="btn btn-cta">취소</button>
 					</div>
 					<script type="text/javascript">
 						function submit() {

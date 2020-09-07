@@ -1249,8 +1249,9 @@ th {
     padding: 8px;
     line-height: 1.42857;
     vertical-align: top;
-    border-top: 1px solid #ddd; }
+    /* border-top: 1px solid #ddd; */ }
   .table > thead > tr > th {
+  	text-align: center;
     vertical-align: bottom;
     border-bottom: 2px solid #ddd; }
   .table > caption + thead > tr:first-child > th,

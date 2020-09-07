@@ -16,6 +16,12 @@
 						<div class="row headbox"><h2 class="heading-2">티켓북</h2></div>
 						<div class="row" align="left">
 						<table class="table table-ticket" id="list">
+							<c:if test="${empty list }">
+								<tr>
+									<td style="text-align: center;">관람한 전시회가 없습니다.</td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty list }">
 							<c:forEach items="${list }" var="t">
 							<%-- location.href='ticketView?ticketbook_no=${t.ticketbook_no }' --%>
 							<tr style="cursor: pointer;" id="${t.ticketbook_no }">
@@ -41,6 +47,7 @@
 								</td>
 							</tr>
 							</c:forEach>
+							</c:if>
 						</table>
 						</div>
 					</div>

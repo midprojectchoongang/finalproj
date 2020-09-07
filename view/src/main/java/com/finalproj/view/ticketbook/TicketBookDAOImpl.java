@@ -38,4 +38,9 @@ public class TicketBookDAOImpl implements TicketBookDAO {
 		return sst.selectList("tbookns.view", c_id);
 	}
 
+	@Override
+	public int getTicket(TicketBookDTO tbook) {
+		return sst.selectOne("tbookns.getTicket", tbook);
+	}
+
 }

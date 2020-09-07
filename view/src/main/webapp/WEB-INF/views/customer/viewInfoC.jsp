@@ -8,31 +8,39 @@
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
-		<div id="colorlib-container">
+		<div id="colorlib-container" align="center">
 			<div class="container">
-				<div class="col-md-12">
-					<div class="row">
-							<div class="row headbox"><h2 class="heading-2">회원가입</h2></div>
-							<form action="#">
-								<div class="row form-group">
+				<div class="col-md-9">
+					<div class="row" >
+						<div class="row headbox"><h2 class="heading-2">회원정보</h2></div>
+							<div class="row" align="left">
+							<table class="table table-ticket">
+							<tr>
+								<td>
 									<label for="c_id">id</label>
 									<div class="col-md-12">																										
 										${customerdto.c_id }										
 									</div>
-								</div>					
-								<div class="row form-group">
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<label for="nickname">nickname</label>
 									<div class="col-md-12">
 										${customerdto.nickname }						
 									</div>
-								</div>
-								<div class="row form-group">
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<label for="subject">email</label>
 									<div class="col-md-12">
 										${customerdto.email }										
 									</div>
-								</div>
-								<div class="row form-group">
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<label>prefered #HashTag</label>
 									<div class="col-md-12">
 										<p class="tags">
@@ -43,14 +51,17 @@
 											</c:forEach>
 										</p>
 									</div>
-								</div>
-								<div class="form-group" style="text-align: center;">
-									<a href="main">main</a>
-									<a href="logoutC">logout</a>
-									<a href="updateFormC">update</a>
-									<a href="deleteC" onclick="return confirm('really?');">delete</a>						
-								</div>
-							</form>	
+								</td>
+							</tr>
+							</table>
+							</div>
+							<div class="form-group" style="text-align: center;">
+								<a href="main">main</a>
+								<a href="logoutC">logout</a>
+								<a href="updateFormC">update</a>
+								<a href="deleteC" onclick="return confirm('really?');">delete</a>						
+							</div>
+						</div>	
 					</div>
 				</div>
 			</div>
