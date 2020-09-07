@@ -17,12 +17,12 @@
 	<select id="getTotal" parameterType="string" resultType="integer">
 		select count(*) 
 		from ticketbook
-		where c_id = 'test'
+		where c_id = #{c_id}
 	</select>
 	<select id="list" parameterType="tbook" resultMap="tbookResult">
 		select * 
 		from ticketbook
-		where c_id = 'test'
+		where c_id = #{c_id}
 		order by visit_date
 		limit #{startRow}, #{endRow}
 	</select>

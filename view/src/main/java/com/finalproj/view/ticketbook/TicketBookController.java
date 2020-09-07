@@ -29,7 +29,8 @@ public class TicketBookController {
 	private TicketBookService tbs;
 	
 	@RequestMapping("ticketList")
-	public String ticketList(String pageNum, TicketBookDTO tbook, Model model) {
+	public String ticketList(String pageNum, TicketBookDTO tbook, HttpSession session, Model model) {
+		String c_id = (String) session.getAttribute("c_id");
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
@@ -39,6 +40,7 @@ public class TicketBookController {
 		int endRow = startRow + rowPerPage;
 		tbook.setStartRow(startRow);
 		tbook.setEndRow(endRow);
+		tbook.setC_id(c_id);
 		Collection<TicketBookDTO> list = tbs.list(tbook);
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
@@ -53,12 +55,6 @@ public class TicketBookController {
 	public String ticketCal(Model model) {
 		model.addAttribute("c_id", "test");
 		return "ticketbook/ticketCal";
-	}
-	
-	@RequestMapping(value = "getTicket", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
-	public String getTicket(String c_id) {
-		
-		return "";
 	}
 	
 	@RequestMapping("ticketView")
@@ -83,6 +79,7 @@ public class TicketBookController {
 		MultipartFile poster = ticket.getFile();
 		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
 		try {
+			//poster.transferTo(new File(realPath + fileName));
 			poster.transferTo(new File(realPath + File.separator + fileName));
 		} catch (Exception e) {
 			System.out.println("업로드 오류");
@@ -91,6 +88,6 @@ public class TicketBookController {
 		result = tbs.insert(ticket);
 		
 		model.addAttribute("result", result);
-		return "ticketbook/ticketWrite";
+		return "ticketbook/ticketCal";
 	}
 }
