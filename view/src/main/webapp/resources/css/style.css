@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6, figure {
   padding: 25px 0; }
 
 .colorlib-nav #colorlib-logo {
-  font-size: 38px;
+  font-size: 30px;
   margin: 0;
   padding: 0;
   line-height: 40px;
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6, figure {
     letter-spacing: 1px; }
     .colorlib-nav ul li a {
       position: relative;
-      font-size: 13px;
+      font-size: 12px;
       padding: 10px 15px;
       color: rgba(0, 0, 0, 0.7);
       -webkit-transition: 0.5s;
@@ -911,8 +911,6 @@ blockquote {
     #colorlib-container .item:hover .pop-up-overlay, #colorlib-container .item:focus .pop-up-overlay {
       opacity: 1; }
 
-/* custom style */
-
 .colorlib-heading-2 {
   display: block;
   font-size: 30px;
@@ -925,31 +923,11 @@ blockquote {
   margin-bottom: 40px; 
   margin-top: 40px;}
 
-.heading-2-b {
-  font-size: 24px;
-  color: #F6490D;
-  margin-bottom: 20px; 
-  margin-top: 10px;}
-
 .headbox {
 	background-color: #F6490D;
 	margin-bottom: 40px; 
 	margin-top: 40px;
 	text-align: center;
-}
-
-.headbox-sm {
-	margin-bottom: 40px; 
-	text-align: center;
-	border-bottom-style: solid;
-	border-bottom-color: #F6490D;
-}
-
-.warn-style {
-	color: #F6490D; 
-	font-weight: 900;
-	font-size: 11px; 
-	min-height: 35px;
 }
 
 .formbox {
@@ -985,8 +963,6 @@ table.table-ticket > tr > td {
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }
-
-/* custom style */
 
 @media screen and (max-width: 768px) {
   #fname {

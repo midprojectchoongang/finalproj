@@ -8,45 +8,26 @@
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
-		<script type="text/javascript">
-			$(function() {
-				var placeholderTarget = $('.formbox input[type="text"], .formbox input[type="password"]');
-				//포커스시
-				placeholderTarget.on('focus', function() {
-					$(this).siblings('label').fadeOut('fast');
-				});
-				//포커스아웃시
-				placeholderTarget.on('focusout', function() {
-					if ($(this).val() == '') {
-						$(this).siblings('label').fadeIn('fast');
-					}
-				});
-				$("#groupkind").prop("selectedIndex", -1);
-			});
-		</script>
 		<div id="colorlib-container">
-			<div class="container" align="center">
-				<div class="col-md-9">
+			<div class="container">
+				<div class="col-md-12">
 					<div class="row">
-						<div class="row headbox"><h2 class="heading-2">로그인</h2></div>
-						<form action="loginC">
-						<div class="row formbox">
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="c_id">아이디</label>
-									<input type="text" name="c_id" id="c_id" class="form-control" required="required">
+							<h2 class="heading-2">loginForm</h2>
+							<form action="loginC">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="c_id">id</label>
+										<input type="text" name="c_id" id="c_id" class="form-control" placeholder="Your id" required="required" autofocus="autofocus">
+									</div>
 								</div>
-							</div>							
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="c_password">비밀번호</label>
-									<input type="password" name="c_password" id="c_password"class="form-control" required="required">
+								<div class="row form-group">
+									<div class="col-md-12">
+										<label for="c_password">password</label>
+										<input type="password" name="c_password" id="c_password" class="form-control" placeholder="Your password" required="required">
+									</div>
 								</div>
-							</div>							
-						</div>	
 								<div class="form-group" style="text-align: center;">
-									<input type="submit" value="로그인" class="btn btn-primary">
-									<input type="button" value="회원가입" class="btn btn-cta" onclick="location.href='joinFormC'">
+									<input type="submit" value="Confirm" class="btn btn-primary">
 								</div>
 							</form>	
 					</div>
