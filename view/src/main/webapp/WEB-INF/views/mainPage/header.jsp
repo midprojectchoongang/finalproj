@@ -83,48 +83,27 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 text-right menu-1">
-				<c:if test="${empty sessionScope.b_id && empty sessionScope.c_id }">
 					<ul>
 						<li><a href="bizLoginForm">단체회원로그인</a></li>
 						<li><a href="loginFormC">개인회원로그인</a></li>
 					</ul>
-				</c:if>
-				<c:if test="${not empty sessionScope.b_id}">
-					<ul>
-						<li><a href="bizLogout">로그아웃</a></li>
-					</ul>
-				</c:if>
-				<c:if test="${not empty sessionScope.c_id}">
-					<ul>
-						<c:if test="${sessionScope.c_id != 'master' }">
-						<li><a href="viewInfoC">회원정보</a></li>
-						</c:if>
-						<li><a href="logoutC">로그아웃</a></li>
-					</ul>
-				</c:if>
-				</div>
-			</div>
-			<div class="row-pb-sm">
-				<div class="col-lg-12">
-					<div id="colorlib-logo"><a href="main">VIEW</a></div>
 				</div>
 			</div>
 			<div class="row">
+				<div class="col-xs-3">
+					<div id="colorlib-logo"><a href="main">VIEW</a></div>
+				</div>
 				<div class="col-xs-12 text-right menu-1">
 					<ul>
+						<li><a href="hashMenu">#hashMenu</a></li>
 						<li><a href="exList">exhibition</a></li>
-						<li><a href="#">#hash</a></li>
 						<c:if test="${not empty sessionScope.b_id }">
 						<li><a href="exWrite">전시등록</a></li>
 						</c:if>
-						<c:if test="${not empty sessionScope.c_id && sessionScope.c_id != 'master'}">
+						<c:if test="${not empty sessionScope.c_id }">
 						<li><a href="ticketCal">TicektBook</a></li>
 						</c:if>
-						<c:if test="${sessionScope.c_id == 'master'}">
-						<li><a href="bizList">단체회원관리</a></li>
-						<li><a href="viewHashList">#hash목록</a></li>
-						<li><a href="addHashForm">#hash추가</a></li>
-						</c:if>
+						<li><a href="bizList">단체회원 관리</a></li>
 					</ul>
 				</div>
 			</div>

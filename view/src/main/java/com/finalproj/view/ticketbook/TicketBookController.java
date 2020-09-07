@@ -14,7 +14,6 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +29,7 @@ public class TicketBookController {
 	private TicketBookService tbs;
 	
 	@RequestMapping("ticketList")
-	public String ticketList(String pageNum, String date, TicketBookDTO tbook, HttpSession session, Model model) {
+	public String ticketList(String pageNum, TicketBookDTO tbook, HttpSession session, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -42,7 +41,6 @@ public class TicketBookController {
 		tbook.setStartRow(startRow);
 		tbook.setEndRow(endRow);
 		tbook.setC_id(c_id);
-		tbook.setDate(date);
 		Collection<TicketBookDTO> list = tbs.list(tbook);
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
@@ -54,18 +52,9 @@ public class TicketBookController {
 	}
 	
 	@RequestMapping("ticketCal")
-	public String ticketCal(HttpSession session, Model model) {
-		String c_id = (String) session.getAttribute("c_id");
-		model.addAttribute("c_id", c_id);
+	public String ticketCal(Model model) {
+		model.addAttribute("c_id", "test");
 		return "ticketbook/ticketCal";
-	}
-	
-	@RequestMapping(value = "getTicket", produces="text/html;charset=utf-8", method = RequestMethod.POST)
-	@ResponseBody
-	public String getTicekt(String date, TicketBookDTO tbook) {
-		tbook.setDate(date);
-		int result = tbs.getTicket(tbook);
-	    return String.valueOf(result);
 	}
 	
 	@RequestMapping("ticketView")

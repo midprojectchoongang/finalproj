@@ -135,12 +135,9 @@
 					</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-							<fieldset>
-								<legend>#HashTags</legend>
-								<!-- <label>prefered #HashTag</label> -->
+								<label>prefered #HashTag</label>
 								<p class="tags" id="prehash" style="min-height: 35px;"></p>
-								<div id="warnDisp" class="warn-style"></div>
-							</fieldset>
+								<div id="warnDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>
 							</div>
 						</div>
 <!-- 						<div class="row form-group" align="center">
@@ -151,8 +148,7 @@
 							</div> -->
 						<div class="row form-group">
 							<div class="col-md-12">
-							<fieldset>
-								<p class="tags" align="center">
+								<p class="tags">
 									<c:forEach var="htl" items="${hashList }">
 									<c:if test="${htl.kind == 'basic' }">
 										<span class="tag">
@@ -163,7 +159,6 @@
 									</c:if>
 									</c:forEach>
 								</p>
-							</fieldset>
 							</div>
 						</div>
 						<script type="text/javascript">
@@ -251,7 +246,7 @@
 							}
 						</script>
 					</form>
-					<button onclick="submit()" class="btn btn-primary">회원가입</button>
+					<button onclick="submit()">SUBMIT</button>
 				</div>
 			</div>
 		</div>

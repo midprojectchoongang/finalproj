@@ -37,9 +37,4 @@ public class TicketBookServiceImpl implements TicketBookService {
 		return tbd.getTicket(c_id);
 	}
 
-	@Override
-	public int getTicket(TicketBookDTO tbook) {
-		return tbd.getTicket(tbook);
-	}
-
 }
