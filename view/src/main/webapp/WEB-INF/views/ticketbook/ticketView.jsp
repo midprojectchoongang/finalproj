@@ -9,32 +9,46 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<script type="text/javascript">
-			$(function () {
-				$('#listDisp').load('ticketList #list', 'c_id=${ticket.c_id}');
-			});
+			function list() {
+			    location.href='ticketCal?date=${ticket.date}';
+			}
 		</script>
+		<div id="colorlib-container">
 		<div class="container" align="center">
 			<div class="col-md-9">
-				<div class="row">
-					<div class="row headbox"><h2 class="heading-2">${ticket.title } (${ticket.visit_date })</h2></div>
-				</div>
-				<div class="row" align="justify">
-					<div class="row" style="text-align: right; padding: 20px;">
-						<a href="#" class="btn btn-xs btn-outline">수정</a>
-						<a href="#" class="btn btn-xs btn-outline">삭제</a>
-					</div>
+				<div class="row-pb-md" align="justify" style="margin-top: 30px;">
 					<table class="table table-ticket">
 						<tr>
-							<td style="width: 30%; padding-top: 30px;">
-								<img src="ticketImg/${ticket.filename }" class="img-thumbnail">
+							<td colspan="2" class="headbox">
+								<h2 class="heading-2" style="margin: 30px;">${ticket.title } (${ticket.visit_date })</h2>
 							</td>
-							<td style="width: 70%; padding: 30px;">
+						</tr>
+						<tr>
+							<td style="padding-top: 30px;">
+							<div class="row" align="center">
+								<div class="col-md-6">
+								<img src="ticketImg/${ticket.filename }" class="img-thumbnail">
+								</div>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 30px;">
+							<div class="row" align="center">
+								<div class="col-md-12" align="justify">
 								${ticket.content }
+								</div>
+							</div>
 							</td>
 						</tr>
 					</table>
 				</div>
-				<div class="row" id="listDisp" style="margin-top: 50px;">
+					<div class="row-pb-lg btn-group-sm" style="text-align: center; padding: 20px;">
+						<a href="javascript:list()" class="btn btn-default">목록</a>
+						<a href="ticketUpdateForm?ticketbook_no=${ticket.ticketbook_no }" class="btn btn-default">수정</a>
+						<a href="ticketDel?ticketbook_no=${ticket.ticketbook_no }"
+							onclick="return confirm('티켓을 삭제하시겠습니까?')" class="btn btn-outline">삭제</a>
+					</div>
 				</div>
 			</div>
 		</div>

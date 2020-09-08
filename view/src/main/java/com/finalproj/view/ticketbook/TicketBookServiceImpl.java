@@ -37,4 +37,19 @@ public class TicketBookServiceImpl implements TicketBookService {
 		return tbd.getTicket(c_id);
 	}
 
+	@Override
+	public int getTicket(TicketBookDTO tbook) {
+		return tbd.getTicket(tbook);
+	}
+
+	@Override
+	public int update(TicketBookDTO ticket) {
+		return tbd.update(ticket);
+	}
+
+	@Override
+	public int delete(TicketBookDTO ticket) {
+		return tbd.delete(ticket);
+	}
+
 }

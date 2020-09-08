@@ -35,7 +35,6 @@
 								<div class="col-md-12">
 									<input type="file" name="file" id="file" class="form-control" required="required">
 									<div class="select_img"><img src="" /></div>
-									<%=request.getRealPath("/") %>
 									<script>
 										$("#file").change(function(){
 									 		if(this.files && this.files[0]) {

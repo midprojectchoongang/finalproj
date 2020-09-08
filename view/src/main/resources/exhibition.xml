@@ -34,7 +34,7 @@
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},
-				#{local_no},#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
+				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
 				#{price},#{start_date},#{end_date},#{hashtags},#{content},0,now(),'n',#{filename}
 			)
 		</insert>
