@@ -72,13 +72,7 @@
 									<label for="gallery_site">갤러리 사이트</label>
 									<input type="text" name="gallery_site" class="form-control" required="required">
 								</div>
-							</div>
-							<div class="row form-group">
-								<div class="col-md-12">
-									<label for="local_no">지역</label>
-									<input type="text" name="local_no" class="form-control" required="required">
-								</div>
-							</div>
+							</div>							
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="address">갤러리 주소</label>
@@ -129,12 +123,14 @@
 							</div>						
 							<div class="row form-group">
 								<div class="col-md-12">
-									<script>
+									<!-- <script>
 										window.onload = function() {
 											ck = CKEDITOR.replace("content");
 										};
-									</script>
-									<textarea name="content" rows=10></textarea>
+									</script> -->
+									
+									
+																	
 								</div>
 							</div>
 							<div class="form-group" style="text-align: center;">

@@ -24,10 +24,16 @@
 							</tr>
 						</table>																														
 						<div class="row" align="left">						
-						<table style="width: 100%">						
+						<table style="width: 100%">
+						<%-- location.href='exView?exhibition_no=${ex.exhibition_no }' --%>
+						<%-- <tr style="cursor: pointer;" id="${ex.exhibition_no }"> --%>						
 							<c:forEach items="${list }" var="ex">
-							<%-- location.href='exView?exhibition_no=${ex.exhibition_no }' --%>
-							<%-- <tr style="cursor: pointer;" id="${ex.exhibition_no }"> --%>
+								<c:if test="${ex.del == 'y' }">
+									<td colspan="4">
+										삭제된 글입니다.
+									</td>
+								</c:if>														
+								<c:if test="${ex.del == 'n' }">
 							<tr>
 								<td style="width: 30%; height: 15px;">
 									<img src="exImg/${ex.filename }">
@@ -46,7 +52,8 @@
 									${ex.start_date } <br>
 									 ~ ${ex.end_date }
 								</td>															
-							</tr>							
+							</tr>
+								</c:if>							
 							</c:forEach>
 						</table>
 						</div>
