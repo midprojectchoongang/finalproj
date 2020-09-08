@@ -296,7 +296,7 @@ img {
   border-radius: 6px; }
 
 .img-thumbnail {
-  margin: 8px;
+  /* margin: 8px; */
   padding: 2px;
   line-height: 1.42857;
   background-color: #fff;

@@ -22,15 +22,17 @@
 	<select id="list" parameterType="tbook" resultMap="tbookResult">
 		select * 
 		from ticketbook
-		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date}
+		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date} and del = 'n'
 		order by visit_date
-		limit #{startRow}, #{endRow}
+		<!-- limit #{startRow}, #{endRow} -->
 	</select>
+<!-- 	
 	<select id="getTicket" parameterType="string" resultType="integer">
 		select count(*)
 		from ticketbook
 		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date}
-	</select>
+	</select> 
+-->
 	
 	<select id="view" parameterType="integer" resultType="tbook">
 		select * 
@@ -52,5 +54,21 @@
 			'n'
 			)
 	</insert>
+	
+	<update id="update" parameterType="tbook">
+		update ticketbook set
+		title = #{title},
+		content = #{content},
+		title = #{title},
+		filename = #{filename},
+		visit_date = #{visit_date}
+		where ticketbook_no = #{ticketbook_no}
+	</update>
+	
+	<update id="delete" parameterType="tbook">
+		update ticketbook set
+		del = 'y'
+		where ticketbook_no = #{ticketbook_no}
+	</update>
 
 </mapper>
