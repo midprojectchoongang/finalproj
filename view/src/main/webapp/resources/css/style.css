@@ -931,6 +931,12 @@ blockquote {
   margin-bottom: 20px; 
   margin-top: 10px;}
 
+.cal-title {
+  font-size: 30px;
+  color: #F6490D;
+  margin-bottom: 20px; 
+  margin-top: 10px;}
+
 .headbox {
 	background-color: #F6490D;
 	margin-bottom: 40px; 

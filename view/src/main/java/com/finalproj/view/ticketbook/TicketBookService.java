@@ -17,5 +17,9 @@ public interface TicketBookService {
 
 	int getTicket(TicketBookDTO tbook);
 
+	int update(TicketBookDTO ticket);
+
+	int delete(TicketBookDTO ticket);
+
 
 }

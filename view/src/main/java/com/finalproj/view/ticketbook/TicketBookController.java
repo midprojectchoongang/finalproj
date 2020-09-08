@@ -30,43 +30,23 @@ public class TicketBookController {
 	private TicketBookService tbs;
 	
 	@RequestMapping("ticketList")
-	public String ticketList(String pageNum, String date, TicketBookDTO tbook, HttpSession session, Model model) {
+	public String ticketList(String date, TicketBookDTO tbook, HttpSession session, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
-		if (pageNum == null || pageNum.equals("")) pageNum = "1";
-		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 5;
-		tbook.setC_id("test");
-		int total = tbs.getTotal(tbook.getC_id());
-		int startRow = (currentPage - 1) * rowPerPage;
-		int endRow = startRow + rowPerPage;
-		tbook.setStartRow(startRow);
-		tbook.setEndRow(endRow);
 		tbook.setC_id(c_id);
 		tbook.setDate(date);
 		Collection<TicketBookDTO> list = tbs.list(tbook);
-		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
-		model.addAttribute("endRow", endRow);
 		model.addAttribute("list", list);
-		model.addAttribute("page", page);
-		model.addAttribute("pageNum", pageNum);
 		return "ticketbook/ticketList";
 	}
 	
 	@RequestMapping("ticketCal")
-	public String ticketCal(HttpSession session, Model model) {
+	public String ticketCal(HttpSession session, String date, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
 		model.addAttribute("c_id", c_id);
 		return "ticketbook/ticketCal";
 	}
-	
-	@RequestMapping(value = "getTicket", produces="text/html;charset=utf-8", method = RequestMethod.POST)
-	@ResponseBody
-	public String getTicekt(String date, TicketBookDTO tbook) {
-		tbook.setDate(date);
-		int result = tbs.getTicket(tbook);
-	    return String.valueOf(result);
-	}
+
 	
 	@RequestMapping("ticketView")
 	public String ticketView(int ticketbook_no, String pageNum, Model model) {
@@ -77,8 +57,9 @@ public class TicketBookController {
 	}
 	
 	@RequestMapping("ticketWriteForm")
-	public String ticketWriteForm(Model model) {
-		// customer정보 내보내기
+	public String ticketWriteForm(HttpSession session, Model model) {
+		String c_id = (String) session.getAttribute("c_id");
+		model.addAttribute("c_id", c_id);
 		return "ticketbook/ticketWriteForm";
 	}
 	
@@ -100,5 +81,45 @@ public class TicketBookController {
 		
 		model.addAttribute("result", result);
 		return "ticketbook/ticketCal";
+	}
+	
+	@RequestMapping("ticketUpdateForm")
+	public String ticketUpdateForm(String ticketbook_no, Model model) {
+		int tno = Integer.parseInt(ticketbook_no);
+		TicketBookDTO ticket = tbs.view(tno);
+		model.addAttribute("ticket", ticket);
+		return "ticketbook/ticketUpdateForm";
+	}
+	
+	@RequestMapping("ticketUpdate")
+	public String ticketUpdate(TicketBookDTO ticket, Model model, HttpSession session) throws Exception {
+		int result = 0;
+		if (ticket.getFileChange().equals("y")) {
+		String realPath = session.getServletContext().getRealPath("/ticketImg");
+		MultipartFile poster = ticket.getFile();
+		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
+		try {
+			poster.transferTo(new File(realPath + File.separator + fileName));
+		} catch (Exception e) {
+			System.out.println("업로드 오류");
+		}
+		ticket.setFilename(fileName);
+		} else {
+			ticket.setFilename(ticket.getOldFilename());
+		}
+		System.out.println(ticket);
+		result = tbs.update(ticket);
+		
+		model.addAttribute("ticketbook_no", ticket.getTicketbook_no());
+		model.addAttribute("result", result);
+		return "ticketbook/ticketUpdate";
+	}
+	
+	@RequestMapping("ticketDel")
+	public String ticketDel(TicketBookDTO ticket, Model model) {
+		int result = tbs.delete(ticket);
+		model.addAttribute("ticket", ticket);
+		model.addAttribute("result", result);
+		return "ticketbook/ticketDel";
 	}
 }
