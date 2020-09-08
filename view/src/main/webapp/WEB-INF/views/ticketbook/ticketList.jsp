@@ -24,7 +24,8 @@
 							<c:if test="${not empty list }">
 							<c:forEach items="${list }" var="t">
 							<%-- location.href='ticketView?ticketbook_no=${t.ticketbook_no }' --%>
-							<tr style="cursor: pointer;" id="${t.ticketbook_no }">
+							<tr style="cursor: pointer;" id="${t.ticketbook_no }"
+								onclick="location.href='ticketView?ticketbook_no=${t.ticketbook_no }">
 								<td style="width: 30%;" rowspan="2"><img src="ticketImg/${t.filename }" class="img-thumbnail"></td>
 								<td style="width: 70%; height: 30px;">
 									<div class="row">

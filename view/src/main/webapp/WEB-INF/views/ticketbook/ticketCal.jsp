@@ -112,7 +112,7 @@
 							<tr id="dayTab">
 								<td align="center" id="prev" style="width: 10%;">
 									<button type="button" class="btn btn-sm btn-outline" onclick="prevmonth()">
-									<span class="glyphicon glyphicon-menu-left"></span>이전달
+									이전달
 									</button>
 								</td>
 								<th colspan="5" style="width: 50%; height: 50px; text-align: center;">
@@ -121,7 +121,7 @@
 								</th>
 								<td align="center" id="next" style="width: 10%;">
 									<button type="button" class="btn btn-sm btn-outline" onclick="nextmonth()">
-									<span class="glyphicon glyphicon-menu-right"></span>다음달
+									다음달
 									</button>
 								</td>
 							</tr>
