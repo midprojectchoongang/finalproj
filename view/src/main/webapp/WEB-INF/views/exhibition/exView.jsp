@@ -93,7 +93,17 @@
 								${ex.content }
 							</td>
 						</tr>
-						
+						<tr>
+							<td>
+								<p class="tags">
+									<c:forEach var="ph" items="${postedHash }">
+										<span class="tag">
+											<a href="#" class="name"><i class="icon-tag"></i> ${ph.hash_title }</a>
+										</span>
+									</c:forEach>
+								</p>
+							</td>
+						</tr>
 					</table>
 				</div>
 				<!-- <div class="row" id="listDisp" style="margin-top: 50px;">
