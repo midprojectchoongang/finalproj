@@ -1,5 +1,6 @@
 package com.finalproj.view.exhibition;
 
+import java.util.List;
 import java.io.File;
 import java.util.Collection;
 import java.util.UUID;
@@ -13,11 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.finalproj.view.common.PagingBean;
+import com.finalproj.view.hashtag.HashtagDTO;
+import com.finalproj.view.hashtag.HashtagService;
 
 @Controller
 public class ExhibitionController {
 	@Autowired
 	private ExhibitionService es;
+	@Autowired
+	private HashtagService hs;
 	
 	@RequestMapping("exList")
 	public String exList(String pageNum, Model model) {
@@ -38,7 +43,9 @@ public class ExhibitionController {
 		return "exhibition/exList";
 	}
 	@RequestMapping("exWriteForm")
-	private String exWriteForm() {
+	private String exWriteForm(Model model) {
+		List<HashtagDTO> hashList = hs.hashList();
+		model.addAttribute("hashList", hashList);
 		return "exhibition/exWriteForm";
 	}
 	@RequestMapping("exWrite")
