@@ -15,5 +15,11 @@ public interface TicketBookDAO {
 
 	Collection<TicketBookDTO> getTicket(String c_id);
 
+	int getTicket(TicketBookDTO tbook);
+
+	int update(TicketBookDTO ticket);
+
+	int delete(TicketBookDTO ticket);
+
 
 }
