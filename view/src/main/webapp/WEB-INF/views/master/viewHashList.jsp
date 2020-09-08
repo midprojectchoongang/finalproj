@@ -23,24 +23,22 @@
 <div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
-		<div id="colorlib-container">
+		<div id="colorlib-container" align="center">
 			<div class="container">
-				<div class="row">
-					<div class="col-xs-12" align="center">
-						<h2>Search</h2>
-						<div class="row-pb-lg">
-							<div class="col-xs-12">
-								<input onkeyup="filter()" type="text" name="keyword" id="keyword" placeholder="Type #HASH"
-									style="width: 40%; text-align: center;">
-							</div>
+			<div class="col-md-9">
+				<div class="row-pb-lg">
+					<div class="row headbox-sm"><h2 class="heading-2-b">검색</h2></div>
+					<div class="row-pb-sm">
+						<div class="col-md-12">
+							<input onkeyup="filter()" type="text" name="keyword" id="keyword" placeholder="Type #HASH"
+								style="text-align: center;" class="form-control">
 						</div>
 					</div>
 				</div>
-				<div class="row-pb-lg" align="center">
-					<div class="col-xs-4">
-						<h2>BASIC</h2>
-					</div>
-					<div class="col-xs-8">
+				<div class="row-pb-lg">
+					<div class="row headbox-sm"><h2 class="heading-2-b">BASIC</h2></div>
+					<div class="row-pb-md">
+					<div class="col-md-12">
 						<p class="tags">
 							<c:forEach var="htl" items="${hashList }">
 							<c:if test="${htl.kind == 'basic' }">
@@ -51,12 +49,12 @@
 							</c:forEach>
 						</p>
 					</div>
-				</div>
-				<div class="row-pb-lg" align="center">
-					<div class="col-xs-4">
-						<h2>CUSTOM</h2>
 					</div>
-					<div class="col-xs-8">
+				</div>
+				<div class="row-pb-lg">
+					<div class="row headbox-sm"><h2 class="heading-2-b">CUSTOM</h2></div>
+					<div class="row-pb-md">
+					<div class="col-md-12">
 						<p class="tags">
 							<c:forEach var="htl" items="${hashList }">
 							<c:if test="${htl.kind != 'basic' }">
@@ -67,7 +65,9 @@
 							</c:forEach>
 						</p>
 					</div>
+					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 		<%@ include file="../mainPage/footer.jsp"%>

@@ -24,4 +24,7 @@ public class TicketBookDTO {
 	// paging
 	private int startRow;
 	private int endRow;
+	
+	// calendar
+	private String date;
 }

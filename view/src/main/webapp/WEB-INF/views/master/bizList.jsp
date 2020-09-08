@@ -12,7 +12,8 @@
 			<div class="container" align="center">
 				<div class="row">
 					<div class="col-md-9">
-						<table class="table table-hover" id="list">
+					<div class="row headbox-sm"><h2 class="heading-2-b">단체회원 목록</h2></div>
+						<table class="table table-hover table-bordered" id="list">
 							<thead>
 								<tr>
 									<th>아이디</th>
