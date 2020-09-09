@@ -13,7 +13,6 @@ public class ExhibitionDTO {
 	private String artist;
 	private String gallery;
 	private String gallery_site;
-	private int local_no;
 	private String address;
 	private String ticket_link1;
 	private String ticket_link2;
@@ -34,4 +33,7 @@ public class ExhibitionDTO {
 	// paging
 	private int startRow;
 	private int endRow;
+	
+	// address
+	private String sub_address;
 }

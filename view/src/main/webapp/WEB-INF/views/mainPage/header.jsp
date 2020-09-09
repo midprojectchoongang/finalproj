@@ -76,7 +76,7 @@
 <!-- Main -->
 <script src="${path}/js/main.js"></script>
 <!-- Map -->
-<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 <body>
 <nav class="colorlib-nav" role="navigation">
 	<div class="top-menu">
