@@ -97,12 +97,12 @@
 					<form action="bizConfirm" method="post" name="frm">
 					<div class="row formbox">
 					<script type="text/javascript">
-						function getList() {
+						/* function getList() {
 							$('#listDisp').load('bizList #list', 'pageNum=${pageNum}');	// list
-						}
+						} */
 						
 						$(function () {
-							getList();
+							/* getList(); */
 							
 							var state = "${biz.confirm}";
 							var ment = "${biz.con_comment}";
@@ -128,7 +128,7 @@
 							var id = '${biz.b_id}';
 							var state = $('#confirm').val();
 							var ment = $('#con_comment').val();
-							console.log("id:"+id+",state:"+state+",ment"+ment);
+							/* console.log("id:"+id+",state:"+state+",ment"+ment); */
 							$.ajax({
 								url : 'bizConfirm',
 								type : 'post',
@@ -141,7 +141,7 @@
 									if ($.trim(data) > 0) {
 										$('#resultDisp').html("<b>승인 결과가 반영되었습니다.</b>");
 									}
-									getList();
+									/* getList(); */
 								},
 								error : function() {
 									alert("에러입니다");
@@ -181,8 +181,10 @@
 							</div>
 						</div>
 					</div>
-				<!-- list -->
-				<div class="row formbox" id="listDisp"></div>
+					</form>
+					<div class="row-pb-md form-group" style="text-align: center;">
+						<button onclick="location.href='bizList?pageNum=${pageNum }'" class="btn btn-cta">목록</button>
+					</div>
 				</div>	
 			</div>
 		</div>

@@ -2,11 +2,16 @@ package com.finalproj.view.exhibition;
 
 import java.util.List;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.finalproj.view.common.PagingBean;
 import com.finalproj.view.hashtag.HashtagDTO;
 import com.finalproj.view.hashtag.HashtagService;
+import com.google.gson.Gson;
 
 @Controller
 public class ExhibitionController {
@@ -60,7 +66,11 @@ public class ExhibitionController {
 		} catch (Exception e) {
 			System.out.println("업로드 오류");
 		}
-		ex.setFilename(fileName);		
+		ex.setFilename(fileName);
+		if (ex.getSub_address() != null) {
+			String addr = ex.getAddress() + ", " + ex.getSub_address();
+			ex.setAddress(addr);
+		}
 		result = es.insert(ex);
 		
 		model.addAttribute("exhibition_no", ex.getExhibition_no());
@@ -68,10 +78,29 @@ public class ExhibitionController {
 		return "exhibition/exWrite";
 	}
 	@RequestMapping("exView")
-	private String exView(int exhibition_no, String pageNum, Model model) {
+	private String exView(int exhibition_no, String pageNum, Model model) throws ParseException {
 		ExhibitionDTO ex = es.view(exhibition_no);
+		
+		String[] addr = ex.getAddress().split(",");
+		
+		/* JSON파싱 */
+        JSONParser jp = new JSONParser();
+        JSONObject jo;
+        jo = (JSONObject)jp.parse(ex.getHashtags());
+        JSONArray ja = (JSONArray)jo.get("hash");
+        String c = ja + "";
+        Gson gson = new Gson();
+        String[] tags = gson.fromJson(c, String[].class);
+        List<HashtagDTO> postedHash = new ArrayList<HashtagDTO>();
+        for (int i = 0; i < tags.length; i++) {
+        	HashtagDTO selected =  hs.select(tags[i]);
+        	postedHash.add(selected);
+        }
+		
+        model.addAttribute("addr", addr[0]);
 		model.addAttribute("ex", ex);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("postedHash", postedHash);
 		return "exhibition/exView";
 	}
 	@RequestMapping("exUpdateForm")

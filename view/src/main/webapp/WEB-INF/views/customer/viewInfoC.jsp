@@ -13,36 +13,36 @@
 				<div class="col-md-9">
 					<div class="row" >
 						<div class="row headbox"><h2 class="heading-2">회원정보</h2></div>
-							<div class="row" align="left">
+							<div class="row formbox-nonlabel" align="left">
 							<table class="table table-ticket">
 							<tr>
 								<td>
-									<label for="c_id">id</label>
-									<div class="col-md-12">																										
+									<label>아이디</label>
+									<div class="col-md-12 row-pb-sm">																									
 										${customerdto.c_id }										
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label for="nickname">nickname</label>
-									<div class="col-md-12">
+									<label>닉네임</label>
+									<div class="col-md-12 row-pb-sm">
 										${customerdto.nickname }						
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label for="subject">email</label>
-									<div class="col-md-12">
+									<label>메일주소</label>
+									<div class="col-md-12 row-pb-sm">
 										${customerdto.email }										
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<label>prefered #HashTag</label>
-									<div class="col-md-12">
+									<label>#HashTag</label>
+									<div class="col-md-12 row-pb-sm">
 										<p class="tags">
 											<c:forEach var="htl" items="${selectedHash }">
 												<span class="tag">
@@ -56,11 +56,17 @@
 							</table>
 							</div>
 							<div class="form-group" style="text-align: center;">
-								<a href="main">main</a>
-								<a href="logoutC">logout</a>
-								<a href="updateFormC">update</a>
-								<a href="deleteC" onclick="return confirm('really?');">delete</a>						
+								<a href="updateFormC" class="btn btn-primary">회원정보수정</a>
+								<button class="btn btn-cta" onclick="delConfirm();">회원탈퇴</button>						
 							</div>
+							<script type="text/javascript">
+								function delConfirm() {
+								    var msg = '아이디를 삭제하시겠습니까?';
+								    if(confirm(msg)) {
+										location.href='deleteC';
+								    }
+								}
+							</script>
 						</div>	
 					</div>
 				</div>

@@ -10,13 +10,12 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("success")
 			location.href = "exList";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("fail")
+			alert("오류가 발생했습니다.")
 			history.go(-1);
 		</script>
 	</c:if>
