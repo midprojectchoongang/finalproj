@@ -115,7 +115,7 @@
 						<li><a href="exList">exhibition</a></li>
 						<li><a href="#">#hash</a></li>
 						<c:if test="${not empty sessionScope.b_id }">
-						<li><a href="exWrite">전시등록</a></li>
+						<li><a href="exWriteForm">전시등록</a></li>
 						</c:if>
 						<c:if test="${not empty sessionScope.c_id && sessionScope.c_id != 'master'}">
 						<li><a href="ticketCal">TicektBook</a></li>
