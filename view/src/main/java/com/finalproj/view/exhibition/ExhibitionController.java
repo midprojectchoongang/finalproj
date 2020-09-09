@@ -66,7 +66,11 @@ public class ExhibitionController {
 		} catch (Exception e) {
 			System.out.println("업로드 오류");
 		}
-		ex.setFilename(fileName);		
+		ex.setFilename(fileName);
+		if (ex.getSub_address() != null) {
+			String addr = ex.getAddress() + ", " + ex.getSub_address();
+			ex.setAddress(addr);
+		}
 		result = es.insert(ex);
 		
 		model.addAttribute("exhibition_no", ex.getExhibition_no());
@@ -76,6 +80,8 @@ public class ExhibitionController {
 	@RequestMapping("exView")
 	private String exView(int exhibition_no, String pageNum, Model model) throws ParseException {
 		ExhibitionDTO ex = es.view(exhibition_no);
+		
+		String[] addr = ex.getAddress().split(",");
 		
 		/* JSON파싱 */
         JSONParser jp = new JSONParser();
@@ -91,6 +97,7 @@ public class ExhibitionController {
         	postedHash.add(selected);
         }
 		
+        model.addAttribute("addr", addr[0]);
 		model.addAttribute("ex", ex);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("postedHash", postedHash);
