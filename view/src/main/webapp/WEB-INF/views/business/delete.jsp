@@ -10,13 +10,13 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			alert("bye")
+			alert("그동안 VIEW와 함께해주셔서 감사합니다.")
 			location.href="bizLoginForm";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
-			alert("fail")
+			alert("오류가 발생했습니다.")
 			history.go(-1);
 		</script>
 	</c:if>

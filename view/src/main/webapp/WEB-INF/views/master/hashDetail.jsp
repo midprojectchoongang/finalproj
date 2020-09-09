@@ -9,12 +9,13 @@
 <div id="page">
 	<%@ include file="../mainPage/header.jsp"%>
 	<div id="colorlib-container">
-		<div class="container">
-			<div class="row">
-				<h2 class="heading-2">#${hashtag.hash_title }</h2>
-				<div class="row form-group">
-					<div class="col-md-6">
-						<label for="hash_title">#HASHTAG</label><span id="hashDisp" style="color: red;'"></span>
+		<div class="container" align="center">
+		<div class="col-md-9">
+			<div class="row" align="left">
+				<div class="row headbox"><h2 class="heading-2">#${hashtag.hash_title }</h2></div>
+				<div class="row formbox-nonlabel">
+					<div class="col-md-12 row-pb-sm">
+						<label for="hash_title">#HASHTAG</label><span id="hashDisp" class="warn-style"></span>
 						<input onkeyup="hashChk()" type="text" name="hash_title" id="hash_title" class="form-control"
 							value="${hashtag.hash_title }">
 					</div>
@@ -49,16 +50,16 @@
 						    });
 						}
 					</script>
-					<div class="col-md-3">
-						<label for="hashgroup">#HASHGROUP</label><br>
-						<select id="hashgroup">
+					<div class="col-md-12 row-pb-sm">
+						<label for="hashgroup" class="label-normal">#HASHGROUP</label><br>
+						<select id="hashgroup" class="form-control">
 							<option value="1">종류별
 							<option value="2">시대별
 							<option value="3">지역별
 							<option value="4">전시 유형별
 							<option value="5">기타
 						</select><br>
-						<span id="groupDisp" style="color: red;'"></span>
+						<span id="groupDisp" class="warn-style"></span>
 						<script type="text/javascript">
 							var hg = "${hashtag.hashgroup}";
 							$(function() {
@@ -66,12 +67,16 @@
 							});
 						</script>
 					</div>
-					<div class="col-md-3">
-						<label>#KIND</label><br>
-						<label for="k1">Basic&emsp;</label>
-						<input type="radio" id="k1" name="kind" class="kind" value="basic" onchange="changeKind()"><br>
-						<label for="k2">Custom&emsp;</label>
-						<input type="radio" id="k2" name="kind" class="kind" value="custom" onchange="changeKind()">
+					<div class="col-md-12 btn-group-lg">
+						<label class="label-normal">#KIND</label><br>
+						<button class="btn btn-outline">
+							<label for="k1" class="label-normal">Basic&emsp;</label>
+							<input type="radio" id="k1" name="kind" class="kind" value="basic" onchange="changeKind()">
+						</button>
+						<button class="btn btn-outline">
+							<label for="k2" class="label-normal">Custom&emsp;</label>
+							<input type="radio" id="k2" name="kind" class="kind" value="custom" onchange="changeKind()">
+						</button>
 					</div>
 					<script type="text/javascript">
 						var kd = "${hashtag.kind}";
@@ -97,8 +102,8 @@
 					</script>
 				</div>
 				<div class="col-xs-12" align="center">
-					<button onclick="updateHash()">UPDATE</button>
-					<button onclick="deleteHash()">DELETE</button>
+					<button onclick="updateHash()" class="btn btn-primary">수정</button>
+					<button onclick="deleteHash()" class="btn btn-cta">삭제</button>
 				</div>
 				<script type="text/javascript">
 					function updateHash() {

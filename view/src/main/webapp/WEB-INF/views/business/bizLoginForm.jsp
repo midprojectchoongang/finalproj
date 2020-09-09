@@ -21,7 +21,6 @@
 						$(this).siblings('label').fadeIn('fast');
 					}
 				});
-				$("#groupkind").prop("selectedIndex", -1);
 			});
 		</script>
 		<div id="colorlib-container">

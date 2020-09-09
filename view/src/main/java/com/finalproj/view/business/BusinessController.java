@@ -20,6 +20,7 @@ public class BusinessController {
 	@Autowired
 	private BusinessService bs;
 	
+	// master 시작
 	@RequestMapping("bizList")
 	public String bizList(String pageNum, BusinessDTO biz, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
@@ -38,18 +39,6 @@ public class BusinessController {
 		return "master/bizList";
 	}
 	
-	@RequestMapping("bizView")
-	public String bizView(HttpSession session, String pageNum, Model model) {
-		String b_id = (String)session.getAttribute("b_id");
-		BusinessDTO biz = bs.select(b_id);
-		String[] groupkind = {"개인사업자", "법인사업자", "기타"};		
-		model.addAttribute("groupkind", groupkind);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("biz", biz);
-		return "business/bizView";
-	}
-	
-	// master 시작
 	@RequestMapping("bizAdmin")
 	public String bizAdmin(String b_id, String pageNum, Model model) {
 		BusinessDTO biz = bs.select(b_id);
@@ -71,7 +60,7 @@ public class BusinessController {
 		model.addAttribute("groupkind", groupkind);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("biz", biz);
-		return "master/bizView";
+		return "master/bizDetail";
 	}
 	
 	@RequestMapping(value = "bizConfirm", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
@@ -84,6 +73,26 @@ public class BusinessController {
 		return String.valueOf(result);
 	}
 	// master 끝
+	
+	@RequestMapping("bizView")
+	public String bizView(HttpSession session, Model model) {
+		String b_id = (String)session.getAttribute("b_id");
+		BusinessDTO biz = bs.select(b_id);
+		String[] groupkind = {"개인사업자", "법인사업자", "기타"};		
+		String[] comment = {
+				"단체명/대표자 불일치",
+				"등록번호 불일치",
+				"대표번호 불일치",
+				"메일주소 불일치",
+				"홈페이지 불일치"
+		};
+		model.addAttribute("comment", comment);
+		model.addAttribute("groupkind", groupkind);
+		model.addAttribute("biz", biz);
+		return "business/bizView";
+	}
+	
+
 	
 	@RequestMapping("bizJoinForm")
 	public String bizJoinForm(Model model) {

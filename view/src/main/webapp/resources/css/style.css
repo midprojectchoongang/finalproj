@@ -954,7 +954,7 @@ blockquote {
 .warn-style {
 	color: #F6490D; 
 	font-weight: 900;
-	font-size: 11px; 
+	font-size: 13px; 
 	min-height: 35px;
 }
 
@@ -963,11 +963,16 @@ blockquote {
 	padding: 30px;
 	margin-bottom: 30px;
 }
+.formbox-nonlabel {
+	border: 1px solid #d2d2d2;
+	padding: 30px;
+	margin-bottom: 30px;
+}
 .formbox label {
 	position: absolute;
-	top: 0px; /* input 요소의 border-top 설정값 만큼 */ 
-	left: 25px; /* input 요소의 border-left 설정값 만큼 */ 
-	padding: .8em .5em; /* input 요소의 padding 값 만큼 */ 
+	top: 0px; /* input 요소의 border-top 설정값 만큼  */
+	left: 25px; /* input 요소의 border-left 설정값 만큼  */
+	padding: .8em .5em; /* input 요소의 padding 값 만큼  */
 	color: #999; 
 	cursor: text;
 }

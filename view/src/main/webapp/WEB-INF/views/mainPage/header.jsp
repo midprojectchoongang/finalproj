@@ -91,6 +91,7 @@
 				</c:if>
 				<c:if test="${not empty sessionScope.b_id}">
 					<ul>
+						<li><a href="bizView">회원정보</a></li>
 						<li><a href="bizLogout">로그아웃</a></li>
 					</ul>
 				</c:if>
