@@ -33,14 +33,19 @@
 							<input type="hidden" name="c_id" value="test">
 							<div class="row form-group">
 								<div class="col-md-12">
+									<div id="select_img" class="row-pb-sm">
+										<img src="" />
+									</div>					
+								</div>							
+								<div class="col-md-12">
 									<input type="file" name="file" id="file" class="form-control" required="required">
-									<div class="select_img"><img src="" /></div>
 									<script>
 										$("#file").change(function(){
 									 		if(this.files && this.files[0]) {
 									 		  	var reader = new FileReader;
 									   			reader.onload = function(data) {
-									  				$(".select_img img").attr("src", data.target.result).width(300);        
+									  				$("#select_img img").attr("src", data.target.result);
+									  				$("#select_img img").attr("class", "img-thumbnail");   
 											    }
 									   			reader.readAsDataURL(this.files[0]);
 									   		}

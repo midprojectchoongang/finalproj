@@ -10,7 +10,7 @@
 	<%@ include file="../mainPage/header.jsp"%>
 	<script type="text/javascript">
 		$(function() {
-			var placeholderTarget = $('.formbox input[type="text"]');
+			var placeholderTarget = $('.formbox input');
 			//포커스시
 			placeholderTarget.on('focus', function() {
 				$(this).siblings('label').fadeOut('fast');
@@ -28,20 +28,25 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
-					<form action="exWrite" enctype="multipart/form-data" method="post">
+					<form action="exWrite" enctype="multipart/form-data" method="post" name="frm">
 					<div class="row formbox">
 						<input type="hidden" name="b_id" value="${b_id}">
 						<div class="row form-group">
 							<div class="col-md-12">
+								<div id="select_img" class="row-pb-sm">
+									<img src="" />
+								</div>					
+							</div>
+							<div class="col-md-12">
 								<input type="file" name="file" id="file" class="form-control" required="required">
-								<div class="select_img"><img src="" /></div>
-								<%=request.getRealPath("/") %>
+								<%-- <%=request.getRealPath("/") %> --%>
 								<script>
 									$("#file").change(function(){
 								 		if(this.files && this.files[0]) {
 								 		  	var reader = new FileReader;
 								   			reader.onload = function(data) {
-								  				$(".select_img img").attr("src", data.target.result).width(300);        
+								  				$("#select_img img").attr("src", data.target.result);        
+								  				$("#select_img img").attr("class", "img-thumbnail");        
 										    }
 								   			reader.readAsDataURL(this.files[0]);
 								   		}
@@ -70,13 +75,7 @@
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="gallery_site">갤러리 사이트</label>
-								<input type="text" name="gallery_site" class="form-control" required="required">
-							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label for="local_no">지역</label>
-								<input type="text" name="local_no" class="form-control" required="required">
+								<input type="text" name="gallery_site" class="form-control">
 							</div>
 						</div>
 						<div class="row form-group">
@@ -88,19 +87,19 @@
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="ticket_link1">예매 사이트1</label>
-								<input type="text" name="ticket_link1" class="form-control" required="required">
+								<input type="text" name="ticket_link1" class="form-control">
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="ticket_link2">예매 사이트2</label>
-								<input type="text" name="ticket_link2" class="form-control" required="required">
+								<input type="text" name="ticket_link2" class="form-control">
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="ticket_link3">예매 사이트3</label>
-								<input type="text" name="ticket_link3" class="form-control" required="required">
+								<input type="text" name="ticket_link3" class="form-control">
 							</div>
 						</div>
 						<div class="row form-group">
@@ -111,16 +110,15 @@
 						</div>																	
 						<div class="row form-group">														
 							<div class="col-md-12">
-								전시회 시작일
-								<input type="date" name="start_date" class="form-control" required="required">
+								<div style="display: inline;">
+								<input type="date" name="start_date" class="form-control" required="required" style="display: inline; width: 46%">
+								</div>
+								<div style="display: inline; width: 8%; margin: 0 20px 0 20px">~</div>
+								<div style="display: inline;">
+								<input type="date" name="end_date" class="form-control" required="required" style="display: inline; width: 46%">
+								</div>
 							</div>
 						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
-								전시회 마감일
-								<input type="date" name="end_date" class="form-control" required="required">
-							</div>
-						</div>						
 						<div class="row form-group">
 							<div class="col-md-12">
 								<script>
@@ -128,17 +126,17 @@
 										ck = CKEDITOR.replace("content");
 									};
 								</script>
-								<textarea name="content" rows=10></textarea>
+								<textarea name="content" rows=30></textarea>
 							</div>
 						</div>
 						<div class="row form-group">
+							<div class="col-md-12 row-pb-sm">
+								<label for="keyword">Search #HASH</label>
+								<input onkeyup="filter()" type="text" name="keyword" id="keyword" class="form-control">
+							</div>
 							<div class="col-md-12">
-								<div class="col-md-8">
-									<input onkeyup="filter()" type="text" name="keyword" id="keyword" placeholder="Search #HASH"
-										style="width: 100%; text-align: center;">
-								</div><br>
 								<p class="tags" id="prehash" style="min-height: 35px;"></p>
-								<div id="warnDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>
+								<div id="warnDisp" class="warn-style"></div>
 							</div>
 						</div>
 						<div class="row form-group">
@@ -228,7 +226,7 @@
 								}
 							}
 						</script>
-						<input type="hidden" name="c_hashtag" value="" />
+						<input type="hidden" name="hashtags" value="" />
 						<script type="text/javascript">
 							function submit() {
 								var c_hashtag = new Object();
@@ -242,7 +240,7 @@
 						</script>
 						</div>
 					</form>
-					<button onclick="submit()">SUBMIT</button>
+					<button onclick="submit()" class="btn btn-primary">등록</button>
 					
 					
 				</div>

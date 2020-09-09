@@ -15,13 +15,13 @@
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("fail")
+		alert("비밀번호가 틀렸습니다.")
 		history.go(-1);
 	</script>
 </c:if>
 <c:if test="${result == -1 }">
 	<script type="text/javascript">
-		alert("ID check")
+		alert("가입하지 않은 아이디입니다.")
 		history.go(-1);
 	</script>
 </c:if>
