@@ -35,7 +35,7 @@
             return;
         }
         if (chk == "y") {
-        	location.href = "addHash?hash_title=" + $('#keyword').val() + "&hashgroup=" + $('#hashgroup').val();
+        	location.href = "/master/addHash?hash_title=" + $('#keyword').val() + "&hashgroup=" + $('#hashgroup').val();
 	    } else {
 	        $('#hashDisp').html("<b>다른 #HASHTAG 이름을 사용해 주세요</b>");
 	    }

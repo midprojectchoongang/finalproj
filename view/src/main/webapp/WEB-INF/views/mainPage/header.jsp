@@ -28,10 +28,6 @@
 <!-- ckeditor 4 -->
 <link rel="stylesheet" href="${path}/ckeditor/contents.css">
 <script type="text/javascript" src="${path}/ckeditor/ckeditor.js"></script>
-<!-- fullcalendar -->
-<link rel="stylesheet" href="${path}/fullcalendar/main.css">
-<script src="${path}/fullcalendar/main.js"></script>
-<script src="${path}/fullcalendar/ko.js"></script>
 <!-- Animate.css -->
 <link rel="stylesheet" href="${path}/css/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -81,26 +77,30 @@
 <nav class="colorlib-nav" role="navigation">
 	<div class="top-menu">
 		<div class="container">
+로그인 모드 : ${sessionScope.login }
 			<div class="row">
 				<div class="col-xs-12 text-right menu-1">
-				<c:if test="${empty sessionScope.b_id && empty sessionScope.c_id }">
+				<c:if test="${empty sessionScope.login }">
 					<ul>
-						<li><a href="bizLoginForm">단체회원로그인</a></li>
-						<li><a href="loginFormC">개인회원로그인</a></li>
+						<li><a href="${path}/bizLoginForm">단체회원로그인</a></li>
+						<li><a href="${path}/loginFormC">개인회원로그인</a></li>
 					</ul>
 				</c:if>
-				<c:if test="${not empty sessionScope.b_id}">
+				<c:if test="${sessionScope.login == 'biz' }">
 					<ul>
-						<li><a href="bizView">회원정보</a></li>
-						<li><a href="bizLogout">로그아웃</a></li>
+						<li><a href="${path}/biz/bizView">회원정보</a></li>
+						<li><a href="${path}/bizLogout">로그아웃</a></li>
 					</ul>
 				</c:if>
-				<c:if test="${not empty sessionScope.c_id}">
+				<c:if test="${sessionScope.login == 'customer'}">
 					<ul>
-						<c:if test="${sessionScope.c_id != 'master' }">
-						<li><a href="viewInfoC">회원정보</a></li>
-						</c:if>
-						<li><a href="logoutC">로그아웃</a></li>
+						<li><a href="${path}/viewInfoC">회원정보</a></li>
+						<li><a href="${path}/logoutC">로그아웃</a></li>
+					</ul>
+				</c:if>
+				<c:if test="${sessionScope.login == 'admin'}">
+					<ul>
+						<li><a href="${path}/logoutC">로그아웃</a></li>
 					</ul>
 				</c:if>
 				</div>
@@ -113,18 +113,18 @@
 			<div class="row">
 				<div class="col-xs-12 text-right menu-1">
 					<ul>
-						<li><a href="exList">exhibition</a></li>
+						<li><a href="${path }/exList">exhibition</a></li>
 						<li><a href="#">#hash</a></li>
-						<c:if test="${not empty sessionScope.b_id }">
-						<li><a href="exWriteForm">전시등록</a></li>
+						<c:if test="${sessionScope.login == 'biz' }">
+						<li><a href="${path }/biz/exWriteForm">전시등록</a></li>
 						</c:if>
-						<c:if test="${not empty sessionScope.c_id && sessionScope.c_id != 'master'}">
-						<li><a href="ticketCal">TicektBook</a></li>
+						<c:if test="${sessionScope.login == 'customer'}">
+						<li><a href="${path }/cus/ticketCal">TicektBook</a></li>
 						</c:if>
-						<c:if test="${sessionScope.c_id == 'master'}">
-						<li><a href="bizList">단체회원관리</a></li>
-						<li><a href="viewHashList">#hash목록</a></li>
-						<li><a href="addHashForm">#hash추가</a></li>
+						<c:if test="${sessionScope.login == 'admin'}">
+						<li><a href="${path}/master/bizList">단체회원관리</a></li>
+						<li><a href="${path}/master/viewHashList">#hash목록</a></li>
+						<li><a href="${path}/master/addHashForm">#hash추가</a></li>
 						</c:if>
 					</ul>
 				</div>

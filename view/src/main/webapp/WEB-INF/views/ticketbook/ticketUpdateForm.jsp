@@ -38,7 +38,7 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<div id="select_img" class="row-pb-sm col-md-6">
-										<img src="ticketImg/${ticket.filename }" class="img-thumbnail">
+										<img src="${path }/ticketImg/${ticket.filename }" class="img-thumbnail">
 									</div>
 									<input type="file" name="file" id="file" class="form-control">
 									<script>
@@ -75,11 +75,14 @@
 									<textarea name="content" rows=10>${ticket.content }</textarea>
 								</div>
 							</div>
-							<div class="form-group" style="text-align: center;">
-								<input type="submit" value="등록" class="btn btn-primary">
-							</div>
 						</div>
 						</form>	
+							<div class="form-group" style="text-align: center;">
+								<input type="submit" value="등록" class="btn btn-primary">
+								<button onclick="location.href='${path }/cus/ticketView?ticketbook_no=${ticket.ticketbook_no }&date=${date }'" class="btn btn-cta">
+								취소</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

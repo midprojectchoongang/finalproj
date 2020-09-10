@@ -21,7 +21,7 @@ public class BusinessController {
 	private BusinessService bs;
 	
 	// master 시작
-	@RequestMapping("bizList")
+	@RequestMapping("/master/bizList")
 	public String bizList(String pageNum, BusinessDTO biz, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -39,7 +39,7 @@ public class BusinessController {
 		return "master/bizList";
 	}
 	
-	@RequestMapping("bizAdmin")
+	@RequestMapping("/master/bizAdmin")
 	public String bizAdmin(String b_id, String pageNum, Model model) {
 		BusinessDTO biz = bs.select(b_id);
 		String[] groupkind = {"개인사업자", "법인사업자", "기타"};	
@@ -74,7 +74,7 @@ public class BusinessController {
 	}
 	// master 끝
 	
-	@RequestMapping("bizView")
+	@RequestMapping("/biz/bizView")
 	public String bizView(HttpSession session, Model model) {
 		String b_id = (String)session.getAttribute("b_id");
 		BusinessDTO biz = bs.select(b_id);
@@ -134,12 +134,12 @@ public class BusinessController {
 			result = -1;
 		} else if (bsness.getB_password().equals(biz.getB_password())) {
 			result = 1;
-			session.setAttribute("b_id", biz.getB_id());
+			session.setAttribute("login", "biz");
 		}
 		model.addAttribute("result", result);
 		return "business/bizLogin";
 	}
-	@RequestMapping("bizUpdateForm")
+	@RequestMapping("/biz/bizUpdateForm")
 	public String bizUpdateForm(Model model, HttpSession session) {
 		String b_id = (String)session.getAttribute("b_id");
 		BusinessDTO bsness = bs.select(b_id);
@@ -157,7 +157,7 @@ public class BusinessController {
 		session.invalidate();
 		return "business/logout";
 	}
-	@RequestMapping("bizDelete")
+	@RequestMapping("/biz/bizDelete")
 	public String bizDelete(Model model, HttpSession session) {
 		String b_id = (String)session.getAttribute("b_id");
 		int result = bs.delete(b_id);

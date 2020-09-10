@@ -49,7 +49,7 @@ public class ExhibitionController {
 
 		return "exhibition/exList";
 	}
-	@RequestMapping("exWriteForm")
+	@RequestMapping("/biz/exWriteForm")
 	private String exWriteForm(Model model) {
 		List<HashtagDTO> hashList = hs.hashList();
 		model.addAttribute("hashList", hashList);
@@ -103,7 +103,7 @@ public class ExhibitionController {
 		model.addAttribute("postedHash", postedHash);
 		return "exhibition/exView";
 	}
-	@RequestMapping("exUpdateForm")
+	@RequestMapping("/biz/exUpdateForm")
 	public String exUpdateForm(int exhibition_no, String pageNum, Model model) {
 		ExhibitionDTO ex = es.select(exhibition_no);
 		model.addAttribute("ex", ex);
@@ -127,7 +127,7 @@ public class ExhibitionController {
 		model.addAttribute("pageNum", pageNum);
 		return "exhibition/exUpdate";
 	}
-	@RequestMapping("exDelete")
+	@RequestMapping("/biz/exDelete")
 	public String exDelete(int exhibition_no, String pageNum, Model model) {
 		int result = es.delete(exhibition_no);
 		model.addAttribute("result", result);

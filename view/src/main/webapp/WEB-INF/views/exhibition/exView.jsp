@@ -16,8 +16,8 @@
 				</div>
 				<div class="row">
 					<div class="row" style="text-align: right; padding: 20px;">
-						<a href="exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-xs btn-outline">수정</a>
-						<a href="exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-xs btn-outline" onclick="return confirm('really?');">삭제</a>
+						<a href="/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-xs btn-outline">수정</a>
+						<a href="/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-xs btn-outline" onclick="return confirm('really?');">삭제</a>
 						<a href="exList" class="btn btn-xs btn-outline">목록</a>
 					</div>
 					<table>

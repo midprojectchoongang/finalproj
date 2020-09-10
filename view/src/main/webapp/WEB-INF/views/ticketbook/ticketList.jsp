@@ -22,8 +22,8 @@
 							</c:if>
 							<c:if test="${not empty list }">
 							<c:forEach items="${list }" var="t">
-							<tr style="cursor: pointer;" onclick="location.href='ticketView?ticketbook_no=${t.ticketbook_no }'">
-								<td style="width: 30%;" rowspan="2"><img src="ticketImg/${t.filename }" class="img-thumbnail"></td>
+							<tr style="cursor: pointer;" onclick="location.href='${path }/cus/ticketView?ticketbook_no=${t.ticketbook_no }&date=${date }'">
+								<td style="width: 30%;" rowspan="2"><img src="${path }/ticketImg/${t.filename }" class="img-thumbnail"></td>
 								<td style="width: 70%; height: 30px;">
 									<div class="row">
 										<div class="col-xs-offset-1 h4">
@@ -35,7 +35,7 @@
 									</div>
 								</td>
 							</tr>
-							<tr style="cursor: pointer;" onclick="location.href='ticketView?ticketbook_no=${t.ticketbook_no }'">
+							<tr style="cursor: pointer;" onclick="location.href='${path }/cus/ticketView?ticketbook_no=${t.ticketbook_no }&date=${date }'">
 								<td style="width: 70%;">
 									<div class="row" id="content">
 										<div class="col-xs-offset-1" id="cBody">

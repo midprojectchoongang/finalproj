@@ -29,34 +29,37 @@ public class TicketBookController {
 	@Autowired
 	private TicketBookService tbs;
 	
-	@RequestMapping("ticketList")
+	@RequestMapping("/cus/ticketList")
 	public String ticketList(String date, TicketBookDTO tbook, HttpSession session, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
 		tbook.setC_id(c_id);
 		tbook.setDate(date);
 		Collection<TicketBookDTO> list = tbs.list(tbook);
 		
+		model.addAttribute("date", date);
 		model.addAttribute("list", list);
 		return "ticketbook/ticketList";
 	}
 	
-	@RequestMapping("ticketCal")
+	@RequestMapping("/cus/ticketCal")
 	public String ticketCal(HttpSession session, String date, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
+		model.addAttribute("date", date);
 		model.addAttribute("c_id", c_id);
 		return "ticketbook/ticketCal";
 	}
 
 	
-	@RequestMapping("ticketView")
-	public String ticketView(int ticketbook_no, String pageNum, Model model) {
+	@RequestMapping("/cus/ticketView")
+	public String ticketView(int ticketbook_no, String pageNum, String date, Model model) {
 		TicketBookDTO ticket = tbs.view(ticketbook_no);
 		model.addAttribute("ticket", ticket);
+		model.addAttribute("date", date);
 		model.addAttribute("pageNum", pageNum);
 		return "ticketbook/ticketView";
 	}
 	
-	@RequestMapping("ticketWriteForm")
+	@RequestMapping("/cus/ticketWriteForm")
 	public String ticketWriteForm(HttpSession session, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
 		model.addAttribute("c_id", c_id);
@@ -83,10 +86,11 @@ public class TicketBookController {
 		return "ticketbook/ticketCal";
 	}
 	
-	@RequestMapping("ticketUpdateForm")
-	public String ticketUpdateForm(String ticketbook_no, Model model) {
+	@RequestMapping("/cus/ticketUpdateForm")
+	public String ticketUpdateForm(String ticketbook_no, String date, Model model) {
 		int tno = Integer.parseInt(ticketbook_no);
 		TicketBookDTO ticket = tbs.view(tno);
+		model.addAttribute("date", date);
 		model.addAttribute("ticket", ticket);
 		return "ticketbook/ticketUpdateForm";
 	}
@@ -107,7 +111,6 @@ public class TicketBookController {
 		} else {
 			ticket.setFilename(ticket.getOldFilename());
 		}
-		System.out.println(ticket);
 		result = tbs.update(ticket);
 		
 		model.addAttribute("ticketbook_no", ticket.getTicketbook_no());
@@ -115,7 +118,7 @@ public class TicketBookController {
 		return "ticketbook/ticketUpdate";
 	}
 	
-	@RequestMapping("ticketDel")
+	@RequestMapping("/cus/ticketDel")
 	public String ticketDel(TicketBookDTO ticket, Model model) {
 		int result = tbs.delete(ticket);
 		model.addAttribute("ticket", ticket);
