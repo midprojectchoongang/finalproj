@@ -112,7 +112,7 @@
 				            return;
 				        }
 				        if (chk == "y") {
-							location.href="updateHash?hash_title=" + $('#hash_title').val() + '&cur_title=' + cur_title
+							location.href="/master/updateHash?hash_title=" + $('#hash_title').val() + '&cur_title=' + cur_title
 									+ "&hashgroup=" + $('#hashgroup').val() + "&kind=" + $('input[name=kind]:checked').val();
 					    } else {
 					        $('#hashDisp').html("&emsp;<b>다른 #HASHTAG 이름을 사용해 주세요</b>");
@@ -121,7 +121,7 @@
 					
 					function deleteHash() {
 						if (confirm("삭제하시겠습니까?")) {
-							location.href="deleteHash?hash_title=" + $('#hash_title').val();
+							location.href="/master/deleteHash?hash_title=" + $('#hash_title').val();
 						} else {
 							return false;
 						}

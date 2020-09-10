@@ -116,14 +116,14 @@
 					</table>
 					</div>
 					<div class="row-pb-md" style="text-align: center;">
-						<a href="bizUpdateForm" class="btn btn-primary">회원정보수정</a>
+						<a href="/biz/bizUpdateForm" class="btn btn-primary">회원정보수정</a>
 						<button class="btn btn-cta" onclick="delConfirm();">회원탈퇴</button>												
 					</div>
 					<script type="text/javascript">
 						function delConfirm() {
 							var msg = '아이디를 삭제하시겠습니까?';
 							if(confirm(msg)) {
-								location.href='deleteC';
+								location.href='/biz/bizDelete';
 							}
 						}
 					</script>					

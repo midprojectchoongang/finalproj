@@ -24,7 +24,7 @@
 			}
 			    
 			function getList(date) {
-			    $('#listDisp').load('ticketList #list', 'c_id=${ticket.c_id}&date=' + date + '&pageNum=' + pageNum);
+			    $('#listDisp').load('${path}/cus/ticketList #list', 'c_id=${ticket.c_id}&date=' + date + '&pageNum=' + pageNum);
 			}
 
 			function present() {
@@ -117,7 +117,7 @@
 									<div class="row">
 										<span class="col-md-2 cal-title" id="Ymd"></span>
 										<span class="col-xs-0 cal-title btn-group-xs">
-										<a href="ticketWriteForm" class="btn btn-primary">+</a>
+										<a href="/cus/ticketWriteForm" class="btn btn-primary">+</a>
 										</span>
 									</div>
 									</th>

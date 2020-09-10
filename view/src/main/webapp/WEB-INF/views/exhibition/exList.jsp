@@ -35,7 +35,7 @@
 								<c:if test="${ex.del == 'n' }">
 							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" style="cursor: pointer;">
 								<td>
-									<img src="exImg/${ex.filename }" class="img-thumbnail" style="width: 100px; height: 100px;">
+									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="width: 100px; height: 100px;">
 								</td>
 								<td style="width: 40%; vertical-align: middle; padding-left: 20px;">
 									${ex.title }

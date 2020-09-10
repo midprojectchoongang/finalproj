@@ -14,19 +14,14 @@ public class HashtagController {
 	@Autowired
 	private HashtagService hs;
 	
-	@RequestMapping("hashMenu")
-	public String hashMenu() {
-		return "/master/hashMenu";
-	}
-	
-	@RequestMapping("viewHashList")
+	@RequestMapping("/master/viewHashList")
 	public String viewHashList(Model model) {
 		List<HashtagDTO> hashList = hs.hashList();
 		model.addAttribute("hashList", hashList);
 		return "/master/viewHashList";
 	}
 	
-	@RequestMapping("addHashForm")
+	@RequestMapping("/master/addHashForm")
 	public String addHashForm() {
 		return "/master/addHashForm";
 	}
@@ -36,7 +31,7 @@ public class HashtagController {
 	    int result = hs.hashChk(hash_title); // 리턴값이 0이면 table에 없다는 뜻이므로 입력 가능
 	    return String.valueOf(result);
 	}
-	@RequestMapping("addHash")
+	@RequestMapping("/master/addHash")
 	public String addHash(String hash_title, int hashgroup, Model model) {
 		int result = 0;
 		Map<String, String> map = new HashMap<String, String>();
@@ -48,14 +43,14 @@ public class HashtagController {
 		return "/master/addHash";
 	}
 	
-	@RequestMapping("hashDetail")
+	@RequestMapping("/master/hashDetail")
 	public String hashDetail(String hash_title, Model model) {
 		HashtagDTO hashtag = hs.select(hash_title);
 		model.addAttribute("hashtag", hashtag);
 		return "/master/hashDetail";
 	}
 	
-	@RequestMapping("updateHash")
+	@RequestMapping("/master/updateHash")
 	public String updateHash(String hash_title, String cur_title, int hashgroup, String kind, Model model) {
 		int result = 0;
 		if (kind.equals("custom")) {
@@ -72,7 +67,7 @@ public class HashtagController {
 		return "/master/updateHash";
 	}
 	
-	@RequestMapping("deleteHash")
+	@RequestMapping("/master/deleteHash")
 	public String deleteHash(String hash_title, Model model) {
 		int result = 1;
 		hs.deleteHash(hash_title);

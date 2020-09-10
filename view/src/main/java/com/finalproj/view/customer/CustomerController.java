@@ -63,7 +63,12 @@ public class CustomerController {
 			result = -1;
 		} else if (customerdto.getC_password().equals(customer.getC_password())) {
 			result = 1;
-			session.setAttribute("c_id", customer.getC_id());
+			session.setAttribute("c_id", customerdto.getC_id());
+			if (customerdto.getC_role().equals("admin")) {
+				session.setAttribute("login", "admin");
+			} else {
+				session.setAttribute("login", "customer");
+			}
 		}
 		model.addAttribute("result", result);
 		return "/customer/loginC";

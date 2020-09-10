@@ -10,7 +10,7 @@
 		<%@ include file="../mainPage/header.jsp"%>
 		<script type="text/javascript">
 			function list() {
-			    location.href='ticketCal?date=${ticket.date}';
+			    location.href='${path}/cus/ticketCal?date=${date}';
 			}
 		</script>
 		<div id="colorlib-container">
@@ -27,7 +27,7 @@
 							<td style="padding-top: 30px;">
 							<div class="row" align="center">
 								<div class="col-md-6">
-								<img src="ticketImg/${ticket.filename }" class="img-thumbnail">
+								<img src="${path }/ticketImg/${ticket.filename }" class="img-thumbnail">
 								</div>
 							</div>
 							</td>
@@ -45,8 +45,8 @@
 				</div>
 					<div class="row-pb-lg btn-group-sm" style="text-align: center; padding: 20px;">
 						<a href="javascript:list()" class="btn btn-default">목록</a>
-						<a href="ticketUpdateForm?ticketbook_no=${ticket.ticketbook_no }" class="btn btn-default">수정</a>
-						<a href="ticketDel?ticketbook_no=${ticket.ticketbook_no }"
+						<a href="${path }/cus/ticketUpdateForm?ticketbook_no=${ticket.ticketbook_no }&date=${date}" class="btn btn-default">수정</a>
+						<a href="${path }/cus/ticketDel?ticketbook_no=${ticket.ticketbook_no }&date=${date}"
 							onclick="return confirm('티켓을 삭제하시겠습니까?')" class="btn btn-outline">삭제</a>
 					</div>
 				</div>

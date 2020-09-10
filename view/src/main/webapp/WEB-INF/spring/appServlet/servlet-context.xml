@@ -29,6 +29,23 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/master/**"/>
+			<beans:bean class="com.finalproj.view.common.MasterInterceptor"></beans:bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/exWriteForm"/>
+			<mvc:mapping path="/biz/**"/>
+			<beans:bean class="com.finalproj.view.common.BusinessInterceptor"></beans:bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/cus/**"/>
+			<beans:bean class="com.finalproj.view.common.CustomerInterceptor"></beans:bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<context:component-scan base-package="com.finalproj.view" />
 	
 </beans:beans>
