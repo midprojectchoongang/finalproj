@@ -29,6 +29,8 @@ public class ExhibitionDTO {
 	
 	// img
 	private MultipartFile file;
+	private String oldFilename;
+	private String fileChange;
 		
 	// paging
 	private int startRow;

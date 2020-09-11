@@ -78,9 +78,10 @@ public class ExhibitionController {
 		return "exhibition/exWrite";
 	}
 	@RequestMapping("exView")
-	private String exView(int exhibition_no, String pageNum, Model model) throws ParseException {
+	private String exView(int exhibition_no, String pageNum, HttpSession session, Model model) throws ParseException {
 		ExhibitionDTO ex = es.view(exhibition_no);
 		
+		String b_id = (String) session.getAttribute("b_id");
 		String[] addr = ex.getAddress().split(",");
 		
 		/* JSON파싱 */
@@ -112,15 +113,19 @@ public class ExhibitionController {
 	}
 	@RequestMapping("exUpdate")
 	public String exUpdate(ExhibitionDTO ex, String pageNum, Model model, HttpSession session) {	
-		String realPath = session.getServletContext().getRealPath("/exImg");
-		MultipartFile poster = ex.getFile();
-		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
-		try {
-			poster.transferTo(new File(realPath + File.separator + fileName));
-		} catch (Exception e) {
-			System.out.println("업로드 오류");
+		if (ex.getFileChange().equals("y")) {
+			String realPath = session.getServletContext().getRealPath("/exImg");
+			MultipartFile poster = ex.getFile();
+			String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
+			try {
+				poster.transferTo(new File(realPath + File.separator + fileName));
+			} catch (Exception e) {
+				System.out.println("업로드 오류");
+			}
+			ex.setFilename(fileName);	
+		} else {
+			ex.setFilename(ex.getOldFilename());
 		}
-		ex.setFilename(fileName);		
 		int result = es.update(ex);
 		
 		model.addAttribute("result", result);
