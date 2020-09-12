@@ -27,10 +27,18 @@
 		
 		<select id="getTotal" resultType="integer">
 			select count(*) from exhibition
+			<include refid="search"></include>
 		</select>
 		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
-			select * from exhibition order by exhibition_no limit #{startRow}, #{endRow}
+			select * from exhibition
+			<include refid="search"></include>
+			order by exhibition_no limit #{startRow}, #{endRow}
 		</select>
+		<sql id="search">
+			<if test="keyword != null">
+				where hashtags like concat('%',#{keyword},'%')
+			</if>
+		</sql>
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},

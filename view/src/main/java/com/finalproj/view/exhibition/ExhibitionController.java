@@ -31,22 +31,21 @@ public class ExhibitionController {
 	@Autowired
 	private HashtagService hs;
 	
-	@RequestMapping("exList")
-	public String exList(String pageNum, Model model) {
+	@RequestMapping("/biz/exList")
+	public String exList(String pageNum, String keyword, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
 		int total = es.getTotal();
 		int startRow = (currentPage - 1) * rowPerPage;
 		int endRow = startRow + rowPerPage;
-		Collection<ExhibitionDTO> list = es.list(startRow, endRow);
+		Collection<ExhibitionDTO> list = es.list(startRow, endRow, keyword);
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 //		model.addAttribute("startRow", startRow);
 //		model.addAttribute("endRow", endRow);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 //		model.addAttribute("pageNum", pageNum);
-
 		return "exhibition/exList";
 	}
 	@RequestMapping("/biz/exWriteForm")
@@ -55,7 +54,7 @@ public class ExhibitionController {
 		model.addAttribute("hashList", hashList);
 		return "exhibition/exWriteForm";
 	}
-	@RequestMapping("exWrite")
+	@RequestMapping("/biz/exWrite")
 	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) {
 		int result = 0;
 		String realPath = session.getServletContext().getRealPath("/exImg");
@@ -78,9 +77,10 @@ public class ExhibitionController {
 		return "exhibition/exWrite";
 	}
 	@RequestMapping("exView")
-	private String exView(int exhibition_no, String pageNum, Model model) throws ParseException {
+	private String exView(int exhibition_no, String pageNum, HttpSession session, Model model) throws ParseException {
 		ExhibitionDTO ex = es.view(exhibition_no);
 		
+		String b_id = (String) session.getAttribute("b_id");
 		String[] addr = ex.getAddress().split(",");
 		
 		/* JSON파싱 */
@@ -112,15 +112,19 @@ public class ExhibitionController {
 	}
 	@RequestMapping("exUpdate")
 	public String exUpdate(ExhibitionDTO ex, String pageNum, Model model, HttpSession session) {	
-		String realPath = session.getServletContext().getRealPath("/exImg");
-		MultipartFile poster = ex.getFile();
-		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
-		try {
-			poster.transferTo(new File(realPath + File.separator + fileName));
-		} catch (Exception e) {
-			System.out.println("업로드 오류");
+		if (ex.getFileChange().equals("y")) {
+			String realPath = session.getServletContext().getRealPath("/exImg");
+			MultipartFile poster = ex.getFile();
+			String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
+			try {
+				poster.transferTo(new File(realPath + File.separator + fileName));
+			} catch (Exception e) {
+				System.out.println("업로드 오류");
+			}
+			ex.setFilename(fileName);	
+		} else {
+			ex.setFilename(ex.getOldFilename());
 		}
-		ex.setFilename(fileName);		
 		int result = es.update(ex);
 		
 		model.addAttribute("result", result);
@@ -135,5 +139,8 @@ public class ExhibitionController {
 		return "exhibition/exDelete";
 	}
 	
-	
+	@RequestMapping("/biz/exSearchForm")
+	public String exDelete() {
+		return "exhibition/exSearchForm";
+	}
 }

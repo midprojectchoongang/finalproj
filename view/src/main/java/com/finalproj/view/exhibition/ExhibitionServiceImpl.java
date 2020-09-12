@@ -1,6 +1,7 @@
 package com.finalproj.view.exhibition;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public Collection<ExhibitionDTO> list(int startRow, int endRow) {
-		return ed.list(startRow, endRow);
+	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword) {
+		return ed.list(startRow, endRow, keyword);
 	}
 
 	@Override

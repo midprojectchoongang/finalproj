@@ -68,6 +68,7 @@ public class CustomerController {
 				session.setAttribute("login", "admin");
 			} else {
 				session.setAttribute("login", "customer");
+				session.setAttribute("c_id", customerdto.getC_id());
 			}
 		}
 		model.addAttribute("result", result);
