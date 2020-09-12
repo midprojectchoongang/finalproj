@@ -181,36 +181,37 @@
 							</div>
 						</div>
 					</div>
+					<input type="hidden" name="hashtags" value="" />
 					</form>
 					<div class="row form-group">
 						<div class="col-md-12">
 							<div class="col-md-8">
 								<input type="text" name="keyword" id="keyword" placeholder="Search #HASH"
-									style="width: 80%; text-align: center;">
-								<button onclick="filter()"style="width: 15%;">Search</button>
+									style="width: 80%; text-align: center;" onkeyup="filter()">
+<!-- 								<button onclick="filter()"style="width: 15%;">Search</button> -->
 							</div><br>
 							<p class="tags" id="prehash" style="min-height: 35px;"></p>
 							<div id="warnDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>
 						</div>
 					</div>
 					<script type="text/javascript">
-						$("#keyword").keydown(function(key) { // 엔터키 누를 시 작동
+/* 						$("#keyword").keydown(function(key) { // 엔터키 누를 시 작동
 							if (key.keyCode == 13) {
 								filter();
 							}
-						});
-					
+						}); */
+						
 						function filter() {
 							var keyword, name, tag, i;
 							keyword = document.getElementById("keyword").value.toUpperCase();
 							tag = document.getElementsByName("taglists");
 							for (i=0; i<tag.length; i++) {
 								name = tag[i].getElementsByClassName("name");
-								if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
-									tag[i].style.display = "flex";
+								if (name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
+									tag[i].style.display = "block";
 								} else {
 									tag[i].style.display = "none";
-									create(keyword);
+									$('#warnDisp').html('<button onclick="creHashBtn(\''+keyword+'\')">CREATE</button>');
 								}
 							}
 						}
@@ -229,6 +230,10 @@
 						</div>
 					</div>
 					<script type="text/javascript">
+						function creHashBtn(asd) {
+							alert(asd);
+						}
+					
 						var hash_html = new Array();
 						var hash_select = new Array();
 						var max_hashtag = 5;
@@ -288,7 +293,6 @@
 							}
 						}
 					</script>
-					<input type="hidden" name="hashtags" value="" />
 					<script type="text/javascript">
 						function submit() {
 							var c_hashtag = new Object();

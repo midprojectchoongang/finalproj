@@ -1,6 +1,7 @@
 package com.finalproj.view.exhibition;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,11 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	}
 
 	@Override
-	public Collection<ExhibitionDTO> list(int startRow, int endRow) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
+	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("startRow", startRow+"");
+		map.put("endRow", endRow+"");
+		map.put("keyword", keyword);
 		return sst.selectList("exhibitionns.list", map);
 	}
 

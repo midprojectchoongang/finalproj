@@ -31,22 +31,21 @@ public class ExhibitionController {
 	@Autowired
 	private HashtagService hs;
 	
-	@RequestMapping("exList")
-	public String exList(String pageNum, Model model) {
+	@RequestMapping("/biz/exList")
+	public String exList(String pageNum, String keyword, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
 		int total = es.getTotal();
 		int startRow = (currentPage - 1) * rowPerPage;
 		int endRow = startRow + rowPerPage;
-		Collection<ExhibitionDTO> list = es.list(startRow, endRow);
+		Collection<ExhibitionDTO> list = es.list(startRow, endRow, keyword);
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 //		model.addAttribute("startRow", startRow);
 //		model.addAttribute("endRow", endRow);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 //		model.addAttribute("pageNum", pageNum);
-
 		return "exhibition/exList";
 	}
 	@RequestMapping("/biz/exWriteForm")
@@ -55,7 +54,7 @@ public class ExhibitionController {
 		model.addAttribute("hashList", hashList);
 		return "exhibition/exWriteForm";
 	}
-	@RequestMapping("exWrite")
+	@RequestMapping("/biz/exWrite")
 	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) {
 		int result = 0;
 		String realPath = session.getServletContext().getRealPath("/exImg");
@@ -135,5 +134,8 @@ public class ExhibitionController {
 		return "exhibition/exDelete";
 	}
 	
-	
+	@RequestMapping("/biz/exSearchForm")
+	public String exDelete() {
+		return "exhibition/exSearchForm";
+	}
 }
