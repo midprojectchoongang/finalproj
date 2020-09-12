@@ -28,7 +28,7 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
-					<form action="exWrite" enctype="multipart/form-data" method="post" name="frm">
+					<form action="${path }/exWrite" enctype="multipart/form-data" method="post" name="frm">
 					<div class="row formbox">
 						<input type="hidden" name="b_id" value="${b_id}">
 						<div class="row form-group">
@@ -78,11 +78,11 @@
 								<input type="text" name="gallery_site" class="form-control">
 							</div>
 						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
+						<div class="row form-group" align="left">
+							<div class="col-md-12 btn-group-sm">
+								<button onclick="sample5_execDaumPostcode()" class="btn btn-cta">주소검색</button><br>
 								<input type="text" name="address" class="form-control" id="mapAddress" placeholder="주소" required="required">
 								<input type="text" name="sub_address" class="form-control" placeholder="상세주소">
-								<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 								<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
 								
 								<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -183,6 +183,15 @@
 					</div>
 					<input type="hidden" name="hashtags" value="" />
 					</form>
+				<!-- hash -->
+				<div class="row formbox" align="left">
+					<div class="row form-group">
+						<div class="col-md-12 btn-group-sm">
+							<label for="keyword">Search #HASH</label>
+							<input type="text" name="keyword" id="keyword" class="form-control">
+							<button onclick="filter()" class="btn btn-cta">Search</button>
+						</div>
+					</div>
 					<div class="row form-group">
 						<div class="col-md-12">
 							<div class="col-md-8">
@@ -191,7 +200,7 @@
 <!-- 								<button onclick="filter()"style="width: 15%;">Search</button> -->
 							</div><br>
 							<p class="tags" id="prehash" style="min-height: 35px;"></p>
-							<div id="warnDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>
+							<div id="warnDisp" class="warn-style"></div>
 						</div>
 					</div>
 					<script type="text/javascript">
@@ -229,6 +238,7 @@
 							</p>
 						</div>
 					</div>
+				</div>
 					<script type="text/javascript">
 						function creHashBtn(asd) {
 							alert(asd);
@@ -304,7 +314,7 @@
 							document.frm.submit();
 						}
 					</script>
-					<button onclick="submit()">SUBMIT</button>
+					<button onclick="submit()" class="btn btn-primary">등록</button>
 				</div>
 			</div>
 		</div>

@@ -9,21 +9,71 @@
 <div id="page">
 	<%@ include file="../mainPage/header.jsp"%>
 	<div id="colorlib-container">
-		<div class="container">
+		<div class="container" align="center">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row headbox"><h2 class="heading-2">(${ex.exhibition_no }) ${ex.title }</h2></div>
+					<div class="row headbox"><h2 class="heading-2">${ex.title }</h2></div>
+				</div>
+				<div class="row-pb-sm btn-group-sm" style="text-align: right; padding: 20px;">
+					<c:if test="${ex.b_id == sessionScope.b_id }">
+						<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-outline">수정</a>
+						<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
+					</c:if>
+					<a href="${path }/exList" class="btn btn-outline">목록</a>
 				</div>
 				<div class="row">
-					<div class="row" style="text-align: right; padding: 20px;">
-						<a href="/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-xs btn-outline">수정</a>
-						<a href="/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-xs btn-outline" onclick="return confirm('really?');">삭제</a>
-						<a href="exList" class="btn btn-xs btn-outline">목록</a>
-					</div>
-					<table>
-					
+				<div class="col-md-12">
+					<table class="table table-ticket table-striped">
 						<tr>
+							<td style="width: 30%;" rowspan="5">
+								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail">
+							</td>
+							<th>
+								전시장소
+							</th>
 							<td>
+								${ex.gallery }
+							</td>
+						</tr>
+						<tr>
+							<th>
+								작가
+							</th>	
+							<td>
+								${ex.artist }
+							</td>
+						</tr>
+						<tr>
+							<th>
+								전시기간
+							</th>	
+							<td>
+								${ex.start_date } ~ ${ex.end_date }
+							</td>
+						</tr>
+						<tr>	
+							<th>
+								입장료
+							</th>
+							<td>
+							<c:if test="${ex.price == 0 }">
+								무료
+							</c:if>
+							<c:if test="${ex.price != 0 }">
+								${ex.price }원
+							</c:if>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								홈페이지
+							</th>	
+							<td>
+								${ex.gallery_site }
+							</td>
+						</tr>							
+						<tr>
+							<td colspan="3" style="padding: 30px 0;">
 								<p class="tags">
 									<c:forEach var="ph" items="${postedHash }">
 										<span class="tag">
@@ -32,45 +82,12 @@
 									</c:forEach>
 								</p>
 							</td>
-						</tr>
-						
+						</tr>												
 						<tr>
-							<td style="width: 30%; padding-top: 30px;" rowspan="4">
-								<img src="exImg/${ex.filename }">
-							</td>
-							<td style="width: 70%; padding: 30px;">
-								${ex.gallery }
-							</td>
-						</tr>						
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
-								${ex.start_date }
-							</td>
-						</tr>
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
-								${ex.end_date }
-							</td>
-						</tr>
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
-								${ex.price }
-							</td>
-						</tr>	
-											
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
-								${ex.artist }
-							</td>
-						</tr>
-						
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
-								${ex.gallery_site }
-							</td>
-						</tr>
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
+							<th>
+								주소
+							</th>	
+							<td colspan="2">
 								${ex.address }
 								
 								
@@ -125,30 +142,46 @@
 								
 								
 							</td>
-						</tr>	
+						</tr>
+						<c:if test="${not empty ex.ticket_link1 || ex.ticket_link1 != ''}">
 						<tr>
-							<td style="width: 70%; padding: 30px;">
+							<th rowspan="3">
+								예매처
+							</th>	
+							<td colspan="2">
 								${ex.ticket_link1 }
 							</td>
 						</tr>
+						</c:if>
+						<c:if test="${not empty ex.ticket_link2 || ex.ticket_link2 != ''}">	
 						<tr>	
-							<td style="width: 70%; padding: 30px;">
+							<td colspan="2">
 								${ex.ticket_link2 }
 							</td>
 						</tr>
+						</c:if>
+						<c:if test="${not empty ex.ticket_link3 || ex.ticket_link3 != ''}">
 						<tr>	
-							<td style="width: 70%; padding: 30px;">
+							<td colspan="2">
 								${ex.ticket_link3 }
 							</td>
 						</tr>
-						
-						<tr>	
-							<td style="width: 70%; padding: 30px;">
-								${ex.content }
-							</td>
+						</c:if>
+					</table>
+				</div>
+			</div>
+			<hr>
+			<div class="row row-pb-md">
+				<div class="col-md-12">
+					<table class="table table-striped">
+						<tr>
+						<td style="padding: 30px;">
+							${ex.content }
+						</td>
 						</tr>
 					</table>
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>

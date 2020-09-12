@@ -22,7 +22,6 @@
 				}
 			});
 			
-			$('#file_input').hide('fast');
 		});
 		</script>
 		<div id="colorlib-container">

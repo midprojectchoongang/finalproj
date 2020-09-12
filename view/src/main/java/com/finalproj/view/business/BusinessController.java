@@ -135,6 +135,7 @@ public class BusinessController {
 		} else if (bsness.getB_password().equals(biz.getB_password())) {
 			result = 1;
 			session.setAttribute("login", "biz");
+			session.setAttribute("b_id", bsness.getB_id());
 		}
 		model.addAttribute("result", result);
 		return "business/bizLogin";
