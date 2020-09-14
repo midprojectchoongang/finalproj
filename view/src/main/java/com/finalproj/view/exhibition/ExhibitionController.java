@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -31,7 +32,12 @@ public class ExhibitionController {
 	@Autowired
 	private HashtagService hs;
 	
-	@RequestMapping("/biz/exList")
+	@PostConstruct
+	public void init() {
+		es.autoDelete();
+	}
+	
+	@RequestMapping("exList")
 	public String exList(String pageNum, String keyword, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -54,7 +60,7 @@ public class ExhibitionController {
 		model.addAttribute("hashList", hashList);
 		return "exhibition/exWriteForm";
 	}
-	@RequestMapping("/biz/exWrite")
+	@RequestMapping("exWrite")
 	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) {
 		int result = 0;
 		String realPath = session.getServletContext().getRealPath("/exImg");
@@ -77,11 +83,9 @@ public class ExhibitionController {
 		return "exhibition/exWrite";
 	}
 	@RequestMapping("exView")
-	private String exView(int exhibition_no, String pageNum, HttpSession session, Model model) throws ParseException {
+	private String exView(int exhibition_no, String pageNum, Model model) throws ParseException {
 		ExhibitionDTO ex = es.view(exhibition_no);
-		
-		String b_id = (String) session.getAttribute("b_id");
-		String[] addr = ex.getAddress().split(",");
+		String[] addr = ex.getAddress().split(", ");
 		
 		/* JSON파싱 */
         JSONParser jp = new JSONParser();
@@ -104,9 +108,31 @@ public class ExhibitionController {
 		return "exhibition/exView";
 	}
 	@RequestMapping("/biz/exUpdateForm")
-	public String exUpdateForm(int exhibition_no, String pageNum, Model model) {
+	public String exUpdateForm(int exhibition_no, String pageNum, Model model) throws ParseException {
 		ExhibitionDTO ex = es.select(exhibition_no);
+		String[] addr = ex.getAddress().split(", ");
+		List<HashtagDTO> hashList = hs.hashList();
+		
+		/* JSON파싱 */
+        JSONParser jp = new JSONParser();
+        JSONObject jo;
+        jo = (JSONObject)jp.parse(ex.getHashtags());
+        JSONArray ja = (JSONArray)jo.get("hash");
+        String c = ja + "";
+        Gson gson = new Gson();
+        String[] tags = gson.fromJson(c, String[].class);
+        List<String> postedHash = new ArrayList<String>();
+        for (int i = 0; i < tags.length; i++) {
+        	postedHash.add("\""+tags[i]+"\"");
+        }
+        
+        model.addAttribute("hashList", hashList);
+		model.addAttribute("postedHash", postedHash);
 		model.addAttribute("ex", ex);
+		model.addAttribute("addr", addr[0]);
+		if (addr.length == 2) {
+			model.addAttribute("sub_addr", addr[1]);
+		}
 		model.addAttribute("pageNum", pageNum);
 		return "exhibition/exUpdateForm";
 	}
@@ -124,6 +150,10 @@ public class ExhibitionController {
 			ex.setFilename(fileName);	
 		} else {
 			ex.setFilename(ex.getOldFilename());
+		}
+		if (ex.getSub_address() != null) {
+			String addr = ex.getAddress() + ", " + ex.getSub_address();
+			ex.setAddress(addr);
 		}
 		int result = es.update(ex);
 		

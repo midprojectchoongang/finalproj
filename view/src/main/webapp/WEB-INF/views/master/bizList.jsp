@@ -22,7 +22,7 @@
 								<th>가입일</th>
 							</tr>
 							<c:forEach var="mem" items="${list }">
-							<tr style="cursor: pointer;" onclick="location.href='/master/bizAdmin?b_id=${mem.b_id }&pageNum=${pageNum }'">
+							<tr style="cursor: pointer;" onclick="location.href='${path}/master/bizAdmin?b_id=${mem.b_id }&pageNum=${pageNum }'">
 								<td>${mem.b_id }</td>
 								<td>${mem.groupName }</td>
 								<td>${mem.groupkind }</td>

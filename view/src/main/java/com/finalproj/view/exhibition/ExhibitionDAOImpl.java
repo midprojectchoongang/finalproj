@@ -50,4 +50,9 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	public int delete(int exhibition_no) {
 		return sst.delete("exhibitionns.delete", exhibition_no);
 	}
+
+	@Override
+	public void autoDelete() {
+		sst.delete("exhibitionns.autoDelete");
+	}
 }

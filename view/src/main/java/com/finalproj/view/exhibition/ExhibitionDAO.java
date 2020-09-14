@@ -9,4 +9,5 @@ public interface ExhibitionDAO {
 	ExhibitionDTO select(int exhibition_no);
 	int update(ExhibitionDTO ex);
 	int delete(int exhibition_no);
+	void autoDelete();
 }

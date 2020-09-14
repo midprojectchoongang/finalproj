@@ -80,7 +80,7 @@
 						</div>
 						<div class="row form-group" align="left">
 							<div class="col-md-12 btn-group-sm">
-								<button onclick="sample5_execDaumPostcode()" class="btn btn-cta">주소검색</button><br>
+								<button type="button" onclick="postSearch()" class="btn btn-cta">주소검색</button><br>
 								<input type="text" name="address" class="form-control" id="mapAddress" placeholder="주소" required="required">
 								<input type="text" name="sub_address" class="form-control" placeholder="상세주소">
 								<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
@@ -104,7 +104,7 @@
 								    });
 								
 								
-								    function sample5_execDaumPostcode() {
+								    function postSearch() {
 								        new daum.Postcode({
 								            oncomplete: function(data) {
 								                var addr = data.address; // 최종 주소 변수
@@ -181,69 +181,95 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="hashtags" value="" />
+					<input type="hidden" name="hashtags" value="">
 					</form>
-				<!-- hash -->
-				<div class="row formbox" align="left">
-					<div class="row form-group">
-						<div class="col-md-12 btn-group-sm">
-							<label for="keyword">Search #HASH</label>
-							<input type="text" name="keyword" id="keyword" class="form-control">
-							<button onclick="filter()" class="btn btn-cta">Search</button>
+					<!-- hash -->
+					<div class="row formbox" align="left">
+						<div class="row form-group">
+							<div class="col-md-12 btn-group-sm">
+								<label for="keyword">Search #HASH</label>
+								<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()" style="width:80%">
+								
+								<span style="cursor: pointer;" class="btn btn-info" onclick="addNewHash()">+</span>
+							</div>
 						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-md-12">
-							<div class="col-md-8">
-								<input type="text" name="keyword" id="keyword" placeholder="Search #HASH"
-									style="width: 80%; text-align: center;" onkeyup="filter()">
-<!-- 								<button onclick="filter()"style="width: 15%;">Search</button> -->
-							</div><br>
-							<p class="tags" id="prehash" style="min-height: 35px;"></p>
-							<div id="warnDisp" class="warn-style"></div>
+						<div class="row form-group" align="center">
+							<div class="col-md-12">
+								<p class="tags" id="prehash" style="min-height: 35px;"></p>
+								<div id="warnDisp" class="warn-style"></div>
+							</div>
 						</div>
-					</div>
-					<script type="text/javascript">
-/* 						$("#keyword").keydown(function(key) { // 엔터키 누를 시 작동
-							if (key.keyCode == 13) {
-								filter();
-							}
-						}); */
-						
-						function filter() {
-							var keyword, name, tag, i;
-							keyword = document.getElementById("keyword").value.toUpperCase();
-							tag = document.getElementsByName("taglists");
-							for (i=0; i<tag.length; i++) {
-								name = tag[i].getElementsByClassName("name");
-								if (name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
-									tag[i].style.display = "block";
-								} else {
-									tag[i].style.display = "none";
-									$('#warnDisp').html('<button onclick="creHashBtn(\''+keyword+'\')">CREATE</button>');
+						<script type="text/javascript">							
+							function filter() {
+								var keyword, name, tag, i;
+								keyword = document.getElementById("keyword").value.toUpperCase();
+								tag = document.getElementsByName("taglists");
+								for (i=0; i<tag.length; i++) {
+									name = tag[i].getElementsByClassName("name");
+									if (name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
+										tag[i].style.display = "block";
+									} else {
+										tag[i].style.display = "none";
+									}
 								}
 							}
-						}
-					</script>
-					<div class="row form-group">
-						<div class="col-md-12">
-							<p class="tags">
-								<c:forEach var="htl" items="${hashList }">
-									<span class="tag" name="taglists">
-										<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
-											<i class="icon-tag"></i> ${htl.hash_title }
-										</a>
-									</span>
-								</c:forEach>
-							</p>
+							
+							function addNewHash() {
+								if ($('#keyword').val() == "") {
+									$('#warnDisp').html('&emsp;생성하고 싶은 #HashTag를 먼저 입력하여 주십시요');
+									$('#keyword').focus();
+								} else {
+									var hashName = $('#keyword').val();
+									$.ajax({
+										url : 'addHashChk',
+										type : 'post',
+										data : {
+											hashName : hashName
+										},
+										success : function(data) {
+											if ($.trim(data) == 0) {
+												$('#customHash').append('<span class="tag" name="taglists">' +
+														'<a onclick="addPrehash(\''+hashName+'\')" class="name" style="cursor: pointer;">' +
+														'<i class="icon-tag"></i> '+hashName+'</a></span>');
+											} else {
+												$('#warnDisp').html('&emsp;이미 사용중인 #HashTag입니다');
+											}
+										},
+										error : function() {
+											alert("ERROR");
+										}
+									});
+								}
+							}
+						</script>
+						<div class="row form-group">
+							<div class="col-md-12">
+								<p class="tags">
+									<c:forEach var="htl" items="${hashList }">
+									<c:if test="${htl.kind == 'basic' }">
+										<span class="tag" name="taglists">
+											<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
+												<i class="icon-tag"></i> ${htl.hash_title }
+											</a>
+										</span>
+									</c:if>
+									</c:forEach>
+									<br><br><br><br>
+								</p><p class="tags" id="customHash">
+									<c:forEach var="htl" items="${hashList }">
+									<c:if test="${htl.kind == 'custom' }">
+										<span class="tag" name="taglists">
+											<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
+												<i class="icon-tag"></i> ${htl.hash_title }
+											</a>
+										</span>
+									</c:if>
+									</c:forEach>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
 					<script type="text/javascript">
-						function creHashBtn(asd) {
-							alert(asd);
-						}
-					
 						var hash_html = new Array();
 						var hash_select = new Array();
 						var max_hashtag = 5;
