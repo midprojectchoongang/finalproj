@@ -980,7 +980,15 @@ table.table-ticket > tr > td {
 	padding: 50px;
 	line-height: 130%;
 }
-
+.table-box {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table.table-box > tr > td {
+	padding: 0px;
+	margin: 0px;
+}
 #cBody { 
 	display:inline-block;
 	width: 80%;

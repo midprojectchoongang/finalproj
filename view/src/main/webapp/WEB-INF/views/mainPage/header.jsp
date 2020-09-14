@@ -107,7 +107,7 @@
 			</div>
 			<div class="row-pb-sm">
 				<div class="col-lg-12">
-					<div id="colorlib-logo"><a href="main">VIEW</a></div>
+					<div id="colorlib-logo"><a href="${path }/main">VIEW</a></div>
 				</div>
 			</div>
 			<div class="row">
@@ -119,6 +119,7 @@
 						<li><a href="${path }/biz/exWriteForm">전시등록</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login == 'customer'}">
+						<li><a href="${path }/cus/myExList">관심전시회</a></li>
 						<li><a href="${path }/cus/ticketCal">TicektBook</a></li>
 						</c:if>
 						<c:if test="${sessionScope.login == 'admin'}">

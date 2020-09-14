@@ -28,7 +28,7 @@
 				<div class="col-md-9">
 					<div class="row">
 						<div class="row headbox"><h2 class="heading-2">티켓등록</h2></div>
-						<form action="ticketWrite" enctype="multipart/form-data" method="post">
+						<form action="${path }/ticketWrite" enctype="multipart/form-data" method="post">
 						<div class="row formbox">
 							<input type="hidden" name="c_id" value="test">
 							<div class="row form-group">

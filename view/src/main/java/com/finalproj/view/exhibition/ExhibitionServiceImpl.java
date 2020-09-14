@@ -45,4 +45,15 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public int delete(int exhibition_no) {
 		return ed.delete(exhibition_no);
 	}
+
+	@Override
+	public void likeCntUp(int exhibition_no) {
+		ed.likeCntUp(exhibition_no);
+	}
+
+	@Override
+	public void likeCntDown(int exhibition_no) {
+		ed.likeCntDown(exhibition_no);
+	}
+
 }

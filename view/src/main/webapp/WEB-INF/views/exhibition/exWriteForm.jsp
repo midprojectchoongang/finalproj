@@ -26,7 +26,7 @@
 	<div id="colorlib-container">
 		<div class="container" align="center">
 			<div class="col-md-9">
-				<div class="row">
+				<div class="row" align="justify">
 					<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
 					<form action="${path }/exWrite" enctype="multipart/form-data" method="post" name="frm">
 					<div class="row formbox">
@@ -159,15 +159,32 @@
 								<input type="text" name="price" class="form-control" required="required">
 							</div>
 						</div>																	
-						<div class="row form-group">														
+<!-- 						<div class="row form-group" align="justify">														
 							<div class="col-md-12">
 								<div style="display: inline;">
-								<input type="date" name="start_date" class="form-control" required="required" style="display: inline; width: 46%">
+								<input type="date" name="start_date" class="form-control" required="required" style="display: inline; width: 45%">
 								</div>
-								<div style="display: inline; width: 8%; margin: 0 20px 0 20px">~</div>
+								<div style="display: inline; width: 10%; margin: 8px">~</div>
 								<div style="display: inline;">
-								<input type="date" name="end_date" class="form-control" required="required" style="display: inline; width: 46%">
+								<input type="date" name="end_date" class="form-control" required="required" style="display: inline; width: 45%">
 								</div>
+							</div>
+						</div> -->
+						<div class="row form-group" align="justify">	
+							<div class="col-md-12">
+								<table class="table-box">
+									<tr>
+										<td style="width: 47%">
+											<input type="date" name="start_date" class="form-control" required="required">
+										</td>
+										<td style="width: 6%; text-align: center; vertical-align: middle;">
+											~
+										</td>
+										<td style="width: 47%">
+											<input type="date" name="end_date" class="form-control" required="required">
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 						<div class="row form-group">
@@ -314,7 +331,9 @@
 							document.frm.submit();
 						}
 					</script>
-					<button onclick="submit()" class="btn btn-primary">등록</button>
+					<div class="form-group" style="text-align: center;">
+						<button onclick="submit()" class="btn btn-primary">등록</button>
+					</div>					
 				</div>
 			</div>
 		</div>

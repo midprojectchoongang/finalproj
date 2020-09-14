@@ -8,6 +8,7 @@
   		<typeAlias alias="tbook" type="com.finalproj.view.ticketbook.TicketBookDTO" />
   		<typeAlias alias="exhibition" type="com.finalproj.view.exhibition.ExhibitionDTO" />
   		<typeAlias alias="comment" type="com.finalproj.view.comment.CommentDTO" />
+  		<typeAlias alias="interest" type="com.finalproj.view.customer.InterestDTO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="hashtag.xml"/>
@@ -16,5 +17,6 @@
 		<mapper resource="ticketbook.xml"/>
 		<mapper resource="exhibition.xml"/>
 		<mapper resource="comment.xml"/>
+		<mapper resource="interest.xml"/>
 	</mappers>
 </configuration>

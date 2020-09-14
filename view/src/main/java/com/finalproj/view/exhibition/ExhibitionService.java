@@ -9,4 +9,6 @@ public interface ExhibitionService {
 	ExhibitionDTO select(int exhibition_no);
 	int update(ExhibitionDTO ex);
 	int delete(int exhibition_no);
+	void likeCntUp(int ex_no);
+	void likeCntDown(int exhibition_no);
 }

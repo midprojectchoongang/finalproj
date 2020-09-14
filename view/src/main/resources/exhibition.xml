@@ -32,14 +32,14 @@
 		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition
 			<include refid="search"></include>
-			order by exhibition_no limit #{startRow}, #{endRow}
+			order by exhibition_no limit ${startRow}, ${endRow}
 		</select>
 		<sql id="search">
 			<if test="keyword != null">
 				where hashtags like concat('%',#{keyword},'%')
 			</if>
 		</sql>
-		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
+		<insert id="insert" parameterType="exhibition">
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},
 				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
@@ -60,5 +60,13 @@
 		</update>
 		<update id="delete" parameterType="integer">
 			update exhibition set del='y' where exhibition_no=#{exhibition_no}
+		</update>
+		<update id="likeCntUp" parameterType="integer">
+			update exhibition set like_cnt = like_cnt + 1
+			where exhibition_no=#{exhibition_no}
+		</update>
+		<update id="likeCntDown" parameterType="integer">
+			update exhibition set like_cnt = like_cnt - 1
+			where exhibition_no=#{exhibition_no}
 		</update>
 </mapper>

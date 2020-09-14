@@ -4,7 +4,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("등록 완료");
-		history.go(-1);
+		location.href='${path}/cus/ticketCal';
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
