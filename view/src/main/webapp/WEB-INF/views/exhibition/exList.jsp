@@ -23,15 +23,14 @@
 								<th style="width: 30%;">기간</th>
 							</tr>
 							</thead>
-						<%-- location.href='exView?exhibition_no=${ex.exhibition_no }' --%>
-						<%-- <tr style="cursor: pointer;" id="${ex.exhibition_no }"> --%>						
-							<c:forEach items="${list }" var="ex">
-								<%-- <c:if test="${ex.del == 'y' }">
-									<td colspan="4">
-										삭제된 글입니다.
-									</td>
-								</c:if>	 --%>													
+							<c:if test="${empty list }">
 							<tbody>
+								<tr>
+								<td colspan="4" style="text-align: center;">등록된 전시회가 없습니다.</td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty list }">
+							<c:forEach items="${list }" var="ex">
 								<c:if test="${ex.del == 'n' }">
 							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" style="cursor: pointer;">
 								<td>
@@ -57,10 +56,11 @@
 								<td style="text-align: center; vertical-align: middle;">
 									${ex.start_date }<br> ~ ${ex.end_date }
 								</td>															
-							</tr>
-								</c:if>
 							</tbody>							
+								</c:if>
 							</c:forEach>
+							</tr>
+							</c:if>
 						</table>
 						</div>
 					</div>
@@ -71,21 +71,21 @@
 					<div class="col-md-12">
 						<ul class="pagination pagination-sm">
 						<c:if test="${page.startPage > page.pagePerBlock }">
-							<li><a href="exList?pageNum=${page.startPage - 1 }" aria-label="Previous">
+							<li><a href="${path }/exList?pageNum=${page.startPage - 1 }" aria-label="Previous">
 						        <span aria-hidden="true">&laquo;</span>
 						     	</a>
 						    </li>
 						</c:if>
 						<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 							<c:if test="${i == page.currentPage }">
-								<li class="disabled"><a href="exList?pageNum=${i }">${i }</a></li>
+								<li class="disabled"><a href="${path }/exList?pageNum=${i }">${ i }</a></li>
 							</c:if>
 							<c:if test="${i != page.currentPage }">
-								<li class="active"><a href="exList?pageNum=${i }">${i }</a></li>
+								<li class="active"><a href="${path }/exList?pageNum=${i }">${i }</a></li>
 							</c:if>
 						</c:forEach>
 						<c:if test="${page.endPage < page.totalPage }">
-							<li><a href="exList?pageNum=${page.endPage + 1 }" aria-label="Next">
+							<li><a href="${path }/exList?pageNum=${page.endPage + 1 }" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 								</a>
 							</li>

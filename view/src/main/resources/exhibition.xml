@@ -79,6 +79,14 @@
 		<update id="delete" parameterType="integer">
 			update exhibition set del='y' where exhibition_no=#{exhibition_no}
 		</update>
+			<update id="likeCntUp" parameterType="integer">
+			update exhibition set like_cnt = like_cnt + 1
+			where exhibition_no=#{exhibition_no}
+		</update>
+		<update id="likeCntDown" parameterType="integer">
+			update exhibition set like_cnt = like_cnt - 1
+			where exhibition_no=#{exhibition_no}
+		</update>
 		<delete id="autoDelete">
 			update exhibition set del='y' where sysdate() > end_date
 		</delete>

@@ -47,6 +47,15 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 
 	@Override
+	public void likeCntUp(int exhibition_no) {
+		ed.likeCntUp(exhibition_no);
+	}
+
+	@Override
+	public void likeCntDown(int exhibition_no) {
+		ed.likeCntDown(exhibition_no);
+	}
+
 	public void autoDelete() {
 		ed.autoDelete();
 	}

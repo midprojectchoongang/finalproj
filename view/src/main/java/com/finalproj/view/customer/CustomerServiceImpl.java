@@ -31,4 +31,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public String selectNick(String c_id) {
 		return cd.selectNick(c_id);
 	}
+	@Override
+	public int addInt(int ex_no, String c_id) {
+		return cd.addInt(ex_no, c_id);
+	}
 }
