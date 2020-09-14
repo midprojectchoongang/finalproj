@@ -107,7 +107,7 @@
 			</div>
 			<div class="row-pb-sm">
 				<div class="col-lg-12">
-					<div id="colorlib-logo"><a href="main">VIEW</a></div>
+					<div id="colorlib-logo"><a href="${path}/main">VIEW</a></div>
 				</div>
 			</div>
 			<div class="row">

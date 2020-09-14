@@ -9,7 +9,6 @@
 		<result property="artist" column="artist" />
 		<result property="gallery" column="gallery" />
 		<result property="gallery_site" column="gallery_site" />
-		<result property="local_no" column="local_no" />
 		<result property="address" column="address" />
 		<result property="ticket_link1" column="ticket_link1" />
 		<result property="ticket_link2" column="ticket_link2" />
@@ -32,7 +31,7 @@
 		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition
 			<include refid="search"></include>
-			order by exhibition_no limit #{startRow}, #{endRow}
+			order by exhibition_no limit ${startRow}, ${endRow}
 		</select>
 		<sql id="search">
 			<if test="keyword != null">

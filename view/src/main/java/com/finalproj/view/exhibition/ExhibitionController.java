@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -16,13 +18,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.finalproj.view.common.PagingBean;
 import com.finalproj.view.hashtag.HashtagDTO;
 import com.finalproj.view.hashtag.HashtagService;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 @Controller
 public class ExhibitionController {
@@ -31,7 +36,7 @@ public class ExhibitionController {
 	@Autowired
 	private HashtagService hs;
 	
-	@RequestMapping("/biz/exList")
+	@RequestMapping("exList")
 	public String exList(String pageNum, String keyword, Model model) {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -54,15 +59,16 @@ public class ExhibitionController {
 		model.addAttribute("hashList", hashList);
 		return "exhibition/exWriteForm";
 	}
-	@RequestMapping("/biz/exWrite")
+	@RequestMapping("exWrite")
 	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) {
 		int result = 0;
-		String realPath = session.getServletContext().getRealPath("/exImg");
+		String realPath = session.getServletContext().getRealPath("/resources/exImg");
 		MultipartFile poster = ex.getFile();
 		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
 		try {
 			poster.transferTo(new File(realPath + File.separator + fileName));
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			System.out.println("업로드 오류");
 		}
 		ex.setFilename(fileName);
@@ -103,6 +109,66 @@ public class ExhibitionController {
 		model.addAttribute("postedHash", postedHash);
 		return "exhibition/exView";
 	}
+	
+	/**
+	 * 이미지 업로드
+	 * 
+	 * @param request
+	 * @param response
+	 * @param upload
+	 */
+	@RequestMapping(value="ckUpload", method = RequestMethod.POST)
+	public void imgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload)
+			throws Exception {
+		String uploadPath = req.getSession().getServletContext().getRealPath("/").concat("resources");		
+		
+		OutputStream out = null;
+		PrintWriter printWriter = null;
+
+		// 인코딩
+		res.setCharacterEncoding("utf-8");
+		res.setContentType("application/json");
+
+		try {
+			String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + upload.getOriginalFilename(); // 파일 이름 가져오기
+			byte[] bytes = upload.getBytes();
+
+			// 업로드 경로
+			String ckUploadPath = uploadPath + File.separator + "ckUpload" + File.separator + fileName;									
+
+			out = new FileOutputStream(new File(ckUploadPath));
+			out.write(bytes);
+			out.flush(); // out에 저장된 데이터를 전송하고 초기화
+
+			printWriter = res.getWriter();
+			String fileUrl = req.getContextPath() + "/ckUpload/" + fileName; // 작성화면
+			
+			// 업로드시 메시지 출력
+			JsonObject json = new JsonObject();
+			json.addProperty("uploaded", 1);
+			json.addProperty("fileName", fileName);
+			json.addProperty("url", fileUrl);
+			
+			printWriter.println(json);
+			printWriter.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+				if (printWriter != null) {
+					printWriter.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return;
+	}
+
 	@RequestMapping("/biz/exUpdateForm")
 	public String exUpdateForm(int exhibition_no, String pageNum, Model model) {
 		ExhibitionDTO ex = es.select(exhibition_no);

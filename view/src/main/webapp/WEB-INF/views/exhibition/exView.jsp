@@ -175,9 +175,9 @@
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
-						<td style="padding: 30px;">
-							${ex.content }
-						</td>
+							<td style="padding: 30px;">
+								${ex.content }
+							</td>
 						</tr>
 					</table>
 				</div>
