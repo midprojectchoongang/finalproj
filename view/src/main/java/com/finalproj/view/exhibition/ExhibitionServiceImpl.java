@@ -45,4 +45,9 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public int delete(int exhibition_no) {
 		return ed.delete(exhibition_no);
 	}
+
+	@Override
+	public void autoDelete() {
+		ed.autoDelete();
+	}
 }

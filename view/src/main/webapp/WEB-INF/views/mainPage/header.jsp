@@ -114,7 +114,7 @@
 				<div class="col-xs-12 text-right menu-1">
 					<ul>
 						<li><a href="${path }/exList">exhibition</a></li>
-						<li><a href="#">#hash</a></li>
+						<li><a href="${path }/hashSearch">#hash</a></li>
 						<c:if test="${sessionScope.login == 'biz' }">
 						<li><a href="${path }/biz/exWriteForm">전시등록</a></li>
 						</c:if>

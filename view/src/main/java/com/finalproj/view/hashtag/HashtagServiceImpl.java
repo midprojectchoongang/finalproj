@@ -26,4 +26,7 @@ public class HashtagServiceImpl implements HashtagService{
 	public void deleteHash(String hash_title) {
 		hd.deleteHash(hash_title);
 	}
+	public void addCustomHash(String hashName, String b_id) {
+		hd.addCustomHash(hashName, b_id);
+	}
 }
