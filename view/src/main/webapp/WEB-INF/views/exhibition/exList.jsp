@@ -78,7 +78,7 @@
 						</c:if>
 						<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 							<c:if test="${i == page.currentPage }">
-								<li class="disabled"><a href="exList?pageNum=${i }">${ i }</a></li>
+								<li class="disabled"><a href="exList?pageNum=${i }">${i }</a></li>
 							</c:if>
 							<c:if test="${i != page.currentPage }">
 								<li class="active"><a href="exList?pageNum=${i }">${i }</a></li>
