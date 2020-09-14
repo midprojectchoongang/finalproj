@@ -73,7 +73,7 @@ public class ExhibitionController {
 		List<HashtagDTO> hashList = hs.hashList();
 		String b_id = (String) session.getAttribute("b_id");
 		BusinessDTO biz = bs.select(b_id);
-		if (biz.getConfirm() != "y") {
+		if (biz.getConfirm() == "c" || biz.getConfirm() == "n") {
 			return "exhibition/exWriteCancle";
 		} else {
 			model.addAttribute("hashList", hashList);
