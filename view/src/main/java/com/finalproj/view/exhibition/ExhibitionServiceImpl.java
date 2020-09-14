@@ -56,4 +56,7 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		ed.likeCntDown(exhibition_no);
 	}
 
+	public void autoDelete() {
+		ed.autoDelete();
+	}
 }

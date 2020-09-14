@@ -7,6 +7,7 @@
 		<result property="hash_title" column="hash_title" />
 		<result property="kind" column="kind" />
 		<result property="use_count" column="use_count" />
+		<result property="b_id" column="b_id" />
 	</resultMap>
 	<select id="list" parameterType="hashtag" resultMap="hashtagResult">
 		select * from hashtag order by hashgroup
@@ -15,7 +16,7 @@
 		select count(*) from hashtag where hash_title=#{hash_title}
 	</select>
 	<insert id="insert" parameterType="hashmap">
-		insert into hashtag values (${hashgroup}, '${hash_title}', 'basic', 0)
+		insert into hashtag values (${hashgroup}, '${hash_title}', 'basic', 0, 'admin')
 	</insert>
 	<select id="select" parameterType="string" resultType="hashtag">
 		select * from hashtag where hash_title=#{hash_title}
@@ -27,4 +28,7 @@
 	<delete id="delete" parameterType="string">
 		delete from hashtag where hash_title=#{hash_title}
 	</delete>
+	<insert id="addCustomHash" parameterType="hashmap">
+		insert into hashtag values (0, #{hashName}, 'custom', 0, #{b_id})
+	</insert>
 </mapper>

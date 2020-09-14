@@ -138,7 +138,7 @@
 								<p class="tags">
 									<c:forEach var="ph" items="${postedHash }">
 										<span class="tag">
-											<a href="#" class="name"><i class="icon-tag"></i> ${ph.hash_title }</a>
+											<a href="exList?keyword=${ph.hash_title }" class="name"><i class="icon-tag"></i> ${ph.hash_title }</a>
 										</span>
 									</c:forEach>
 								</p>
@@ -150,11 +150,7 @@
 							</th>	
 							<td colspan="2">
 								${ex.address }
-								
-								
-								
-<!-- 								
-							<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
+							<div id="map" style="width:100%;height:300px;margin-top:10px;"></div>
 							<script type="text/javascript">
 								var addr = '${addr}';
 								var galName = '${ex.gallery}';
@@ -196,11 +192,6 @@
 								    } 
 								});   
 							</script>
-								 -->
-								
-								
-								
-								
 								
 							</td>
 						</tr>
@@ -236,9 +227,9 @@
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
-						<td style="padding: 30px;">
-							${ex.content }
-						</td>
+							<td style="padding: 30px;">
+								${ex.content }
+							</td>
 						</tr>
 					</table>
 				</div>

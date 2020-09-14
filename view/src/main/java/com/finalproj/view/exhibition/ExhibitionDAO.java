@@ -11,4 +11,5 @@ public interface ExhibitionDAO {
 	int delete(int exhibition_no);
 	void likeCntUp(int exhibition_no);
 	void likeCntDown(int exhibition_no);
+	void autoDelete();
 }

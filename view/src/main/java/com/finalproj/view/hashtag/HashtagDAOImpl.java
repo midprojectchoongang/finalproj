@@ -1,4 +1,5 @@
 package com.finalproj.view.hashtag;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -26,5 +27,11 @@ public class HashtagDAOImpl implements HashtagDAO {
 	}
 	public void deleteHash(String hash_title) {
 		sst.delete("hashtagns.delete", hash_title);
+	}
+	public void addCustomHash(String hashName, String b_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("hashName", hashName);
+		map.put("b_id", b_id);
+		sst.insert("hashtagns.addCustomHash", map);
 	}
 }

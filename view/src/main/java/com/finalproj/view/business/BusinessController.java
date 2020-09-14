@@ -63,7 +63,7 @@ public class BusinessController {
 		return "master/bizDetail";
 	}
 	
-	@RequestMapping(value = "bizConfirm", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
+	@RequestMapping(value = "/master/bizConfirm", produces = "text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String bizConfirm(String b_id, String confirm, String con_comment, Model model) {
 		BusinessDTO biz = bs.select(b_id);

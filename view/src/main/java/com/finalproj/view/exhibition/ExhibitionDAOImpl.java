@@ -61,4 +61,7 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		sst.update("exhibitionns.likeCntDown", exhibition_no);
 	}
 
+	public void autoDelete() {
+		sst.delete("exhibitionns.autoDelete");
+	}
 }

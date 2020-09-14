@@ -11,9 +11,9 @@
 		<div id="colorlib-container">
 			<div class="container" align="center">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-12">
 					<div class="row">
-						<div class="row headbox"><h2 class="heading-2">전시회</h2></div>
+						<div class="row headbox col-md-9"><h2 class="heading-2">전시회</h2></div>
 						<div class="row" align="left">						
 						<table class="table table-hover">
 							<thead>
@@ -37,7 +37,18 @@
 									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="width: 100px; height: 100px;">
 								</td>
 								<td style="width: 40%; vertical-align: middle; padding-left: 20px;">
-									${ex.title }
+									${ex.title }<br><p id="${ex.exhibition_no }"></p>
+									<script type="text/javascript">
+										var verify = '${ex.exhibition_no }';
+										var jsondata = '${ex.hashtags }';
+										var hash = JSON.parse(jsondata);
+										for (var i=0; i<hash.hash.length; i++) {
+											$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
+													'<a style="cursor:pointer; font-size: 12px;" href="exList?keyword=' + hash.hash[i] + '">#' +
+													hash.hash[i] + '&emsp;</a></span>'
+											);
+										}
+									</script>
 								</td>
 								<td style="text-align: center; vertical-align: middle;">
 									${ex.gallery }

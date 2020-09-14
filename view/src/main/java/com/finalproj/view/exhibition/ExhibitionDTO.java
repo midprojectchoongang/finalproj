@@ -38,4 +38,7 @@ public class ExhibitionDTO {
 	
 	// address
 	private String sub_address;
+	
+	//ckeditor
+	
 }

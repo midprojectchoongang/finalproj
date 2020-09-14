@@ -9,7 +9,6 @@
 		<result property="artist" column="artist" />
 		<result property="gallery" column="gallery" />
 		<result property="gallery_site" column="gallery_site" />
-		<result property="local_no" column="local_no" />
 		<result property="address" column="address" />
 		<result property="ticket_link1" column="ticket_link1" />
 		<result property="ticket_link2" column="ticket_link2" />
@@ -30,16 +29,35 @@
 			<include refid="search"></include>
 		</select>
 		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
-			select * from exhibition
+			select * from exhibition where del = 'n'
 			<include refid="search"></include>
-			order by exhibition_no limit ${startRow}, ${endRow}
+			order by exhibition_no
+<!-- 			<if test="order == 'normal'">
+				exhibition_no
+			</if>
+			<if test="order == 'e_date'">
+				end_date
+			</if>
+			<if test="order == 's_date'">
+				start_date
+			</if>
+			<if test="order == 'feeCheap'">
+				price
+			</if>
+			<if test="order == 'feeExp'">
+				price desc
+			</if>
+			<if test="order == 'like'">
+				like_cnt
+			</if> -->
+			limit ${startRow}, ${endRow}
 		</select>
 		<sql id="search">
 			<if test="keyword != null">
 				where hashtags like concat('%',#{keyword},'%')
 			</if>
 		</sql>
-		<insert id="insert" parameterType="exhibition">
+		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},
 				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
@@ -61,7 +79,7 @@
 		<update id="delete" parameterType="integer">
 			update exhibition set del='y' where exhibition_no=#{exhibition_no}
 		</update>
-		<update id="likeCntUp" parameterType="integer">
+			<update id="likeCntUp" parameterType="integer">
 			update exhibition set like_cnt = like_cnt + 1
 			where exhibition_no=#{exhibition_no}
 		</update>
@@ -69,4 +87,7 @@
 			update exhibition set like_cnt = like_cnt - 1
 			where exhibition_no=#{exhibition_no}
 		</update>
+		<delete id="autoDelete">
+			update exhibition set del='y' where sysdate() > end_date
+		</delete>
 </mapper>

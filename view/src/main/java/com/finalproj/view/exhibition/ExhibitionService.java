@@ -11,4 +11,5 @@ public interface ExhibitionService {
 	int delete(int exhibition_no);
 	void likeCntUp(int ex_no);
 	void likeCntDown(int exhibition_no);
+	void autoDelete();
 }
