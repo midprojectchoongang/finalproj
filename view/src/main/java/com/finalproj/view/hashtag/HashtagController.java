@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,4 +77,27 @@ public class HashtagController {
 		model.addAttribute("result", result);
 		return "/master/deleteHash";
 	}
+	
+	@RequestMapping("hashSearch")
+	public String hashSearch(Model model) {
+		List<HashtagDTO> hashList = hs.hashList();
+		model.addAttribute("hashList", hashList);
+		return "/mainPage/hashSearch";
+	}
+	@RequestMapping(value="/biz/addHashChk", produces="text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String idChk(String hashName, HttpSession session) {
+	    int result = hs.hashChk(hashName);
+	    if (result == 0) { // 값이 없으면 커스텀 해쉬태그 생성
+	    	String b_id = (String) session.getAttribute("b_id");
+	    	hs.addCustomHash(hashName, b_id);
+	    }
+	    return String.valueOf(result);
+	}
+	
+	
+	
+	
+	
+	
 }

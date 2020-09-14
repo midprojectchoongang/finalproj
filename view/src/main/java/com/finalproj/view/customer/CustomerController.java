@@ -1,5 +1,6 @@
 package com.finalproj.view.customer;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
@@ -12,6 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.finalproj.view.common.PagingBean;
+import com.finalproj.view.exhibition.ExhibitionDTO;
+import com.finalproj.view.exhibition.ExhibitionService;
 import com.finalproj.view.hashtag.HashtagDTO;
 import com.finalproj.view.hashtag.HashtagService;
 import com.google.gson.Gson;
@@ -21,6 +26,10 @@ public class CustomerController {
 	private CustomerService cs;
 	@Autowired
 	private HashtagService hs;
+	@Autowired
+	private InterestService is;
+	@Autowired
+	private ExhibitionService es;
 	
 	@RequestMapping("joinFormC")
 	public String joinFormC(Model model) {
@@ -63,7 +72,6 @@ public class CustomerController {
 			result = -1;
 		} else if (customerdto.getC_password().equals(customer.getC_password())) {
 			result = 1;
-			session.setAttribute("c_id", customerdto.getC_id());
 			if (customerdto.getC_role().equals("admin")) {
 				session.setAttribute("login", "admin");
 			} else {
@@ -141,5 +149,56 @@ public class CustomerController {
 			session.invalidate();
 		model.addAttribute("result", result);
 		return "/customer/deleteC";
+	}
+	
+	@RequestMapping("/cus/myExList")
+	public String myExList (String pageNum, Model model, HttpSession session) {
+		String c_id = (String)session.getAttribute("c_id");
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 5;
+		int total = es.getTotal();
+		int startRow = (currentPage - 1) * rowPerPage;
+		Collection<ExhibitionDTO> myList = new ArrayList<ExhibitionDTO>();
+		if (total == 0) {
+			myList = null;
+		} else {
+			myList = is.myList(c_id);
+		}
+		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
+		model.addAttribute("page", page);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("myList", myList);
+		return "/customer/myExList";
+	}
+	
+	@RequestMapping("add_Interest")
+	@ResponseBody
+	public int add_Interest(String exhibition_no, HttpSession session) {
+		String c_id = (String) session.getAttribute("c_id");
+		int ex_no = Integer.parseInt(exhibition_no);
+		int result = 0;
+		if (c_id == null) {
+			result = 0;
+		} else {
+			es.likeCntUp(ex_no);
+			result = is.addInt(exhibition_no, c_id);
+		}
+		return result;
+	}
+	
+	@RequestMapping("remove_Interest")
+	@ResponseBody
+	public int remove_Interest(String exhibition_no, HttpSession session) {
+		String c_id = (String) session.getAttribute("c_id");
+		int ex_no = Integer.parseInt(exhibition_no);
+		int result = 0;
+		if (c_id == null) {
+			result = 0;
+		} else {
+			es.likeCntDown(ex_no);
+			result = is.removeInt(exhibition_no, c_id);
+		}
+		return result;
 	}
 }

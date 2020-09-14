@@ -1,4 +1,5 @@
 package com.finalproj.view.customer;
+import java.util.HashMap;
 import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 	public String selectNick(String c_id) {
 		return sst.selectOne("customerns.selectNick", c_id);
+	}
+	@Override
+	public int addInt(int ex_no, String c_id) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("exhibition_no", ex_no+"");
+		map.put("c_id", c_id);
+		return sst.insert("interestns.add", map);
 	}
 }

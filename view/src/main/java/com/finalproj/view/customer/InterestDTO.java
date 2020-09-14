@@ -1,13 +1,18 @@
-package com.finalproj.view.exhibition;
+package com.finalproj.view.customer;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
+
 @Data
-public class ExhibitionDTO {
-	private int exhibition_no; 
+public class InterestDTO {
+	
+	public int interest_no;
+	public int exhibition_no;
+	public String c_id;
+	public Date reg_date;
+	
+	//join
 	private String b_id; 
 	private String title;
 	private String artist;
@@ -23,22 +28,7 @@ public class ExhibitionDTO {
 	private String hashtags;
 	private String content;
 	private int like_cnt;
-	private Date reg_date;
+	private Date reg_date2;
 	private String del;	
 	private String filename;
-	
-	// img
-	private MultipartFile file;
-	private String oldFilename;
-	private String fileChange;
-		
-	// paging
-	private int startRow;
-	private int endRow;
-	
-	// address
-	private String sub_address;
-	
-	//ckeditor
-	
 }

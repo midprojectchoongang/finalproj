@@ -151,7 +151,7 @@
 					</script>					
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>가입승인</sapn>
+								<span>가입승인</span>
 								<div class="col-md-12">
 									<select name="confirm" id="confirm" class="form-control" required="required">
 										<c:forEach var="state" items="${db }" varStatus="i">

@@ -50,4 +50,18 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	public int delete(int exhibition_no) {
 		return sst.delete("exhibitionns.delete", exhibition_no);
 	}
+
+	@Override
+	public void likeCntUp(int exhibition_no) {
+		sst.update("exhibitionns.likeCntUp", exhibition_no);
+	}
+
+	@Override
+	public void likeCntDown(int exhibition_no) {
+		sst.update("exhibitionns.likeCntDown", exhibition_no);
+	}
+
+	public void autoDelete() {
+		sst.delete("exhibitionns.autoDelete");
+	}
 }

@@ -19,7 +19,12 @@
 						<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-outline">수정</a>
 						<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
 					</c:if>
+					<c:if test="${myList == 'y' }">
+						<a href="${path }/cus/myExList" class="btn btn-outline">관심전시목록</a>
+					</c:if>
+					<c:if test="${myList == null }">
 					<a href="${path }/exList" class="btn btn-outline">목록</a>
+					</c:if>
 				</div>
 				<div class="row">
 				<div class="col-md-12">
@@ -73,11 +78,67 @@
 							</td>
 						</tr>							
 						<tr>
-							<td colspan="3" style="padding: 30px 0;">
+							<td style="vertical-align: middle;">
+								<span style="cursor: pointer;">
+								<c:if test="${heart == 1}">
+									<img src="${path }/images/heart_on.png" id="heartIcon" onclick="changeIcon()" role="on">
+								</c:if>
+								<c:if test="${heart == 0}">
+									<img src="${path }/images/heart_off.png" id="heartIcon" onclick="changeIcon()" role="off">
+								</c:if>
+								</span>
+							</td>	
+							<script type="text/javascript">
+								$(function() {
+									// customer의 interest값에 따라서 icon img 설정
+								})
+								var eno = '${ex.exhibition_no}';
+								function changeIcon() {
+									if ($('#heartIcon').attr('role') == 'off') {
+										// controller 처리
+										$.ajax({
+											url : 'add_Interest',
+											type : 'post',
+											data : {
+												exhibition_no : eno
+											},
+											success : function(data) {
+												if(data == 0) {
+													alert('로그인 후 이용할 수 있습니다.');
+													return false;
+												} else {
+													alert('관심전시로 등록했습니다.');
+													$('#heartIcon').attr('src','${path }/images/heart_on.png');
+													$('#heartIcon').attr('role','on');
+												}
+											}
+										});
+									} else {
+										$.ajax({
+											url : 'remove_Interest',
+											type : 'post',
+											data : {
+												exhibition_no : eno
+											},
+											success : function(data) {
+												if($.trim(data) == 0) {
+													alert('오류가 발생했습니다.');
+													return false;
+												} else {
+													alert('관심전시에서 삭제했습니다.');
+													$('#heartIcon').attr('src','${path }/images/heart_off.png');
+													$('#heartIcon').attr('role','off');
+												}
+											}
+										});
+									}
+								}
+							</script>						
+							<td colspan="2" style="padding: 30px 0;">
 								<p class="tags">
 									<c:forEach var="ph" items="${postedHash }">
 										<span class="tag">
-											<a href="#" class="name"><i class="icon-tag"></i> ${ph.hash_title }</a>
+											<a href="exList?keyword=${ph.hash_title }" class="name"><i class="icon-tag"></i> ${ph.hash_title }</a>
 										</span>
 									</c:forEach>
 								</p>
@@ -89,11 +150,7 @@
 							</th>	
 							<td colspan="2">
 								${ex.address }
-								
-								
-								
-<!-- 								
-							<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
+							<div id="map" style="width:100%;height:300px;margin-top:10px;"></div>
 							<script type="text/javascript">
 								var addr = '${addr}';
 								var galName = '${ex.gallery}';
@@ -135,11 +192,6 @@
 								    } 
 								});   
 							</script>
-								 -->
-								
-								
-								
-								
 								
 							</td>
 						</tr>
@@ -175,9 +227,9 @@
 				<div class="col-md-12">
 					<table class="table table-striped">
 						<tr>
-						<td style="padding: 30px;">
-							${ex.content }
-						</td>
+							<td style="padding: 30px;">
+								${ex.content }
+							</td>
 						</tr>
 					</table>
 				</div>

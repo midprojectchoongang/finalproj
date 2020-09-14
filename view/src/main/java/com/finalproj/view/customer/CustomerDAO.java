@@ -9,4 +9,5 @@ public interface CustomerDAO {
 	int idChk(String c_id);
 	int nickChk(String nickname);
 	String selectNick(String c_id);
+	int addInt(int ex_no, String c_id);
 }

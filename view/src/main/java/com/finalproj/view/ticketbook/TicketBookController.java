@@ -70,11 +70,9 @@ public class TicketBookController {
 	public String ticketWrite(TicketBookDTO ticket, Model model, HttpSession session) throws Exception {
 		int result = 0;
 		String realPath = session.getServletContext().getRealPath("/ticketImg");
-		System.out.println(realPath);
 		MultipartFile poster = ticket.getFile();
 		String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
 		try {
-			//poster.transferTo(new File(realPath + fileName));
 			poster.transferTo(new File(realPath + File.separator + fileName));
 		} catch (Exception e) {
 			System.out.println("업로드 오류");

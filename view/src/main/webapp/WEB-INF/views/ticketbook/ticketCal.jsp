@@ -117,7 +117,7 @@
 									<div class="row">
 										<span class="col-md-2 cal-title" id="Ymd"></span>
 										<span class="col-xs-0 cal-title btn-group-xs">
-										<a href="/cus/ticketWriteForm" class="btn btn-primary">+</a>
+										<a href="${path }/cus/ticketWriteForm" class="btn btn-primary">+</a>
 										</span>
 									</div>
 									</th>
