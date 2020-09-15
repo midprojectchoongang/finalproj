@@ -193,9 +193,7 @@
 								<script>
 									window.onload = function() {
 										ck = CKEDITOR.replace("content", {
-//											filebrowserUploadUrl : "${pageContext.request.contextPath}/resources/ckUpload"
 											filebrowserUploadUrl : "/view/ckUpload"
-//											filebrowserUploadUrl : "ckUpload"
 										});
 									};
 								</script>

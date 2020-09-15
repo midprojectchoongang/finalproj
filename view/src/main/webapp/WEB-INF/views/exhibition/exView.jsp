@@ -234,9 +234,14 @@
 					</table>
 				</div>
 			</div>
-			</div>
+			
+			<hr>
+					<!--  댓글  -->					
+					
+					
+			</div>			
 		</div>
-	</div>
+	</div>				
 	<%@ include file="../mainPage/footer.jsp"%>
 </div>
 </body>
