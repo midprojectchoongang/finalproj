@@ -54,7 +54,7 @@
 		</select>
 		<sql id="search">
 			<if test="keyword != null">
-				where hashtags like concat('%',#{keyword},'%')
+				and hashtags like concat('%/"',#{keyword},'/"%') escape '/'
 			</if>
 		</sql>
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">

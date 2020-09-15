@@ -226,7 +226,7 @@ public class ExhibitionController {
 	@RequestMapping("exUpdate")
 	public String exUpdate(ExhibitionDTO ex, String pageNum, Model model, HttpSession session) {	
 		if (ex.getFileChange().equals("y")) {
-			String realPath = session.getServletContext().getRealPath("/exImg");
+			String realPath = session.getServletContext().getRealPath("/resources/exImg");
 			MultipartFile poster = ex.getFile();
 			String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
 			try {
