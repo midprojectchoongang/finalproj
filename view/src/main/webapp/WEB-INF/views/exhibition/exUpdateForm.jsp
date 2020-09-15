@@ -210,12 +210,14 @@
 						</div>									
 						<div class="row form-group">
 							<div class="col-md-12">
+								<textarea name="content" rows=30></textarea>
 								<script>
 									window.onload = function() {
-										ck = CKEDITOR.replace("content");
+										ck = CKEDITOR.replace("content", {
+											filebrowserUploadUrl : "/view/ckUpload"
+										});
 									};
 								</script>
-								<textarea name="content" rows=30>${ex.content }</textarea>
 							</div>
 						</div>
 					</div>

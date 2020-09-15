@@ -29,4 +29,7 @@ public class HashtagServiceImpl implements HashtagService{
 	public void addCustomHash(String hashName, String b_id) {
 		hd.addCustomHash(hashName, b_id);
 	}
+	public List<HashtagDTO> ownHash(String b_id) {
+		return hd.ownHash(b_id);
+	}
 }

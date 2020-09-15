@@ -1,24 +1,22 @@
 package com.finalproj.view.business;
-
 import java.util.Collection;
-
+import java.util.List;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.finalproj.view.common.PagingBean;
-import com.finalproj.view.exhibition.ExhibitionDTO;
-
+import com.finalproj.view.hashtag.HashtagDTO;
+import com.finalproj.view.hashtag.HashtagService;
 @Controller
 public class BusinessController {
-	
 	@Autowired
 	private BusinessService bs;
+	@Autowired
+	private HashtagService hs;
 	
 	// master 시작
 	@RequestMapping("/master/bizList")
@@ -168,4 +166,11 @@ public class BusinessController {
 		return "business/delete";
 	}
 	
+	@RequestMapping("/biz/ownHash")
+	public String ownHash(Model model, HttpSession session) {
+		String b_id = (String)session.getAttribute("b_id");
+		List<HashtagDTO> ownHash = hs.ownHash(b_id);
+		model.addAttribute("ownHash", ownHash);
+		return "business/ownHash";
+	}
 }

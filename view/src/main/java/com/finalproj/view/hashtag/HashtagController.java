@@ -84,6 +84,7 @@ public class HashtagController {
 		model.addAttribute("hashList", hashList);
 		return "/mainPage/hashSearch";
 	}
+	
 	@RequestMapping(value="/biz/addHashChk", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String idChk(String hashName, HttpSession session) {

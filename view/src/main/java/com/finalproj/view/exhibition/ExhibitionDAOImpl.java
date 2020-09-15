@@ -30,10 +30,21 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	@Override
 	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
+		map.put("keyword", keyword);
 		map.put("startRow", startRow+"");
 		map.put("endRow", endRow+"");
-		map.put("keyword", keyword);
 		return sst.selectList("exhibitionns.list", map);
+	}
+	
+	@Override
+	public Collection<ExhibitionDTO> compList(int startRow, int endRow, String[] tags) {
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i=0; i<tags.length; i++) {
+			map.put("keyword" + i, tags[i]);
+		}
+		map.put("startRow", startRow+"");
+		map.put("endRow", endRow+"");
+		return sst.selectList("exhibitionns.compList", map);
 	}
 
 	@Override

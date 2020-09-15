@@ -9,7 +9,7 @@
 		<result property="use_count" column="use_count" />
 		<result property="b_id" column="b_id" />
 	</resultMap>
-	<select id="list" parameterType="hashtag" resultMap="hashtagResult">
+	<select id="list" resultMap="hashtagResult">
 		select * from hashtag order by hashgroup
 	</select>
 	<select id="hashChk" parameterType="string" resultType="integer">
@@ -29,6 +29,9 @@
 		delete from hashtag where hash_title=#{hash_title}
 	</delete>
 	<insert id="addCustomHash" parameterType="hashmap">
-		insert into hashtag values (0, #{hashName}, 'custom', 0, #{b_id})
+		insert into hashtag values (6, #{hashName}, 'custom', 0, #{b_id})
 	</insert>
+	<select id="ownHash" parameterType="string" resultMap="hashtagResult">
+		select * from hashtag where b_id = #{b_id}
+	</select>
 </mapper>

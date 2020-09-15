@@ -47,25 +47,35 @@ public class ExhibitionController {
 	}
   
 	@RequestMapping("exList")
-	public String exList(String pageNum, String keyword, Model model) {
+	public String exList(String pageNum, String keyword, Model model) throws ParseException {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
 		int total = es.getTotal();
 		int startRow = (currentPage - 1) * rowPerPage;
 //		int endRow = startRow + rowPerPage - 1;
-		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
-		if (total == 0) {
-			list = null;
-		} else {
-			list = es.list(startRow, rowPerPage, keyword);
-		}
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
+		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
+		
+		if (keyword == null || !keyword.startsWith("{")) {
+			list = es.list(startRow, rowPerPage, keyword);
+		} else {
+			/* JSON파싱 */
+	        JSONParser jp = new JSONParser();
+	        JSONObject jo;
+	        jo = (JSONObject)jp.parse(keyword);
+	        JSONArray ja = (JSONArray)jo.get("hash");
+	        String c = ja + "";
+	        Gson gson = new Gson();
+	        String[] tags = gson.fromJson(c, String[].class);
+	        list = es.compList(startRow, rowPerPage, tags);
+		}
+		
 //		model.addAttribute("startRow", startRow);
 //		model.addAttribute("endRow", endRow);
+//		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
-//		model.addAttribute("pageNum", pageNum);
 		return "exhibition/exList";
 	}
 	@RequestMapping("/biz/exWriteForm")
@@ -226,7 +236,7 @@ public class ExhibitionController {
 	@RequestMapping("exUpdate")
 	public String exUpdate(ExhibitionDTO ex, String pageNum, Model model, HttpSession session) {	
 		if (ex.getFileChange().equals("y")) {
-			String realPath = session.getServletContext().getRealPath("/exImg");
+			String realPath = session.getServletContext().getRealPath("/resources/exImg");
 			MultipartFile poster = ex.getFile();
 			String fileName = UUID.randomUUID().toString().replace("-", "") + "_" + poster.getOriginalFilename();
 			try {
