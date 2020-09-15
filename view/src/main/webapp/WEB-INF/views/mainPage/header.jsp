@@ -88,6 +88,7 @@
 				</c:if>
 				<c:if test="${sessionScope.login == 'biz' }">
 					<ul>
+						<li><a href="${path}/biz/ownHash">해쉬태그관리</a></li>
 						<li><a href="${path}/biz/bizView">회원정보</a></li>
 						<li><a href="${path}/bizLogout">로그아웃</a></li>
 					</ul>

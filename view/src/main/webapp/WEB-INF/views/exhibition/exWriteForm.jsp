@@ -210,7 +210,6 @@
 							<div class="col-md-12 btn-group-sm">
 								<label for="keyword">Search #HASH</label>
 								<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()" style="width:80%">
-								
 								<span style="cursor: pointer;" class="btn btn-info" onclick="addNewHash()">+</span>
 							</div>
 						</div>
@@ -349,8 +348,7 @@
 					            }
 							}
 						}
-					</script>
-					<script type="text/javascript">
+						
 						function submit() {
 							var c_hashtag = new Object();
 							c_hashtag.hash = hash_select;

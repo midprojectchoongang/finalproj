@@ -9,4 +9,5 @@ public interface HashtagService {
 	void updateHash(HashtagDTO hashtag);
 	void deleteHash(String hash_title);
 	void addCustomHash(String hashName, String b_id);
+	List<HashtagDTO> ownHash(String b_id);
 }

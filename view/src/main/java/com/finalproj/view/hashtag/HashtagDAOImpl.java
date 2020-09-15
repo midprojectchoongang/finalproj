@@ -34,4 +34,7 @@ public class HashtagDAOImpl implements HashtagDAO {
 		map.put("b_id", b_id);
 		sst.insert("hashtagns.addCustomHash", map);
 	}
+	public List<HashtagDTO> ownHash(String b_id) {
+		return sst.selectList("hashtagns.ownHash", b_id);
+	}
 }

@@ -59,4 +59,9 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public void autoDelete() {
 		ed.autoDelete();
 	}
+
+	@Override
+	public Collection<ExhibitionDTO> compList(int startRow, int rowPerPage, String[] tags) {
+		return ed.compList(startRow, rowPerPage, tags);
+	}
 }

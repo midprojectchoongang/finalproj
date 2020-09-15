@@ -12,4 +12,5 @@ public interface ExhibitionDAO {
 	void likeCntUp(int exhibition_no);
 	void likeCntDown(int exhibition_no);
 	void autoDelete();
+	Collection<ExhibitionDTO> compList(int startRow, int rowPerPage, String[] tags);
 }
