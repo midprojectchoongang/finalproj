@@ -200,7 +200,7 @@
 									<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()">
 									</td>
 									<td style="width: 10%; padding-right: 0; padding-left: 10px; vertical-align: middle;" class="btn-group-sm">
-									<button class="btn btn-primary" onclick="addNewHash()">추가</button>
+									<button type="button" class="btn btn-primary" onclick="addNewHash()">추가</button>
 									</td>
 								</tr>
 								</table>
@@ -214,7 +214,7 @@
 						</div>
 						<script type="text/javascript">							
 							function filter() {
-								var keyword, name, tag, i;
+								var keyword, name, tag, i, hint;
 								keyword = document.getElementById("keyword").value.toUpperCase();
 								tag = document.getElementsByName("taglists");
 								for (i=0; i<tag.length; i++) {
@@ -244,8 +244,9 @@
 												$('#customHash').append('<span class="tag" name="taglists">' +
 														'<a onclick="addPrehash(\''+hashName+'\')" class="name" style="cursor: pointer;">' +
 														'<i class="icon-tag"></i> '+hashName+'</a></span>');
+												$('#warnDisp').html('');
 											} else {
-												$('#warnDisp').html('&emsp;이미 사용중인 #HashTag입니다');
+												$('#warnDisp').html('&emsp;이미 존재하는 #HashTag입니다');
 											}
 										},
 										error : function() {
@@ -257,26 +258,13 @@
 						</script>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<p class="tags">
+								<p class="tags" id="customHash">
 									<c:forEach var="htl" items="${hashList }">
-									<c:if test="${htl.kind == 'basic' }">
 										<span class="tag" name="taglists">
 											<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
 												<i class="icon-tag"></i> ${htl.hash_title }
 											</a>
 										</span>
-									</c:if>
-									</c:forEach>
-									<br><br><br><br>
-								</p><p class="tags" id="customHash">
-									<c:forEach var="htl" items="${hashList }">
-									<c:if test="${htl.kind == 'custom' }">
-										<span class="tag" name="taglists">
-											<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
-												<i class="icon-tag"></i> ${htl.hash_title }
-											</a>
-										</span>
-									</c:if>
 									</c:forEach>
 								</p>
 							</div>
@@ -285,7 +273,7 @@
 					<script type="text/javascript">
 						var hash_html = new Array();
 						var hash_select = new Array();
-						var max_hashtag = 5;
+						var max_hashtag = 7;
 						
 						function addPrehash(hash_title) {
 							$('#warnDisp').html('');
@@ -323,7 +311,7 @@
 									$('#prehash').html(hash_html[0]);
 							    }
 							} else if (hash_html.length == max_hashtag) {
-								$('#warnDisp').html('&emsp;#HashTag는 최대' + max_hashtag + '개까지만 선택할 수 있습니다');
+								$('#warnDisp').html('&emsp;#HashTag는 최대 ' + max_hashtag + '개까지만 선택할 수 있습니다');
 							}
 						}
 						

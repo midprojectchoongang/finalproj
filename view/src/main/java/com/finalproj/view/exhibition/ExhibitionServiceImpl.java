@@ -22,8 +22,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public int getTotal() {
-		return ed.getTotal();
+	public int getTotal(String keyword) {
+		return ed.getTotal(keyword);
 	}
 
 	@Override
@@ -63,5 +63,10 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	@Override
 	public Collection<ExhibitionDTO> compList(int startRow, int rowPerPage, String[] tags) {
 		return ed.compList(startRow, rowPerPage, tags);
+	}
+
+	@Override
+	public int getCompTotal(String[] tags) {
+		return ed.getCompTotal(tags);
 	}
 }

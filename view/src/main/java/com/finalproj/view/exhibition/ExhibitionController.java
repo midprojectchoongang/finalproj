@@ -48,28 +48,30 @@ public class ExhibitionController {
   
 	@RequestMapping("exList")
 	public String exList(String pageNum, String keyword, Model model) throws ParseException {
+		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int total = 0;
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
-		int total = es.getTotal();
 		int startRow = (currentPage - 1) * rowPerPage;
-//		int endRow = startRow + rowPerPage - 1;
-		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
-		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
 		
 		if (keyword == null || !keyword.startsWith("{")) {
+			total = es.getTotal(keyword);
 			list = es.list(startRow, rowPerPage, keyword);
 		} else {
-			/* JSON파싱 */
-	        JSONParser jp = new JSONParser();
-	        JSONObject jo;
-	        jo = (JSONObject)jp.parse(keyword);
-	        JSONArray ja = (JSONArray)jo.get("hash");
-	        String c = ja + "";
-	        Gson gson = new Gson();
-	        String[] tags = gson.fromJson(c, String[].class);
-	        list = es.compList(startRow, rowPerPage, tags);
+			JSONParser jp = new JSONParser();
+			JSONObject jo;
+			jo = (JSONObject)jp.parse(keyword);
+			JSONArray ja = (JSONArray)jo.get("hash");
+			String c = ja + "";
+			Gson gson = new Gson();
+			String[] tags = gson.fromJson(c, String[].class);
+			total = es.getCompTotal(tags);
+			list = es.compList(startRow, rowPerPage, tags);
 		}
+		
+//		int endRow = startRow + rowPerPage - 1;
+		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
 //		model.addAttribute("startRow", startRow);
 //		model.addAttribute("endRow", endRow);
@@ -91,7 +93,7 @@ public class ExhibitionController {
 		}
 	}
 	@RequestMapping("exWrite")
-	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) {
+	private String exWrite(ExhibitionDTO ex, Model model, HttpSession session) throws ParseException {
 		int result = 0;
 		String realPath = session.getServletContext().getRealPath("/resources/exImg");
 		MultipartFile poster = ex.getFile();
@@ -103,6 +105,19 @@ public class ExhibitionController {
 			System.out.println("업로드 오류");
 		}
 		ex.setFilename(fileName);
+		
+		/* JSON파싱 */
+        JSONParser jp = new JSONParser();
+        JSONObject jo;
+        jo = (JSONObject)jp.parse(ex.getHashtags());
+        JSONArray ja = (JSONArray)jo.get("hash");
+        String c = ja + "";
+        Gson gson = new Gson();
+        String[] tags = gson.fromJson(c, String[].class);
+        for (int i = 0; i < tags.length; i++) {
+        	hs.usedHash(tags[i]);
+        }
+		
 		if (ex.getSub_address() != null) {
 			String addr = ex.getAddress() + ", " + ex.getSub_address();
 			ex.setAddress(addr);

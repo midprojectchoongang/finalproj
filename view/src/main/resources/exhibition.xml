@@ -23,7 +23,7 @@
 		<result property="del" column="del" />
 		<result property="filename" column="filename" />
 	</resultMap>
-		<select id="getTotal" resultType="integer">
+		<select id="getTotal" parameterType="string" resultType="integer">
 			select count(*) from exhibition where del = 'n'
 			<include refid="search"></include>
 		</select>
@@ -34,25 +34,29 @@
 		</select>
 		<sql id="search">
 			<if test="keyword != null">
-				and hashtags like concat('%/"',#{keyword},'/"%') escape '/'
+				and hashtags like concat('%\"',#{keyword},'\"%')
 			</if>
 		</sql>
-<!-- 		<select id="compList" parameterType="hashmap" resultMap="exhibitionResult">
+		<select id="getCompTotal" parameterType="hashmap" resultType="integer">
+			select count(*) from exhibition where del = 'n'
+			<include refid="compSearch"></include>
+		</select>
+ 		<select id="compList" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n'
-			<include refid="search"></include>
-			order by exhibition_no limit ${startRow}, ${endRow}
+			<include refid="compSearch"></include>
+			limit ${startRow}, ${endRow}
 		</select>
 		<sql id="compSearch">
 			<if test="keyword0 != null">
-				where hashtags like concat('%/"',#{keyword},'/"%') escape '/'
-				<if test="keyword1 != null">
-					or hashtags like concat('%/"',#{keyword},'/"%') escape '/'
-					<if test="keyword2 != null">
-						or hashtags like concat('%/"',#{keyword},'/"%') escape '/'
-					</if>
-				</if>
+				and hashtags like concat('%\"',#{keyword0},'\"%')
 			</if>
-		</sql> -->
+			<if test="keyword1 != null">
+				or hashtags like concat('%\"',#{keyword1},'\"%')
+			</if>
+			<if test="keyword2 != null">
+				or hashtags like concat('%\"',#{keyword2},'\"%')
+			</if>
+		</sql>
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},

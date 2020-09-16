@@ -32,4 +32,7 @@ public class HashtagServiceImpl implements HashtagService{
 	public List<HashtagDTO> ownHash(String b_id) {
 		return hd.ownHash(b_id);
 	}
+	public void usedHash(String hashName) {
+		hd.usedHash(hashName);
+	}
 }

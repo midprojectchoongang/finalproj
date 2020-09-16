@@ -34,4 +34,7 @@
 	<select id="ownHash" parameterType="string" resultMap="hashtagResult">
 		select * from hashtag where b_id = #{b_id}
 	</select>
+	<update id="usedHash" parameterType="string">
+		update hashtag set use_count = use_count+1 where hash_title = #{hashName}
+	</update>
 </mapper>

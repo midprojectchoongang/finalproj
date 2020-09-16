@@ -7,7 +7,7 @@
 <body>
 <div class="colorlib-loader"></div>
 <div id="page">
-	<%@ include file="../mainPage/header.jsp"%>
+	
 	<script type="text/javascript">
 		$(function() {
 			$('#commentList').load('commentList?exhibition_no=1');
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="../mainPage/footer.jsp"%>
+	
 </div>
 </body>
 </html>

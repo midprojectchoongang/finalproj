@@ -173,4 +173,11 @@ public class BusinessController {
 		model.addAttribute("ownHash", ownHash);
 		return "business/ownHash";
 	}
+	@RequestMapping(value="deleteHash", produces="text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteHash(String hash_title) {
+		hs.deleteHash(hash_title);
+		int result = hs.hashChk(hash_title);
+		return String.valueOf(result);
+	}
 }
