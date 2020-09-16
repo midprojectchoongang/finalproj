@@ -17,4 +17,12 @@ public class CommentServiceImpl implements CommentService {
 	public int addComment(CommentDTO comment) {
 		return cd.addComment(comment);
 	}
+	@Override
+	public int updateComment(CommentDTO comment) {
+		return cd.updateComment(comment);
+	}
+	@Override
+	public int deleteComment(int comment_no) {
+		return cd.deleteComment(comment_no);
+	}
 }

@@ -17,4 +17,12 @@ public class CommentDAOImpl implements CommentDAO {
 	public int addComment(CommentDTO comment) {
 		return sst.insert("commentns.addComment", comment);
 	}
+	@Override
+	public int updateComment(CommentDTO comment) {
+		return sst.update("commentns.updateComment", comment);
+	}
+	@Override
+	public int deleteComment(int comment_no) {
+		return sst.delete("commentns.deleteComment", comment_no);
+	}
 }

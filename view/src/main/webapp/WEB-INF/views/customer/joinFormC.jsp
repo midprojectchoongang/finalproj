@@ -33,7 +33,7 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="c_id">아이디</label>
-									<input type="text" name="c_id" id="c_id" class="form-control"required="required" onkeyup="idChk()">
+									<input type="text" name="c_id" id="c_id" class="form-control" required="required" onkeyup="idChk()">
 									<div id="idDisp"></div>
 								</div>								
 							</div>
