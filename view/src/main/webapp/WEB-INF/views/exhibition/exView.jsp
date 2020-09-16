@@ -233,15 +233,13 @@
 						</tr>
 					</table>
 				</div>
-			</div>
-			
-			<hr>
-					<!--  댓글  -->					
-					
-					
+			</div>		
+			<hr>					
 			</div>			
 		</div>
-	</div>				
+		</div>				
+			<!--  댓글  -->
+			<%@ include file="../comment/commentWrite.jsp" %>
 	<%@ include file="../mainPage/footer.jsp"%>
 </div>
 </body>

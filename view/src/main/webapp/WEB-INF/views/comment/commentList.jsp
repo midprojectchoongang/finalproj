@@ -32,6 +32,9 @@
 				$('#deleteBtn').replaceWith('<button id="cancelUpBtn">취소</button>');
 			});
 		}
+		function cancelUpBtn() {
+			$('#commentList').load('commentList?exhibition_no=1');
+		}
 	</script>
 </div>			
 </body>

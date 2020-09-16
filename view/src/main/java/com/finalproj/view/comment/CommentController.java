@@ -41,4 +41,22 @@ public class CommentController {
 		int result = cmt.addComment(comment);
 	    return String.valueOf(result);
 	}
+	
+	@RequestMapping(value="updateComment", produces="text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateComment(String content, int exhibition_no, HttpSession session, Model model) {
+		String c_id = (String)session.getAttribute("c_id");
+		CommentDTO comment = new CommentDTO();
+		comment.setC_id(c_id);
+		comment.setExhibition_no(exhibition_no);
+		comment.setContent(content);
+		int result = cmt.updateComment(comment);
+	    return String.valueOf(result);
+	}
+	@RequestMapping(value="deleteComment", produces="text/html;charset=utf-8", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteComment(int comment_no, HttpSession session, Model model) {	
+		int result = cmt.deleteComment(comment_no);
+	    return String.valueOf(result);
+	}
 }
