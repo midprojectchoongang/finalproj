@@ -33,7 +33,7 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="c_id">아이디</label>
-									<input type="text" name="c_id" id="c_id" class="form-control" required="required" onkeyup="idChk()">
+									<input type="text" name="c_id" id="c_id" class="form-control" onkeyup="idChk()">
 									<div id="idDisp"></div>
 								</div>								
 							</div>
@@ -69,24 +69,23 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="c_password">비밀번호</label>
-									<input type="password" name="c_password" id="c_password" class="form-control" required="required">
+									<input type="password" name="c_password" id="c_password" class="form-control">
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="c_password2">비밀번호 확인</label>
-									<input type="password" name="c_password2" id="c_password2" class="form-control" required="required">
+									<input type="password" name="c_password2" id="c_password2" class="form-control" onkeyup="passwordChk()">
+									<div id="pwDisp"></div>
 								</div>
 							</div>
 						</div>
 						<script type="text/javascript">
 							function passwordChk() {
 								if (frm.c_password.value != frm.c_password2.value) {
-									alert("password check");
-									frm.c_password.focus();
-									frm.c_password.value = "";
-									frm.c_password2.value = "";
-									return false;
+									$('#pwDisp').html("<b>비밀번호와 비밀번호 확인이 일치하지 않습니다</b>");
+								} else {
+									$('#pwDisp').html("");
 								}
 							}
 						</script>
@@ -94,7 +93,7 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="nickname">닉네임</label>
-									<input type="text" name="nickname" id="nickname" class="form-control" required="required" onkeyup="nickChk()">
+									<input type="text" name="nickname" id="nickname" class="form-control" onkeyup="nickChk()">
 									<div id="nickDisp"></div>
 								</div>
 							</div>
@@ -129,7 +128,8 @@
 							<div class="row form-group">
 								<div class="col-md-12">
 									<label for="subject">이메일</label>
-									<input type="email" name="email" id="email" class="form-control" required="required">
+									<input type="email" name="email" id="email" class="form-control">
+									<div id="emailDisp"></div>
 								</div>
 							</div>
 						</div>
@@ -242,6 +242,27 @@
 						<input type="hidden" name="c_hashtag" value="" />
 						<script type="text/javascript">
 							function submit() {
+								if (frm.c_id.value == "" || frm.c_id.value == null) {
+									$('#idDisp').html("<b>ID를 적어주십시요</b>");
+									frm.c_id.focus();
+									return;
+								} else if (frm.c_password.value == "" || frm.c_password.value == null) {
+									$('#pwDisp').html("<b>비밀번호를 적어주십시요</b>");
+									frm.c_password.focus();
+									return;
+								} else if (frm.nickname.value == "" || frm.nickname.value == null) {
+									$('#nickDisp').html("<b>닉네임을 적어주십시요</b>");
+									frm.nickname.focus();
+									return;
+								} else if (frm.email.value == "" || frm.email.value == null) {
+									$('#emailDisp').html("<b>이메일을 적어주십시요</b>");
+									frm.email.focus();
+									return;
+								} else if (frm.c_password.value != frm.c_password2.value) {
+									$('#pwDisp').html("<b>비밀번호와 비밀번호 확인이 일치하지 않습니다</b>");
+									frm.c_password2.focus();
+									return;
+								}
 								var c_hashtag = new Object();
 								c_hashtag.hash = hash_select;
 								var values = JSON.stringify(c_hashtag);

@@ -10,4 +10,5 @@ public interface HashtagService {
 	void deleteHash(String hash_title);
 	void addCustomHash(String hashName, String b_id);
 	List<HashtagDTO> ownHash(String b_id);
+	void usedHash(String hashName);
 }

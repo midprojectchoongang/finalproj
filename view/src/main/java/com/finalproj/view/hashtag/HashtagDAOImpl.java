@@ -37,4 +37,7 @@ public class HashtagDAOImpl implements HashtagDAO {
 	public List<HashtagDTO> ownHash(String b_id) {
 		return sst.selectList("hashtagns.ownHash", b_id);
 	}
+	public void usedHash(String hashName) {
+		sst.update("hashtagns.usedHash", hashName);
+	}
 }

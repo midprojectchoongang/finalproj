@@ -1537,3 +1537,7 @@ input[type="text"] {
 
 .js .animate-box {
   opacity: 0; }
+
+.isHidden {
+	display: none;
+}

@@ -11,13 +11,13 @@
 	<div id="colorlib-container" align="center">
 		<div class="container">
 		<div class="col-md-9">
-			<form action="exList" method="post" name="frm">
-			<div class="row-pb-lg">
+			<form name="frm" action="exList">
+			<div class="row-pb-sm">
 				<div class="row headbox-sm"><h2 class="heading-2-b">Search</h2></div>
 				<div class="row-pb-sm">
 					<div class="col-md-12">
 						<input type="text" id="keyword" class="form-control" onkeyup="filter()" placeholder="Type #HASH"
-							 style="width:70%; display: inline;">
+							 style="width:80%; display: inline;">
 						<div style="cursor: pointer;" class="btn btn-info" onclick="search()">검색</div>
 					</div>
 					<div class="col-md-12" style="margin-top: 50px;">
@@ -27,11 +27,12 @@
 				</div>
 			</div>
 			<input type="hidden" name="keyword" value="">
+			</form>
 			<script type="text/javascript">
 				function filter() {
 					var keyword, name, tag, i;
 					keyword = document.getElementById("keyword").value.toUpperCase();
-					tag = document.getElementsByClassName("tag");
+					tag = document.getElementsByName("taglists");
 					for (i=0; i<tag.length; i++) {
 						name = tag[i].getElementsByClassName("name");
 						if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
@@ -43,6 +44,10 @@
 				}
 				
 				function search() {
+					if (hash_select[0] == null || hash_select[0] == "") {
+						$('#warnDisp').html('#HashTag를 최소 1개 이상 선택하여 주십시요');
+						return;
+					}
 					var hts = new Object();
 					hts.hash = hash_select;
 					var values = JSON.stringify(hts);
@@ -52,21 +57,20 @@
 					document.frm.submit();
 				}
 			</script>
-			</form>
 			<div class="row-pb-lg">
 				<div class="row headbox-sm"><h2 class="heading-2-b">#HASHTAG</h2></div>
 				<div class="row-pb-md">
-				<div class="col-md-12">
-					<p class="tags">
-						<c:forEach var="htl" items="${hashList }">
+					<div class="col-md-12">
+						<p class="tags">
+							<c:forEach var="htl" items="${hashList }">
 							<span class="tag" name="taglists">
 								<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
 									<i class="icon-tag"></i> ${htl.hash_title }
 								</a>
 							</span>
-						</c:forEach>
-					</p>
-				</div>
+							</c:forEach>
+						</p>
+					</div>
 				</div>
 			</div>
 			<script type="text/javascript">
@@ -90,7 +94,7 @@
 										if (hash_html[i] == hash_html[j]) {
 											hash_html.splice(j, 1);
 											hash_select.splice(j, 1);
-											$('#warnDisp').html('&emsp;#HashTag는 중복하여 선택할 수 없습니다');
+											$('#warnDisp').html('#HashTag는 중복하여 선택할 수 없습니다');
 											return;
 										} else {
 											continue;
@@ -110,7 +114,7 @@
 							$('#prehash').html(hash_html[0]);
 					    }
 					} else if (hash_html.length == max_hashtag) {
-						$('#warnDisp').html('&emsp;#HashTag는 최대' + max_hashtag + '개까지만 선택할 수 있습니다');
+						$('#warnDisp').html('#HashTag는 최대' + max_hashtag + '개까지만 선택할 수 있습니다');
 					}
 				}
 				
