@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -13,24 +14,24 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div class="row headbox"><h2 class="heading-2">${ex.title }</h2></div>
-				</div>
-				<div class="row-pb-sm btn-group-sm" style="text-align: right; padding: 20px;">
-					<c:if test="${ex.b_id == sessionScope.b_id }">
-						<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-outline">수정</a>
-						<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
-					</c:if>
-					<c:if test="${myList == 'y' }">
-						<a href="${path }/cus/myExList" class="btn btn-outline">관심전시목록</a>
-					</c:if>
-					<c:if test="${myList == null }">
-					<a href="${path }/exList" class="btn btn-outline">목록</a>
-					</c:if>
+					<div class="row-pb-sm btn-group-xs" style="text-align: right; padding: 20px;">
+						<c:if test="${ex.b_id == sessionScope.b_id }">
+							<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-outline">수정</a>
+							<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
+						</c:if>
+						<c:if test="${myList == 'y' }">
+							<a href="${path }/cus/myExList" class="btn btn-outline">관심전시목록</a>
+						</c:if>
+						<c:if test="${myList == null }">
+						<a href="${path }/exList" class="btn btn-outline">목록</a>
+						</c:if>
+					</div>
 				</div>
 				<div class="row">
 				<div class="col-md-12">
 					<table class="table table-ticket table-striped">
 						<tr>
-							<td style="width: 30%;" rowspan="5">
+							<td style="width: 30%;" rowspan="4">
 								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail">
 							</td>
 							<th>
@@ -38,14 +39,6 @@
 							</th>
 							<td>
 								${ex.gallery }
-							</td>
-						</tr>
-						<tr>
-							<th>
-								작가
-							</th>	
-							<td>
-								${ex.artist }
 							</td>
 						</tr>
 						<tr>
@@ -74,7 +67,22 @@
 								홈페이지
 							</th>	
 							<td>
-								${ex.gallery_site }
+								<c:if test="${empty ex.gallery_site }">
+									-
+								</c:if>
+								<c:if test="${not empty ex.gallery_site }">
+									<c:set var="site" value="${ex.gallery_site }"/>
+									<c:set var="length" value="${fn:length(site)+1}"/>
+									<c:choose>
+										<c:when test="${fn:startsWith(site, 'http://')}">
+											<c:set var="adj_site" value="${fn:substring(site,7,length)}"></c:set>
+											<a href="http://${adj_site }" target="blank">${ex.gallery_site }</a>
+										</c:when>
+										<c:otherwise>
+											<a href="http://${ex.gallery_site }" target="blank">${ex.gallery_site }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
 							</td>
 						</tr>							
 						<tr>

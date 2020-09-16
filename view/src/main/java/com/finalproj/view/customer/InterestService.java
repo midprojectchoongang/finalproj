@@ -10,8 +10,10 @@ public interface InterestService {
 
 	int removeInt(String exhibition_no, String c_id);
 
-	Collection<ExhibitionDTO> myList(String c_id);
+	Collection<ExhibitionDTO> myList(int startRow, String c_id);
 
 	int iconChk(int exhibition_no, String c_id);
+
+	int getTotal(String c_id);
 
 }

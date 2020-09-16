@@ -23,7 +23,9 @@
 							<c:if test="${not empty list }">
 							<c:forEach items="${list }" var="t">
 							<tr style="cursor: pointer;" onclick="location.href='${path }/cus/ticketView?ticketbook_no=${t.ticketbook_no }&date=${date }'">
-								<td style="width: 30%;" rowspan="2"><img src="${path }/ticketImg/${t.filename }" class="img-thumbnail"></td>
+								<td style="width: 30%; vertical-align: bottom; border-bottom: 1px solid #eeeeee;" rowspan="2">
+									<img src="${path }/ticketImg/${t.filename }" class="img-thumbnail">
+								</td>
 								<td style="width: 70%; height: 30px;">
 									<div class="row">
 										<div class="col-xs-offset-1 h4">
@@ -35,8 +37,9 @@
 									</div>
 								</td>
 							</tr>
-							<tr style="cursor: pointer;" onclick="location.href='${path }/cus/ticketView?ticketbook_no=${t.ticketbook_no }&date=${date }'">
-								<td style="width: 70%;">
+							<tr style="cursor: pointer;" 
+								onclick="location.href='${path }/cus/ticketView?ticketbook_no=${t.ticketbook_no }&date=${date }'">
+								<td style="border-bottom: 1px solid #eeeeee;">
 									<div class="row" id="content">
 										<div class="col-xs-offset-1" id="cBody">
 											${t.content }

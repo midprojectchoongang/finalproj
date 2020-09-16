@@ -4,7 +4,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("삭제되었습니다.");
-		location.href='ticketCal?date=${ticket.date}';
+		location.href='${path}/cus/ticketCal?date=${ticket.date}';
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
