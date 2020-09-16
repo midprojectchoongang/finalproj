@@ -1,4 +1,5 @@
 package com.finalproj.view.customer;
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -157,13 +158,13 @@ public class CustomerController {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
-		int total = es.getTotal();
+		int total = is.getTotal(c_id);
 		int startRow = (currentPage - 1) * rowPerPage;
 		Collection<ExhibitionDTO> myList = new ArrayList<ExhibitionDTO>();
 		if (total == 0) {
 			myList = null;
 		} else {
-			myList = is.myList(c_id);
+			myList = is.myList(startRow, c_id);
 		}
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("page", page);

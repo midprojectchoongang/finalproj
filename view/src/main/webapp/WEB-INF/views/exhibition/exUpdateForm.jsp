@@ -54,24 +54,6 @@
 								 </script>
 							</div>
 						</div>							
-						<%-- <div class="row form-group">
-							<div class="col-md-12">
-								<input type="file" name="file" id="file" class="form-control" required="required">
-								<div class="select_img"><img src="" /></div>
-								<%=request.getRealPath("/") %>
-								<script>
-									$("#file").change(function(){
-								 		if(this.files && this.files[0]) {
-								 		  	var reader = new FileReader;
-								   			reader.onload = function(data) {
-								  				$(".select_img img").attr("src", data.target.result).width(300);        
-										    }
-								   			reader.readAsDataURL(this.files[0]);
-								   		}
-								 	});
-								 </script>
-							</div>
-						</div> --%>
 						<div class="row form-group">
 							<div class="col-md-12" align="left">
 								<b>&emsp;전시회명</b>
@@ -79,16 +61,26 @@
 								value="${ex.title }">
 							</div>
 						</div>
-						<div class="row form-group">
-							<div class="col-md-12" align="left">
-								<b>&emsp;아티스트</b>
-								<input type="text" name="artist" class="form-control" required="required"
-								 value="${ex.artist }">
+						<div class="row form-group" align="justify">	
+							<div class="col-md-12">
+								<table class="table-box">
+									<tr>
+										<td style="width: 47%">
+											<input type="date" name="start_date" class="form-control" required="required" value="${ex.start_date }">
+										</td>
+										<td style="width: 6%; text-align: center; vertical-align: middle;">
+											~
+										</td>
+										<td style="width: 47%">
+											<input type="date" name="end_date" class="form-control" required="required" value="${ex.end_date }">
+										</td>
+									</tr>
+								</table>
 							</div>
-						</div>
+						</div>						
 						<div class="row form-group">
 							<div class="col-md-12" align="left">
-								<b>&emsp;갤러리</b>
+								<b>&emsp;장소</b>
 								<input type="text" name="gallery" class="form-control" required="required" id="gallery"
 								 value="${ex.gallery }">
 							</div>
@@ -168,25 +160,44 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12" align="left">
-								<b>&emsp;예매 사이트1</b>
-								<input type="text" name="ticket_link1" class="form-control" required="required"
-								 value="${ex.ticket_link1 }">
+								<b>&emsp;갤러리 사이트</b>
+								<input type="text" name="gallery_site" class="form-control" value="${ex.gallery_site }">
 							</div>
 						</div>
-						<div class="row form-group">
-							<div class="col-md-12" align="left">
-								<b>&emsp;예매 사이트2</b>
-								<input type="text" name="ticket_link2" class="form-control" required="required"
-								value="${ex.ticket_link2 }">
+						<div class="row form-group" align="left">
+							<div class="col-md-12" id="siteForm">
+								<b>&emsp;예매 사이트</b>
+								<c:if test="${not empty ex.ticket_link1 }">
+								<input type="text" name="ticket_link1" class="form-control" value="${ex.ticket_link1 }">
+								</c:if>
+								<c:if test="${empty ex.ticket_link1 }">
+									<input type="text" name="ticket_link1" class="form-control" placeholder="-">
+								</c:if>								
+								<c:if test="${not empty ex.ticket_link2 }">
+								<input type="text" name="ticket_link2" class="form-control" value="${ex.ticket_link2 }">
+								</c:if>
+								<c:if test="${not empty ex.ticket_link3 }">
+								<input type="text" name="ticket_link3" class="form-control" value="${ex.ticket_link3 }">
+								</c:if>
 							</div>
+							<c:if test="${empty ex.ticket_link1 }">
+								<div class="col-md-12 btn-group-sm">
+									<button type="button" class="btn btn-cta" onclick="addForm()">추가</button>
+								</div>
+							</c:if>
+							<script type="text/javascript">
+								function addForm() {
+									var link = $('#siteForm > input:last');
+									var num = parseInt(link.attr('name').substring(11));
+									if (num == 3) {
+										alert('더이상 추가할 수 없습니다.');
+										return false;
+									} else {
+										$('#siteForm').append('<input type="text" name="ticket_link'+ (num+1) +'" id="link" class="form-control">');
+									} 
+								}
+							</script>								
 						</div>
-						<div class="row form-group">
-							<div class="col-md-12" align="left">
-								<b>&emsp;예매 사이트3</b>
-								<input type="text" name="ticket_link3" class="form-control" required="required"
-								 value="${ex.ticket_link3 }">
-							</div>
-						</div>							
 						<div class="row form-group">
 							<div class="col-md-12" align="left">
 								<b>&emsp;입장권 가격</b>
@@ -194,27 +205,14 @@
 								 value="${ex.price }">
 							</div>
 						</div>
-						
-						<div class="row form-group">														
-							<div class="col-md-12">
-								<div style="display: inline;">
-								<input type="date" name="start_date" class="form-control" required="required" style="display: inline; width: 46%"
-								value="${ex.start_date }">
-								</div>
-								<div style="display: inline; width: 8%; margin: 0 20px 0 20px">~</div>
-								<div style="display: inline;">
-								<input type="date" name="end_date" class="form-control" required="required" style="display: inline; width: 46%"
-								value="${ex.end_date }">
-								</div>
-							</div>
-						</div>									
 						<div class="row form-group">
 							<div class="col-md-12">
-								<textarea name="content" rows=30></textarea>
+								<textarea name="content">${ex.content }</textarea>
 								<script>
 									window.onload = function() {
 										ck = CKEDITOR.replace("content", {
-											filebrowserUploadUrl : "/view/ckUpload"
+											filebrowserUploadUrl : "/view/ckUpload",
+											height: 350
 										});
 									};
 								</script>
@@ -226,10 +224,17 @@
 					<div class="row formbox">
 						<div class="row form-group" align="center">
 							<div class="col-md-12 btn-group-sm">
-								<label for="keyword">Search #HASH</label>
-								<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()"
-								style="width: 100%;">
-								<button type="button" onclick="addNewHash()" class="btn btn-info">+</button>
+								<table class="table-box">
+								<tr>
+									<td style="width: 90%">
+									<label for="keyword">Search #HASH</label>
+									<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()">
+									</td>
+									<td style="width: 10%; padding-right: 0; padding-left: 10px; vertical-align: middle;" class="btn-group-sm">
+									<button class="btn btn-primary" onclick="addNewHash()">추가</button>
+									</td>
+								</tr>
+								</table>
 							</div>
 						</div>
 						<div class="row form-group" align="center">

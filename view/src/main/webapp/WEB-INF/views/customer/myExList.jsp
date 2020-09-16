@@ -15,42 +15,64 @@
 					<div class="row">
 						<div class="row headbox"><h2 class="heading-2">관심전시회</h2></div>
 						<div class="row" align="left">						
-						<table class="table table-hover">
-							<thead>
-							<tr>
-								<th style="width: 50%;" colspan="2">전시회명</th>
-								<th style="width: 20%;">장소</th>
-								<th style="width: 30%;">기간</th>
-							</tr>
-							</thead>
-							<c:if test="${empty myList }">
-							<tbody>
+						<c:if test="${empty myList }">
+							<table class="table" style="margin-top: 20px;">
 								<tr>
-								<td colspan="4" style="text-align: center;">등록된 관심전시회가 없습니다.</td>
+								<td style="text-align: center;">등록된 전시회가 없습니다.</td>
 								</tr>
-							</c:if>
-							<c:if test="${not empty myList }">
-							<c:forEach items="${myList }" var="ex">
-								<c:if test="${ex.del == 'n' }">
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=y'" style="cursor: pointer;">
-								<td>
-									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="width: 100px; height: 100px;">
+							</table>
+						</c:if>
+						<c:if test="${not empty myList }">
+						<table class="table" style="margin: 30px 0;">
+						<tbody>
+						<c:forEach items="${myList }" var="ex">
+							<c:if test="${ex.del == 'n' }">
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=y'" 
+							style="cursor: pointer;">
+								<td rowspan="4" style="width: 35%;">
+									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="width: 120px; height: 120px;">
 								</td>
-								<td style="width: 40%; vertical-align: middle; padding-left: 20px;">
+							</tr>
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=y'" 
+							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
+								<th style="width: 25%;">전시회명</th>
+								<td>
 									${ex.title }
 								</td>
-								<td style="text-align: center; vertical-align: middle;">
+							</tr>
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=y'" 
+							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
+								<th style="width: 25%;">장소</th>
+								<td>
 									${ex.gallery }
 								</td>
-								<td style="text-align: center; vertical-align: middle;">
-									${ex.start_date }<br> ~ ${ex.end_date }
-								</td>															
-							</tbody>							
-								</c:if>
-							</c:forEach>
 							</tr>
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=y'" style="cursor: pointer;">
+								<th style="width: 25%;">기간</th>
+								<td>
+									${ex.start_date } ~ ${ex.end_date }
+								</td>										
+							</tr>
+							<tr style="border-bottom: 2px solid #eeeeee;">
+								<td id="${ex.exhibition_no }" colspan="3">					
+								</td>
+									<script type="text/javascript">
+										var verify = '${ex.exhibition_no }';
+										var jsondata = '${ex.hashtags }';
+										var hash = JSON.parse(jsondata);
+										for (var i=0; i<hash.hash.length; i++) {
+											$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
+													'<a style="cursor:pointer; font-size: 12px;" href="#">#' +
+													hash.hash[i] + '&emsp;</a></span>'
+											);
+										}
+									</script>
+							</tr>							
 							</c:if>
+						</c:forEach>
+						</tbody>							
 						</table>
+						</c:if>
 						</div>
 					</div>
 				</div>
@@ -67,10 +89,10 @@
 						</c:if>
 						<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 							<c:if test="${i == page.currentPage }">
-								<li class="disabled"><a href="${path }/cus/myExList?pageNum=${i }">${ i }</a></li>
+								<li class="disabled"><a href="${path }/cus/myExList?pageNum=${i }">${i}</a></li>
 							</c:if>
 							<c:if test="${i != page.currentPage }">
-								<li class="active"><a href="${path }/cus/myExList?pageNum=${i }">${i }</a></li>
+								<li class="active"><a href="${path }/cus/myExList?pageNum=${i }">${i}</a></li>
 							</c:if>
 						</c:forEach>
 						<c:if test="${page.endPage < page.totalPage }">

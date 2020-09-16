@@ -30,6 +30,10 @@
 	</resultMap>
 	<select id="myList" parameterType="string" resultMap="interestResult">
 		select * from interest i, exhibition e where i.c_id = #{c_id} and i.exhibition_no = e.exhibition_no
+		limit ${startRow}, 5
+	</select>
+	<select id="getTotal" parameterType="string" resultType="integer">
+		select count(*) from interest where c_id = #{c_id}
 	</select>
 	<select id="iconChk" parameterType="string" resultType="integer">
 		select count(*) from interest where c_id = #{c_id} and exhibition_no = ${exhibition_no}

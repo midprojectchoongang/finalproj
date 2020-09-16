@@ -991,6 +991,7 @@ table.table-box > tr > td {
 }
 #cBody { 
 	display:inline-block;
+	padding-left: 10%;
 	width: 80%;
 	white-space: nowrap;
 	overflow: hidden;

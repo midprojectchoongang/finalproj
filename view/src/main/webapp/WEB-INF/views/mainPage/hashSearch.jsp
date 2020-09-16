@@ -16,10 +16,17 @@
 				<div class="row headbox-sm"><h2 class="heading-2-b">Search</h2></div>
 				<div class="row-pb-sm">
 					<div class="col-md-12">
-						<input type="text" id="keyword" class="form-control" onkeyup="filter()" placeholder="Type #HASH"
-							 style="width:70%; display: inline;">
-						<div style="cursor: pointer;" class="btn btn-info" onclick="search()">검색</div>
-					</div>
+						<table class="table-box">
+						<tr>
+							<td style="width: 90%">
+								<input type="text" id="keyword" class="form-control" onkeyup="filter()" placeholder="Type #HASH">
+							</td>
+							<td style="width: 10%; padding-right: 0; padding-left: 10px; vertical-align: middle;" class="btn-group-sm">
+								<button class="btn btn-primary" onclick="search()">검색</button>
+							</td>
+						</tr>
+						</table>
+					</div>	
 					<div class="col-md-12" style="margin-top: 50px;">
 						<p class="tags" id="prehash" style="min-height: 35px;"></p>
 						<div id="warnDisp" class="warn-style"></div>

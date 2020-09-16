@@ -32,8 +32,11 @@ public class InterestDAOImpl implements InterestDAO {
 	}
 
 	@Override
-	public Collection<ExhibitionDTO> myList(String c_id) {
-		return sst.selectList("interestns.myList", c_id);
+	public Collection<ExhibitionDTO> myList(int startRow, String c_id) {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("startRow", startRow+"");
+		map.put("c_id", c_id);
+		return sst.selectList("interestns.myList", map);
 	}
 
 	@Override
@@ -42,5 +45,10 @@ public class InterestDAOImpl implements InterestDAO {
 		map.put("exhibition_no", exhibition_no+"");
 		map.put("c_id", c_id);
 		return sst.selectOne("interestns.iconChk", map);
+	}
+
+	@Override
+	public int getTotal(String c_id) {
+		return sst.selectOne("interestns.getTotal", c_id);
 	}
 }

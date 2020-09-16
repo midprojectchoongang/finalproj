@@ -29,7 +29,7 @@
 				<div class="col-md-9">
 					<div class="row">
 						<div class="row headbox"><h2 class="heading-2">티켓수정</h2></div>
-						<form action="ticketUpdate" enctype="multipart/form-data" method="post">
+						<form action="${path }/ticketUpdate" enctype="multipart/form-data" method="post">
 						<div class="row formbox">
 						<input type="hidden" name="ticketbook_no" value="${ticket.ticketbook_no }">
 						<input type="hidden" name="oldFilename" value="${ticket.filename }">
@@ -75,12 +75,13 @@
 								</div>
 							</div>
 						</div>
-						</form>	
 							<div class="form-group" style="text-align: center;">
 								<input type="submit" value="등록" class="btn btn-primary">
-								<button onclick="location.href='${path }/cus/ticketView?ticketbook_no=${ticket.ticketbook_no }&date=${date }'" class="btn btn-cta">
+								<button type="button" class="btn btn-cta"
+									onclick="location.href='${path }/cus/ticketView?ticketbook_no=${ticket.ticketbook_no }&date=${date }'" >
 								취소</button>
 							</div>
+						</form>	
 						</div>
 					</div>
 				</div>

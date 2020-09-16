@@ -29,8 +29,8 @@
 					<div class="row">
 						<div class="row headbox"><h2 class="heading-2">티켓등록</h2></div>
 						<form action="${path }/ticketWrite" enctype="multipart/form-data" method="post">
+						<input type="hidden" name="c_id" value="${c_id }">
 						<div class="row formbox">
-							<input type="hidden" name="c_id" value="test">
 							<div class="row form-group">
 								<div class="col-md-12">
 									<div id="select_img" class="row-pb-sm">
@@ -68,7 +68,9 @@
 								<div class="col-md-12">
 									<script>
 										window.onload = function() {
-											ck = CKEDITOR.replace("content");
+											ck = CKEDITOR.replace("content", {
+												height : 350
+											});
 										};
 									</script>
 									<textarea name="content" rows=10></textarea>

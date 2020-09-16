@@ -10,21 +10,12 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<script type="text/javascript">
-			var pageNum = '${pageNum}';
-			var today = new Date();
-			var year = today.getFullYear();
-			var month = today.getMonth();
+			var date = '${date}';
+			var year = date.substring(0,4);
+			var month = date.substring(4);
 
-			month += 1;
-			
-		    if (month < 10) {
-			    var date = year + '0' + month;
-			} else {
-			    var date = year + '' + month;
-			}
-			    
 			function getList(date) {
-			    $('#listDisp').load('${path}/cus/ticketList #list', 'c_id=${ticket.c_id}&date=' + date + '&pageNum=' + pageNum);
+			    $('#listDisp').load('${path}/cus/ticketList #list', 'c_id=${ticket.c_id}&date=' + date);
 			}
 
 			function present() {
@@ -33,12 +24,6 @@
 			    var ymda = year + "년 " + (month) + "월";
 			    yg.innerHTML = ymda;
 			    
-				var now = new Date();
-				var nowYear = today.getFullYear();
-				var nowMonth = today.getMonth();
-				if (year >= nowYear && month > nowMonth) {
-					$('#next > button').attr('disabled','disabled');
-			    }
 			}
 
 			function prevmonth() { //이전 월로 가는 함수
@@ -64,7 +49,6 @@
 				    var date = year + '' + month;
 				}
 			    
-			    $('#next > button').removeAttr('disabled','disabled');
 			    getList(date);
 			    present();
 			}
@@ -82,12 +66,6 @@
 			    var ymda = year + "년 " + month + "월";
 			    yg.innerHTML = ymda;
 
-				var now = new Date();
-				var nowYear = today.getFullYear();
-				var nowMonth = today.getMonth();
-				if (year >= nowYear && month > nowMonth) {
-					$('#next > button').attr('disabled','disabled');
-			    }
 			    if (month < 10) {
 				    var date = year + '0' + month;
 				} else {
@@ -108,24 +86,35 @@
 				<div class="row">
 					<div class="col-md-9">
 						<div class="row-pb-md">
-							<table class="table" id="tab">
-								<tr id="dayTab">
+						<div class="col-xs-12">
+							<table class="table-box">
+								<tr>
+								<th colspan="3" style="text-align: center;">
+									<div class="row">
+										<span class="col-md-2 cal-title" id="Ymd"></span>
+									</div>
+								</th>
+								</tr>
+							</table>
+						</div>
+					<hr>
+						<div class="col-xs-12">
+							<table class="table-box">
+								<tr>
 									<td align="center" id="prev" style="width: 5%;" class="btn-group-md">
 										<a class="btn btn-outline" href="javascript:prevmonth()">이전</a>
 									</td>
-									<th colspan="5" style="width: 40%; text-align: center;">
-									<div class="row">
-										<span class="col-md-2 cal-title" id="Ymd"></span>
-										<span class="col-xs-0 cal-title btn-group-xs">
+									<th style="width: 40%; text-align: center;">
+										<span class="col-xs-0 btn-group-md">
 										<a href="${path }/cus/ticketWriteForm" class="btn btn-primary">+</a>
 										</span>
-									</div>
 									</th>
 									<td align="center" id="next" style="width: 5%;" class="btn-group-md">
 										<a class="btn btn-outline" href="javascript:nextmonth()">다음</a>
 									</td>
 								</tr>
 							</table>
+						</div>
 						</div>
 
 					<div class="row" id="listDisp"></div>

@@ -1,26 +1,20 @@
 package com.finalproj.view.ticketbook;
 
-import java.awt.List;
 import java.io.File;
-import java.util.ArrayList;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.GregorianCalendar;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.finalproj.view.common.PagingBean;
 
 
 @Controller
@@ -32,6 +26,7 @@ public class TicketBookController {
 	@RequestMapping("/cus/ticketList")
 	public String ticketList(String date, TicketBookDTO tbook, HttpSession session, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
+
 		tbook.setC_id(c_id);
 		tbook.setDate(date);
 		Collection<TicketBookDTO> list = tbs.list(tbook);
@@ -41,9 +36,23 @@ public class TicketBookController {
 		return "ticketbook/ticketList";
 	}
 	
+	@SuppressWarnings("static-access")
 	@RequestMapping("/cus/ticketCal")
 	public String ticketCal(HttpSession session, String date, Model model) {
 		String c_id = (String) session.getAttribute("c_id");
+		
+		String year = "";
+		String month =  "";
+		if (date == null || date.equals("")) {
+			GregorianCalendar today = new GregorianCalendar();
+			year = today.get(today.YEAR) + "";
+			if (today.get(today.MONTH) < 10) {
+				month = "0" + (today.get(today.MONTH) + 1) + "";
+			} else {
+				month = (today.get(today.MONTH) + 1) + "";
+			}
+			date = year + month;
+		}
 		model.addAttribute("date", date);
 		model.addAttribute("c_id", c_id);
 		return "ticketbook/ticketCal";
@@ -78,8 +87,11 @@ public class TicketBookController {
 			System.out.println("업로드 오류");
 		}
 		ticket.setFilename(fileName);
+		DateFormat sdFormat = new SimpleDateFormat("yyyyMM");
+		String date = sdFormat.format(ticket.getVisit_date());
+
 		result = tbs.insert(ticket);
-		
+		model.addAttribute("date", date);
 		model.addAttribute("result", result);
 		return "ticketbook/ticketCal";
 	}

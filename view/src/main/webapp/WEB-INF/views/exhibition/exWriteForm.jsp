@@ -31,8 +31,8 @@
 					<form action="${path }/exWrite" enctype="multipart/form-data" method="post" name="frm">
 					<div class="row formbox">
 						<input type="hidden" name="b_id" value="${b_id}">
-						<div class="row form-group">
-							<div class="col-md-12">
+						<div class="row form-group" align="center">
+							<div class="col-md-4">
 								<div id="select_img" class="row-pb-sm">
 									<img src="" />
 								</div>					
@@ -60,24 +60,29 @@
 								<input type="text" name="title" class="form-control" required="required">
 							</div>
 						</div>
-						<div class="row form-group">
+						<div class="row form-group" align="justify">	
 							<div class="col-md-12">
-								<label for="artist">아티스트</label>
-								<input type="text" name="artist" class="form-control" required="required">
+								<table class="table-box">
+									<tr>
+										<td style="width: 47%">
+											<input type="date" name="start_date" class="form-control" required="required">
+										</td>
+										<td style="width: 6%; text-align: center; vertical-align: middle;">
+											~
+										</td>
+										<td style="width: 47%">
+											<input type="date" name="end_date" class="form-control" required="required">
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="gallery">갤러리</label>
+								<label for="gallery">장소</label>
 								<input type="text" name="gallery" class="form-control" required="required">
 							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label for="gallery_site">갤러리 사이트</label>
-								<input type="text" name="gallery_site" class="form-control">
-							</div>
-						</div>
+						</div>						
 						<div class="row form-group" align="left">
 							<div class="col-md-12 btn-group-sm">
 								<button type="button" onclick="postSearch()" class="btn btn-cta">주소검색</button><br>
@@ -137,21 +142,30 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<label for="ticket_link1">예매 사이트1</label>
-								<input type="text" name="ticket_link1" class="form-control">
+								<label for="gallery_site">갤러리 사이트</label>
+								<input type="text" name="gallery_site" class="form-control">
 							</div>
-						</div>
+						</div>						
 						<div class="row form-group">
-							<div class="col-md-12">
-								<label for="ticket_link2">예매 사이트2</label>
-								<input type="text" name="ticket_link2" class="form-control">
+							<div class="col-md-12" id="siteForm">
+								<label for="link1">예매 사이트</label>
+								<input type="text" name="ticket_link1" id="link" class="form-control">
 							</div>
-						</div>
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label for="ticket_link3">예매 사이트3</label>
-								<input type="text" name="ticket_link3" class="form-control">
+							<div class="col-md-12 btn-group-sm">
+								<button type="button" class="btn btn-cta" onclick="addForm()">추가</button>
 							</div>
+							<script type="text/javascript">
+								function addForm() {
+									var link = $('#siteForm > input:last');
+									var num =  parseInt(link.attr('name').substring(11));
+									if (num == 3) {
+										alert('더이상 추가할 수 없습니다.');
+										return false;
+									} else {
+										$('#siteForm').append('<input type="text" name="ticket_link'+ (num+1) +'" id="link" class="form-control">');
+									} 
+								}
+							</script>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
@@ -159,41 +173,14 @@
 								<input type="text" name="price" class="form-control" required="required">
 							</div>
 						</div>																	
-<!-- 						<div class="row form-group" align="justify">														
-							<div class="col-md-12">
-								<div style="display: inline;">
-								<input type="date" name="start_date" class="form-control" required="required" style="display: inline; width: 45%">
-								</div>
-								<div style="display: inline; width: 10%; margin: 8px">~</div>
-								<div style="display: inline;">
-								<input type="date" name="end_date" class="form-control" required="required" style="display: inline; width: 45%">
-								</div>
-							</div>
-						</div> -->
-						<div class="row form-group" align="justify">	
-							<div class="col-md-12">
-								<table class="table-box">
-									<tr>
-										<td style="width: 47%">
-											<input type="date" name="start_date" class="form-control" required="required">
-										</td>
-										<td style="width: 6%; text-align: center; vertical-align: middle;">
-											~
-										</td>
-										<td style="width: 47%">
-											<input type="date" name="end_date" class="form-control" required="required">
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
 						<div class="row form-group">
 							<div class="col-md-12">							
-								<textarea name="content" rows=30></textarea>
+								<textarea name="content" rows="20"></textarea>
 								<script>
 									window.onload = function() {
 										ck = CKEDITOR.replace("content", {
-											filebrowserUploadUrl : "/view/ckUpload"
+											filebrowserUploadUrl : "/view/ckUpload",
+											height: 350
 										});
 									};
 								</script>
@@ -205,10 +192,18 @@
 					<!-- hash -->
 					<div class="row formbox" align="left">
 						<div class="row form-group">
-							<div class="col-md-12 btn-group-sm">
-								<label for="keyword">Search #HASH</label>
-								<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()" style="width:80%">
-								<span style="cursor: pointer;" class="btn btn-info" onclick="addNewHash()">+</span>
+							<div class="col-md-12">
+								<table class="table-box">
+								<tr>
+									<td style="width: 90%">
+									<label for="keyword">Search #HASH</label>
+									<input type="text" name="keyword" id="keyword" class="form-control" onkeyup="filter()">
+									</td>
+									<td style="width: 10%; padding-right: 0; padding-left: 10px; vertical-align: middle;" class="btn-group-sm">
+									<button class="btn btn-primary" onclick="addNewHash()">추가</button>
+									</td>
+								</tr>
+								</table>
 							</div>
 						</div>
 						<div class="row form-group" align="center">

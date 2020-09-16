@@ -24,12 +24,17 @@ public class InterestServiceImpl implements InterestService {
 	}
 
 	@Override
-	public Collection<ExhibitionDTO> myList(String c_id) {
-		return id.myList(c_id);
+	public Collection<ExhibitionDTO> myList(int startRow, String c_id) {
+		return id.myList(startRow, c_id);
 	}
 
 	@Override
 	public int iconChk(int exhibition_no, String c_id) {
 		return id.iconChk(exhibition_no, c_id);
+	}
+
+	@Override
+	public int getTotal(String c_id) {
+		return id.getTotal(c_id);
 	}
 }

@@ -37,7 +37,6 @@
 			<beans:bean class="com.finalproj.view.common.MasterInterceptor"></beans:bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
-			<mvc:mapping path="/exWriteForm"/>
 			<mvc:mapping path="/biz/**"/>
 			<beans:bean class="com.finalproj.view.common.BusinessInterceptor"></beans:bean>
 		</mvc:interceptor>

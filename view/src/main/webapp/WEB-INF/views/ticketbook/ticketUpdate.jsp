@@ -4,7 +4,7 @@
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
 		alert("수정 완료");
-		location.href='ticketView?ticketbook_no=${ticketbook_no}';
+		location.href='${path}/cus/ticketView?ticketbook_no=${ticketbook_no}';
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
