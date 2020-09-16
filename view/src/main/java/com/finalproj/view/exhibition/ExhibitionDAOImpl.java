@@ -12,22 +12,15 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	@Autowired
 	private SqlSessionTemplate sst;
 
-	@Override
 	public int insert(ExhibitionDTO ex) {
 		return sst.insert("exhibitionns.insert", ex);
 	}
-
-	@Override
 	public ExhibitionDTO view(int exhibition_no) {
 		return sst.selectOne("exhibitionns.view", exhibition_no);
 	}
-
-	@Override
-	public int getTotal() {
-		return sst.selectOne("exhibitionns.getTotal");
+	public int getTotal(String keyword) {
+		return sst.selectOne("exhibitionns.getTotal", keyword);
 	}
-
-	@Override
 	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("keyword", keyword);
@@ -35,8 +28,13 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		map.put("endRow", endRow+"");
 		return sst.selectList("exhibitionns.list", map);
 	}
-	
-	@Override
+	public int getCompTotal(String[] tags) {
+		Map<String, String> map = new HashMap<String, String>();
+		for (int i=0; i<tags.length; i++) {
+			map.put("keyword" + i, tags[i]);
+		}
+		return sst.selectOne("exhibitionns.getCompTotal", map);
+	}
 	public Collection<ExhibitionDTO> compList(int startRow, int endRow, String[] tags) {
 		Map<String, String> map = new HashMap<String, String>();
 		for (int i=0; i<tags.length; i++) {
@@ -46,32 +44,21 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		map.put("endRow", endRow+"");
 		return sst.selectList("exhibitionns.compList", map);
 	}
-
-	@Override
 	public ExhibitionDTO select(int exhibition_no) {
 		return sst.selectOne("exhibitionns.select", exhibition_no);
 	}
-
-	@Override
 	public int update(ExhibitionDTO ex) {
 		return sst.update("exhibitionns.update", ex);
 	}
-
-	@Override
 	public int delete(int exhibition_no) {
 		return sst.delete("exhibitionns.delete", exhibition_no);
 	}
-
-	@Override
 	public void likeCntUp(int exhibition_no) {
 		sst.update("exhibitionns.likeCntUp", exhibition_no);
 	}
-
-	@Override
 	public void likeCntDown(int exhibition_no) {
 		sst.update("exhibitionns.likeCntDown", exhibition_no);
 	}
-
 	public void autoDelete() {
 		sst.delete("exhibitionns.autoDelete");
 	}

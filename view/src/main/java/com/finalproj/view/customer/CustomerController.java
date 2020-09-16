@@ -157,7 +157,8 @@ public class CustomerController {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
-		int total = es.getTotal();
+		String keyword = null;
+		int total = es.getTotal(keyword);
 		int startRow = (currentPage - 1) * rowPerPage;
 		Collection<ExhibitionDTO> myList = new ArrayList<ExhibitionDTO>();
 		if (total == 0) {
