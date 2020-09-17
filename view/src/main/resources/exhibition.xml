@@ -6,7 +6,6 @@
 		<result property="exhibition_no" column="exhibition_no" />
 		<result property="b_id" column="b_id" />
 		<result property="title" column="title" />
-		<result property="artist" column="artist" />
 		<result property="gallery" column="gallery" />
 		<result property="gallery_site" column="gallery_site" />
 		<result property="address" column="address" />
@@ -30,7 +29,7 @@
 		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n'
 			<include refid="search"></include>
-			order by exhibition_no limit ${startRow}, ${endRow}
+			order by end_date limit ${startRow}, ${endRow}
 		</select>
 		<sql id="search">
 			<if test="keyword != null">
@@ -44,22 +43,23 @@
  		<select id="compList" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n'
 			<include refid="compSearch"></include>
-			limit ${startRow}, ${endRow}
+			order by end_date limit ${startRow}, ${endRow}
 		</select>
 		<sql id="compSearch">
 			<if test="keyword0 != null">
-				and hashtags like concat('%\"',#{keyword0},'\"%')
-			</if>
-			<if test="keyword1 != null">
-				or hashtags like concat('%\"',#{keyword1},'\"%')
-			</if>
-			<if test="keyword2 != null">
-				or hashtags like concat('%\"',#{keyword2},'\"%')
+				and (hashtags like concat('%\"',#{keyword0},'\"%')
+				<if test="keyword1 != null">
+					or hashtags like concat('%\"',#{keyword1},'\"%')
+					<if test="keyword2 != null">
+						or hashtags like concat('%\"',#{keyword2},'\"%')
+					</if>
+				</if>
+				)
 			</if>
 		</sql>
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
-				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},
+				exhibition_no,#{b_id},#{title},#{gallery},#{gallery_site},
 				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
 				#{price},#{start_date},#{end_date},#{hashtags},#{content},0,now(),'n',#{filename}
 			)

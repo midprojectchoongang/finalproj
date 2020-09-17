@@ -18,8 +18,7 @@
 	</select>
 	<insert id="addComment" parameterType="comment">
 		insert into comment values (0, #{exhibition_no}, #{c_id}, #{content}, sysdate(), 'n')
-	</insert>
-	
+	</insert>	
 	<update id="updateComment" parameterType="comment">
 		update comment set content=#{content} where comment_no=#{comment_no}
 	</update>

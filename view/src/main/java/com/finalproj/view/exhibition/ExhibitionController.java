@@ -29,6 +29,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.finalproj.view.business.BusinessDTO;
 import com.finalproj.view.business.BusinessService;
 import com.finalproj.view.common.PagingBean;
+import com.finalproj.view.customer.CustomerDTO;
+import com.finalproj.view.customer.CustomerService;
+import com.finalproj.view.customer.InterestDTO;
 import com.finalproj.view.customer.InterestService;
 import com.finalproj.view.hashtag.HashtagDTO;
 import com.finalproj.view.hashtag.HashtagService;
@@ -44,6 +47,8 @@ public class ExhibitionController {
 	private InterestService is;
 	@Autowired
 	private BusinessService bs;
+	@Autowired
+	private CustomerService cs;
 	
 	@PostConstruct
 	public void init() {
@@ -51,7 +56,14 @@ public class ExhibitionController {
 	}
   
 	@RequestMapping("exList")
-	public String exList(String pageNum, String keyword, Model model) throws ParseException {
+	public String exList(String pageNum, String keyword, String listType, HttpSession session, Model model) throws ParseException {
+		if (session.getAttribute("c_id") != null) {
+			if (listType != null && listType != "") {
+				String c_id = (String)session.getAttribute("c_id");
+				CustomerDTO customer = cs.select(c_id);
+				keyword = customer.getC_hashtag();
+			}
+		}
 		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int total = 0;
@@ -72,10 +84,17 @@ public class ExhibitionController {
 			String[] tags = gson.fromJson(c, String[].class);
 			total = es.getCompTotal(tags);
 			list = es.compList(startRow, rowPerPage, tags);
+			if (session.getAttribute("c_id") != null) {
+				if (listType != null && listType != "") {
+					keyword = null;
+				}
+			}
 		}
 		
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("listType", listType);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		return "exhibition/exList";

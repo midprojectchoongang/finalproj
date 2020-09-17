@@ -246,7 +246,7 @@
 			</div>			
 		</div>
 		</div>				
-			<!--  댓글  -->
+			<!--  댓글  -->			
 			<%@ include file="../comment/commentWrite.jsp" %>
 	<%@ include file="../mainPage/footer.jsp"%>
 </div>
