@@ -9,10 +9,10 @@
 <div id="page">
 	<%@ include file="../mainPage/header.jsp"%>
 	<div id="colorlib-container">
+	<div class="row headbox"><h2 class="heading-2">#${hashtag.hash_title }</h2></div>
 		<div class="container" align="center">
 		<div class="col-md-9">
 			<div class="row" align="left">
-				<div class="row headbox"><h2 class="heading-2">#${hashtag.hash_title }</h2></div>
 				<div class="row formbox-nonlabel">
 					<div class="col-md-12 row-pb-sm">
 						<label for="hash_title">#HASHTAG</label><span id="hashDisp" class="warn-style"></span>
@@ -103,7 +103,7 @@
 				</div>
 				<div class="col-xs-12" align="center">
 					<button onclick="updateHash()" class="btn btn-primary">수정</button>
-					<button onclick="deleteHash()" class="btn btn-cta">삭제</button>
+					<button onclick="deleteHash()" class="btn btn-outline">삭제</button>
 				</div>
 				<script type="text/javascript">
 					function updateHash() {

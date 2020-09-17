@@ -9,10 +9,10 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container" align="center">
+		<div class="row headbox"><h2 class="heading-2">회원정보</h2></div>
 			<div class="container">
 				<div class="col-md-9">
 					<div class="row" >
-						<div class="row headbox"><h2 class="heading-2">회원정보</h2></div>
 							<div class="row formbox-nonlabel" align="left">
 							<table class="table table-ticket">
 							<tr>
@@ -57,7 +57,7 @@
 							</div>
 							<div class="form-group" style="text-align: center;">
 								<a href="updateFormC" class="btn btn-primary">회원정보수정</a>
-								<button class="btn btn-cta" onclick="delConfirm();">회원탈퇴</button>						
+								<button class="btn btn-outline" onclick="delConfirm();">회원탈퇴</button>						
 							</div>
 							<script type="text/javascript">
 								function delConfirm() {

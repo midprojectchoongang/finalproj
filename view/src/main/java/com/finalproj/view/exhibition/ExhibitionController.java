@@ -1,13 +1,19 @@
 package com.finalproj.view.exhibition;
-import java.util.List;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
+
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.finalproj.view.business.BusinessDTO;
 import com.finalproj.view.business.BusinessService;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.finalproj.view.common.PagingBean;
 import com.finalproj.view.customer.CustomerDTO;
 import com.finalproj.view.customer.CustomerService;
@@ -63,7 +68,7 @@ public class ExhibitionController {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int total = 0;
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 5;
+		int rowPerPage = 10;
 		int startRow = (currentPage - 1) * rowPerPage;
 		
 		if (keyword == null || !keyword.startsWith("{")) {
@@ -86,12 +91,8 @@ public class ExhibitionController {
 			}
 		}
 		
-//		int endRow = startRow + rowPerPage - 1;
 		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
 		
-//		model.addAttribute("startRow", startRow);
-//		model.addAttribute("endRow", endRow);
-//		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("listType", listType);
 		model.addAttribute("list", list);

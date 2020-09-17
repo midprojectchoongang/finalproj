@@ -24,10 +24,10 @@
 		});
 		</script>
 		<div id="colorlib-container">
+		<div class="row headbox"><h2 class="heading-2">티켓등록</h2></div>
 			<div class="container" align="center">
 				<div class="col-md-9">
 					<div class="row">
-						<div class="row headbox"><h2 class="heading-2">티켓등록</h2></div>
 						<form action="${path }/ticketWrite" enctype="multipart/form-data" method="post">
 						<input type="hidden" name="c_id" value="${c_id }">
 						<div class="row formbox">
