@@ -14,10 +14,10 @@
 			}
 		</script>
 		<div id="colorlib-container">
+		<div class="row headbox"><h2 class="heading-2">${ticket.title }<br><font size="3px">${ticket.visit_date }</font></h2></div>
 		<div class="container" align="center">
 			<div class="col-md-9">
 			<div class="row">
-				<div class="row headbox"><h2 class="heading-2">${ticket.title }<br><font size="3px">${ticket.visit_date }</font></h2></div>
 				<div class="row btn-group-xs" style="text-align: right; padding: 20px;">
 					<a href="javascript:list()" class="btn btn-default">목록</a>
 					<a href="${path }/cus/ticketUpdateForm?ticketbook_no=${ticket.ticketbook_no }&date=${date}" 

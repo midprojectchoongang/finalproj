@@ -47,10 +47,10 @@
 			}
 		</script>
 		<div id="colorlib-container" align="center">
+		<div class="row headbox"><h2 class="heading-2">#hash 추가</h2></div>
 			<div class="container">
 				<div class="col-md-9">
 					<div class="row">
-						<div class="row headbox-sm"><h2 class="heading-2-b">#hash 추가</h2></div>
 						<div class="row row-pb-md">
 						<div class="col-md-12">
 							<div class="row-pb-sm">

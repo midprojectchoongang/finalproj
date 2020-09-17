@@ -20,10 +20,10 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container">
+		<div class="row headbox"><h2 class="heading-2">회원정보수정</h2></div>
 			<div class="container">
 				<div class="col-md-12">
 					<div class="row">
-							<h2 class="heading-2">회원정보수정</h2>
 							<form action="bizUpdate" method="post" name="frm" onsubmit="return chk()">
 							<input type="hidden" name="b_id" value="${bsness.b_id }">								
 								<div class="row form-group">

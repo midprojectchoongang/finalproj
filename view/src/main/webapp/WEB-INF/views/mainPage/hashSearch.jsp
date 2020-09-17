@@ -9,64 +9,17 @@
 <div id="page">
 	<%@ include file="../mainPage/header.jsp"%>
 	<div id="colorlib-container" align="center">
+		<div class="row headbox"><h2 class="heading-2">#HASHTAG</h2></div>
 		<div class="container">
 		<div class="col-md-9">
-			<form name="frm" action="exList">
-			<div class="row-pb-sm">
-				<div class="row headbox-sm"><h2 class="heading-2-b">Search</h2></div>
-				<div class="row-pb-sm">
+			<div class="row formbox">
+				<div class="row">
 					<div class="col-md-12">
-						<table class="table-box">
-						<tr>
-							<td style="width: 90%">
-								<input type="text" id="keyword" class="form-control" onkeyup="filter()" placeholder="Type #HASH">
-							</td>
-							<td style="width: 10%; padding-right: 0; padding-left: 10px; vertical-align: middle;" class="btn-group-sm">
-								<button type="button" class="btn btn-primary" onclick="search()">검색</button>
-							</td>
-						</tr>
-						</table>
-					</div>	
-					<div class="col-md-12" style="margin-top: 50px;">
-						<p class="tags" id="prehash" style="min-height: 35px;"></p>
-						<div id="warnDisp" class="warn-style"></div>
+						<input type="text" id="keyword" class="form-control" onkeyup="filter()" placeholder="Type #HASH">
 					</div>
-				</div>
-			</div>
-			<input type="hidden" name="keyword" value="">
-			</form>
-			<script type="text/javascript">
-				function filter() {
-					var keyword, name, tag, i;
-					keyword = document.getElementById("keyword").value.toUpperCase();
-					tag = document.getElementsByName("taglists");
-					for (i=0; i<tag.length; i++) {
-						name = tag[i].getElementsByClassName("name");
-						if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
-							tag[i].style.display = "block";
-						} else {
-							tag[i].style.display = "none";
-						}
-					}
-				}
-				
-				function search() {
-					if (hash_select[0] == null || hash_select[0] == "") {
-						$('#warnDisp').html('#HashTag를 최소 1개 이상 선택하여 주십시요');
-						return;
-					}
-					var hts = new Object();
-					hts.hash = hash_select;
-					var values = JSON.stringify(hts);
-					$(function() {
-					    $('input[name=keyword]').val(values);
-					});
-					document.frm.submit();
-				}
-			</script>
-			<div class="row-pb-lg">
-				<div class="row headbox-sm"><h2 class="heading-2-b">#HASHTAG</h2></div>
-				<div class="row-pb-md">
+				</div>			
+				<hr>
+				<div class="row row-pb-lg" style="height: 200px; overflow: hidden;">
 					<div class="col-md-12">
 						<p class="tags">
 							<c:forEach var="htl" items="${hashList }">
@@ -79,7 +32,7 @@
 						</p>
 					</div>
 				</div>
-			</div>
+				
 			<script type="text/javascript">
 				var hash_html = new Array();
 				var hash_select = new Array();
@@ -140,6 +93,57 @@
 					}
 				}
 			</script>
+				<div class="row row-pb-lg">
+				<form name="frm" action="exList">
+					<div class="col-md-12 btn-group-lg">
+						<table class="table-box">
+						<tr>
+							<td style="text-align: center; width: 80%; border-bottom: 1px solid #eee;">
+								<p class="tags" id="prehash" style="min-height: 35px;"></p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div id="warnDisp" class="warn-style"></div>
+							</td>
+						</tr>
+						</table>
+					</div>	
+					<button type="button" class="btn btn-primary" onclick="search()">#hash로 검색</button>
+					<input type="hidden" name="keyword" value="">
+				</form>
+				</div>
+			<script type="text/javascript">
+				function filter() {
+					var keyword, name, tag, i;
+					keyword = document.getElementById("keyword").value.toUpperCase();
+					tag = document.getElementsByName("taglists");
+					for (i=0; i<tag.length; i++) {
+						name = tag[i].getElementsByClassName("name");
+						if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
+							tag[i].style.display = "block";
+						} else {
+							tag[i].style.display = "none";
+						}
+					}
+				}
+				
+				function search() {
+					if (hash_select[0] == null || hash_select[0] == "") {
+						$('#warnDisp').html('#HashTag를 최소 1개 이상 선택하여 주십시요');
+						return;
+					}
+					var hts = new Object();
+					hts.hash = hash_select;
+					var values = JSON.stringify(hts);
+					$(function() {
+					    $('input[name=keyword]').val(values);
+					});
+					document.frm.submit();
+				}
+			</script>
+
+			</div>
 		</div>
 		</div>
 	</div>

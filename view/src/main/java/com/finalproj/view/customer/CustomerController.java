@@ -157,7 +157,7 @@ public class CustomerController {
 		String c_id = (String)session.getAttribute("c_id");
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 5;
+		int rowPerPage = 10;
 		int total = is.getTotal(c_id);
 		int startRow = (currentPage - 1) * rowPerPage;
 		Collection<ExhibitionDTO> myList = new ArrayList<ExhibitionDTO>();

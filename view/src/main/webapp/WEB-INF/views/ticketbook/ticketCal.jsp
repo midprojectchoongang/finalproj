@@ -82,6 +82,7 @@
 			})
 	</script>
 		<div id="colorlib-container">
+		<div class="row headbox"><h2 class="heading-2">TICKETBOOK</h2></div>		
 			<div class="container" align="center">
 				<div class="row">
 					<div class="col-md-9">
@@ -117,7 +118,7 @@
 						</div>
 						</div>
 
-					<div class="row" id="listDisp"></div>
+					<div class="row-pb-lg" id="listDisp"></div>
 					</div>
 				</div>
 			</div>

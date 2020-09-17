@@ -25,10 +25,10 @@
 		});
 	</script>
 	<div id="colorlib-container">
+	<div class="row headbox"><h2 class="heading-2">전시회 정보 수정</h2></div>
 		<div class="container" align="center">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row headbox"><h2 class="heading-2">전시회 정보 수정</h2></div>
 					<form action="${path }/exUpdate" enctype="multipart/form-data" method="post" name="frm">
 					<div class="row formbox">							
 						<input type="hidden" name="exhibition_no" value="${ex.exhibition_no}">
@@ -87,7 +87,7 @@
 						</div>
 						<div class="row form-group" align="left">
 							<div class="col-md-12 btn-group-sm">
-								<button type="button" onclick="postSearch()" class="btn btn-cta">주소검색</button><br>
+								<button type="button" onclick="postSearch()" class="btn btn-outline">주소검색</button><br>
 								<input type="text" name="address" class="form-control" id="mapAddress"
 								value="${addr }" placeholder="주소" required="required">
 								<input type="text" name="sub_address" class="form-control" placeholder="상세주소" value="${sub_addr }">
@@ -182,7 +182,7 @@
 							</div>
 							<c:if test="${empty ex.ticket_link1 }">
 								<div class="col-md-12 btn-group-sm">
-									<button type="button" class="btn btn-cta" onclick="addForm()">추가</button>
+									<button type="button" class="btn btn-outline" onclick="addForm()">추가</button>
 								</div>
 							</c:if>
 							<script type="text/javascript">
