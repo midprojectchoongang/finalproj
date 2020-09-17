@@ -10,7 +10,7 @@
 		<result property="b_id" column="b_id" />
 	</resultMap>
 	<select id="list" resultMap="hashtagResult">
-		select * from hashtag order by hashgroup
+		select * from hashtag order by hashgroup, use_count
 	</select>
 	<select id="hashChk" parameterType="string" resultType="integer">
 		select count(*) from hashtag where hash_title=#{hash_title}

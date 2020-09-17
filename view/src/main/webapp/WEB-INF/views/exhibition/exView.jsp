@@ -10,10 +10,10 @@
 <div id="page">
 	<%@ include file="../mainPage/header.jsp"%>
 	<div id="colorlib-container">
+	<div class="row headbox"><h2 class="heading-2">${ex.title }</h2></div>
 		<div class="container" align="center">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row headbox"><h2 class="heading-2">${ex.title }</h2></div>
 					<div class="row-pb-sm btn-group-xs" style="text-align: right; padding: 20px;">
 						<c:if test="${ex.b_id == sessionScope.b_id }">
 							<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-outline">수정</a>
@@ -246,7 +246,7 @@
 			</div>			
 		</div>
 		</div>				
-			<!--  댓글  -->
+			<!--  댓글  -->			
 			<%@ include file="../comment/commentWrite.jsp" %>
 	<%@ include file="../mainPage/footer.jsp"%>
 </div>

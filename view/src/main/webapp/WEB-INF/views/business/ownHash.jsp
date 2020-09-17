@@ -12,15 +12,15 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container" align="center">
+		<div class="row headbox"><h2 class="heading-2">My #hash</h2></div>
 			<div class="container">
 			<div class="col-md-9">
 				<div class="row-pb-sm">
-					<div class="row headbox-sm"><h2 class="heading-2-b">검색</h2></div>
 					<div class="row-pb-sm">
 						<div class="col-md-12">
 							<input onkeyup="filter()" type="text" name="keyword" id="keyword" placeholder="Type #HASH"
 								style="text-align: center;" class="form-control"><br>
-							<div style="cursor: pointer;" class="btn btn-info" onclick="addNewHash()" id="addBtn">추가하기</div>
+							<div style="cursor: pointer;" class="btn btn-primary" onclick="addNewHash()" id="addBtn">추가</div>
 						</div>
 					</div>
 					<div class="row-pb-sm">
@@ -73,8 +73,7 @@
 					}
 				</script>
 				<div class="row-pb-lg">
-					<div class="row headbox-sm"><h2 class="heading-2-b">내가 만든 #HASHTAG</h2></div>
-					<div class="row-pb-md">
+					<div class="row-pb-md formbox">
 						<div class="col-md-12">
 							<p class="tags" id="customHash">
 								<c:forEach var="ohl" items="${ownHash }">

@@ -24,10 +24,10 @@
 		});
 	</script>
 	<div id="colorlib-container" align="center">
+	<div class="row headbox"><h2 class="heading-2">개인정보 수정</h2></div>
 		<div class="container">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row headbox"><h2 class="heading-2">개인정보 수정</h2></div>
 					<form action="updateC" method="post" name="frm" onsubmit="return passwordChk()">
 						<input type="hidden" name="c_id" value="${customerdto.c_id }">	
 						<div class="row formbox">

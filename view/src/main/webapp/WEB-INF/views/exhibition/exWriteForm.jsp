@@ -24,10 +24,10 @@
 		});
 	</script>
 	<div id="colorlib-container">
+	<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
 		<div class="container" align="center">
 			<div class="col-md-9">
 				<div class="row" align="justify">
-					<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
 					<form action="${path }/exWrite" enctype="multipart/form-data" method="post" name="frm">
 					<div class="row formbox">
 						<input type="hidden" name="b_id" value="${b_id}">
@@ -85,7 +85,7 @@
 						</div>						
 						<div class="row form-group" align="left">
 							<div class="col-md-12 btn-group-sm">
-								<button type="button" onclick="postSearch()" class="btn btn-cta">주소검색</button><br>
+								<button type="button" onclick="postSearch()" class="btn btn-outline">주소검색</button><br>
 								<input type="text" name="address" class="form-control" id="mapAddress" placeholder="주소" required="required">
 								<input type="text" name="sub_address" class="form-control" placeholder="상세주소">
 								<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
@@ -152,7 +152,7 @@
 								<input type="text" name="ticket_link1" id="link" class="form-control">
 							</div>
 							<div class="col-md-12 btn-group-sm">
-								<button type="button" class="btn btn-cta" onclick="addForm()">추가</button>
+								<button type="button" class="btn btn-outline" onclick="addForm()">추가</button>
 							</div>
 							<script type="text/javascript">
 								function addForm() {

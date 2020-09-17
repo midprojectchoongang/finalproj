@@ -9,11 +9,11 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container">
+		<div class="row headbox"><h2 class="heading-2">관심전시회</h2></div>
 			<div class="container" align="center">
 				<div class="row">
 					<div class="col-md-9">
 					<div class="row">
-						<div class="row headbox"><h2 class="heading-2">관심전시회</h2></div>
 						<div class="row" align="left">						
 						<c:if test="${empty myList }">
 							<table class="table" style="margin-top: 20px;">
@@ -77,33 +77,36 @@
 					</div>
 				</div>
 				</div>
-				<div class="row">
+				<!-- paging -->
+				<div class="row-pb-lg">
 					<input type="hidden" name="pageNum" value="${pageNum }">
-					<div class="col-md-12">
-						<ul class="pagination pagination-sm">
+					<div class="col-md-12" align="center">
+						<div class="pagination">
 						<c:if test="${page.startPage > page.pagePerBlock }">
-							<li><a href="${path }/cus/myExList?pageNum=${page.startPage - 1 }" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						     	</a>
-						    </li>
+							<button class="active" onclick="location.href='${path }/cus/myExList?pageNum=${page.startPage - 1 }'">
+								&laquo;
+							</button>
 						</c:if>
 						<c:forEach var="i" begin="${page.startPage }" end="${page.endPage }">
 							<c:if test="${i == page.currentPage }">
-								<li class="disabled"><a href="${path }/cus/myExList?pageNum=${i }">${i}</a></li>
+								<button class="disabled" onclick="location.href='${path }/cus/myExList?pageNum=${i }'">
+									${i}
+								</button>
 							</c:if>
 							<c:if test="${i != page.currentPage }">
-								<li class="active"><a href="${path }/cus/myExList?pageNum=${i }">${i}</a></li>
+								<button class="active" onclick="location.href='${path }/cus/myExList?pageNum=${i }'">
+									${i}
+								</button>
 							</c:if>
 						</c:forEach>
 						<c:if test="${page.endPage < page.totalPage }">
-							<li><a href="${path }/cus/myExList?pageNum=${page.endPage + 1 }" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
+							<button class="active" onclick="location.href='${path }/cus/myExList?pageNum=${page.endPage + 1 }'">
+								&raquo;
+							</button>
 						</c:if>
-						</ul>
+						</div>
 					</div>
-				</div>
+				</div>	<!-- paging -->
 			</div>
 		</div>
 		<%@ include file="../mainPage/footer.jsp"%>

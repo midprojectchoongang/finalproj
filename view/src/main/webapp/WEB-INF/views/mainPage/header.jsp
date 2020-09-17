@@ -74,63 +74,83 @@
 <!-- Map -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 <body>
-<nav class="colorlib-nav" role="navigation">
+로그인 모드 : ${sessionScope.login }
+<nav class="colorlib-nav navbar-static-top" role="navigation">
 	<div class="top-menu">
 		<div class="container">
-로그인 모드 : ${sessionScope.login }
+		
 			<div class="row">
-				<div class="col-xs-12 text-right menu-1">
-				<c:if test="${empty sessionScope.login }">
-					<ul>
-						<li><a href="${path}/bizLoginForm">단체회원로그인</a></li>
-						<li><a href="${path}/loginFormC">개인회원로그인</a></li>
-					</ul>
-				</c:if>
-				<c:if test="${sessionScope.login == 'biz' }">
-					<ul>
-						<li><a href="${path}/biz/ownHash">해쉬태그관리</a></li>
-						<li><a href="${path}/biz/bizView">회원정보</a></li>
-						<li><a href="${path}/bizLogout">로그아웃</a></li>
-					</ul>
-				</c:if>
-				<c:if test="${sessionScope.login == 'customer'}">
-					<ul>
-						<li><a href="${path}/viewInfoC">회원정보</a></li>
-						<li><a href="${path}/logoutC">로그아웃</a></li>
-					</ul>
-				</c:if>
-				<c:if test="${sessionScope.login == 'admin'}">
-					<ul>
-						<li><a href="${path}/logoutC">로그아웃</a></li>
-					</ul>
-				</c:if>
-				</div>
-			</div>
-			<div class="row-pb-sm">
 				<div class="col-lg-12">
 					<div id="colorlib-logo"><a href="${path}/main">VIEW</a></div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 text-right menu-1">
-					<ul>
-						<li><a href="${path }/exList">exhibition</a></li>
-						<li><a href="${path }/hashSearch">#hash</a></li>
-						<c:if test="${sessionScope.login == 'biz' }">
-						<li><a href="${path }/biz/exWriteForm">전시등록</a></li>
-						</c:if>
-						<c:if test="${sessionScope.login == 'customer'}">
-						<li><a href="${path }/cus/myExList">관심전시회</a></li>
-						<li><a href="${path }/cus/ticketCal">TicektBook</a></li>
-						</c:if>
-						<c:if test="${sessionScope.login == 'admin'}">
-						<li><a href="${path}/master/bizList">단체회원관리</a></li>
-						<li><a href="${path}/master/viewHashList">#hash목록</a></li>
-						<li><a href="${path}/master/addHashForm">#hash추가</a></li>
-						</c:if>
-					</ul>
+			</div>				
+
+				<div class="row">
+					<div class="col-xs-12 text-right menu-1">
+						<ul>
+							<li><a href="${path }/exList">exhibition</a></li>
+							<li><a href="${path }/hashSearch">#hash</a></li>
+							<c:if test="${sessionScope.login == 'biz' }">
+							<li><a href="${path }/biz/exWriteForm">전시등록</a></li>
+							</c:if>
+							<c:if test="${sessionScope.login == 'customer'}">
+							<li><a href="${path }/cus/myExList">관심전시회</a></li>
+							<li><a href="${path }/cus/ticketCal">TicektBook</a></li>
+							</c:if>
+							<c:if test="${sessionScope.login == 'admin'}">
+							<li><a href="${path}/master/bizList">단체회원관리</a></li>
+							<li><a href="${path}/master/viewHashList">#hash목록</a></li>
+							<li><a href="${path}/master/addHashForm">#hash추가</a></li>
+							</c:if>
+							<c:if test="${empty sessionScope.login }">
+								<li><a href="${path}/bizLoginForm">단체회원로그인</a></li>
+								<li><a href="${path}/loginFormC">개인회원로그인</a></li>
+							</c:if>
+							<c:if test="${sessionScope.login == 'biz' }">
+								<li><a href="${path}/biz/ownHash">해쉬태그관리</a></li>
+								<li><a href="${path}/biz/bizView">회원정보</a></li>
+								<li><a href="${path}/bizLogout">로그아웃</a></li>
+							</c:if>
+							<c:if test="${sessionScope.login == 'customer'}">
+								<li><a href="${path}/viewInfoC">회원정보</a></li>
+								<li><a href="${path}/logoutC">로그아웃</a></li>
+							</c:if>
+							<c:if test="${sessionScope.login == 'admin'}">
+								<li><a href="${path}/logoutC">로그아웃</a></li>
+							</c:if>						
+						</ul>
+					</div>
 				</div>
-			</div>
+<%-- 				
+				<div class="row">
+					<div class="col-xs-12 text-right menu-1">
+					<c:if test="${empty sessionScope.login }">
+						<ul>
+							<li><a href="${path}/bizLoginForm">단체회원로그인</a></li>
+							<li><a href="${path}/loginFormC">개인회원로그인</a></li>
+						</ul>
+					</c:if>
+					<c:if test="${sessionScope.login == 'biz' }">
+						<ul>
+							<li><a href="${path}/biz/ownHash">해쉬태그관리</a></li>
+							<li><a href="${path}/biz/bizView">회원정보</a></li>
+							<li><a href="${path}/bizLogout">로그아웃</a></li>
+						</ul>
+					</c:if>
+					<c:if test="${sessionScope.login == 'customer'}">
+						<ul>
+							<li><a href="${path}/viewInfoC">회원정보</a></li>
+							<li><a href="${path}/logoutC">로그아웃</a></li>
+						</ul>
+					</c:if>
+					<c:if test="${sessionScope.login == 'admin'}">
+						<ul>
+							<li><a href="${path}/logoutC">로그아웃</a></li>
+						</ul>
+					</c:if>
+					</div>	
+				</div>
+	 --%>								
 		</div>
 	</div>
 </nav>

@@ -24,10 +24,10 @@
 		});
 	</script>
 	<div id="colorlib-container" align="center">
+	<div class="row headbox"><h2 class="heading-2">회원가입</h2></div>
 		<div class="container">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row headbox"><h2 class="heading-2">회원가입</h2></div>
 					<form action="joinC" method="post" name="frm" onsubmit="return passwordChk()">
 						<div class="row formbox">
 							<div class="row form-group">

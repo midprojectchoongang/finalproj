@@ -11,7 +11,7 @@
 		for (i=0; i<tag.length; i++) {
 			name = tag[i].getElementsByClassName("name");
 			if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
-				tag[i].style.display = "flex";
+				tag[i].style.display = "block";
 			} else {
 				tag[i].style.display = "none";
 			}
@@ -24,10 +24,11 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container" align="center">
+		<div class="row headbox"><h2 class="heading-2">#hash 목록</h2></div>
 			<div class="container">
 			<div class="col-md-9">
+				<div class="row headbox-sm"><h2 class="heading-2-b">검색</h2></div>
 				<div class="row-pb-lg">
-					<div class="row headbox-sm"><h2 class="heading-2-b">검색</h2></div>
 					<div class="row-pb-sm">
 						<div class="col-md-12">
 							<input onkeyup="filter()" type="text" name="keyword" id="keyword" placeholder="Type #HASH"

@@ -7,12 +7,14 @@
 <body>
 	<div class="colorlib-loader"></div>
 	<div id="page">
+	<div class="colorlib-container">
 		<%@ include file="../mainPage/header.jsp"%>
 		<input type="hidden" name="pageNum" id="pageNum" value="${pageNum }">
+		<div class="row headbox"><h2 class="heading-2">단체회원관리</h2></div>
 		<div class="container" align="center">
 			<div class="col-md-9">
+				<div class="row headbox-sm"><h2 class="heading-2-b">${biz.groupName } 가입정보</h2></div>
 				<div class="row" align="left">
-					<div class="row headbox-sm"><h2 class="heading-2-b">${biz.groupName } 가입정보</h2></div>
 					<div class="row formbox">
 						<div class="row form-group">
 							<div class="col-md-12">
@@ -183,10 +185,11 @@
 					</div>
 					</form>
 					<div class="row-pb-md form-group" style="text-align: center;">
-						<button onclick="location.href='bizList?pageNum=${pageNum }'" class="btn btn-cta">목록</button>
+						<button onclick="location.href='bizList?pageNum=${pageNum }'" class="btn btn-outline">목록</button>
 					</div>
 				</div>	
 			</div>
+		</div>
 		</div>
 		<%@ include file="../mainPage/footer.jsp"%>
 	</div>

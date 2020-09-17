@@ -5,7 +5,7 @@ public class PagingBean {
 	private int currentPage;
 	private int rowPerPage;
 	private int total;
-	private int pagePerBlock = 10;
+	private int pagePerBlock = 5;
 	private int totalPage;
 	private int startPage;
 	private int endPage;
