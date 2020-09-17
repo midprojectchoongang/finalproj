@@ -16,9 +16,10 @@ public class CommentController {
 	private CustomerService cs;
 	
 	@RequestMapping("commentList")
-	public String commentList(int exhibition_no, Model model) {
-		int count = cmt.cmtCount(exhibition_no);
-		List<CommentDTO> cmtList = cmt.cmtList(exhibition_no);
+	public String commentList(String exhibition_no, Model model) {
+		int exno = Integer.parseInt(exhibition_no);
+		int count = cmt.cmtCount(exno);
+		List<CommentDTO> cmtList = cmt.cmtList(exno);
 		for (CommentDTO cus : cmtList) {
 			cus.setNickname(cs.selectNick(cus.getC_id()));
 		}
@@ -26,10 +27,12 @@ public class CommentController {
 		model.addAttribute("cmtList", cmtList);
 		return "/comment/commentList";
 	}
-	@RequestMapping("commentWrite")
-	public String writeCommentForm() {
-		return "/comment/commentWrite";
-	}
+
+	/*
+	 * @RequestMapping("commentWrite") public String writeCommentForm(int
+	 * exhibition_no, Model model) { model.addAttribute("exhibition_no",
+	 * exhibition_no); return "/comment/commentWrite"; }
+	 */
 	@RequestMapping(value="addComment", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String addComment(String content, int exhibition_no, HttpSession session, Model model) {
@@ -41,15 +44,12 @@ public class CommentController {
 		int result = cmt.addComment(comment);
 	    return String.valueOf(result);
 	}
-	
 	@RequestMapping(value="updateComment", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateComment(String content, int exhibition_no, HttpSession session, Model model) {
-		String c_id = (String)session.getAttribute("c_id");
+	public String updateComment(String content, int comment_no, Model model) {
 		CommentDTO comment = new CommentDTO();
-		comment.setC_id(c_id);
-		comment.setExhibition_no(exhibition_no);
-		comment.setContent(content);
+		comment.setComment_no(comment_no);		
+		comment.setContent(content);		
 		int result = cmt.updateComment(comment);
 	    return String.valueOf(result);
 	}

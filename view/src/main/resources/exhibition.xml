@@ -6,7 +6,6 @@
 		<result property="exhibition_no" column="exhibition_no" />
 		<result property="b_id" column="b_id" />
 		<result property="title" column="title" />
-		<result property="artist" column="artist" />
 		<result property="gallery" column="gallery" />
 		<result property="gallery_site" column="gallery_site" />
 		<result property="address" column="address" />
@@ -59,7 +58,7 @@
 		</sql>
 		<insert id="insert" parameterType="exhibition" useGeneratedKeys="true" keyProperty="exhibition_no">
 			insert into exhibition values (
-				exhibition_no,#{b_id},#{title},#{artist},#{gallery},#{gallery_site},
+				exhibition_no,#{b_id},#{title},#{gallery},#{gallery_site},
 				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
 				#{price},#{start_date},#{end_date},#{hashtags},#{content},0,now(),'n',#{filename}
 			)
