@@ -167,12 +167,12 @@
 						<div class="row form-group" align="left">
 							<div class="col-md-12" id="siteForm">
 								<b>&emsp;예매 사이트</b>
+								<c:if test="${empty ex.ticket_link1 }">
+									<input type="text" name="ticket_link1" class="form-control">
+								</c:if>								
 								<c:if test="${not empty ex.ticket_link1 }">
 								<input type="text" name="ticket_link1" class="form-control" value="${ex.ticket_link1 }">
 								</c:if>
-								<c:if test="${empty ex.ticket_link1 }">
-									<input type="text" name="ticket_link1" class="form-control" placeholder="-">
-								</c:if>								
 								<c:if test="${not empty ex.ticket_link2 }">
 								<input type="text" name="ticket_link2" class="form-control" value="${ex.ticket_link2 }">
 								</c:if>

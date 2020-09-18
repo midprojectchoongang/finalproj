@@ -99,6 +99,25 @@ public class ExhibitionController {
 		model.addAttribute("page", page);
 		return "exhibition/exList";
 	}
+	
+	@RequestMapping("/biz/exList")
+	public String bizExList(String pageNum, HttpSession session, Model model) throws ParseException {
+		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
+		String b_id = (String) session.getAttribute("b_id");
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int total = 0;
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;
+		int startRow = (currentPage - 1) * rowPerPage;
+		
+		list = es.bizList(startRow, rowPerPage, b_id);
+		
+		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
+		
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		return "business/exList";
+	}
 	@RequestMapping("/biz/exWriteForm")
 	private String exWriteForm(HttpSession session, Model model) {
 		List<HashtagDTO> hashList = hs.hashList();
@@ -169,7 +188,13 @@ public class ExhibitionController {
         	HashtagDTO selected =  hs.select(tags[i]);
         	postedHash.add(selected);
         }
+        
+        String[] t_links = new String[3];
+        t_links[0] = ex.getTicket_link1();
+        t_links[1] = ex.getTicket_link2();
+        t_links[2] = ex.getTicket_link3();
 		
+        model.addAttribute("t_links", t_links);
         model.addAttribute("addr", addr[0]);
         model.addAttribute("myList", myList);
         model.addAttribute("heart", heart);

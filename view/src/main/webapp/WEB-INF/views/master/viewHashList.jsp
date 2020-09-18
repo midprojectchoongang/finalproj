@@ -44,7 +44,7 @@
 							<c:forEach var="htl" items="${hashList }">
 							<c:if test="${htl.kind == 'basic' }">
 								<span class="tag">
-									<a href="hashDetail?hash_title=${htl.hash_title }" class="name"><i class="icon-tag"></i> ${htl.hash_title }</a>
+									<a href="${path }/master/hashDetail?hash_title=${htl.hash_title }" class="name"><i class="icon-tag"></i> ${htl.hash_title }</a>
 								</span>
 							</c:if>
 							</c:forEach>
@@ -60,7 +60,7 @@
 							<c:forEach var="htl" items="${hashList }">
 							<c:if test="${htl.kind != 'basic' }">
 								<span class="tag">
-									<a href="/master/hashDetail?hash_title=${htl.hash_title }" class="name"><i class="icon-tag"></i> ${htl.hash_title }</a>
+									<a href="${path }/master/hashDetail?hash_title=${htl.hash_title }" class="name"><i class="icon-tag"></i> ${htl.hash_title }</a>
 								</span>
 							</c:if>
 							</c:forEach>
