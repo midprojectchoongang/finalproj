@@ -17,7 +17,7 @@
 			    </a></div>
 		    </c:forEach>
 		</div>
-		<div class="slider-nav" style="z-index: 999; margin-top: -150px;">
+<%-- 		<div class="slider-nav" style="z-index: 999; margin-top: -150px;">
 			<c:forEach items="${slideList }" var="sl">
 			    <div>
 			    	<div style=" height: 200px; width: 25%; min-width:400px; background: white; opacity: 0.9;">
@@ -29,7 +29,7 @@
 					</div>
 				</div>
 		    </c:forEach>
-		</div>
+		</div> --%>
 		
 		<script type="text/javascript">
 			$('.slider-for').slick({
@@ -39,7 +39,7 @@
 				autoplay: true,
 				autoplaySpeed: 3000,
 				variableWidth: true,
-				asNavFor: '.slider-nav',
+			//	asNavFor: '.slider-nav',
 				responsive: [{
 					breakpoint: 480,
 					settings: {
@@ -50,13 +50,13 @@
 				}]
 			});
 			
-			$('.slider-nav').slick({
+/* 			$('.slider-nav').slick({
 			  slidesToShow: 1,
 			  slidesToScroll: 1,
 			  asNavFor: '.slider-for',
 			  arrows: false,
 			  fade: true
-			});
+			}); */
 		</script>
 
 		<!-- 게시물 미리보기 -->
