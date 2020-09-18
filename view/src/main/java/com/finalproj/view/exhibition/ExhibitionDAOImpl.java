@@ -62,4 +62,12 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	public void autoDelete() {
 		sst.delete("exhibitionns.autoDelete");
 	}
+	@Override
+	public Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("b_id", b_id);
+		map.put("startRow", startRow+"");
+		map.put("endRow", rowPerPage+"");
+		return sst.selectList("exhibitionns.bizList", map);
+	}
 }

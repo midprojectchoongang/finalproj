@@ -15,21 +15,20 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div class="row-pb-sm btn-group-xs" style="text-align: right; padding: 20px;">
-						<c:if test="${ex.b_id == sessionScope.b_id }">
-							<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" class="btn btn-outline">수정</a>
-							<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
+						<c:if test="${myList == 'b' }">
+							<a href="${path }/biz/exList?pageNum=${pageNum}" class="btn btn-outline">전시목록</a>
 						</c:if>
-						<c:if test="${myList == 'y' }">
-							<a href="${path }/cus/myExList" class="btn btn-outline">관심전시목록</a>
+						<c:if test="${myList == 'c' }">
+							<a href="${path }/cus/myExList?pageNum=${pageNum}" class="btn btn-outline">관심전시목록</a>
 						</c:if>
 						<c:if test="${myList == null }">
-						<a href="${path }/exList" class="btn btn-outline">목록</a>
+						<a href="${path }/exList?pageNum=${pageNum}" class="btn btn-outline">목록</a>
 						</c:if>
 					</div>
 				</div>
 				<div class="row">
-				<div class="col-md-12">
-					<table class="table table-ticket table-striped">
+				<div class="col-md-12" style="padding: 0">
+					<table class="table table-box table-striped">
 						<tr>
 							<td style="width: 30%;" rowspan="4">
 								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail">
@@ -205,49 +204,37 @@
 						</tr>
 						<c:if test="${not empty ex.ticket_link1 || ex.ticket_link1 != ''}">
 						<tr>
-							<th rowspan="3">
+							<th>
 								예매처
 							</th>	
 							<td colspan="2">
-								${ex.ticket_link1 }
+								<c:forEach var="link" items="${t_links }">
+									<c:set var="site" value="${link }"/>
+									<c:set var="length" value="${fn:length(site)+1}"/>
+									<c:choose>
+										<c:when test="${fn:startsWith(site, 'http://')}">
+											<c:set var="adj_site" value="${fn:substring(site,7,length)}"></c:set>
+											<a href="http://${adj_site }" target="blank">${link }</a><br>
+										</c:when>
+										<c:otherwise>
+											<a href="http://${link }" target="blank">${link }</a><br>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</td>
 						</tr>
 						</c:if>
-						<c:if test="${not empty ex.ticket_link2 || ex.ticket_link2 != ''}">	
-						<tr>	
-							<td colspan="2">
-								${ex.ticket_link2 }
-							</td>
-						</tr>
-						</c:if>
-						<c:if test="${not empty ex.ticket_link3 || ex.ticket_link3 != ''}">
-						<tr>	
-							<td colspan="2">
-								${ex.ticket_link3 }
-							</td>
-						</tr>
-						</c:if>
-					</table>
-				</div>
-			</div>
-			<hr>
-			<div class="row row-pb-md">
-				<div class="col-md-12">
-					<table class="table table-striped">
 						<tr>
-							<td style="padding: 30px;">
+							<td colspan="3" class="ex-content">
 								${ex.content }
 							</td>
 						</tr>
 					</table>
 				</div>
-			</div>		
-			<hr>					
-			</div>			
+			</div>
 		</div>
 		</div>				
-			<!--  댓글  -->			
-			<%@ include file="../comment/commentWrite.jsp" %>
+	<%@ include file="../comment/commentWrite.jsp" %>
 	<%@ include file="../mainPage/footer.jsp"%>
 </div>
 </body>

@@ -602,15 +602,15 @@ h1, h2, h3, h4, h5, h6, figure {
   .review .desc p {
     width: calc(100% - 50px);
     float: right; }
-    .review .desc h4 {
+    .review .desc h3 {
       width: 100%;
       margin-bottom: 10px; }
-      .review .desc h4 span {
-        width: 49%;
+      .review .desc h3 span {
+       /*  width: 49%; */
         display: inline-block; }
-        .review .desc h4 span:first-child {
+        .review .desc h3 span:first-child {
           font-size: 20px; }
-        .review .desc h4 span:last-child {
+        .review .desc h3 span:last-child {
           font-size: 15px;
           color: #b3b3b3; }
     .review .desc .star {
@@ -913,6 +913,15 @@ blockquote {
       opacity: 1; }
 
 /* custom style */
+.ex-content {
+	margin: 0 !important;
+	padding: 0 !important;	
+}
+
+.ex-content img {
+	max-width: 100%;
+	height: auto !important;
+}
 
 .colorlib-heading-2 {
   display: block;
@@ -948,7 +957,6 @@ blockquote {
 
 .headbox-sm {
 	margin-bottom: 1em; 
-	text-align: center;
 	border-bottom-style: solid;
 	border-bottom-color: #F6490D;
 }

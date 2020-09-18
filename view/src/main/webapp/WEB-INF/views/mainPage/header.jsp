@@ -74,7 +74,7 @@
 <!-- Map -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 <body>
-로그인 모드 : ${sessionScope.login }
+로그인 모드 : ${sessionScope.login } / id : ${c_id } * ${b_id }
 <nav class="colorlib-nav navbar-static-top" role="navigation">
 	<div class="top-menu">
 		<div class="container">
@@ -92,6 +92,7 @@
 							<li><a href="${path }/hashSearch">#hash</a></li>
 							<c:if test="${sessionScope.login == 'biz' }">
 							<li><a href="${path }/biz/exWriteForm">전시등록</a></li>
+							<li><a href="${path }/biz/exList">전시관리</a></li>
 							</c:if>
 							<c:if test="${sessionScope.login == 'customer'}">
 							<li><a href="${path }/cus/myExList">관심전시회</a></li>

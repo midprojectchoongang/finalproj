@@ -10,7 +10,7 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			location.href = "exList";
+			location.href = "${path}/biz/exList";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

@@ -69,4 +69,9 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public int getCompTotal(String[] tags) {
 		return ed.getCompTotal(tags);
 	}
+
+	@Override
+	public Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id) {
+		return ed.bizList(startRow, rowPerPage, b_id);
+	}
 }

@@ -8,18 +8,28 @@
 <body>
 
 <div class="col-md-12" id="commentDisp">
-	<h2>${count } Comments</h2>
+	<div class="row headbox-sm" align="left"><h2 class="heading-2-b">${count }개의 한줄평</h2></div>
 	<c:forEach items="${cmtList }" var="cl">
 	<c:if test="${cl.del == 'n' }">
 		<div class="review">
 	   		<div class="desc">
-	   			<h4><span class="text-left">${cl.nickname }&emsp;
-	   					<c:if test="${cl.c_id == sessionScope.c_id }">
-	   						<button onclick="updateComment('${cl.comment_no}', '${cl.exhibition_no }' ,'${cl.content }')" id="updateBtn_${cl.comment_no}">수정</button>
-	   						<button onclick="deleteComment('${cl.comment_no}')" id="deleteBtn_${cl.comment_no}">삭제</button>
-	   					</c:if></span>
-	   				<span class="text-right">${cl.reg_date }</span>
-	   			</h4>
+	   			<h3>
+	   				<span class="text-left" style="width: 100%;">
+	   					${cl.nickname }&emsp;&emsp;
+	   				</span>
+		   			<span class="text-right" style="width: 100%;">
+	   					<span class="text-right btn-group-xs">
+ 	   					<c:if test="${cl.c_id == sessionScope.c_id }">
+	   						<button onclick="updateComment('${cl.comment_no}', '${cl.exhibition_no }' ,'${cl.content }')" 
+	   							id="updateBtn_${cl.comment_no}" class="btn btn-outline">수정</button>
+	   						<button onclick="deleteComment('${cl.comment_no}')" 
+	   							id="deleteBtn_${cl.comment_no}" class="btn btn-outline">삭제</button>
+	   					</c:if>
+	   					</span>
+	   					&emsp;
+	   					${cl.reg_date }
+	   				</span>
+	   			</h3>
 	   			<p id="contentBox" class="comm_${cl.comment_no }">${cl.content }</p>
 	   		</div>
 	   	</div>
