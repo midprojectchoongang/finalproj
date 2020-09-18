@@ -90,4 +90,7 @@
 		<delete id="autoDelete">
 			update exhibition set del='y' where sysdate() > end_date
 		</delete>
+		<select id="recentList" parameterType="hashmap" resultMap="exhibitionResult">
+			select * from exhibition where del = 'n' order by exhibition_no desc limit ${i}, ${j}
+		</select>
 </mapper>
