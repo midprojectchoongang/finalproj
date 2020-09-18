@@ -71,6 +71,12 @@
 <script src="${path}/js/magnific-popup-options.js"></script>
 <!-- Main -->
 <script src="${path}/js/main.js"></script>
+
+<link rel="stylesheet" href="${path }/slick/slick.css">
+<link rel="stylesheet" href="${path }/slick/slick-theme.css">
+<script type="text/javascript" src="${path }/slick/slick.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
 <!-- Map -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 <body>

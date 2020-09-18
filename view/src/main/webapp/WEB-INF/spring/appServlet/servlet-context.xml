@@ -23,6 +23,7 @@
 	<mvc:resources location="/ticketImg/" mapping="/ticketImg/**" />
 	<mvc:resources location="/resources/exImg/" mapping="/exImg/**" />
 	<mvc:resources location="/resources/ckUpload/" mapping="/ckUpload/**" />
+	<mvc:resources location="/resources/slick/" mapping="/slick/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

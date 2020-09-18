@@ -10,34 +10,55 @@
 <%@ include file="header.jsp" %>
 	<div align="center">
 	
-		<!-- 메인 사진 슬라이더 -->
-		<aside id="colorlib-hero">
-			<div class="flexslider" style="max-width:1500px;">
-				<ul class="slides">
-					<c:forEach items="${exList }" var="el">
-					<li style="background-image: url(${path }/exImg/${el.filename })">
-						<div class="overlay"></div>
-						<div class="container">	
-							<div class="row">
-								<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-									<div class="slider-text-inner">
-										<div class="desc">
-											<div style="height:50px;">
-												<div style="float: left; font-weight: 900;">${el.gallery }</div>
-												<div style="float: right; text-align: right; font-size: 15px;">${el.start_date } ~ ${el.end_date }</div>
-											</div>
-											<h1><a href="exView?exhibition_no=${el.exhibition_no }">${el.title }</a></h1>
-										</div>
-									</div>
-								</div>
-							</div>
+		<div class="slider-for" style="background: #212415;">
+			<c:forEach items="${slideList }" var="sl">
+			    <div><a href="exView?exhibition_no=${sl.exhibition_no }">
+			    <img src="${path }/exImg/${sl.filename }" style="max-height: 400px; margin: 50px; border: none; outline: none; text-decoration: none;">
+			    </a></div>
+		    </c:forEach>
+		</div>
+		<div class="slider-nav" style="z-index: 999; margin-top: -150px;">
+			<c:forEach items="${slideList }" var="sl">
+			    <div>
+			    	<div style=" height: 200px; width: 25%; min-width:400px; background: white; opacity: 0.9;">
+						<div style="height:80px;">
+							<div style="float: left; margin: 20px; font-weight: 900;">${sl.gallery }</div>
+							<div style="float: right; margin: 20px; text-align: right; font-size: 15px;">${sl.start_date } ~ ${sl.end_date }</div>
 						</div>
-					</li>
-					</c:forEach>
-				</ul>
-			</div>
-		</aside>
-	
+						<h1><a href="exView?exhibition_no=${sl.exhibition_no }">${sl.title }</a></h1>
+					</div>
+				</div>
+		    </c:forEach>
+		</div>
+		
+		<script type="text/javascript">
+			$('.slider-for').slick({
+				centerMode: true,
+				dots: true,
+				slidesToShow: 3,
+				autoplay: true,
+				autoplaySpeed: 3000,
+				variableWidth: true,
+				asNavFor: '.slider-nav',
+				responsive: [{
+					breakpoint: 480,
+					settings: {
+						centerMode: true,
+				        centerPadding: '40px',
+						slidesToShow: 1
+					}
+				}]
+			});
+			
+			$('.slider-nav').slick({
+			  slidesToShow: 1,
+			  slidesToScroll: 1,
+			  asNavFor: '.slider-for',
+			  arrows: false,
+			  fade: true
+			});
+		</script>
+
 		<!-- 게시물 미리보기 -->
 		<div id="colorlib-container">
 			<div class="container">

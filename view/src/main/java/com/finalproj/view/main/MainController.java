@@ -31,17 +31,17 @@ public class MainController {
 
 	@RequestMapping("main")
 	public String main(HttpSession session, Model model) throws ParseException {
-		String keyword = null;
-		if (session.getAttribute("c_id") != null) {
+		Collection<ExhibitionDTO> slideList = new ArrayList<ExhibitionDTO>();
+		slideList = es.recentList(0, 10);
+		
+		/*		if (session.getAttribute("c_id") != null) {
 			String c_id = (String)session.getAttribute("c_id");
 			CustomerDTO customer = cs.select(c_id);
 			keyword = customer.getC_hashtag();
 		}
 		
-		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
 		
 		if (keyword == null) {
-			list = es.list(0, 5, keyword);
 		} else {
 			JSONParser jp = new JSONParser();
 			JSONObject jo;
@@ -52,8 +52,9 @@ public class MainController {
 			String[] tags = gson.fromJson(c, String[].class);
 			list = es.compList(0, 5, tags);
 		}
+		*/
 		
-		model.addAttribute("exList", list);
+		model.addAttribute("slideList", slideList);
 		return "/mainPage/main";
 	}
 	@RequestMapping("loginForm")
@@ -63,10 +64,6 @@ public class MainController {
 	@RequestMapping("login")
 	public String login() {
 		return "/account/login";
-	}
-	@RequestMapping("map")
-	public String map() {
-		return "/account/map";
 	}
 	@RequestMapping("writeForm")
 	public String about() {

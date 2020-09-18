@@ -14,5 +14,6 @@ public interface ExhibitionService {
 	void autoDelete();
 	Collection<ExhibitionDTO> compList(int startRow, int rowPerPage, String[] tags);
 	int getCompTotal(String[] tags);
+	Collection<ExhibitionDTO> recentList(int i, int j);
 	Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id);
 }
