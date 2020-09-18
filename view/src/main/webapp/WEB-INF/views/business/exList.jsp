@@ -9,8 +9,7 @@
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
 		<div id="colorlib-container">
-		<div class="row headbox"><h2 class="heading-2">전시회</h2>
-			<a href="exList?listType=p" style="color: white;">Prefered List</a>&emsp;<a href="exList" style="color: white;">ALL List</a>
+		<div class="row headbox"><h2 class="heading-2">전시 관리</h2>
 		</div>
 			<div class="container" align="center">
 				<div class="row-pb-md">
@@ -29,49 +28,45 @@
 						<tbody>
 						<c:forEach items="${list }" var="ex">
 							<c:if test="${ex.del == 'n' }">
-							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
-							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
+							style="cursor: pointer; border-bottom: 2px solid #eeeeee;">
 								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
 									<div style="width:120px;">
 									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail">
 									</div>
 								</td>
 							</tr>
-							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
 							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
 								<th style="width: 25%; vertical-align: middle;">전시회명</th>
 								<td height="50px;" style="vertical-align: middle;">
 									${ex.title }
 								</td>
 							</tr>
-							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
 							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
 								<th style="width: 25%;">장소</th>
 								<td height="50px;" style="vertical-align: middle;">
 									${ex.gallery }
 								</td>
 							</tr>
-							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }'&myList=b&pageNum=${pageNum}" 
 								style="cursor: pointer; border-bottom: 1px dashed #eeeeee;">
 								<th style="width: 25%; vertical-align: middle;">기간</th>
 								<td height="50px;" style="vertical-align: middle;">
 									${ex.start_date } ~ ${ex.end_date }
-								</td>										
+								</td>											
 							</tr>
 							<tr style="border-bottom: 2px solid #eeeeee;">
-								<td id="${ex.exhibition_no }" colspan="3" style="line-height: 120%; vertical-align: middle;" height="50px;"></td>
+								<td colspan="3" height="50px;" style="vertical-align: middle;">
+									<div class="btn-group-xs" style="text-align: right;">
+										<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" 
+											class="btn btn-outline">수정</a>
+										<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" 
+											class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
+									</div>
+								</td>
 							</tr>
-							<script type="text/javascript">
-								var verify = '${ex.exhibition_no }';
-								var jsondata = '${ex.hashtags }';
-								var hash = JSON.parse(jsondata);
-								for (var i=0; i<hash.hash.length; i++) {
-									$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
-											'<a style="cursor:pointer; font-size: 12px;" href="${path}/exList?keyword=' + hash.hash[i] + '">#' +
-											hash.hash[i] + '&emsp;</a></span>'
-									);
-								}
-							</script>
 						</c:if>
 						</c:forEach>
 						</tbody>

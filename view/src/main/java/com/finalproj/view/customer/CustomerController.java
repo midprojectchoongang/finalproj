@@ -88,7 +88,7 @@ public class CustomerController {
 	public String viewInfoC(Model model, HttpSession session) throws ParseException {
 		String c_id = (String)session.getAttribute("c_id");
 		CustomerDTO customerdto = cs.select(c_id);
-		
+
 		/* JSON파싱 */
         JSONParser jp = new JSONParser();
         JSONObject jo;

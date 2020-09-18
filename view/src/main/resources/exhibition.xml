@@ -31,6 +31,11 @@
 			<include refid="search"></include>
 			order by end_date limit ${startRow}, ${endRow}
 		</select>
+		<select id="bizList" parameterType="hashmap" resultMap="exhibitionResult">
+			select * from exhibition where del = 'n' and b_id = #{b_id}
+			<include refid="search"></include>
+			order by reg_date limit ${startRow}, ${endRow}
+		</select>
 		<sql id="search">
 			<if test="keyword != null">
 				and hashtags like concat('%\"',#{keyword},'\"%')
@@ -72,8 +77,18 @@
 		</select>
 		<update id="update" parameterType="exhibition">
 			update exhibition set 
-			title=#{title}, gallery=#{gallery}, address=#{address}, price=#{price},
-			start_date=#{start_date}, end_date=#{end_date}, hashtags=#{hashtags}, content=#{content}, filename=#{filename}
+			title=#{title}, gallery=#{gallery}, address=#{address}, 
+			<if test="ticket_link1 != null">
+				ticket_link1 = #{ticket_link1},
+			</if>
+			<if test="ticket_link2 != null">
+				ticket_link2 = #{ticket_link2},
+			</if>
+			<if test="ticket_link3 != null">
+				ticket_link3 = #{ticket_link3},
+			</if>
+			price=#{price},	start_date=#{start_date}, end_date=#{end_date}, 
+			hashtags=#{hashtags}, content=#{content}, filename=#{filename}
 			where exhibition_no=#{exhibition_no}
 		</update>
 		<update id="delete" parameterType="integer">
@@ -90,4 +105,7 @@
 		<delete id="autoDelete">
 			update exhibition set del='y' where sysdate() > end_date
 		</delete>
+		<select id="recentList" parameterType="hashmap" resultMap="exhibitionResult">
+			select * from exhibition where del = 'n' order by exhibition_no desc limit ${i}, ${j}
+		</select>
 </mapper>

@@ -36,6 +36,7 @@
 	<select id="list" parameterType="business" resultMap="bizResult">
 		select *
 		from business
+		order by confirm, reg_date desc, confirm_date desc
 		limit #{startRow}, #{endRow}
 	</select>
 	
