@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="col-md-12">
 					<div class="row">
-							<form action="bizUpdate" method="post" name="frm" onsubmit="return chk()">
+							<form action="bizUpdate" method="post" name="frm">
 							<input type="hidden" name="b_id" value="${bsness.b_id }">								
 								<div class="row form-group">
 									<div class="col-md-12">
