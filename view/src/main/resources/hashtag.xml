@@ -12,6 +12,9 @@
 	<select id="list" resultMap="hashtagResult">
 		select * from hashtag order by hashgroup, use_count
 	</select>
+	<select id="popularHash" parameterType="hashmap" resultMap="hashtagResult">
+		select hash_title from hashtag order by use_count desc limit ${i }, ${j }
+	</select>
 	<select id="hashChk" parameterType="string" resultType="integer">
 		select count(*) from hashtag where hash_title=#{hash_title}
 	</select>

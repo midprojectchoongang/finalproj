@@ -20,8 +20,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public int getTotal(String keyword) {
 		return ed.getTotal(keyword);
 	}
-	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword) {
-		return ed.list(startRow, endRow, keyword);
+	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword, String alignment) {
+		return ed.list(startRow, endRow, keyword, alignment);
 	}
 	public ExhibitionDTO select(int exhibition_no) {
 		return ed.select(exhibition_no);
@@ -41,17 +41,23 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	public void autoDelete() {
 		ed.autoDelete();
 	}
-	public Collection<ExhibitionDTO> compList(int startRow, int rowPerPage, String[] tags) {
-		return ed.compList(startRow, rowPerPage, tags);
+	public Collection<ExhibitionDTO> compList(int startRow, int rowPerPage, String[] tags, String alignment) {
+		return ed.compList(startRow, rowPerPage, tags, alignment);
 	}
 	public int getCompTotal(String[] tags) {
 		return ed.getCompTotal(tags);
 	}
 	public Collection<ExhibitionDTO> recentList(int i, int j) {
 		return ed.recentList(i, j);
-  }
-	@Override
+	}
 	public Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id) {
 		return ed.bizList(startRow, rowPerPage, b_id);
+	}
+	public Collection<ExhibitionDTO> listByCmt(int[] exNos) {
+		return ed.listByCmt(exNos);
+	}
+	public void comment_cntUp(int exhibition_no) {
+		ed.comment_cntUp(exhibition_no);
+		
 	}
 }

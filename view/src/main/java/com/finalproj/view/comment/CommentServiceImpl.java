@@ -1,4 +1,5 @@
 package com.finalproj.view.comment;
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,13 @@ public class CommentServiceImpl implements CommentService {
 	public int addComment(CommentDTO comment) {
 		return cd.addComment(comment);
 	}
-	@Override
 	public int updateComment(CommentDTO comment) {
 		return cd.updateComment(comment);
 	}
-	@Override
 	public int deleteComment(int comment_no) {
 		return cd.deleteComment(comment_no);
+	}
+	public List<CommentDTO> lotsOfCmt(int i, int j) {
+		return cd.lotsOfCmt(i, j);
 	}
 }

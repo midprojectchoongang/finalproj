@@ -21,11 +21,12 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	public int getTotal(String keyword) {
 		return sst.selectOne("exhibitionns.getTotal", keyword);
 	}
-	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword) {
+	public Collection<ExhibitionDTO> list(int startRow, int endRow, String keyword, String alignment) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("keyword", keyword);
 		map.put("startRow", startRow+"");
 		map.put("endRow", endRow+"");
+		map.put("alignment", alignment);
 		return sst.selectList("exhibitionns.list", map);
 	}
 	public int getCompTotal(String[] tags) {
@@ -35,13 +36,14 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		}
 		return sst.selectOne("exhibitionns.getCompTotal", map);
 	}
-	public Collection<ExhibitionDTO> compList(int startRow, int endRow, String[] tags) {
+	public Collection<ExhibitionDTO> compList(int startRow, int endRow, String[] tags, String alignment) {
 		Map<String, String> map = new HashMap<String, String>();
 		for (int i=0; i<tags.length; i++) {
 			map.put("keyword" + i, tags[i]);
 		}
 		map.put("startRow", startRow+"");
 		map.put("endRow", endRow+"");
+		map.put("alignment", alignment);
 		return sst.selectList("exhibitionns.compList", map);
 	}
 	public ExhibitionDTO select(int exhibition_no) {
@@ -67,13 +69,22 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 		map.put("i", i);
 		map.put("j", j);
 		return sst.selectList("exhibitionns.recentList", map);
-  }
-	@Override
+	}
 	public Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("b_id", b_id);
 		map.put("startRow", startRow+"");
 		map.put("endRow", rowPerPage+"");
 		return sst.selectList("exhibitionns.bizList", map);
+	}
+	public Collection<ExhibitionDTO> listByCmt(int[] exNos) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for (int i=0; i<exNos.length; i++) {
+			map.put("ex" + i, exNos[i]);
+		}
+		return sst.selectList("exhibitionns.listByCmt", map);
+	}
+	public void comment_cntUp(int exhibition_no) {
+		sst.update("exhibitionns.comment_cntUp", exhibition_no);
 	}
 }

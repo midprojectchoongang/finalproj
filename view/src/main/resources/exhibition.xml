@@ -21,6 +21,7 @@
 		<result property="reg_date" column="reg_date" />
 		<result property="del" column="del" />
 		<result property="filename" column="filename" />
+		<result property="comment_cnt" column="comment_cnt" />
 	</resultMap>
 		<select id="getTotal" parameterType="string" resultType="integer">
 			select count(*) from exhibition where del = 'n'
@@ -29,7 +30,10 @@
 		<select id="list" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n'
 			<include refid="search"></include>
-			order by end_date limit ${startRow}, ${endRow}
+			order by ${alignment}
+			<if test="alignment == 'end_date'">asc</if>
+			<if test="alignment != 'end_date'">desc</if>
+			limit ${startRow}, ${endRow}
 		</select>
 		<select id="bizList" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n' and b_id = #{b_id}
@@ -48,7 +52,10 @@
  		<select id="compList" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n'
 			<include refid="compSearch"></include>
-			order by end_date limit ${startRow}, ${endRow}
+			order by ${alignment}
+			<if test="alignment == 'end_date'">asc</if>
+			<if test="alignment != 'end_date'">desc</if>
+			limit ${startRow}, ${endRow}
 		</select>
 		<sql id="compSearch">
 			<if test="keyword0 != null">
@@ -66,7 +73,7 @@
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{gallery},#{gallery_site},
 				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
-				#{price},#{start_date},#{end_date},#{hashtags},#{content},0,now(),'n',#{filename}
+				#{price},#{start_date},#{end_date},#{hashtags},#{content},0,now(),'n',#{filename},0
 			)
 		</insert>
 		<select id="view" parameterType="integer" resultType="exhibition">
@@ -108,4 +115,10 @@
 		<select id="recentList" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n' order by exhibition_no desc limit ${i}, ${j}
 		</select>
+		<select id="listByCmt" parameterType="hashmap" resultMap="exhibitionResult">
+			select * from exhibition where exhibition_no = #{ex0} or exhibition_no = #{ex1} or exhibition_no = #{ex2}
+		</select>
+		<update id="comment_cntUp" parameterType="integer">
+			update exhibition set comment_cnt = comment_cnt + 1 where where exhibition_no = #{exhibition_no}
+		</update>
 </mapper>

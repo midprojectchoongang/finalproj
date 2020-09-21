@@ -1,5 +1,9 @@
 package com.finalproj.view.comment;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,12 +21,16 @@ public class CommentDAOImpl implements CommentDAO {
 	public int addComment(CommentDTO comment) {
 		return sst.insert("commentns.addComment", comment);
 	}
-	@Override
 	public int updateComment(CommentDTO comment) {
 		return sst.update("commentns.updateComment", comment);
 	}
-	@Override
 	public int deleteComment(int comment_no) {
 		return sst.delete("commentns.deleteComment", comment_no);
+	}
+	public List<CommentDTO> lotsOfCmt(int i, int j) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("i", i);
+		map.put("j", j);
+		return sst.selectList("commentns.lotsOfCmt", map);
 	}
 }
