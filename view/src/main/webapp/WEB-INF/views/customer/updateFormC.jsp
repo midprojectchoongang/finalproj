@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="col-md-9">
 				<div class="row">
-					<form action="updateC" method="post" name="frm" onsubmit="return passwordChk()">
+					<form action="updateC" method="post" name="frm">
 						<input type="hidden" name="c_id" value="${customerdto.c_id }">	
 						<div class="row formbox">
 							<div class="row form-group">
@@ -42,18 +42,17 @@
 								<div class="col-md-12" align="left">
 									<b>&emsp;비밀번호 확인</b>
 									<input type="password" name="c_password2" id="c_password2" class="form-control" required="required"
-										value="${customerdto.c_password }">
+										value="${customerdto.c_password }"  onkeyup="passwordChk()">
+										<div id="pwDisp"></div>
 								</div>
 							</div>
 						</div>
 						<script type="text/javascript">
 							function passwordChk() {
 								if (frm.c_password.value != frm.c_password2.value) {
-									alert("password check");
-									frm.c_password.focus();
-									frm.c_password.value = "";
-									frm.c_password2.value = "";
-									return false;
+									$('#pwDisp').html("<b>비밀번호와 비밀번호 확인이 일치하지 않습니다</b>");
+								} else {
+									$('#pwDisp').html("");
 								}
 							}
 						</script>

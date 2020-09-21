@@ -18,7 +18,7 @@
 					<div class="row formbox">
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>아이디</sapn>
+								<span>아이디</span>
 								<div class="col-md-12">
 									${biz.b_id }
 								</div>
@@ -26,7 +26,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>단체명</sapn>
+								<span>단체명</span>
 								<div class="col-md-12">
 									${biz.groupName }
 								</div>
@@ -34,7 +34,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>대표자</sapn>
+								<span>대표자</span>
 								<div class="col-md-12">
 									${biz.ceoName }
 								</div>
@@ -44,7 +44,7 @@
 					<div class="row formbox">
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>단체종류</sapn>
+								<span>단체종류</span>
 								<div class="col-md-12">
 									${biz.groupkind }
 								</div>
@@ -52,7 +52,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>등록번호</sapn>
+								<span>등록번호</span>
 								<div class="col-md-12">
 								<c:choose>
 									<c:when test="${not empty biz.licensee}">${biz.licensee}</c:when>
@@ -65,7 +65,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>대표번호</sapn>
+								<span>대표번호</span>
 								<div class="col-md-12">
 									${biz.tel }
 								</div>
@@ -73,7 +73,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>메일주소</sapn>
+								<span>메일주소</span>
 								<div class="col-md-12">
 									${biz.email }
 								</div>
@@ -81,7 +81,7 @@
 						</div>							
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>홈페이지</sapn>
+								<span>홈페이지</span>
 								<div class="col-md-12">
 									${biz.website }
 								</div>
@@ -89,7 +89,7 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
-								<sapn>가입일</sapn>
+								<span>가입일</span>
 								<div class="col-md-12">
 									<fmt:formatDate value="${biz.reg_date }" pattern="YYYY-MM-dd"/>
 								</div>

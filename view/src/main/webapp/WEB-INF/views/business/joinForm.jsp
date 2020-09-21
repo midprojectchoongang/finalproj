@@ -31,15 +31,6 @@
 			}
 		});
 	}
-	function passwordChk() {
-		if (frm.b_password.value != frm.b_password2.value) {
-			alert("password check");
-			frm.b_password.focus();
-			frm.b_password.value = "";
-			frm.b_password2.value = "";
-			return false;
-		}
-	}
 </script>
 </head>
 <body>
@@ -89,10 +80,20 @@
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="b_password2">비밀번호 확인</label>
-								<input type="password" name="b_password2" id="b_password2" class="form-control" required="required">
+								<input type="password" name="b_password2" id="b_password2" class="form-control" required="required" onkeyup="passwordChk()">
+								<div id="pwDisp"></div>
 							</div>
 						</div>							
 					</div>
+					<script type="text/javascript">
+						function passwordChk() {
+							if (frm.b_password.value != frm.b_password2.value) {
+								$('#pwDisp').html("<b>비밀번호와 비밀번호 확인이 일치하지 않습니다</b>");
+							} else {
+								$('#pwDisp').html("");
+							}
+						}
+					</script>
 					<div class="row formbox">
 						<div class="row form-group">
 							<div class="col-md-12">

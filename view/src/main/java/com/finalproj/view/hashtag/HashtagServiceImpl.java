@@ -35,4 +35,7 @@ public class HashtagServiceImpl implements HashtagService{
 	public void usedHash(String hashName) {
 		hd.usedHash(hashName);
 	}
+	public List<HashtagDTO> popularHash(int i, int j) {
+		return hd.popularHash(i, j);
+	}
 }

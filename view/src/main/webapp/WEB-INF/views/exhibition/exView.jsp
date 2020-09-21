@@ -14,7 +14,7 @@
 		<div class="container" align="center">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row-pb-sm btn-group-xs" style="text-align: right; padding: 20px;">
+					<div class="row-pb-sm btn-group-xs" style="text-align: right; padding: 0 20px;">
 						<c:if test="${myList == 'b' }">
 							<a href="${path }/biz/exList?pageNum=${pageNum}" class="btn btn-outline">전시목록</a>
 						</c:if>
@@ -31,7 +31,7 @@
 					<table class="table table-box table-striped">
 						<tr>
 							<td style="width: 30%;" rowspan="4">
-								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail">
+								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail" style="min-width: 120px;">
 							</td>
 							<th>
 								전시장소
@@ -83,9 +83,12 @@
 									</c:choose>
 								</c:if>
 							</td>
-						</tr>							
+						</tr>
 						<tr>
-							<td style="vertical-align: middle;">
+
+							<td style="vertical-align: middle;" align="center">
+							<c:if test="${sessionScope.login == 'customer'}">
+
 								<span style="cursor: pointer;">
 								<c:if test="${heart == 1}">
 									<img src="${path }/images/heart_on.png" id="heartIcon" onclick="changeIcon()" role="on">
@@ -94,7 +97,10 @@
 									<img src="${path }/images/heart_off.png" id="heartIcon" onclick="changeIcon()" role="off">
 								</c:if>
 								</span>
+
+							</c:if>	
 							</td>	
+
 							<script type="text/javascript">
 								$(function() {
 									// customer의 interest값에 따라서 icon img 설정
@@ -141,7 +147,7 @@
 									}
 								}
 							</script>						
-							<td colspan="2" style="padding: 30px 0;">
+							<td style="padding: 30px 0; line-height: 150%;" colspan="2">
 								<p class="tags">
 									<c:forEach var="ph" items="${postedHash }">
 										<span class="tag">
@@ -150,14 +156,20 @@
 									</c:forEach>
 								</p>
 							</td>
-						</tr>												
+						</tr>
 						<tr>
 							<th>
 								주소
 							</th>	
 							<td colspan="2">
 								${ex.address }
-							<div id="map" style="width:100%;height:300px;margin-top:10px;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<div id="map" style="max-width:100%;height:300px;margin-top:10px;"></div>
+							</td>
+						</tr>
 							<script type="text/javascript">
 								var addr = '${addr}';
 								var galName = '${ex.gallery}';
@@ -200,14 +212,12 @@
 								});   
 							</script>
 								
-							</td>
-						</tr>
 						<c:if test="${not empty ex.ticket_link1 || ex.ticket_link1 != ''}">
 						<tr>
 							<th>
 								예매처
 							</th>	
-							<td colspan="2">
+							<td colspan="2" style="word-break: break-all;">
 								<c:forEach var="link" items="${t_links }">
 									<c:set var="site" value="${link }"/>
 									<c:set var="length" value="${fn:length(site)+1}"/>
