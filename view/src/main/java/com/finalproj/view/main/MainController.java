@@ -49,7 +49,7 @@ public class MainController {
 			for (int i=0; i<popularHash.size(); i++) {
 				tags[i] = popularHash.get(i).getHash_title().toString();
 			}
-			rcmdList = es.compList(0, 3, tags);
+			rcmdList = es.compList(0, 3, tags, "reg_date");
 		} else {
 			customer = cs.select(c_id);
 			JSONParser jp = new JSONParser();
@@ -59,7 +59,7 @@ public class MainController {
 			String c = ja + "";
 			Gson gson = new Gson();
 			String[] tags = gson.fromJson(c, String[].class);
-			rcmdList = es.compList(0, 3, tags);
+			rcmdList = es.compList(0, 3, tags, "reg_date");
 		}
 		
 		/* 댓글 기반 */
@@ -84,18 +84,10 @@ public class MainController {
 	public String login() {
 		return "/account/login";
 	}
-	@RequestMapping("writeForm")
-	public String about() {
-		return "/mainPage/writeForm";
-	}
 	@RequestMapping("hash")
 	public String hash(Model model) {
 		List<HashtagDTO> hashList = hs.hashList();
 		model.addAttribute("hashList", hashList);
 		return "/mainPage/hash";
-	}
-	@RequestMapping("list")
-	public String list() {
-		return "/mainPage/list";
 	}
 }

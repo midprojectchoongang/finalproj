@@ -8,8 +8,41 @@
 <div class="colorlib-loader"></div>
 <div id="page">
 	<%@ include file="../mainPage/header.jsp"%>
+		<script type="text/javascript">
+		$(function () {
+		    $('[data-toggle="popover1"]').popover();
+		    $('#pop').popover({
+		    	placement : 'bottom',
+		    	trigger : 'hover click'
+		    });
+		})
+		$(function () {
+		    $('[data-toggle="popover2"]').popover();
+		    $('#pop').popover({
+		    	placement : 'bottom',
+		    	trigger : 'hover click'
+		    });
+		})
+		$(function () {
+			$('#list3').css('font-size','25px').css('font-weight','bold');
+		})
+	</script>
 	<div id="colorlib-container" align="center">
-		<div class="row headbox"><h2 class="heading-2">#HASHTAG</h2></div>
+		<div class="row headbox"><h2 class="heading-2">전시회</h2>
+			<a href="${path }/exList" style="color: white;" id="list1">ALL&emsp;</a>
+			<b style="color: white;">/</b>
+			<a href="${path }/exList?listType=p" style="color: white;" id="list2">&emsp;My #HASH</a>
+			<a tabindex="0" role="button" data-toggle="popover1" data-placement="bottom" data-trigger="focus" 
+				data-content="가입 시 설정한 내 #HASH가 포함된 전시 리스트를 보여줍니다.">
+				<img src="${path }/images/tooltip.png" width="15px" style="outline: 0; border: 0;">
+			</a>&emsp;
+			<b style="color: white;">/</b>
+			<a href="${path }/hashSearch" style="color: white;" id="list3">&emsp;By #HASH</a>
+			<a tabindex="0" role="button" data-toggle="popover2" data-placement="bottom" data-trigger="focus" 
+				data-content="보고자 하는 #HASH를 선택하여 그것이 포함된 전시 리스트를 보여줍니다.">
+				<img src="${path }/images/tooltip.png" width="15px" style="outline: 0; border: 0;">
+			</a>
+		</div>
 		<div class="container">
 		<div class="col-md-9">
 			<div class="row formbox">

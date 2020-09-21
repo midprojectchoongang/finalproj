@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.finalproj.view.customer.CustomerService;
+import com.finalproj.view.exhibition.ExhibitionService;
 @Controller
 public class CommentController {
 	@Autowired
 	private CommentService cmt;
 	@Autowired
 	private CustomerService cs;
+	@Autowired
+	private ExhibitionService es;
 	
 	@RequestMapping("commentList")
 	public String commentList(String exhibition_no, Model model) {
@@ -27,12 +30,6 @@ public class CommentController {
 		model.addAttribute("cmtList", cmtList);
 		return "/comment/commentList";
 	}
-
-	/*
-	 * @RequestMapping("commentWrite") public String writeCommentForm(int
-	 * exhibition_no, Model model) { model.addAttribute("exhibition_no",
-	 * exhibition_no); return "/comment/commentWrite"; }
-	 */
 	@RequestMapping(value="addComment", produces="text/html;charset=utf-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String addComment(String content, int exhibition_no, HttpSession session, Model model) {
@@ -42,6 +39,9 @@ public class CommentController {
 		comment.setExhibition_no(exhibition_no);
 		comment.setContent(content);
 		int result = cmt.addComment(comment);
+		if (result > 0) {
+			es.comment_cntUp(exhibition_no);
+		}
 	    return String.valueOf(result);
 	}
 	@RequestMapping(value="updateComment", produces="text/html;charset=utf-8", method = RequestMethod.POST)
