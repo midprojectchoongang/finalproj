@@ -31,7 +31,7 @@
 							style="cursor: pointer;">
 								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
 									<div style="width:120px;">
-									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail">
+									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 180px;">
 									</div>
 								</td>
 							</tr>
@@ -55,16 +55,15 @@
 									${ex.start_date } ~ ${ex.end_date }
 								</td>										
 							</tr>
-							<tr style="border-bottom: 2px solid #eeeeee;">
-								<td id="${ex.exhibition_no }" colspan="3">					
-								</td>
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" style="border-bottom: 2px solid #eeeeee;">
+								<td id="${ex.exhibition_no }" colspan="3" style="line-height: 120%; vertical-align: middle;" height="50px;"></td>					
 									<script type="text/javascript">
 										var verify = '${ex.exhibition_no }';
 										var jsondata = '${ex.hashtags }';
 										var hash = JSON.parse(jsondata);
 										for (var i=0; i<hash.hash.length; i++) {
 											$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
-													'<a style="cursor:pointer; font-size: 12px; display: block;" href="#">#' +
+													'<a style="cursor:pointer; font-size: 12px; display: inline-block;" href="#">#' +
 													hash.hash[i] + '&emsp;</a></span>'
 											);
 										}

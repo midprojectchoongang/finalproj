@@ -25,4 +25,7 @@
 	<delete id="deleteComment" parameterType="integer">
 		delete from comment where comment_no=#{comment_no}
 	</delete>
+	<select id="lotsOfCmt" parameterType="hashmap" resultType="com.finalproj.view.comment.CommentDTO">
+		select *, count(*) as cnt from comment group by exhibition_no order by count(*) desc limit ${i }, ${j };
+	</select>
 </mapper>

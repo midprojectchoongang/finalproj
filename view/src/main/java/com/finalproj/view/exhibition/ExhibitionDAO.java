@@ -16,4 +16,5 @@ public interface ExhibitionDAO {
 	int getCompTotal(String[] tags);
 	Collection<ExhibitionDTO> recentList(int i, int j);
 	Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id);
+	Collection<ExhibitionDTO> listByCmt(int[] exNos);
 }

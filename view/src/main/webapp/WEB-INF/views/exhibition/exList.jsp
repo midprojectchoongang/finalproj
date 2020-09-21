@@ -8,9 +8,23 @@
 	<div class="colorlib-loader"></div>
 	<div id="page">
 		<%@ include file="../mainPage/header.jsp"%>
+		<script type="text/javascript">
+		$(function () {
+		    $('[data-toggle="popover"]').popover();
+		    $('#pop').popover({
+		    	placement : 'bottom',
+		    	trigger : 'hover click'
+		    });
+		    })
+		</script>
 		<div id="colorlib-container">
 		<div class="row headbox"><h2 class="heading-2">전시회</h2>
-			<a href="exList?listType=p" style="color: white;">Prefered List</a>&emsp;<a href="exList" style="color: white;">ALL List</a>
+			<a href="${path }/exList" style="color: white;">ALL&emsp;/</a>
+			<a href="${path }/exList?listType=p" style="color: white;">&emsp;#hash</a>
+			<a tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" 
+				data-content="가입 시 설정한 내 #hash가 포함된 전시 리스트를 보여줍니다.">
+				<img src="${path }/images/tooltip.png" width="15px" style="outline: 0; border: 0;">
+			</a>
 		</div>
 			<div class="container" align="center">
 				<div class="row-pb-md">
@@ -32,8 +46,8 @@
 							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
 							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
 								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
-									<div style="width:120px;">
-									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail">
+									<div>
+									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 200px;">
 									</div>
 								</td>
 							</tr>

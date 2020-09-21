@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.finalproj.view.comment.CommentDTO;
+import com.finalproj.view.comment.CommentService;
 import com.finalproj.view.customer.CustomerDTO;
 import com.finalproj.view.customer.CustomerService;
 import com.finalproj.view.exhibition.ExhibitionDTO;
@@ -28,33 +30,50 @@ public class MainController {
 	private CustomerService cs;
 	@Autowired
 	private ExhibitionService es;
+	@Autowired
+	private CommentService cmts;
 
 	@RequestMapping("main")
 	public String main(HttpSession session, Model model) throws ParseException {
+		/* 슬라이드 */
 		Collection<ExhibitionDTO> slideList = new ArrayList<ExhibitionDTO>();
 		slideList = es.recentList(0, 10);
 		
-		/*		if (session.getAttribute("c_id") != null) {
-			String c_id = (String)session.getAttribute("c_id");
-			CustomerDTO customer = cs.select(c_id);
-			keyword = customer.getC_hashtag();
-		}
-		
-		
-		if (keyword == null) {
+		/* 해쉬태그 기반 전시회 */
+		Collection<ExhibitionDTO> rcmdList = new ArrayList<ExhibitionDTO>();
+		CustomerDTO customer = new CustomerDTO();
+		String c_id = (String)session.getAttribute("c_id");
+		if (c_id == null || c_id.equals("")) {
+			List<HashtagDTO> popularHash = hs.popularHash(0, 3);
+			String[] tags = new String[popularHash.size()];
+			for (int i=0; i<popularHash.size(); i++) {
+				tags[i] = popularHash.get(i).getHash_title().toString();
+			}
+			rcmdList = es.compList(0, 3, tags);
 		} else {
+			customer = cs.select(c_id);
 			JSONParser jp = new JSONParser();
 			JSONObject jo;
-			jo = (JSONObject)jp.parse(keyword);
+			jo = (JSONObject)jp.parse(customer.getC_hashtag());
 			JSONArray ja = (JSONArray)jo.get("hash");
 			String c = ja + "";
 			Gson gson = new Gson();
 			String[] tags = gson.fromJson(c, String[].class);
-			list = es.compList(0, 5, tags);
+			rcmdList = es.compList(0, 3, tags);
 		}
-		*/
+		
+		/* 댓글 기반 */
+		Collection<ExhibitionDTO> cmtList = new ArrayList<ExhibitionDTO>();
+		List<CommentDTO> lotsOfCmt = cmts.lotsOfCmt(0, 3);
+		int[] exNos = new int[lotsOfCmt.size()];
+		for (int i=0; i<lotsOfCmt.size(); i++) {
+			exNos[i] = lotsOfCmt.get(i).getExhibition_no();
+		}
+		cmtList = es.listByCmt(exNos);
 		
 		model.addAttribute("slideList", slideList);
+		model.addAttribute("rcmdList", rcmdList);
+		model.addAttribute("cmtList", cmtList);
 		return "/mainPage/main";
 	}
 	@RequestMapping("loginForm")

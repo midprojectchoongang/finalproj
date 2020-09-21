@@ -49,9 +49,11 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 	}
 	public Collection<ExhibitionDTO> recentList(int i, int j) {
 		return ed.recentList(i, j);
-  }
-	@Override
+	}
 	public Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id) {
 		return ed.bizList(startRow, rowPerPage, b_id);
+	}
+	public Collection<ExhibitionDTO> listByCmt(int[] exNos) {
+		return ed.listByCmt(exNos);
 	}
 }
