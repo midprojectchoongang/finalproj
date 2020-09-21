@@ -40,23 +40,34 @@
 		<div style="height: 100px;"></div>
 
 		<div id="colorlib-container">
-			<div class="container">
-			
+			<div class="container-fluid">
+				<div class="col-md-9">
+				<div class="row">
 				<!-- 해쉬태그 기반 -->
-				<div class="row row-pb-md" style="border: red 1px solid;">
-					<c:if test="${sessionScope.login != 'customer' }"><h2>요새 유행하는 전시회</h2></c:if>
-					<c:if test="${sessionScope.login == 'customer' }"><h2>내가 관심 가질만한 전시회</h2><a href="exList?listType=p">더보기</a></c:if>
+					<c:if test="${hashList == 'n' }">
+						<div class="headbox-sm"><h1 class="heading-2-m">Issue #hash</h1></div>
+					</c:if>
+					<c:if test="${hashList == 'y' }">
+						<div class="headbox-sm">
+							<a href="exList?listType=p">
+							<h1 class="heading-2-m">My #hash</h1>
+							</a>
+						</div>
+					</c:if>
+				<div class="row row-pb-md">
 					<c:forEach items="${rcmdList }" var="rl">
-					<div class="col-md-4">
+					<div class="col-md-3" style="display: inline-block; min-width: 300px;">
 						<div class="blog-entry">
 							<div class="blog-img">
 								<a href="exView?exhibition_no=${rl.exhibition_no }">
-								<img src="${path }/exImg/${rl.filename }" class="img-responsive" style="outline: none;"></a>
+								<img src="${path }/exImg/${rl.filename }" class="img-responsive" style="outline: none; height: 400px;"></a>
 							</div>
-							<div class="desc">
+							<div class="desc" style="word-break: break-all;">
 								<p class="meta">
-									<span class="cat"><a href="exView?exhibition_no=${rl.exhibition_no }">${rl.gallery }</a></span>
-									<span class="date">${rl.reg_date } ~ ${rl.end_date }</span>
+									<span class="cat"><a href="exView?exhibition_no=${rl.exhibition_no }">${rl.gallery }</a></span><br>
+									<fmt:formatDate value="${rl.start_date }" pattern="yy/MM/dd" var="start"/>
+									<fmt:formatDate value="${rl.end_date }" pattern="yy/MM/dd" var="end"/>
+									<span class="date">${start } ~ ${end }</span>
 								</p>
 								<h2><a href="exView?exhibition_no=${rl.exhibition_no }">${rl.title }</a></h2>
 							</div>
@@ -66,19 +77,26 @@
 				</div>
 				
 				<!-- 코멘트 기반 -->
-				<div class="row row-pb-md" style="border: red 1px solid;">
-					<h2>후기 많은 전시회</h2><a href="#">더보기</a>
+				<div class="row row-pb-md">
+					<div class="headbox-sm">
+						<a href="#">
+						<h1 class="heading-2-m">Comments</h1>
+						</a>
+					</div>
 					<c:forEach items="${cmtList }" var="cl">
-					<div class="col-md-4">
+					<!-- display: inline; margin: 0 20px 0 20px; -->
+					<div class="col-md-3" style="display: inline-block; min-width: 300px;">
 						<div class="blog-entry">
 							<div class="blog-img">
 								<a href="exView?exhibition_no=${cl.exhibition_no }">
-								<img src="${path }/exImg/${cl.filename }" class="img-responsive" style="outline: none;"></a>
+								<img src="${path }/exImg/${cl.filename }" class="img-responsive" style="outline: none; height: 400px;"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
-									<span class="cat"><a href="exView?exhibition_no=${cl.exhibition_no }">${cl.gallery }</a></span>
-									<span class="date">${cl.reg_date } ~ ${cl.end_date }</span>
+									<span class="cat"><a href="exView?exhibition_no=${cl.exhibition_no }">${cl.gallery }</a></span><br>
+									<fmt:formatDate value="${cl.start_date }" pattern="yy/MM/dd" var="start"/>
+									<fmt:formatDate value="${cl.end_date }" pattern="yy/MM/dd" var="end"/>									
+									<span class="date">${start } ~ ${end }</span>
 								</p>
 								<h2><a href="exView?exhibition_no=${cl.exhibition_no }">${cl.title }</a></h2>
 							</div>
@@ -107,6 +125,8 @@
 						</div>
 					</div>
 				</div> -->
+				</div>
+				</div>
 			</div>
 		</div>
 	</div>
