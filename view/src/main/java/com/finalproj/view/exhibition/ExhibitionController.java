@@ -56,25 +56,31 @@ public class ExhibitionController {
 	}
   
 	@RequestMapping("exList")
-	public String exList(String pageNum, String keyword, String listType, HttpSession session, Model model) throws ParseException {
-		if (session.getAttribute("c_id") != null) {
-			if (listType != null && listType != "") {
+	public String exList(String pageNum, String keyword, String listType, String alignment, HttpSession session, Model model) throws ParseException {
+		
+		if (alignment == null || alignment.equals("")) {
+			alignment = "reg_date";
+		}
+		
+		if (session.getAttribute("c_id") != null) { 	// 로그인이 되어있을 시
+			if (listType != null && listType != "") { 	// My #HASH 리스트를 보려고 할 때
 				String c_id = (String)session.getAttribute("c_id");
 				CustomerDTO customer = cs.select(c_id);
 				keyword = customer.getC_hashtag();
 			}
 		}
+		
 		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int total = 0;
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 10;
+		int rowPerPage = 3;
 		int startRow = (currentPage - 1) * rowPerPage;
 		
-		if (keyword == null || !keyword.startsWith("{")) {
+		if (keyword == null || !keyword.startsWith("{")) {	// ALL 혹은 #HASH 클릭으로 인한 단일 #HASH 리스트를 보려고 할 때
 			total = es.getTotal(keyword);
-			list = es.list(startRow, rowPerPage, keyword);
-		} else {
+			list = es.list(startRow, rowPerPage, keyword, alignment);
+		} else {											// My #HASH 혹은 By HASH 리스트를 보려고 할 때
 			JSONParser jp = new JSONParser();
 			JSONObject jo;
 			jo = (JSONObject)jp.parse(keyword);
@@ -83,7 +89,7 @@ public class ExhibitionController {
 			Gson gson = new Gson();
 			String[] tags = gson.fromJson(c, String[].class);
 			total = es.getCompTotal(tags);
-			list = es.compList(startRow, rowPerPage, tags);
+			list = es.compList(startRow, rowPerPage, tags, alignment);
 			if (session.getAttribute("c_id") != null) {
 				if (listType != null && listType != "") {
 					keyword = null;
@@ -95,6 +101,7 @@ public class ExhibitionController {
 		
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("listType", listType);
+		model.addAttribute("alignment", alignment);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 		return "exhibition/exList";
@@ -204,13 +211,6 @@ public class ExhibitionController {
 		return "exhibition/exView";
 	}
 	
-	/**
-	 * 이미지 업로드
-	 * 
-	 * @param request
-	 * @param response
-	 * @param upload
-	 */
 	@RequestMapping(value="ckUpload", method = RequestMethod.POST)
 	public void imgUpload(HttpServletRequest req, HttpServletResponse res, @RequestParam MultipartFile upload)
 			throws Exception {

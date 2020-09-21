@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -35,15 +35,16 @@
 								<div class="col-md-12" align="left">
 									<b>&emsp;비밀번호</b>
 									<input type="password" name="c_password" id="c_password" class="form-control" required="required"
-										value="${customerdto.c_password }">
+									 placeholder="${customerdto.c_password }"
+									 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.c_password }'">									
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12" align="left">
 									<b>&emsp;비밀번호 확인</b>
 									<input type="password" name="c_password2" id="c_password2" class="form-control" required="required"
-										value="${customerdto.c_password }"  onkeyup="passwordChk()">
-										<div id="pwDisp"></div>
+									 placeholder="Your password confirm" onkeyup="passwordChk()">
+									<div id="pwDisp"></div>
 								</div>
 							</div>
 						</div>
@@ -61,8 +62,9 @@
 								<div class="col-md-12" align="left">
 									<b>&emsp;닉네임</b>
 									<input type="text" name="nickname" id="nickname" class="form-control" required="required" onkeyup="nickChk()"
-										value="${customerdto.nickname }" placeholder="${customerdto.nickname }">
-									<div id="nickDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>
+									 placeholder="${customerdto.nickname }"
+									 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.nickname }'">
+									<div id="nickDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>									
 								</div>
 							</div>
 							<script type="text/javascript">
@@ -101,8 +103,9 @@
 							<div class="row form-group">
 								<div class="col-md-12" align="left">
 									<b>&emsp;이메일</b>
-									<input type="email" name="email" id="email" class="form-control" required="required" value="${customerdto.email }"
-										placeholder="${customerdto.email }">
+									<input type="email" name="email" id="email" class="form-control" required="required"
+									 placeholder="${customerdto.email }"
+									 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.email }'">
 								</div>
 							</div>
 						</div>
@@ -201,6 +204,23 @@
 					</div>
 					<script type="text/javascript">
 						function submit() {
+							if (frm.c_password.value == "" || frm.c_password.value == null) {
+								$('#pwDisp').html("<b>비밀번호를 적어주십시요</b>");
+								frm.c_password.focus();
+								return;
+							} else if (frm.nickname.value == "" || frm.nickname.value == null) {
+								$('#nickDisp').html("<b>닉네임을 적어주십시요</b>");
+								frm.nickname.focus();
+								return;
+							} else if (frm.email.value == "" || frm.email.value == null) {
+								$('#emailDisp').html("<b>이메일을 적어주십시요</b>");
+								frm.email.focus();
+								return;
+							} else if (frm.c_password.value != frm.c_password2.value) {
+								$('#pwDisp').html("<b>비밀번호와 비밀번호 확인이 일치하지 않습니다</b>");
+								frm.c_password2.focus();
+								return;
+							}
 							var c_hashtag = new Object();
 							c_hashtag.hash = hash_select;
 							var values = JSON.stringify(c_hashtag);
