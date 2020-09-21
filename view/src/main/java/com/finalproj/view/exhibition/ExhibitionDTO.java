@@ -26,6 +26,7 @@ public class ExhibitionDTO {
 	private Date reg_date;
 	private String del;	
 	private String filename;
+	private int comment_cnt;
 	
 	// img
 	private MultipartFile file;
@@ -38,7 +39,4 @@ public class ExhibitionDTO {
 	
 	// address
 	private String sub_address;
-	
-	//ckeditor
-	
 }
