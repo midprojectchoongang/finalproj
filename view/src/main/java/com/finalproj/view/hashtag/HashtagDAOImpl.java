@@ -40,4 +40,10 @@ public class HashtagDAOImpl implements HashtagDAO {
 	public void usedHash(String hashName) {
 		sst.update("hashtagns.usedHash", hashName);
 	}
+	public List<HashtagDTO> popularHash(int i, int j) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("i", i);
+		map.put("j", j);
+		return sst.selectList("hashtagns.popularHash", map);
+	}
 }

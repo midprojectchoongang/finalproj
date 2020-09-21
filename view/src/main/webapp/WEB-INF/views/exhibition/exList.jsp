@@ -32,8 +32,8 @@
 							<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
 							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
 								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
-									<div style="width:120px;">
-									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail">
+									<div>
+									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 200px;">
 									</div>
 								</td>
 							</tr>
