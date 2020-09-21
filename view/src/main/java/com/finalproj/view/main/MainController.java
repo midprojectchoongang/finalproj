@@ -43,13 +43,17 @@ public class MainController {
 		Collection<ExhibitionDTO> rcmdList = new ArrayList<ExhibitionDTO>();
 		CustomerDTO customer = new CustomerDTO();
 		String c_id = (String)session.getAttribute("c_id");
+		String hashList = "";
 		if (c_id == null || c_id.equals("")) {
-			List<HashtagDTO> popularHash = hs.popularHash(0, 3);
+			List<HashtagDTO> popularHash = hs.popularHash(0, 4);
+//			List<HashtagDTO> popularHash = hs.popularHash(0, 3);
 			String[] tags = new String[popularHash.size()];
 			for (int i=0; i<popularHash.size(); i++) {
 				tags[i] = popularHash.get(i).getHash_title().toString();
 			}
-			rcmdList = es.compList(0, 3, tags);
+			rcmdList = es.compList(0, 4, tags);
+//			rcmdList = es.compList(0, 3, tags);
+			hashList = "n";
 		} else {
 			customer = cs.select(c_id);
 			JSONParser jp = new JSONParser();
@@ -59,7 +63,21 @@ public class MainController {
 			String c = ja + "";
 			Gson gson = new Gson();
 			String[] tags = gson.fromJson(c, String[].class);
-			rcmdList = es.compList(0, 3, tags);
+			rcmdList = es.compList(0, 4, tags);
+//			rcmdList = es.compList(0, 3, tags);
+			hashList = "y";
+			// 사용자 해시태그와 일치하는 전시가 등록되지 않은 경우
+			if (rcmdList == null || rcmdList.size() == 0) {
+				List<HashtagDTO> popularHash = hs.popularHash(0, 4);
+//				List<HashtagDTO> popularHash = hs.popularHash(0, 3);
+				tags = new String[popularHash.size()];
+				for (int i=0; i<popularHash.size(); i++) {
+					tags[i] = popularHash.get(i).getHash_title().toString();
+				}
+				rcmdList = es.compList(0, 4, tags);
+//				rcmdList = es.compList(0, 3, tags);
+				hashList = "n";
+			}
 		}
 		
 		/* 댓글 기반 */
@@ -72,6 +90,7 @@ public class MainController {
 		cmtList = es.listByCmt(exNos);
 		
 		model.addAttribute("slideList", slideList);
+		model.addAttribute("hashList", hashList);
 		model.addAttribute("rcmdList", rcmdList);
 		model.addAttribute("cmtList", cmtList);
 		return "/mainPage/main";

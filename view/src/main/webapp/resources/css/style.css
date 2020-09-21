@@ -442,7 +442,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .blog-entry {
   z-index: 0;
-  display: block;
+  display: inline-block;
   position: relative; }
   @media screen and (max-width: 768px) {
     .blog-entry {
@@ -940,6 +940,12 @@ blockquote {
   color: #F6490D;
   margin-bottom: 20px; 
   margin-top: 10px;}
+  
+.heading-2-m {
+  font-size: 30px;
+  color: #F6490D;
+  margin-bottom: 20px; 
+  margin-top: 20px;}
 
 .cal-title {
   font-size: 30px;
