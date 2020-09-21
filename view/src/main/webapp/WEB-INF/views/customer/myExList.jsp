@@ -64,7 +64,7 @@
 										var hash = JSON.parse(jsondata);
 										for (var i=0; i<hash.hash.length; i++) {
 											$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
-													'<a style="cursor:pointer; font-size: 12px; display: block;" href="#">#' +
+													'<a style="cursor:pointer; font-size: 12px; display: inline-block;" href="#">#' +
 													hash.hash[i] + '&emsp;</a></span>'
 											);
 										}
