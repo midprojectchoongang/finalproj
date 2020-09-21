@@ -108,4 +108,7 @@
 		<select id="recentList" parameterType="hashmap" resultMap="exhibitionResult">
 			select * from exhibition where del = 'n' order by exhibition_no desc limit ${i}, ${j}
 		</select>
+		<select id="listByCmt" parameterType="hashmap" resultMap="exhibitionResult">
+			select * from exhibition where exhibition_no = #{ex0} or exhibition_no = #{ex1} or exhibition_no = #{ex2}
+		</select>
 </mapper>

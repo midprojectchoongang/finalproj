@@ -8,4 +8,6 @@ public class CommentDTO {
 	private Date reg_date;
 	// nickname용
 	private String nickname;
+	// listByCmt용
+	private int cnt;
 }
