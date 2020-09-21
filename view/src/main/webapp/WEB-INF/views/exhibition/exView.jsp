@@ -86,6 +86,7 @@
 						</tr>							
 						<tr>
 							<td style="vertical-align: middle;">
+							<c:if test="${sessionScope.login == 'customer'}">
 								<span style="cursor: pointer;">
 								<c:if test="${heart == 1}">
 									<img src="${path }/images/heart_on.png" id="heartIcon" onclick="changeIcon()" role="on">
@@ -94,6 +95,7 @@
 									<img src="${path }/images/heart_off.png" id="heartIcon" onclick="changeIcon()" role="off">
 								</c:if>
 								</span>
+							</c:if>	
 							</td>	
 							<script type="text/javascript">
 								$(function() {
@@ -140,7 +142,7 @@
 										});
 									}
 								}
-							</script>						
+							</script>													
 							<td colspan="2" style="padding: 30px 0;">
 								<p class="tags">
 									<c:forEach var="ph" items="${postedHash }">

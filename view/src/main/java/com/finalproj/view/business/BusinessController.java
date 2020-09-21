@@ -143,13 +143,13 @@ public class BusinessController {
 		String b_id = (String)session.getAttribute("b_id");
 		BusinessDTO bsness = bs.select(b_id);
 		model.addAttribute("bsness", bsness);
-		return "business/updateForm";
+		return "business/bizUpdateForm";
 	}
-	@RequestMapping("bizUpdate")
+	@RequestMapping("/biz/bizUpdate")
 	public String bizUpdate(BusinessDTO biz, Model model) {
 		int result = bs.update(biz);
 		model.addAttribute("result", result);
-		return "business/update";
+		return "business/bizUpdate";
 	}
 	@RequestMapping("bizLogout")
 	public String bizLogout(HttpSession session) {
