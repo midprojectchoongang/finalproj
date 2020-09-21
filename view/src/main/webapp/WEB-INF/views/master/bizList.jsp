@@ -25,7 +25,7 @@
 								<th>승인일</th>
 							</tr>
 							</thead>
-							<tbody">
+							<tbody>
 							<c:forEach var="mem" items="${list }">
 							<c:if test="${mem.confirm == 'y'}">
 								<tr style="cursor: pointer; text-align: center; background-color: #fff;" 

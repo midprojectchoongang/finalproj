@@ -39,9 +39,8 @@
 		function updateComment(comment_no, eno, content) {
 			$('.comm_'+comment_no).html('<textarea name="content" id="updateCont" cols="30" rows="5"'
 					+'class="form-control">'+content+'</textarea>');
-//			$('#contentBox').html('<textarea name="content" id="updateCont" cols="30" rows="5" class="form-control">'+content+'</textarea>');
-			$('#updateBtn_'+comment_no).replaceWith('<button id="confirmBtn" onclick="confirmBtn('+comment_no+')">확인</button>');
-			$('#deleteBtn_'+comment_no).replaceWith('<button id="cancelBtn" onclick="cancelBtn('+comment_no+')">취소</button>');
+			$('#updateBtn_'+comment_no).replaceWith('<button id="confirmBtn" onclick="confirmBtn('+comment_no+')" class="btn btn-outline">확인</button>');
+			$('#deleteBtn_'+comment_no).replaceWith('<button id="cancelBtn" onclick="cancelBtn('+comment_no+')" class="btn btn-outline">취소</button>');
 		}
 		function confirmBtn(comment_no) {
 			var sendData = $('#updateCont').val();

@@ -42,7 +42,7 @@
 								return;
 							}
 							var content = $('#content').val();
-							var exhibition_no = 1;
+							var exhibition_no = ${ex.exhibition_no};
 							$.ajax({
 								url : 'addComment',
 								type : 'post',
@@ -55,7 +55,7 @@
 										alert('댓글이 작성되었습니다');
 										$('#content').val("");
 										$('#commentList').load(
-												'commentList?exhibition_no=1');
+												'commentList?exhibition_no=' + exhibition_no);
 									} else {
 										$('#commentError').html("<b>서버오류</b>");
 									}

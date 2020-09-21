@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="col-md-9">
 				<div class="row">
-					<form action="joinC" method="post" name="frm" onsubmit="return passwordChk()">
+					<form action="joinC" method="post" name="frm">
 						<div class="row formbox">
 							<div class="row form-group">
 								<div class="col-md-12">
