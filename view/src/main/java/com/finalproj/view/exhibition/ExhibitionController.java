@@ -74,7 +74,7 @@ public class ExhibitionController {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int total = 0;
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 3;
+		int rowPerPage = 5;
 		int startRow = (currentPage - 1) * rowPerPage;
 		
 		if (keyword == null || !keyword.startsWith("{")) {	// ALL 혹은 #HASH 클릭으로 인한 단일 #HASH 리스트를 보려고 할 때
@@ -114,7 +114,7 @@ public class ExhibitionController {
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int total = 0;
 		int currentPage = Integer.parseInt(pageNum);
-		int rowPerPage = 10;
+		int rowPerPage = 5;
 		int startRow = (currentPage - 1) * rowPerPage;
 		
 		list = es.bizList(startRow, rowPerPage, b_id);

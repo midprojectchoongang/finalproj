@@ -60,7 +60,7 @@
 						<div class="blog-entry">
 							<div class="blog-img">
 								<a href="exView?exhibition_no=${rl.exhibition_no }">
-								<img src="${path }/exImg/${rl.filename }" class="img-responsive" style="outline: none; height: 400px;"></a>
+								<img src="${path }/exImg/${rl.filename }" class="img-responsive" style="outline: none; max-height: 400px;"></a>
 							</div>
 							<div class="desc" style="word-break: break-all;">
 								<p class="meta">
@@ -89,7 +89,7 @@
 						<div class="blog-entry">
 							<div class="blog-img">
 								<a href="exView?exhibition_no=${cl.exhibition_no }">
-								<img src="${path }/exImg/${cl.filename }" class="img-responsive" style="outline: none; height: 400px;"></a>
+								<img src="${path }/exImg/${cl.filename }" class="img-responsive" style="outline: none; max-height: 400px;"></a>
 							</div>
 							<div class="desc">
 								<p class="meta">
