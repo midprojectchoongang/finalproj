@@ -60,4 +60,8 @@ public class ExhibitionServiceImpl implements ExhibitionService {
 		ed.comment_cntUp(exhibition_no);
 		
 	}
+	@Override
+	public int getBizTotal(String b_id) {
+		return ed.getBizTotal(b_id);
+	}
 }

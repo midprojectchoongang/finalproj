@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -112,7 +113,7 @@ public class ExhibitionController {
 		Collection<ExhibitionDTO> list = new ArrayList<ExhibitionDTO>();
 		String b_id = (String) session.getAttribute("b_id");
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
-		int total = 0;
+		int total = es.getBizTotal(b_id);
 		int currentPage = Integer.parseInt(pageNum);
 		int rowPerPage = 5;
 		int startRow = (currentPage - 1) * rowPerPage;
@@ -167,6 +168,9 @@ public class ExhibitionController {
 			String addr = ex.getAddress() + ", " + ex.getSub_address();
 			ex.setAddress(addr);
 		}
+		
+		ex.setStart_date(Date.valueOf(ex.getStart_date1()));
+		ex.setEnd_date(Date.valueOf(ex.getEnd_date1()));
 		result = es.insert(ex);
 		
 		model.addAttribute("exhibition_no", ex.getExhibition_no());
@@ -311,6 +315,8 @@ public class ExhibitionController {
 			String addr = ex.getAddress() + ", " + ex.getSub_address();
 			ex.setAddress(addr);
 		}
+		ex.setStart_date(Date.valueOf(ex.getStart_date1()));
+		ex.setEnd_date(Date.valueOf(ex.getEnd_date1()));
 		int result = es.update(ex);
 		
 		model.addAttribute("result", result);

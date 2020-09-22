@@ -27,11 +27,11 @@
 		var keyword = '${keyword}'
 		$(function () {
 			if (keyword != '' && keyword != null) {
-				$('#list3').css('font-size','25px').css('font-weight','bold');
+				$('#list3').css('font-size','18px').css('font-weight','bold');
 			} else if (listType == 'p') {
-				$('#list2').css('font-size','25px').css('font-weight','bold');
+				$('#list2').css('font-size','18px').css('font-weight','bold');
 			} else {
-				$('#list1').css('font-size','25px').css('font-weight','bold');
+				$('#list1').css('font-size','18px').css('font-weight','bold');
 			}
 		})
 		$(function () {

@@ -13,50 +13,46 @@
 		<div class="container">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="row-pb-md formbox-nonlabel" align="left">
+				<div class="row" align="center">
+					<div class="col-md-12 formbox-nonlabel-biz" align="center">
+<%-- 					
 					<table class="table table-ticket">
 						<tr>
-							<td>
+							<td width="50%" style="word-break: break-all;">
 								<label>아이디</label>
 								<div class="col-md-12 row-pb-sm">			
 									${biz.b_id }
 								</div>
 							</td>
-						</tr>
-						<tr>
-							<td>
+							<td width="50%" style="word-break: break-all;">
 								<label>단체명</label>
 								<div class="col-md-12 row-pb-sm">			
 									${biz.groupName }
 								</div>
-							</td>
+							</td>							
 						</tr>
 						<tr>
-							<td>
-								<label>대표자</label>
-								<div class="col-md-12 row-pb-sm">			
-									${biz.ceoName }
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
+							<td style="word-break: break-all;">
 								<label>연락처</label>
 								<div class="col-md-12 row-pb-sm">			
 									${biz.tel }
 								</div>
 							</td>
+							<td style="word-break: break-all;">
+								<label>대표자</label>
+								<div class="col-md-12 row-pb-sm">			
+									${biz.ceoName }
+								</div>
+							</td>							
 						</tr>
 						<tr>
-							<td>
+							<td style="word-break: break-all;">
 								<label>메일주소</label>
 								<div class="col-md-12 row-pb-sm">			
 									${biz.email }
 								</div>
 							</td>
-						</tr>
-						<tr>
-							<td>
+							<td style="word-break: break-all;">
 								<label>단체종류</label>
 								<div class="col-md-12 row-pb-sm">			
 								<c:choose>
@@ -65,10 +61,16 @@
 									<c:when test="${biz.groupkind == 'etc' }">기타</c:when>
 								</c:choose>
 								</div>
-							</td>
+							</td>							
 						</tr>
 						<tr>
-							<td>
+							<td style="word-break: break-all;">
+								<label>홈페이지</label>
+								<div class="col-md-12 row-pb-sm">			
+								${biz.website }
+								</div>
+							</td>
+							<td style="word-break: break-all;">
 								<label>등록번호</label>
 								<div class="col-md-12 row-pb-sm">			
 								<c:choose>
@@ -78,16 +80,104 @@
 									<c:otherwise>등록번호가 없습니다.</c:otherwise>
 								</c:choose>
 								</div>
-							</td>
+							</td>							
+						</tr>
+					</table>
+ --%>					
+					<!-- ver2 -->
+					<div class="col-md-6" style="display: inline-block; width: 350px;">
+					<table class="table table-ticket">
+						<tr>
+							<td width="50%" style="word-break: break-all;">
+								<label>아이디</label>
+								<div class="col-md-12 row-pb-sm">			
+									${biz.b_id }
+								</div>
+							</td>						
 						</tr>
 						<tr>
-							<td>
+							<td style="word-break: break-all;">
+								<label>연락처</label>
+								<div class="col-md-12 row-pb-sm">			
+									${biz.tel }
+								</div>
+							</td>						
+						</tr>
+						<tr>
+							<td style="word-break: break-all;">
+								<label>메일주소</label>
+								<div class="col-md-12 row-pb-sm">			
+									${biz.email }
+								</div>
+							</td>						
+						</tr>
+						<tr>
+							<td style="word-break: break-all;">
 								<label>홈페이지</label>
 								<div class="col-md-12 row-pb-sm">			
 								${biz.website }
 								</div>
-							</td>
+							</td>						
 						</tr>
+					</table>
+					</div>
+					<div class="col-md-6" style="display: inline-block; width: 350px;">
+					<table class="table table-ticket">
+						<tr>
+							<td style="word-break: break-all;">
+								<label>단체명</label>
+								<div class="col-md-12 row-pb-sm">			
+									${biz.groupName }
+								</div>
+							</td>							
+						</tr>
+						<tr>
+							<td style="word-break: break-all;">
+								<label>대표자</label>
+								<div class="col-md-12 row-pb-sm">			
+									${biz.ceoName }
+								</div>
+							</td>							
+						</tr>
+						<tr>
+							<td style="word-break: break-all;">
+								<label>단체종류</label>
+								<div class="col-md-12 row-pb-sm">			
+								<c:choose>
+									<c:when test="${biz.groupkind == 'licensee' }">개인사업자</c:when>
+									<c:when test="${biz.groupkind == 'corporation' }">법인사업자</c:when>
+									<c:when test="${biz.groupkind == 'etc' }">기타</c:when>
+								</c:choose>
+								</div>
+							</td>							
+						</tr>
+						<tr>
+							<td style="word-break: break-all;">
+								<label>등록번호</label>
+								<div class="col-md-12 row-pb-sm">			
+								<c:choose>
+									<c:when test="${not empty biz.licensee}">${biz.licensee}</c:when>
+									<c:when test="${not empty biz.corporation}">${biz.corporation}</c:when>
+									<c:when test="${not empty biz.etc }">${biz.etc}</c:when>
+									<c:otherwise>등록번호가 없습니다.</c:otherwise>
+								</c:choose>
+								</div>
+							</td>							
+						</tr>
+					</table>
+					</div>
+				</div>
+				<div class="row-pb-md">
+					<div class="col-md-12 formbox-nonlabel-biz" align="left">
+					<table class="table table-ticket">
+						<tr>
+							<td>
+								<label>가입일</label>
+								<div class="col-md-12 row-pb-sm">			
+								<fmt:formatDate value="${biz.reg_date }" pattern="YYYY-MM-dd"/>
+								</div>
+							</td>
+						</tr>									
 						<tr>
 							<td>
 								<label>가입승인</label>
@@ -105,16 +195,9 @@
 								</c:if>
 							</td>
 						</tr>
-						<tr>
-							<td>
-								<label>가입일</label>
-								<div class="col-md-12 row-pb-sm">			
-								<fmt:formatDate value="${biz.reg_date }" pattern="YYYY-MM-dd"/>
-								</div>
-							</td>
-						</tr>									
 					</table>
 					</div>
+				</div>
 					<div class="row-pb-md" style="text-align: center;">
 						<a href="${path }/biz/bizUpdateForm" class="btn btn-primary">회원정보수정</a>
 						<button class="btn btn-outline" onclick="delConfirm();">회원탈퇴</button>												

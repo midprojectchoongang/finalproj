@@ -65,13 +65,13 @@
 								<table class="table-box">
 									<tr>
 										<td style="width: 47%">
-											<input type="date" name="start_date" class="form-control" required="required">
+											<input type="date" name="start_date1" class="form-control" required="required">
 										</td>
 										<td style="width: 6%; text-align: center; vertical-align: middle;">
 											~
 										</td>
 										<td style="width: 47%">
-											<input type="date" name="end_date" class="form-control" required="required">
+											<input type="date" name="end_date1" class="form-control" required="required">
 										</td>
 									</tr>
 								</table>
