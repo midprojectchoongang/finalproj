@@ -101,7 +101,7 @@
 							</c:if>
 							<c:if test="${sessionScope.login == 'customer'}">
 							<li><a href="${path }/cus/myExList">관심전시회</a></li>
-							<li><a href="${path }/cus/ticketCal">TicektBook</a></li>
+							<li><a href="${path }/cus/ticketCal">TicketBook</a></li>
 							</c:if>
 							<c:if test="${sessionScope.login == 'admin'}">
 							<li><a href="${path}/master/bizList">단체회원관리</a></li>
@@ -127,36 +127,6 @@
 						</ul>
 					</div>
 				</div>
-<%-- 				
-				<div class="row">
-					<div class="col-xs-12 text-right menu-1">
-					<c:if test="${empty sessionScope.login }">
-						<ul>
-							<li><a href="${path}/bizLoginForm">단체회원로그인</a></li>
-							<li><a href="${path}/loginFormC">개인회원로그인</a></li>
-						</ul>
-					</c:if>
-					<c:if test="${sessionScope.login == 'biz' }">
-						<ul>
-							<li><a href="${path}/biz/ownHash">해쉬태그관리</a></li>
-							<li><a href="${path}/biz/bizView">회원정보</a></li>
-							<li><a href="${path}/bizLogout">로그아웃</a></li>
-						</ul>
-					</c:if>
-					<c:if test="${sessionScope.login == 'customer'}">
-						<ul>
-							<li><a href="${path}/viewInfoC">회원정보</a></li>
-							<li><a href="${path}/logoutC">로그아웃</a></li>
-						</ul>
-					</c:if>
-					<c:if test="${sessionScope.login == 'admin'}">
-						<ul>
-							<li><a href="${path}/logoutC">로그아웃</a></li>
-						</ul>
-					</c:if>
-					</div>	
-				</div>
-	 --%>								
 		</div>
 	</div>
 </nav>
