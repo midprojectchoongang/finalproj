@@ -93,7 +93,7 @@ public class TicketBookController {
 		result = tbs.insert(ticket);
 		model.addAttribute("date", date);
 		model.addAttribute("result", result);
-		return "ticketbook/ticketCal";
+		return "ticketbook/ticketWrite";
 	}
 	
 	@RequestMapping("/cus/ticketUpdateForm")

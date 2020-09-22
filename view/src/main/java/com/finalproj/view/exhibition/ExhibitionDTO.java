@@ -23,10 +23,10 @@ public class ExhibitionDTO {
 	private String hashtags;
 	private String content;
 	private int like_cnt;
+	private int comment_cnt;
+			private String filename;
 	private Date reg_date;
 	private String del;	
-	private String filename;
-	private int comment_cnt;
 	
 	// img
 	private MultipartFile file;

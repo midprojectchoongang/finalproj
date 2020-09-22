@@ -18,10 +18,10 @@
 		<result property="hashtags" column="hashtags" />
 		<result property="content" column="content" />
 		<result property="like_cnt" column="like_cnt" />
+		<result property="comment_cnt" column="comment_cnt" />
+		<result property="filename" column="filename" />
 		<result property="reg_date" column="reg_date" />
 		<result property="del" column="del" />
-		<result property="filename" column="filename" />
-		<result property="comment_cnt" column="comment_cnt" />
 	</resultMap>
 		<select id="getTotal" parameterType="string" resultType="integer">
 			select count(*) from exhibition where del = 'n'
@@ -73,7 +73,8 @@
 			insert into exhibition values (
 				exhibition_no,#{b_id},#{title},#{gallery},#{gallery_site},
 				#{address},#{ticket_link1},#{ticket_link2},#{ticket_link3},
-				#{price},#{start_date},#{end_date},#{hashtags},#{content},0,now(),'n',#{filename},0
+				#{price},#{start_date},#{end_date},#{hashtags},#{content},
+				0,0,#{filename},now(),'n'
 			)
 		</insert>
 		<select id="view" parameterType="integer" resultType="exhibition">

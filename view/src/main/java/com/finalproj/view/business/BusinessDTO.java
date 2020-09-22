@@ -19,10 +19,10 @@ public class BusinessDTO {
 	public String etc;
 	public String website;
 	public String confirm;
-	public Date reg_date;
-	public String del;
 	public String con_comment;
 	public Date confirm_date;
+	public Date reg_date;
+	public String del;
 	
 	
 	// paging
