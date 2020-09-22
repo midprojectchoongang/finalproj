@@ -51,12 +51,30 @@
 							</tr>
 							<tr style="height: 60px;"><th style="text-align: center;">등록번호</th>
 								<td style="padding-left: 50px;">		
+									<c:if test="${biz.groupkind == 'licensee' }">
 									<c:choose>
-										<c:when test="${not empty biz.licensee}">${biz.licensee}</c:when>
-										<c:when test="${not empty biz.corporation}">${biz.corporation}</c:when>
-										<c:when test="${not empty biz.etc }">${biz.etc}</c:when>
+										<c:when test="${biz.licensee != null}">
+											${biz.licensee}
+										</c:when>
 										<c:otherwise>등록번호가 없습니다.</c:otherwise>
 									</c:choose>
+									</c:if>
+									<c:if test="${biz.groupkind == 'corporation' }">
+									<c:choose>
+										<c:when test="${biz.corporation != null}">
+											${biz.corporation}
+										</c:when>
+										<c:otherwise>등록번호가 없습니다.</c:otherwise>
+									</c:choose>
+									</c:if>
+									<c:if test="${biz.groupkind == 'etc' }">
+									<c:choose>
+										<c:when test="${biz.etc != null}">
+											${biz.etc}
+										</c:when>
+										<c:otherwise>등록번호가 없습니다.</c:otherwise>
+									</c:choose>
+									</c:if>
 								</td>
 							</tr>
 							<tr style="height: 60px;"><th style="text-align: center;">승인여부</th>

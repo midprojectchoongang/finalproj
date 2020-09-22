@@ -3,6 +3,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<!-- Map -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 </head>
 <body>
 <div class="colorlib-loader"></div>
@@ -36,10 +38,10 @@
 			if (frm.file.value != "" || frm.file.value != null) {
 				$('#fileDisp').html("");
 			}
-			if (frm.start_date1.value != "" || frm.start_date1.value != null) {
+			if (frm.start_date.value != "" || frm.start_date.value != null) {
 				$('#dateDisp').html("");
 			}
-			if (frm.end_date1.value != "" || frm.end_date1.value != null) {
+			if (frm.end_date.value != "" || frm.end_date.value != null) {
 				$('#dateDisp').html("");
 			}
 		}
@@ -88,13 +90,13 @@
 								<table class="table-box">
 									<tr>
 										<td style="width: 47%">
-											<input type="date" name="start_date1" class="form-control" onchange="valChk()">
+											<input type="date" name="start_date" class="form-control" onchange="valChk()">
 										</td>
 										<td style="width: 6%; text-align: center; vertical-align: middle;">
 											~
 										</td>
 										<td style="width: 47%">
-											<input type="date" name="end_date1" class="form-control" onchange="valChk()">
+											<input type="date" name="end_date" class="form-control" onchange="valChk()">
 										</td>
 									</tr>
 								</table>
@@ -368,13 +370,13 @@
 								$('#titleDisp').html("<b>전시회명을 입력해 주세요</b>");
 								frm.title.focus();
 								return;
-							} else if (frm.start_date1.value == "" || frm.start_date1.value == null) {
+							} else if (frm.start_date.value == "" || frm.start_date.value == null) {
 								$('#dateDisp').html("<b>전시회 시작 날짜를 선택해 주세요</b>");
-								frm.start_date1.focus();
+								frm.start_date.focus();
 								return;
-							} else if (frm.end_date1.value == "" || frm.end_date1.value == null) {
+							} else if (frm.end_date.value == "" || frm.end_date.value == null) {
 								$('#dateDisp').html("<b>전시회 종료 날짜를 선택해 주세요</b>");
-								frm.end_date1.focus();
+								frm.end_date.focus();
 								return;
 							} else if (frm.gallery.value == "" || frm.gallery.value == null) {
 								$('#galleryDisp').html("<b>장소명(갤러리명 혹은 건물 이름 등)을 입력해 주세요</b>");
