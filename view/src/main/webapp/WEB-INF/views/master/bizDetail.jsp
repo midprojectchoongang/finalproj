@@ -179,7 +179,7 @@
 							<div class="col-md-12" id="resultDisp" style="padding: 20px;">
 							</div>
 							<div class="col-md-12" style="padding: 20px; margin-top: 10px;">
-								<a href="javascript:confirm();" class="btn btn-primary">가입승인</a>
+								<a href="javascript:confirm();" class="btn btn-primary">확인</a>
 							</div>
 						</div>
 					</div>

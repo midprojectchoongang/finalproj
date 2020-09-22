@@ -69,18 +69,49 @@
 <!-- Magnific Popup -->
 <script src="${path}/js/jquery.magnific-popup.min.js"></script>
 <script src="${path}/js/magnific-popup-options.js"></script>
-<!-- Main -->
-<script src="${path}/js/main.js"></script>
-
-<link rel="stylesheet" href="${path }/slick/slick.css">
-<link rel="stylesheet" href="${path }/slick/slick-theme.css">
-<script type="text/javascript" src="${path }/slick/slick.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
 <!-- Map -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
+<!-- Main -->
+<script src="${path}/js/main.js"></script>
+<link rel="stylesheet" href="${path }/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+<script type="text/javascript" src="${path }/slick/slick.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<style type="text/css">
+	.slick-prev:before, .slick-next:before {
+		color: black;
+	}
+	.customized {
+		background: #212415;
+		width: 80%;
+	}
+	#customized {
+		display: inline-block;
+		width: 400px;
+		height: 400px;
+		border: solid 1px #d2d2d2;
+		text-align: center;
+		margin: 25px;
+		padding: 50px 0 0 40px;
+		border-radius: 20px;
+	}
+	@media screen and (max-width: 600px) {
+		.customized {
+			width: 100%;
+		}
+		#customized {
+			display: inline-block;
+			width: 100%;
+			height: 400px;
+			border: solid 1px #d2d2d2;
+			text-align: center;
+			margin: 25px 0 25px 0;
+			padding: 50px 0 0 30px;
+			border-radius: 20px;
+		}
+	}
+</style>
 <body>
-로그인 모드 : ${sessionScope.login } / id : ${c_id } * ${b_id }
 <nav class="colorlib-nav navbar-static-top" role="navigation">
 	<div class="top-menu">
 		<div class="container">

@@ -21,8 +21,25 @@
 					$(this).siblings('label').fadeIn('fast');
 				}
 			});
-			
 		});
+		
+		function valChk() {
+		 	if (frm.title.value != "" || frm.title.value != null) {
+				$('#titleDisp').html("");
+			}
+			if (frm.gallery.value != "" || frm.gallery.value != null) {
+				$('#galleryDisp').html("");
+			}
+			if (frm.price.value != "" || frm.price.value != null) {
+				$('#priceDisp').html("");
+			}
+			if (frm.start_date1.value != "" || frm.start_date1.value != null) {
+				$('#dateDisp').html("");
+			}
+			if (frm.end_date1.value != "" || frm.end_date1.value != null) {
+				$('#dateDisp').html("");
+			}
+		}
 	</script>
 	<div id="colorlib-container">
 	<div class="row headbox"><h2 class="heading-2">전시회 정보 수정</h2></div>
@@ -58,7 +75,8 @@
 							<div class="col-md-12" align="left">
 								<b>&emsp;전시회명</b>
 								<input type="text" name="title" class="form-control" required="required" 
-								value="${ex.title }">
+								value="${ex.title }" onchange="valChk()">
+								<div id="titleDisp"></div>
 							</div>
 						</div>
 						<div class="row form-group" align="justify">	
@@ -66,23 +84,25 @@
 								<table class="table-box">
 									<tr>
 										<td style="width: 47%">
-											<input type="date" name="start_date1" class="form-control" required="required" value="${ex.start_date }">
+											<input type="date" name="start_date1" class="form-control" required="required" value="${ex.start_date }" onchange="valChk()">
 										</td>
 										<td style="width: 6%; text-align: center; vertical-align: middle;">
 											~
 										</td>
 										<td style="width: 47%">
-											<input type="date" name="end_date1" class="form-control" required="required" value="${ex.end_date }">
+											<input type="date" name="end_date1" class="form-control" required="required" value="${ex.end_date }" onchange="valChk()">
 										</td>
 									</tr>
 								</table>
+								<div id="dateDisp"></div>
 							</div>
 						</div>						
 						<div class="row form-group">
 							<div class="col-md-12" align="left">
 								<b>&emsp;장소</b>
 								<input type="text" name="gallery" class="form-control" required="required" id="gallery"
-								 value="${ex.gallery }">
+								 value="${ex.gallery }" onchange="valChk()">
+								 <div id="galleryDisp"></div>
 							</div>
 						</div>
 						<div class="row form-group" align="left">
@@ -91,6 +111,7 @@
 								<input type="text" name="address" class="form-control" id="mapAddress"
 								value="${addr }" placeholder="주소" required="required">
 								<input type="text" name="sub_address" class="form-control" placeholder="상세주소" value="${sub_addr }">
+								<div id="addressDisp"></div>
 								<div id="map" style="width:100%;height:300px;margin-top:10px;"></div>
 								
 								<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -127,6 +148,7 @@
 									});
 									
 									function postSearch() {
+										$('#addressDisp').html("");
 										var gallery = document.getElementById("gallery").value;
 								        new daum.Postcode({
 								            oncomplete: function(data) {
@@ -202,7 +224,8 @@
 							<div class="col-md-12" align="left">
 								<b>&emsp;입장권 가격</b>
 								<input type="text" name="price" class="form-control" required="required"
-								 value="${ex.price }">
+								 value="${ex.price }" onchange="valChk()">
+								 <div id="priceDisp"></div>
 							</div>
 						</div>
 						<div class="row form-group">
@@ -381,6 +404,34 @@
 					</script>
 					<script type="text/javascript">
 						function submit() {
+							if (frm.title.value == "" || frm.title.value == null) {
+								$('#titleDisp').html("<b>전시회명을 입력해 주세요</b>");
+								frm.title.focus();
+								return;
+							} else if (frm.start_date1.value == "" || frm.start_date1.value == null) {
+								$('#dateDisp').html("<b>전시회 시작 날짜를 선택해 주세요</b>");
+								frm.start_date1.focus();
+								return;
+							} else if (frm.end_date1.value == "" || frm.end_date1.value == null) {
+								$('#dateDisp').html("<b>전시회 종료 날짜를 선택해 주세요</b>");
+								frm.end_date1.focus();
+								return;
+							} else if (frm.gallery.value == "" || frm.gallery.value == null) {
+								$('#galleryDisp').html("<b>장소명(갤러리명 혹은 건물 이름 등)을 입력해 주세요</b>");
+								frm.gallery.focus();
+								return;
+							} else if (frm.address.value == "" || frm.address.value == null) {
+								$('#addressDisp').html("<b>주소를 입력해 주세요</b>");
+								frm.address.focus();
+								return;
+							} else if (frm.price.value == "" || frm.price.value == null) {
+								$('#priceDisp').html("<b>입장권 가격을 입력해 주세요(ex. 0, 1000, 10000 등)</b>");
+								frm.price.focus();
+								return;
+							} else if (hash_select == null) {
+								$('#warnDisp').html('&emsp;#HASH는 하나 이상 선택해 주세요');
+								frm.keyword.focus();
+							}							
 							var c_hashtag = new Object();
 							c_hashtag.hash = hash_select;
 							var values = JSON.stringify(c_hashtag);

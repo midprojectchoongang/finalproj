@@ -11,10 +11,10 @@
 	<div align="center">
 		
 		<!-- Slide -->
-		<div class="slider-for" style="background: #212415;">
+		<div class="slider-for customized">
 			<c:forEach items="${slideList }" var="sl">
 			    <div><a href="exView?exhibition_no=${sl.exhibition_no }">
-			    <img src="${path }/exImg/${sl.filename }" style="max-height: 400px; margin: 50px; border: none; outline: none; text-decoration: none;">
+			    <img src="${path }/exImg/${sl.filename }" style="max-height: 400px; margin: 50px; outline: none;">
 			    </a></div>
 		    </c:forEach>
 		</div>
@@ -22,16 +22,19 @@
 			$('.slider-for').slick({
 				centerMode: true,
 				dots: true,
+				arrows: true,
 				slidesToShow: 3,
+				slidesToScroll: 1,
 				autoplay: true,
 				autoplaySpeed: 3000,
 				variableWidth: true,
 				responsive: [{
-					breakpoint: 480,
+					breakpoint: 600,
 					settings: {
 						centerMode: true,
 				        centerPadding: '40px',
-						slidesToShow: 1
+						slidesToShow: 1,
+						arrows: false
 					}
 				}]
 			});
