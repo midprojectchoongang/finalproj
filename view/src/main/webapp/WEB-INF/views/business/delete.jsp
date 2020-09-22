@@ -11,7 +11,7 @@
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
 			alert("그동안 VIEW와 함께해주셔서 감사합니다.")
-			location.href="bizLoginForm";
+			location.href="main";
 		</script>
 	</c:if>
 	<c:if test="${result == 0 }">

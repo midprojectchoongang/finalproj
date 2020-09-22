@@ -24,6 +24,27 @@
 				}
 			});
 		});
+		
+		function valChk() {
+		 	if (frm.title.value != "" || frm.title.value != null) {
+				$('#titleDisp').html("");
+			}
+			if (frm.gallery.value != "" || frm.gallery.value != null) {
+				$('#galleryDisp').html("");
+			}
+			if (frm.price.value != "" || frm.price.value != null) {
+				$('#priceDisp').html("");
+			}
+			if (frm.file.value != "" || frm.file.value != null) {
+				$('#fileDisp').html("");
+			}
+			if (frm.start_date.value != "" || frm.start_date.value != null) {
+				$('#dateDisp').html("");
+			}
+			if (frm.end_date.value != "" || frm.end_date.value != null) {
+				$('#dateDisp').html("");
+			}
+		}
 	</script>
 	<div id="colorlib-container">
 	<div class="row headbox"><h2 class="heading-2">전시회 등록</h2></div>
@@ -40,7 +61,8 @@
 								</div>					
 							</div>
 							<div class="col-md-12">
-								<input type="file" name="file" id="file" class="form-control" required="required">
+								<input type="file" name="file" id="file" class="form-control" onchange="valChk()">
+								<div id="fileDisp"></div>
 								<%-- <%=request.getRealPath("/") %> --%>
 								<script>
 									$("#file").change(function(){
@@ -59,7 +81,8 @@
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="title">전시회명</label>
-								<input type="text" name="title" class="form-control" required="required">
+								<input type="text" name="title" class="form-control" onkeyup="valChk()">
+								<div id="titleDisp"></div>
 							</div>
 						</div>
 						<div class="row form-group" align="justify">	
@@ -67,37 +90,40 @@
 								<table class="table-box">
 									<tr>
 										<td style="width: 47%">
-											<input type="date" name="start_date" class="form-control" required="required">
+											<input type="date" name="start_date" class="form-control" onchange="valChk()">
 										</td>
 										<td style="width: 6%; text-align: center; vertical-align: middle;">
 											~
 										</td>
 										<td style="width: 47%">
-											<input type="date" name="end_date" class="form-control" required="required">
+											<input type="date" name="end_date" class="form-control" onchange="valChk()">
 										</td>
 									</tr>
 								</table>
+								<div id="dateDisp"></div>
 							</div>
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="gallery">장소</label>
-								<input type="text" name="gallery" class="form-control" required="required">
+								<input type="text" name="gallery" class="form-control" onkeyup="valChk()">
+								<div id="galleryDisp"></div>
 							</div>
 						</div>						
 						<div class="row form-group" align="left">
 							<div class="col-md-12 btn-group-sm">
-								<button type="button" onclick="postSearch()" class="btn btn-outline">주소검색</button><br>
-								<input type="text" name="address" class="form-control" id="mapAddress" placeholder="주소" required="required">
+								<input type="text" name="address" class="form-control" id="mapAddress" placeholder="주소를 검색해 주세요." readonly="readonly"
+									style="display: inline; width: auto; min-width: 70%">
+								<button type="button" onclick="postSearch()" class="btn btn-outline">주소검색</button>
 								<input type="text" name="sub_address" class="form-control" placeholder="상세주소">
+								<div id="addressDisp"></div>
 								<div id="map" style="width:100%;height:300px;margin-top:10px;display:none"></div>
-								
 								<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 								<script>
 								    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 								        mapOption = {
 								            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-								            level: 5 // 지도의 확대 레벨
+								            level: 6 // 지도의 확대 레벨
 								        };
 								
 								    //지도를 미리 생성
@@ -112,6 +138,7 @@
 								
 								
 								    function postSearch() {
+								    	$('#addressDisp').html("");
 								        new daum.Postcode({
 								            oncomplete: function(data) {
 								                var addr = data.address; // 최종 주소 변수
@@ -172,7 +199,8 @@
 						<div class="row form-group">
 							<div class="col-md-12">
 								<label for="price">입장권 가격</label>
-								<input type="text" name="price" class="form-control" required="required">
+								<input type="text" name="price" class="form-control" onkeyup="valChk()">
+								<div id="priceDisp"></div>
 							</div>
 						</div>																	
 						<div class="row form-group">
@@ -333,6 +361,39 @@
 						}
 						
 						function submit() {
+							if (frm.file.value == "" || frm.file.value == null) {
+								//alert("포스터를 첨부해 주세요");
+								$('#fileDisp').html("<b>포스터를 첨부해 주세요</b>");
+								frm.file.focus();
+								return;
+							} else if (frm.title.value == "" || frm.title.value == null) {
+								$('#titleDisp').html("<b>전시회명을 입력해 주세요</b>");
+								frm.title.focus();
+								return;
+							} else if (frm.start_date.value == "" || frm.start_date.value == null) {
+								$('#dateDisp').html("<b>전시회 시작 날짜를 선택해 주세요</b>");
+								frm.start_date.focus();
+								return;
+							} else if (frm.end_date.value == "" || frm.end_date.value == null) {
+								$('#dateDisp').html("<b>전시회 종료 날짜를 선택해 주세요</b>");
+								frm.end_date.focus();
+								return;
+							} else if (frm.gallery.value == "" || frm.gallery.value == null) {
+								$('#galleryDisp').html("<b>장소명(갤러리명 혹은 건물 이름 등)을 입력해 주세요</b>");
+								frm.gallery.focus();
+								return;
+							} else if (frm.address.value == "" || frm.address.value == null) {
+								$('#addressDisp').html("<b>주소를 입력해 주세요</b>");
+								frm.address.focus();
+								return;
+							} else if (frm.price.value == "" || frm.price.value == null) {
+								$('#priceDisp').html("<b>입장권 가격을 입력해 주세요(ex. 0, 1000, 10000 등)</b>");
+								frm.price.focus();
+								return;
+							} else if (hash_select == null) {
+								$('#warnDisp').html('&emsp;#HASH는 하나 이상 선택해 주세요');
+								frm.keyword.focus();
+							}
 							var c_hashtag = new Object();
 							c_hashtag.hash = hash_select;
 							var values = JSON.stringify(c_hashtag);

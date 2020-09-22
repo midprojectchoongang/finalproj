@@ -31,12 +31,14 @@
 		<div class="row headbox"><h2 class="heading-2">전시회</h2>
 			<a href="${path }/exList" style="color: white;" id="list1">ALL&emsp;</a>
 			<b style="color: white;">/</b>
+			<c:if test="${sessionScope.c_id != null }">
 			<a href="${path }/exList?listType=p" style="color: white;" id="list2">&emsp;My #HASH</a>
 			<a tabindex="0" role="button" data-toggle="popover1" data-placement="bottom" data-trigger="focus" 
 				data-content="가입 시 설정한 내 #HASH가 포함된 전시 리스트를 보여줍니다.">
 				<img src="${path }/images/tooltip.png" width="15px" style="outline: 0; border: 0;">
 			</a>&emsp;
 			<b style="color: white;">/</b>
+			</c:if>
 			<a href="${path }/hashSearch" style="color: white;" id="list3">&emsp;By #HASH</a>
 			<a tabindex="0" role="button" data-toggle="popover2" data-placement="bottom" data-trigger="focus" 
 				data-content="보고자 하는 #HASH를 선택하여 그것이 포함된 전시 리스트를 보여줍니다.">
