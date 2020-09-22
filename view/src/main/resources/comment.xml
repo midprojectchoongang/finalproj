@@ -11,7 +11,7 @@
 		<result property="del" column="del" />
 	</resultMap>
 	<select id="cmtCount" parameterType="integer" resultType="integer">
-		select count(*) from comment where exhibition_no=#{exhibition_no}
+		select count(*) from comment where exhibition_no=#{exhibition_no} and del='n'
 	</select>
 	<select id="cmtList" parameterType="integer" resultMap="commentResult">
 		select * from comment where exhibition_no=#{exhibition_no}
@@ -22,9 +22,9 @@
 	<update id="updateComment" parameterType="comment">
 		update comment set content=#{content} where comment_no=#{comment_no}
 	</update>
-	<delete id="deleteComment" parameterType="integer">
-		delete from comment where comment_no=#{comment_no}
-	</delete>
+	<update id="deleteComment" parameterType="integer">
+		update comment set del = 'y' where comment_no=#{comment_no}
+	</update>
 	<select id="lotsOfCmt" parameterType="hashmap" resultType="com.finalproj.view.comment.CommentDTO">
 		select *, count(*) as cnt from comment group by exhibition_no order by count(*) desc limit ${i }, ${j };
 	</select>

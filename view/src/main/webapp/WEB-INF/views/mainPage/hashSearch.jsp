@@ -52,7 +52,7 @@
 					</div>
 				</div>			
 				<hr>
-				<div class="row row-pb-lg" style="height: 200px; overflow: hidden;">
+				<div class="row row-pb-lg" style="height: 200px; overflow: hidden; margin-bottom: 50px;">
 					<div class="col-md-12">
 						<p class="tags">
 							<c:forEach var="htl" items="${hashList }">
@@ -128,7 +128,7 @@
 			</script>
 				<div class="row row-pb-lg">
 				<form name="frm" action="exList">
-					<div class="col-md-12 btn-group-lg">
+					<div class="col-md-12 btn-group-lg" style="margin-bottom: 50px;">
 						<table class="table-box">
 						<tr>
 							<td style="text-align: center; width: 80%; border-bottom: 1px solid #eee;">
@@ -137,7 +137,7 @@
 						</tr>
 						<tr>
 							<td>
-								<div id="warnDisp" class="warn-style"></div>
+								<div id="warnDisp" class="warn-style" align="center"></div>
 							</td>
 						</tr>
 						</table>

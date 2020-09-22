@@ -59,6 +59,7 @@ public class MainController {
 			String c = ja + "";
 			Gson gson = new Gson();
 			String[] tags = gson.fromJson(c, String[].class);
+			rcmdList = es.compList(0, 3, tags, "reg_date");
 			hashList = "y";
 			rcmdList = es.compList(0, 3, tags, "reg_date");
       

@@ -25,7 +25,7 @@ public class CommentDAOImpl implements CommentDAO {
 		return sst.update("commentns.updateComment", comment);
 	}
 	public int deleteComment(int comment_no) {
-		return sst.delete("commentns.deleteComment", comment_no);
+		return sst.update("commentns.deleteComment", comment_no);
 	}
 	public List<CommentDTO> lotsOfCmt(int i, int j) {
 		Map<String, Integer> map = new HashMap<String, Integer>();

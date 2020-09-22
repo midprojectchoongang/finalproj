@@ -119,7 +119,7 @@
 			select * from exhibition where exhibition_no = #{ex0} or exhibition_no = #{ex1} or exhibition_no = #{ex2}
 		</select>
 		<update id="comment_cntUp" parameterType="integer">
-			update exhibition set comment_cnt = comment_cnt + 1 where exhibition_no = #{exhibition_no}
+			update exhibition set comment_cnt = comment_cnt+1 where exhibition_no = #{exhibition_no}
 		</update>
 		<select id="getBizTotal" parameterType="string" resultType="integer">
 			select count(*) from exhibition where b_id = #{b_id}
