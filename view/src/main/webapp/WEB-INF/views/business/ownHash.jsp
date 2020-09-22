@@ -49,7 +49,7 @@
 							$('#warnDisp').html('&emsp;생성하고 싶은 #HashTag를 먼저 입력하여 주십시요');
 							$('#keyword').focus();
 						} else {
-							var hashName = $('#keyword').val();
+							var hashName = $('#keyword').val().toUpperCase();
 							$.ajax({
 								url : 'addHashChk',
 								type : 'post',

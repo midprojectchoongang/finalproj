@@ -28,64 +28,14 @@
 				</div>
 				<div class="row">
 				<div class="col-md-12" style="padding: 0">
-					<table class="table table-box table-striped">
+					<table class="table table-box">
 						<tr>
-							<td style="width: 30%;" rowspan="4">
-								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail">
-							</td>
-							<th>
-								전시장소
-							</th>
-							<td>
-								${ex.gallery }
+							<td align="center" colspan="2">
+								<img src="${path}/exImg/${ex.filename }" class="img-thumbnail" style="min-width: 100% !important;">
 							</td>
 						</tr>
 						<tr>
-							<th>
-								전시기간
-							</th>	
-							<td>
-								${ex.start_date } ~ ${ex.end_date }
-							</td>
-						</tr>
-						<tr>	
-							<th>
-								입장료
-							</th>
-							<td>
-							<c:if test="${ex.price == 0 }">
-								무료
-							</c:if>
-							<c:if test="${ex.price != 0 }">
-								${ex.price }원
-							</c:if>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								홈페이지
-							</th>	
-							<td>
-								<c:if test="${empty ex.gallery_site }">
-									-
-								</c:if>
-								<c:if test="${not empty ex.gallery_site }">
-									<c:set var="site" value="${ex.gallery_site }"/>
-									<c:set var="length" value="${fn:length(site)+1}"/>
-									<c:choose>
-										<c:when test="${fn:startsWith(site, 'http://')}">
-											<c:set var="adj_site" value="${fn:substring(site,7,length)}"></c:set>
-											<a href="http://${adj_site }" target="blank">${ex.gallery_site }</a>
-										</c:when>
-										<c:otherwise>
-											<a href="http://${ex.gallery_site }" target="blank">${ex.gallery_site }</a>
-										</c:otherwise>
-									</c:choose>
-								</c:if>
-							</td>
-						</tr>							
-						<tr>
-							<td style="vertical-align: middle;">
+							<td style="vertical-align: middle; width:20%;" align="center">
 								<span style="cursor: pointer;">
 								<c:if test="${heart == 1}">
 									<img src="${path }/images/heart_on.png" id="heartIcon" onclick="changeIcon()" role="on">
@@ -141,7 +91,7 @@
 									}
 								}
 							</script>													
-							<td colspan="2" style="padding: 30px 0;">
+							<td style="padding: 30px 0; line-height: 150%;">
 								<p class="tags">
 									<c:forEach var="ph" items="${postedHash }">
 										<span class="tag">
@@ -150,13 +100,71 @@
 									</c:forEach>
 								</p>
 							</td>
-						</tr>												
+						</tr>
+					</table>
+					<table class="table table-box table-striped">						
+						<tr>
+							<th style="width: 25%;">
+								전시장소
+							</th>
+							<td>
+								${ex.gallery }
+							</td>
+						</tr>
+						<tr>
+							<th>
+								전시기간
+							</th>	
+							<td>
+								${ex.start_date } ~ ${ex.end_date }
+							</td>
+						</tr>
+						<tr>	
+							<th>
+								입장료
+							</th>
+							<td>
+							<c:if test="${ex.price == 0 }">
+								무료
+							</c:if>
+							<c:if test="${ex.price != 0 }">
+								${ex.price }원
+							</c:if>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								홈페이지
+							</th>	
+							<td>
+								<c:if test="${empty ex.gallery_site }">
+									-
+								</c:if>
+								<c:if test="${not empty ex.gallery_site }">
+									<c:set var="site" value="${ex.gallery_site }"/>
+									<c:set var="length" value="${fn:length(site)+1}"/>
+									<c:choose>
+										<c:when test="${fn:startsWith(site, 'http://')}">
+											<c:set var="adj_site" value="${fn:substring(site,7,length)}"></c:set>
+											<a href="http://${adj_site }" target="blank">${ex.gallery_site }</a>
+										</c:when>
+										<c:otherwise>
+											<a href="http://${ex.gallery_site }" target="blank">${ex.gallery_site }</a>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+							</td>
+						</tr>							
 						<tr>
 							<th>
 								주소
 							</th>	
-							<td colspan="2">
+							<td>
 								${ex.address }
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
 							<div id="map" style="width:100%;height:300px;margin-top:10px;"></div>
 							<script type="text/javascript">
 								var addr = '${addr}';
@@ -207,7 +215,7 @@
 							<th>
 								예매처
 							</th>	
-							<td colspan="2">
+							<td style="word-break: break-all;">
 								<c:forEach var="link" items="${t_links }">
 									<c:set var="site" value="${link }"/>
 									<c:set var="length" value="${fn:length(site)+1}"/>
@@ -225,7 +233,7 @@
 						</tr>
 						</c:if>
 						<tr>
-							<td colspan="3" class="ex-content">
+							<td colspan="2" class="ex-content">
 								${ex.content }
 							</td>
 						</tr>

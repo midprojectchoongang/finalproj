@@ -135,8 +135,21 @@
 						</div>
 						<div class="row form-group">
 							<div class="col-md-12">
+							<script type="text/javascript">
+								$(function () {
+								    $('[data-toggle="popover"]').popover();
+								    $('#pop').popover({
+								    	placement : 'bottom',
+								    	trigger : 'hover click'
+								    });
+								})
+							</script>
 							<fieldset>
-								<legend>#HashTags</legend>
+								<legend>
+									<a tabindex="0" role="button" data-toggle="popover" data-placement="bottom" data-trigger="focus" 
+									data-content="My #Hash를 설정하면, 관심있는 전시회를 보다 쉽게 찾을 수 있습니다.">My #Hash</a>
+								</legend>
+
 								<!-- <label>prefered #HashTag</label> -->
 								<p class="tags" id="prehash" style="min-height: 35px;"></p>
 								<div id="warnDisp" class="warn-style"></div>
@@ -157,8 +170,7 @@
 									<c:if test="${htl.kind == 'basic' }">
 										<span class="tag">
 											<a onclick="addPrehash('${htl.hash_title }')" class="name" style="cursor: pointer;">
-												<i class="icon-tag"></i> ${htl.hash_title }
-											</a>
+											<i class="icon-tag"></i> ${htl.hash_title }</a>
 										</span>
 									</c:if>
 									</c:forEach>
@@ -166,21 +178,7 @@
 							</fieldset>
 							</div>
 						</div>
-						<script type="text/javascript">
-	/* 						function filter() {
-								var keyword, name, tag, i;
-								keyword = document.getElementById("keyword").value.toUpperCase();
-								tag = document.getElementsByClassName("tag");
-								for (i=0; i<tag.length; i++) {
-									name = tag[i].getElementsByClassName("name");
-									if(name[0].innerHTML.toUpperCase().indexOf(keyword) > -1) {
-										tag[i].style.display = "flex";
-									} else {
-										tag[i].style.display = "none";
-									}
-								}
-							} */
-							
+						<script type="text/javascript">							
 							var hash_html = new Array();
 							var hash_select = new Array();
 							

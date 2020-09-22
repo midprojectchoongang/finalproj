@@ -66,13 +66,13 @@
 								<table class="table-box">
 									<tr>
 										<td style="width: 47%">
-											<input type="date" name="start_date" class="form-control" required="required" value="${ex.start_date }">
+											<input type="date" name="start_date1" class="form-control" required="required" value="${ex.start_date }">
 										</td>
 										<td style="width: 6%; text-align: center; vertical-align: middle;">
 											~
 										</td>
 										<td style="width: 47%">
-											<input type="date" name="end_date" class="form-control" required="required" value="${ex.end_date }">
+											<input type="date" name="end_date1" class="form-control" required="required" value="${ex.end_date }">
 										</td>
 									</tr>
 								</table>
@@ -317,7 +317,7 @@
 					<script type="text/javascript">
 						var hash_html = new Array();
 						var hash_select = new Array();
-						var max_hashtag = 5;
+						var max_hashtag = 8;
 						var postedHash = ${postedHash };
 						
 						for(var i=0; i<postedHash.length; i++) {

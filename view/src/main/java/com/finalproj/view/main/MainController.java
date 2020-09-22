@@ -43,14 +43,13 @@ public class MainController {
 		String c_id = (String)session.getAttribute("c_id");
 		String hashList = "";
 		if (c_id == null || c_id.equals("")) {
-			List<HashtagDTO> popularHash = hs.popularHash(0, 4);
-//			List<HashtagDTO> popularHash = hs.popularHash(0, 3);
+			List<HashtagDTO> popularHash = hs.popularHash(0, 3);
 			String[] tags = new String[popularHash.size()];
 			for (int i=0; i<popularHash.size(); i++) {
 				tags[i] = popularHash.get(i).getHash_title().toString();
 			}
 			rcmdList = es.compList(0, 3, tags, "reg_date");
-      hashList = "n";
+			hashList = "n";
 		} else {
 			customer = cs.select(c_id);
 			JSONParser jp = new JSONParser();
@@ -60,7 +59,9 @@ public class MainController {
 			String c = ja + "";
 			Gson gson = new Gson();
 			String[] tags = gson.fromJson(c, String[].class);
+			rcmdList = es.compList(0, 3, tags, "reg_date");
 			hashList = "y";
+			rcmdList = es.compList(0, 3, tags, "reg_date");
       
 			// 사용자 해시태그와 일치하는 전시가 등록되지 않은 경우
 			if (rcmdList == null || rcmdList.size() == 0) {
@@ -69,7 +70,7 @@ public class MainController {
 				for (int i=0; i<popularHash.size(); i++) {
 					tags[i] = popularHash.get(i).getHash_title().toString();
 				}
-        rcmdList = es.compList(0, 3, tags, "reg_date");
+				rcmdList = es.compList(0, 3, tags, "reg_date");
 				hashList = "n";
 			}
 		}

@@ -19,7 +19,9 @@ public class ExhibitionDTO {
 	private String ticket_link3;
 	private int price;
 	private Date start_date;
+	private String start_date1;
 	private Date end_date;
+	private String end_date1;
 	private String hashtags;
 	private String content;
 	private int like_cnt;

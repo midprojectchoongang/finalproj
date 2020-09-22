@@ -27,11 +27,11 @@
 		var keyword = '${keyword}'
 		$(function () {
 			if (keyword != '' && keyword != null) {
-				$('#list3').css('font-size','25px').css('font-weight','bold');
+				$('#list3').css('font-size','18px').css('font-weight','bold');
 			} else if (listType == 'p') {
-				$('#list2').css('font-size','25px').css('font-weight','bold');
+				$('#list2').css('font-size','18px').css('font-weight','bold');
 			} else {
-				$('#list1').css('font-size','25px').css('font-weight','bold');
+				$('#list1').css('font-size','18px').css('font-weight','bold');
 			}
 		})
 		$(function () {
@@ -62,10 +62,10 @@
 		</div>
 		<div align="center">
 			<select onchange="alignment()" id="alignment">
-				<option id="opt0" value="reg_date">등록일
-				<option id="opt1" value="comment_cnt">댓글
-				<option id="opt2" value="like_cnt">관심전시
-				<option id="opt3" value="end_date">종료일
+				<option id="opt0" value="reg_date">등록일순
+				<option id="opt1" value="comment_cnt">댓글순
+				<option id="opt2" value="like_cnt">관심전시순
+				<option id="opt3" value="end_date">종료일순
 			</select>
 		</div>
 		<script type="text/javascript">
@@ -104,7 +104,7 @@
 									style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
 									<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
 										<div>
-										<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 200px;">
+										<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 150px;">
 										</div>
 									</td>
 								</tr>
@@ -117,7 +117,7 @@
 								</tr>
 								<tr onclick="location.href='exView?exhibition_no=${ex.exhibition_no }'" 
 									style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
-									<th style="width: 25%;">장소</th>
+									<th style="width: 25%;">갤러리</th>
 									<td height="50px;" style="vertical-align: middle;">
 										${ex.gallery }
 									</td>

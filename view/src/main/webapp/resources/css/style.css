@@ -984,6 +984,11 @@ blockquote {
 	padding: 30px;
 	margin-bottom: 30px;
 }
+.formbox-nonlabel-biz {
+	border: 1px solid #d2d2d2;
+	padding: 20px;
+	margin: 10px;
+}
 .formbox label {
 	position: absolute;
 	top: 0px; /* input 요소의 border-top 설정값 만큼  */
@@ -996,6 +1001,7 @@ table.table-ticket > tr > td {
 	padding: 50px;
 	line-height: 130%;
 }
+
 .table-box {
 	width: 100%;
 	border-collapse: collapse;
@@ -1252,7 +1258,7 @@ input[type="text"] {
 #colorlib-offcanvas {
   position: absolute;
   z-index: 1901;
-  width: 270px;
+  width: 220px;
   background: black;
   top: 0;
   right: 0;
@@ -1287,7 +1293,8 @@ input[type="text"] {
     margin: 0; }
     #colorlib-offcanvas ul li {
       padding: 0;
-      margin: 0;
+      margin: 0 0 10px 0;
+      font-size: 18px;
       list-style: none; }
       #colorlib-offcanvas ul li > ul {
         padding-left: 20px;
