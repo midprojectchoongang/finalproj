@@ -24,7 +24,7 @@
 		    });
 		})
 		$(function () {
-			$('#list3').css('font-size','25px').css('font-weight','bold');
+			$('#list3').css('font-size','18px').css('font-weight','bold');
 		})
 	</script>
 	<div id="colorlib-container" align="center">

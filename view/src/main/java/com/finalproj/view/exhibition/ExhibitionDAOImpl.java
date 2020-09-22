@@ -87,4 +87,8 @@ public class ExhibitionDAOImpl implements ExhibitionDAO {
 	public void comment_cntUp(int exhibition_no) {
 		sst.update("exhibitionns.comment_cntUp", exhibition_no);
 	}
+	@Override
+	public int getBizTotal(String b_id) {
+		return sst.selectOne("exhibitionns.getBizTotal", b_id);
+	}
 }

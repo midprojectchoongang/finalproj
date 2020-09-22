@@ -18,4 +18,5 @@ public interface ExhibitionDAO {
 	Collection<ExhibitionDTO> bizList(int startRow, int rowPerPage, String b_id);
 	Collection<ExhibitionDTO> listByCmt(int[] exNos);
 	void comment_cntUp(int exhibition_no);
+	int getBizTotal(String b_id);
 }

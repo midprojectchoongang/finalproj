@@ -62,7 +62,7 @@
 								<a href="exView?exhibition_no=${rl.exhibition_no }">
 								<img src="${path }/exImg/${rl.filename }" class="img-responsive" style="outline: none; max-height: 400px;"></a>
 							</div>
-							<div class="desc" style="word-break: break-all;">
+							<div class="desc">
 								<p class="meta">
 									<span class="cat"><a href="exView?exhibition_no=${rl.exhibition_no }">${rl.gallery }</a></span><br>
 									<fmt:formatDate value="${rl.start_date }" pattern="yy/MM/dd" var="start"/>
