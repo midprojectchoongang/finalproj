@@ -142,6 +142,12 @@ public class BusinessController {
 	public String bizUpdateForm(Model model, HttpSession session) {
 		String b_id = (String)session.getAttribute("b_id");
 		BusinessDTO bsness = bs.select(b_id);
+		
+		String[] groupkind = {"개인사업자", "법인사업자", "기타"};
+		String[] groupname = {"licensee", "corporation", "etc"};
+		
+		model.addAttribute("groupkind", groupkind);
+		model.addAttribute("groupname", groupname);
 		model.addAttribute("bsness", bsness);
 		return "business/bizUpdateForm";
 	}
