@@ -24,15 +24,7 @@
 		from ticketbook
 		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date} and del = 'n'
 		order by visit_date
-		<!-- limit #{startRow}, #{endRow} -->
 	</select>
-<!-- 	
-	<select id="getTicket" parameterType="string" resultType="integer">
-		select count(*)
-		from ticketbook
-		where c_id = #{c_id} and date_format(visit_date, '%Y%m') = #{date}
-	</select> 
--->
 	
 	<select id="view" parameterType="integer" resultType="tbook">
 		select * 
@@ -49,7 +41,7 @@
 			#{title}, 
 			#{content}, 
 			#{filename}, 
-			date_add(#{visit_date}, interval 1 day), 
+			#{visit_date}, 
 			sysdate(), 
 			'n'
 			)

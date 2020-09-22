@@ -10,26 +10,31 @@
 			$('#idDisp').html("");
 			return;
 		}
-		var b_id = $('#b_id').val();
-		$.ajax({
-			url : 'b_idChk',
-			type : 'post',
-			data : {
-				b_id : b_id
-			},
-			success : function(data) {
-				if ($.trim(data) == 0) {
-					$('#idDisp').html("<b>사용 가능한 ID입니다</b>");
-					chk = "y";
-				} else {
-					$('#idDisp').html("<b>이미 존재하는 ID입니다</b>");
-					chk = "n";
+		if ($('#b_id').val() == "admin") {
+			$('#idDisp').html("<b>이미 존재하는 ID입니다</b>");
+			chk = "n";
+		} else {
+			var b_id = $('#b_id').val();
+			$.ajax({
+				url : 'b_idChk',
+				type : 'post',
+				data : {
+					b_id : b_id
+				},
+				success : function(data) {
+					if ($.trim(data) == 0) {
+						$('#idDisp').html("<b>사용 가능한 ID입니다</b>");
+						chk = "y";
+					} else {
+						$('#idDisp').html("<b>이미 존재하는 ID입니다</b>");
+						chk = "n";
+					}
+				},
+				error : function() {
+					alert("에러입니다");
 				}
-			},
-			error : function() {
-				alert("에러입니다");
-			}
-		});
+			});
+		}
 	}
 </script>
 </head>
@@ -157,10 +162,20 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group" style="text-align: center;">
-						<input type="submit" value="가입신청" class="btn btn-primary">
-					</div>
 					</form>	
+					<div class="form-group" style="text-align: center;">
+						<button onclick="submit()" class="btn btn-primary">가입신청</button>
+					</div>
+					<script type="text/javascript">
+						function submit() {
+							if (chk == "y") {
+								document.frm.submit();
+							} else {
+								alert("기입 한 정보를 다시한번 확인하여 주십시오");
+								return false;
+							}
+						}
+					</script>
 				</div>
 			</div>
 		</div>

@@ -4,6 +4,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<!-- Map -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 </head>
 <body>
 <div class="colorlib-loader"></div>

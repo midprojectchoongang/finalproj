@@ -169,8 +169,6 @@ public class ExhibitionController {
 			ex.setAddress(addr);
 		}
 		
-		ex.setStart_date(Date.valueOf(ex.getStart_date1()));
-		ex.setEnd_date(Date.valueOf(ex.getEnd_date1()));
 		result = es.insert(ex);
 		
 		model.addAttribute("exhibition_no", ex.getExhibition_no());
@@ -315,8 +313,6 @@ public class ExhibitionController {
 			String addr = ex.getAddress() + ", " + ex.getSub_address();
 			ex.setAddress(addr);
 		}
-		ex.setStart_date(Date.valueOf(ex.getStart_date1()));
-		ex.setEnd_date(Date.valueOf(ex.getEnd_date1()));
 		int result = es.update(ex);
 		
 		model.addAttribute("result", result);

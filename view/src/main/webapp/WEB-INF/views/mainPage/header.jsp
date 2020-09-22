@@ -69,18 +69,52 @@
 <!-- Magnific Popup -->
 <script src="${path}/js/jquery.magnific-popup.min.js"></script>
 <script src="${path}/js/magnific-popup-options.js"></script>
-<!-- Main -->
-<script src="${path}/js/main.js"></script>
-
-<link rel="stylesheet" href="${path }/slick/slick.css">
-<link rel="stylesheet" href="${path }/slick/slick-theme.css">
-<script type="text/javascript" src="${path }/slick/slick.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
 <!-- Map -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
+<!-- Main -->
+<script src="${path}/js/main.js"></script>
+<link rel="stylesheet" href="${path }/slick/slick.css">
+<link rel="stylesheet" type="text/css" href="http://kenwheeler.github.io/slick/slick/slick-theme.css"/>
+<script type="text/javascript" src="${path }/slick/slick.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<style type="text/css">
+	.slick-prev:before, .slick-next:before {
+		color: black;
+	}
+	.customized {
+		background: #212415;
+		width: 80%;
+	}
+	#customized {
+		display: inline-block;
+		width: 400px;
+		height: 400px;
+		border: solid 1px #d2d2d2;
+		text-align: center;
+		margin: 25px;
+		padding: 50px 0 0 40px;
+		border-radius: 20px;
+	}
+	@media screen and (max-width: 600px) {
+		.customized {
+			width: 100%;
+		}
+		#customized {
+			display: inline-block;
+			width: 100%;
+			height: 400px;
+			border: solid 1px #d2d2d2;
+			text-align: center;
+			margin: 25px 0 25px 0;
+			padding: 50px 0 0 30px;
+			border-radius: 20px;
+		}
+	}
+</style>
 <body>
-로그인 모드 : ${sessionScope.login } / id : ${c_id } * ${b_id }
+<c:if test="${sessionScope.login == 'admin' }">
+<font style="color: #F6490D; font-size: 13px; margin: 5px;">관리자모드</font>
+</c:if>
 <nav class="colorlib-nav navbar-static-top" role="navigation">
 	<div class="top-menu">
 		<div class="container">
@@ -101,7 +135,7 @@
 							</c:if>
 							<c:if test="${sessionScope.login == 'customer'}">
 							<li><a href="${path }/cus/myExList">관심전시회</a></li>
-							<li><a href="${path }/cus/ticketCal">TicektBook</a></li>
+							<li><a href="${path }/cus/ticketCal">TicketBook</a></li>
 							</c:if>
 							<c:if test="${sessionScope.login == 'admin'}">
 							<li><a href="${path}/master/bizList">단체회원관리</a></li>
@@ -127,36 +161,6 @@
 						</ul>
 					</div>
 				</div>
-<%-- 				
-				<div class="row">
-					<div class="col-xs-12 text-right menu-1">
-					<c:if test="${empty sessionScope.login }">
-						<ul>
-							<li><a href="${path}/bizLoginForm">단체회원로그인</a></li>
-							<li><a href="${path}/loginFormC">개인회원로그인</a></li>
-						</ul>
-					</c:if>
-					<c:if test="${sessionScope.login == 'biz' }">
-						<ul>
-							<li><a href="${path}/biz/ownHash">해쉬태그관리</a></li>
-							<li><a href="${path}/biz/bizView">회원정보</a></li>
-							<li><a href="${path}/bizLogout">로그아웃</a></li>
-						</ul>
-					</c:if>
-					<c:if test="${sessionScope.login == 'customer'}">
-						<ul>
-							<li><a href="${path}/viewInfoC">회원정보</a></li>
-							<li><a href="${path}/logoutC">로그아웃</a></li>
-						</ul>
-					</c:if>
-					<c:if test="${sessionScope.login == 'admin'}">
-						<ul>
-							<li><a href="${path}/logoutC">로그아웃</a></li>
-						</ul>
-					</c:if>
-					</div>	
-				</div>
-	 --%>								
 		</div>
 	</div>
 </nav>
