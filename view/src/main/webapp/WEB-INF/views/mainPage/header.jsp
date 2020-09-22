@@ -77,10 +77,10 @@
 <script type="text/javascript" src="${path }/slick/slick.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-<!-- Map -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 <body>
-로그인 모드 : ${sessionScope.login } / id : ${c_id } * ${b_id }
+<c:if test="${sessionScope.login == 'admin' }">
+<font style="color: #F6490D; font-size: 13px; margin: 5px;">관리자모드</font>
+</c:if>
 <nav class="colorlib-nav navbar-static-top" role="navigation">
 	<div class="top-menu">
 		<div class="container">

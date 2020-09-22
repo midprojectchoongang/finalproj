@@ -3,6 +3,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<!-- Map -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0db0dac3b0daa13d53c2ff56ca8789c9&libraries=services"></script>
 </head>
 <body>
 <div class="colorlib-loader"></div>
@@ -65,13 +67,13 @@
 								<table class="table-box">
 									<tr>
 										<td style="width: 47%">
-											<input type="date" name="start_date1" class="form-control" required="required">
+											<input type="date" name="start_date" class="form-control" required="required">
 										</td>
 										<td style="width: 6%; text-align: center; vertical-align: middle;">
 											~
 										</td>
 										<td style="width: 47%">
-											<input type="date" name="end_date1" class="form-control" required="required">
+											<input type="date" name="end_date" class="form-control" required="required">
 										</td>
 									</tr>
 								</table>
