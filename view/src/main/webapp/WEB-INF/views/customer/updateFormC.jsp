@@ -35,15 +35,14 @@
 								<div class="col-md-12" align="left">
 									<b>&emsp;비밀번호</b>
 									<input type="password" name="c_password" id="c_password" class="form-control" required="required"
-									 placeholder="${customerdto.c_password }"
-									 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.c_password }'">									
+									 value="${customerdto.c_password }">									
 								</div>
 							</div>
 							<div class="row form-group">
 								<div class="col-md-12" align="left">
 									<b>&emsp;비밀번호 확인</b>
 									<input type="password" name="c_password2" id="c_password2" class="form-control" required="required"
-									 placeholder="Your password confirm" onkeyup="passwordChk()">
+									 placeholder="비밀번호 확인" onkeyup="passwordChk()">
 									<div id="pwDisp"></div>
 								</div>
 							</div>
@@ -62,8 +61,7 @@
 								<div class="col-md-12" align="left">
 									<b>&emsp;닉네임</b>
 									<input type="text" name="nickname" id="nickname" class="form-control" required="required" onkeyup="nickChk()"
-									 placeholder="${customerdto.nickname }"
-									 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.nickname }'">
+									 value="${customerdto.nickname }">
 									<div id="nickDisp" style="color:red; font-weight: 900; min-height: 35px;"></div>									
 								</div>
 							</div>
@@ -104,8 +102,7 @@
 								<div class="col-md-12" align="left">
 									<b>&emsp;이메일</b>
 									<input type="email" name="email" id="email" class="form-control" required="required"
-									 placeholder="${customerdto.email }"
-									 onfocus="this.placeholder=''" onblur="this.placeholder='${customerdto.email }'">
+									 value="${customerdto.email }">
 								</div>
 							</div>
 						</div>
