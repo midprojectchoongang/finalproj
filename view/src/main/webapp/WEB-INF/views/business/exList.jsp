@@ -25,52 +25,52 @@
 						</c:if>
 						<c:if test="${not empty list }">
 						<table class="table" style="margin: 30px 0;">
-						<tbody>
-						<c:forEach items="${list }" var="ex">
-							<c:if test="${ex.del == 'n' }">
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
-							style="cursor: pointer; border-bottom: 2px solid #eeeeee;">
-								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
-									<div style="width:120px;">
-									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail">
-									</div>
-								</td>
-							</tr>
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
-							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
-								<th style="width: 25%; vertical-align: middle;">전시회명</th>
-								<td height="50px;" style="vertical-align: middle;">
-									${ex.title }
-								</td>
-							</tr>
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
-							style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
-								<th style="width: 25%;">장소</th>
-								<td height="50px;" style="vertical-align: middle;">
-									${ex.gallery }
-								</td>
-							</tr>
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }'&myList=b&pageNum=${pageNum}" 
-								style="cursor: pointer; border-bottom: 1px dashed #eeeeee;">
-								<th style="width: 25%; vertical-align: middle;">기간</th>
-								<td height="50px;" style="vertical-align: middle;">
-									${ex.start_date } ~ ${ex.end_date }
-								</td>											
-							</tr>
-							<tr style="border-bottom: 2px solid #eeeeee;">
-								<td colspan="3" height="50px;" style="vertical-align: middle;">
-									<div class="btn-group-xs" style="text-align: right;">
-										<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" 
-											class="btn btn-outline">수정</a>
-										<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" 
-											class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
-									</div>
-								</td>
-							</tr>
-						</c:if>
-						</c:forEach>
-						</tbody>
-					</table>
+							<tbody>
+							<c:forEach items="${list }" var="ex">
+								<c:if test="${ex.del == 'n' }">
+								<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
+								style="cursor: pointer; border-bottom: 2px solid #eeeeee;">
+									<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
+										<div style="width:120px;">
+										<img src="${path }/exImg/${ex.filename }" class="img-thumbnail">
+										</div>
+									</td>
+								</tr>
+								<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
+								style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
+									<th style="width: 25%; vertical-align: middle;">전시회명</th>
+									<td height="50px;" style="vertical-align: middle;">
+										${ex.title }
+									</td>
+								</tr>
+								<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=b&pageNum=${pageNum}'" 
+								style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
+									<th style="width: 25%;">장소</th>
+									<td height="50px;" style="vertical-align: middle;">
+										${ex.gallery }
+									</td>
+								</tr>
+								<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }'&myList=b&pageNum=${pageNum}" 
+									style="cursor: pointer; border-bottom: 1px dashed #eeeeee;">
+									<th style="width: 25%; vertical-align: middle;">기간</th>
+									<td height="50px;" style="vertical-align: middle;">
+										${ex.start_date } ~ ${ex.end_date }
+									</td>											
+								</tr>
+								<tr style="border-bottom: 2px solid #eeeeee;">
+									<td colspan="3" height="50px;" style="vertical-align: middle;">
+										<div class="btn-group-xs" style="text-align: right;">
+											<a href="${path }/biz/exUpdateForm?exhibition_no=${ex.exhibition_no }" 
+												class="btn btn-outline">수정</a>
+											<a href="${path }/biz/exDelete?exhibition_no=${ex.exhibition_no }" 
+												class="btn btn-outline" onclick="return confirm('really?');">삭제</a>
+										</div>
+									</td>
+								</tr>
+							</c:if>
+							</c:forEach>
+							</tbody>
+						</table>
 						</c:if>
 						</div>
 					</div>

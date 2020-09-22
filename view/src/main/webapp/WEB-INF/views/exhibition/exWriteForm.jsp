@@ -273,7 +273,7 @@
 					<script type="text/javascript">
 						var hash_html = new Array();
 						var hash_select = new Array();
-						var max_hashtag = 7;
+						var max_hashtag = 8;
 						
 						function addPrehash(hash_title) {
 							$('#warnDisp').html('');

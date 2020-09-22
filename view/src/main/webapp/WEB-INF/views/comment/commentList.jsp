@@ -6,7 +6,6 @@
 <head>
 </head>
 <body>
-
 <div class="col-md-12" id="commentDisp">
 	<div class="row headbox-sm" align="left"><h2 class="heading-2-b">${count }개의 한줄평</h2></div>
 	<c:forEach items="${cmtList }" var="cl">
@@ -34,10 +33,17 @@
 	   		</div>
 	   	</div>
 	</c:if>
+	<c:if test="${cl.del == 'y' }">
+		<div class="review">
+	   		<div class="desc">
+	   			<p id="contentBox" style="font-style: italic; color: gray; text-align: center;">삭제된 댓글 입니다.</p>
+	   		</div>
+	   	</div>
+	</c:if>
 	</c:forEach>
 	<script type="text/javascript">
 		function updateComment(comment_no, eno, content) {
-			$('.comm_'+comment_no).html('<textarea name="content" id="updateCont" cols="30" rows="5"'
+			$('.comm_'+comment_no).html('<textarea name="content" id="updateCont_'+comment_no+'" cols="30" rows="5"'
 					+'class="form-control">'+content+'</textarea>');
 			$('#updateBtn_'+comment_no).replaceWith('<button id="confirmBtn" onclick="confirmBtn('+comment_no+')" class="btn btn-outline">확인</button>');
 			$('#deleteBtn_'+comment_no).replaceWith('<button id="cancelBtn" onclick="cancelBtn('+comment_no+')" class="btn btn-outline">취소</button>');
@@ -66,8 +72,8 @@
 			});
 			location.reload();
 		}
-		function cancelBtn(exhibition_no) {
-			location.reload();
+		function cancelBtn(comment_no) {
+			$('#updateCont_'+comment_no).html('<p id="contentBox" class="comm_'+comment_no+'">${cl.content }</p>');
 		}
 		function deleteComment(comment_no) {
 			var sandData = "comment_no="+comment_no;

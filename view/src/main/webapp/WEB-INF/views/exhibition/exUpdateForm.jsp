@@ -317,7 +317,7 @@
 					<script type="text/javascript">
 						var hash_html = new Array();
 						var hash_select = new Array();
-						var max_hashtag = 5;
+						var max_hashtag = 8;
 						var postedHash = ${postedHash };
 						
 						for(var i=0; i<postedHash.length; i++) {
