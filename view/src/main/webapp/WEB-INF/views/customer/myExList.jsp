@@ -30,9 +30,7 @@
 							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" 
 								style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
 								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
-									<div style="width:120px;">
 									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 150px;">
-									</div>
 								</td>
 							</tr>
 							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" 
