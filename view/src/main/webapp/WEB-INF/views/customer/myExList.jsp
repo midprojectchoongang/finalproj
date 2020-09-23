@@ -28,8 +28,8 @@
 						<c:forEach items="${myList }" var="ex">
 							<c:if test="${ex.del == 'n' }">
 							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" 
-							style="cursor: pointer;">
-								<td rowspan="5" style="width: 35%; vertical-align: middle; border-bottom: 2px solid #eeeeee;" align="center">
+								style="cursor: pointer; border-bottom: 1px solid #eeeeee;">
+								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
 									<div style="width:120px;">
 									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 150px;">
 									</div>
@@ -49,26 +49,28 @@
 									${ex.gallery }
 								</td>
 							</tr>
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" style="cursor: pointer;">
-								<th style="width: 25%; vertical-align: middle; border-bottom: 1px dashed #eeeeee;">기간</th>
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'"
+								style="cursor: pointer; border-bottom: 1px dashed #eeeeee;">
+								<th style="width: 25%; vertical-align: middle;">기간</th>
 								<td height="50px;" style="vertical-align: middle;">
 									${ex.start_date } ~ ${ex.end_date }
 								</td>										
 							</tr>
-							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" style="border-bottom: 2px solid #eeeeee;">
+							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'"
+								style="border-bottom: 2px solid #eeeeee;">
 								<td id="${ex.exhibition_no }" colspan="3" style="line-height: 120%; vertical-align: middle;" height="50px;"></td>					
-									<script type="text/javascript">
-										var verify = '${ex.exhibition_no }';
-										var jsondata = '${ex.hashtags }';
-										var hash = JSON.parse(jsondata);
-										for (var i=0; i<hash.hash.length; i++) {
-											$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
-													'<a style="cursor:pointer; font-size: 12px; display: inline-block;" href="#">#' +
-													hash.hash[i] + '&emsp;</a></span>'
-											);
-										}
-									</script>
 							</tr>							
+							<script type="text/javascript">
+								var verify = '${ex.exhibition_no }';
+								var jsondata = '${ex.hashtags }';
+								var hash = JSON.parse(jsondata);
+								for (var i=0; i<hash.hash.length; i++) {
+									$('#' + verify).append('<span id="'+hash.hash[i]+'">' +
+											'<a style="cursor:pointer; font-size: 12px; display: inline-block;" href="#">#' +
+											hash.hash[i] + '&emsp;</a></span>'
+									);
+								}
+							</script>
 							</c:if>
 						</c:forEach>
 						</tbody>							
