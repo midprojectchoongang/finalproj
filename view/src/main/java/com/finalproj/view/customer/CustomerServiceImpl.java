@@ -13,8 +13,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public int insert(CustomerDTO customer) {
 		return cd.insert(customer);
 	}
-	public List<CustomerDTO> list(String c_id) {
-		return cd.list(c_id);
+	public List<CustomerDTO> list() {
+		return cd.list();
 	}
 	public int update(CustomerDTO customer) {
 		return cd.update(customer);
@@ -31,8 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
 	public String selectNick(String c_id) {
 		return cd.selectNick(c_id);
 	}
-	@Override
 	public int addInt(int ex_no, String c_id) {
 		return cd.addInt(ex_no, c_id);
+	}
+	public int getTotal() {
+		return cd.getTotal();
+	}
+	public void revive(String c_id) {
+		cd.revive(c_id);
+		
 	}
 }

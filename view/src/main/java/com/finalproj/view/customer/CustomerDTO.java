@@ -1,6 +1,6 @@
 package com.finalproj.view.customer;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -24,4 +24,9 @@ public class CustomerDTO {
 	private String c_role;
 	private Date reg_date;
 	private String del;
+	
+	
+	// paging
+	private int startRow;
+	private int endRow;
 }

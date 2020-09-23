@@ -139,6 +139,7 @@
 							</c:if>
 							<c:if test="${sessionScope.login == 'admin'}">
 							<li><a href="${path}/master/bizList">단체회원관리</a></li>
+							<li><a href="${path}/master/cusList">일반회원관리</a></li>
 							<li><a href="${path}/master/viewHashList">#hash목록</a></li>
 							<li><a href="${path}/master/addHashForm">#hash추가</a></li>
 							</c:if>

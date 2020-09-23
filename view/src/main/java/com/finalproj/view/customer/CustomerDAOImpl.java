@@ -15,8 +15,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public int insert(CustomerDTO customer) {
 		return sst.insert("customerns.insert", customer);
 	}
-	public List<CustomerDTO> list(String c_id) {
-		return sst.selectList("customerns.list", c_id);
+	public List<CustomerDTO> list() {
+		return sst.selectList("customerns.list");
 	}
 	public int update(CustomerDTO customer) {
 		return sst.update("customerns.update", customer);
@@ -33,11 +33,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public String selectNick(String c_id) {
 		return sst.selectOne("customerns.selectNick", c_id);
 	}
-	@Override
 	public int addInt(int ex_no, String c_id) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("exhibition_no", ex_no+"");
 		map.put("c_id", c_id);
 		return sst.insert("interestns.add", map);
+	}
+	public int getTotal() {
+		return sst.selectOne("customerns.cusTotal");
+	}
+	public void revive(String c_id) {
+		sst.update("customerns.revive", c_id);
+		
 	}
 }
