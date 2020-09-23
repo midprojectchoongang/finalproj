@@ -19,8 +19,8 @@
 		insert into customer values
 		(#{c_id}, #{c_password}, #{nickname}, #{email}, #{c_hashtag}, "customer", sysdate(), "n")
 	</insert>
-	<select id="list" parameterType="string" resultMap="customerResult">
-		select * from customer where c_id=#{c_id}
+	<select id="list" resultMap="customerResult">
+		select * from customer where c_role != 'admin'
 	</select>
 	<update id="update" parameterType="string">
 		update customer set c_password=#{c_password}, nickname=#{nickname}, email=#{email}, c_hashtag=#{c_hashtag} where c_id=#{c_id}
@@ -37,4 +37,10 @@
 	<select id="selectNick" parameterType="string" resultType="string">
 		select nickname from customer where c_id=#{c_id}
 	</select>
+	<select id="cusTotal" resultType="integer">
+		select count(*) from customer where c_role != 'admin'
+	</select>
+	<update id="revive" parameterType="string">
+		update customer set del="n" where c_id=#{c_id} 
+	</update>
 </mapper>

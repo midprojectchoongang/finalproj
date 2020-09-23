@@ -24,4 +24,9 @@ public class CustomerDTO {
 	private String c_role;
 	private Date reg_date;
 	private String del;
+	
+	
+	// paging
+	private int startRow;
+	private int endRow;
 }

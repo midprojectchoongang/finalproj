@@ -126,6 +126,7 @@ public class ExhibitionController {
 		model.addAttribute("page", page);
 		return "business/exList";
 	}
+	
 	@RequestMapping("/biz/exWriteForm")
 	private String exWriteForm(HttpSession session, Model model) {
 		List<HashtagDTO> hashList = hs.hashList();

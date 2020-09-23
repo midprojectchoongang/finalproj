@@ -1,5 +1,4 @@
 package com.finalproj.view.customer;
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.finalproj.view.common.PagingBean;
 import com.finalproj.view.exhibition.ExhibitionDTO;
 import com.finalproj.view.exhibition.ExhibitionService;
@@ -31,6 +29,49 @@ public class CustomerController {
 	private InterestService is;
 	@Autowired
 	private ExhibitionService es;
+	
+	// master
+	@RequestMapping("/master/cusList")
+	public String cusList(String pageNum, CustomerDTO cus, Model model) {
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int rowPerPage = 10;
+		int total = cs.getTotal();
+		int startRow = (currentPage - 1) * rowPerPage;
+		int endRow = startRow + rowPerPage;
+		cus.setStartRow(startRow);
+		cus.setEndRow(endRow);
+		List<CustomerDTO> list = cs.list();
+		PagingBean page = new PagingBean(currentPage, rowPerPage, total);
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+		model.addAttribute("pageNum", pageNum);
+		return "/master/cusList";
+	}
+	@RequestMapping("/master/cusDetail")
+	public String cusDetail(Model model, String c_id, int pageNum) throws ParseException {
+		CustomerDTO customerdto = cs.select(c_id);
+		model.addAttribute("customerdto", customerdto);
+		model.addAttribute("pageNum", pageNum);
+		return "/master/cusDetail";
+	}
+	@RequestMapping("/master/cusState")
+	public String cusState(Model model, String c_id, int pageNum) throws ParseException {
+		CustomerDTO customerdto = cs.select(c_id);
+		if (customerdto.getDel() == "n" || customerdto.getDel().equals("n")) {
+			cs.delete(c_id);
+		} else {
+			cs.revive(c_id);
+		}
+		customerdto = cs.select(c_id);
+		model.addAttribute("customerdto", customerdto);
+		model.addAttribute("pageNum", pageNum);
+		return "/master/cusDetail";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping("joinFormC")
 	public String joinFormC(Model model) {
@@ -107,6 +148,7 @@ public class CustomerController {
 		model.addAttribute("customerdto", customerdto);
 		return "/customer/viewInfoC";
 	}
+	
 	@RequestMapping("updateFormC")
 	public String updateFormC(Model model, HttpSession session) throws ParseException {
 		String c_id = (String)session.getAttribute("c_id");
