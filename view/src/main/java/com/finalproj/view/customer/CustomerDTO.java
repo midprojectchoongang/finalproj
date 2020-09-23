@@ -1,6 +1,6 @@
 package com.finalproj.view.customer;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
