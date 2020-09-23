@@ -109,10 +109,10 @@
 						</div>
 						<div class="row form-group" align="left">
 							<div class="col-md-12 btn-group-sm">
-								<button type="button" onclick="postSearch()" class="btn btn-outline">주소검색</button><br>
-								<input type="text" name="address" class="form-control" id="mapAddress"
-								value="${addr }" placeholder="주소" required="required">
-								<input type="text" name="sub_address" class="form-control" placeholder="상세주소" value="${sub_addr }">
+								<input type="text" name="address" class="form-control" id="mapAddress" readonly="readonly"
+									value="${addr }" style="display: inline; width: auto; min-width: 70%">
+								<button type="button" onclick="postSearch()" class="btn btn-outline">주소검색</button>
+								<input type="text" name="sub_address" class="form-control" placeholder="상세주소" value="${sub_addr }">							
 								<div id="addressDisp"></div>
 								<div id="map" style="width:100%;height:300px;margin-top:10px;"></div>
 								

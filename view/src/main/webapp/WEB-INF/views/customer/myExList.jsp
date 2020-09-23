@@ -11,7 +11,7 @@
 		<div id="colorlib-container">
 		<div class="row headbox"><h2 class="heading-2">관심전시회</h2></div>
 			<div class="container" align="center">
-				<div class="row">
+				<div class="row-pb-md">
 					<div class="col-md-9">
 					<div class="row">
 						<div class="row" align="left">						
@@ -29,9 +29,9 @@
 							<c:if test="${ex.del == 'n' }">
 							<tr onclick="location.href='${path }/exView?exhibition_no=${ex.exhibition_no }&myList=c&pageNum=${pageNum}'" 
 							style="cursor: pointer;">
-								<td rowspan="5" style="width: 35%; vertical-align: middle;" align="center">
+								<td rowspan="5" style="width: 35%; vertical-align: middle; border-bottom: 2px solid #eeeeee;" align="center">
 									<div style="width:120px;">
-									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 180px;">
+									<img src="${path }/exImg/${ex.filename }" class="img-thumbnail" style="max-height: 180px; width:auto; max-width: 150px;">
 									</div>
 								</td>
 							</tr>
